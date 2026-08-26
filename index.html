@@ -1,0 +1,525 @@
+<!doctype html>
+<html lang="pl">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Juicy Events Nation — agencja eventowa</title>
+    <meta
+      name="description"
+      content="Kompleksowa produkcja wydarzeń dla firm. Od briefu po realizację."
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Host+Grotesk:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="icon" href="/media/favicon.svg" type="image/svg+xml" />
+    <link rel="stylesheet" href="/src/style.css" />
+  </head>
+
+  <body data-theme="light">
+    <div class="noise" aria-hidden="true"></div>
+    <div class="site-scrollbar" aria-hidden="true">
+      <span class="site-scrollbar__track"></span>
+      <span class="site-scrollbar__thumb"></span>
+    </div>
+
+    <nav class="fullscreen-menu" id="fullscreen-menu" aria-hidden="true">
+      <button class="menu-close" type="button" data-menu-close aria-label="Zamknij">Zamknij</button>
+      <div class="fullscreen-menu__grid">
+        <ul>
+          <li><a href="#projekty" data-menu-close>Realizacje</a></li>
+          <li><a href="#agencja" data-menu-close>Agencja</a></li>
+          <li><a href="#ekspertyzy" data-menu-close>Kompetencje</a></li>
+          <li><a href="#metoda" data-menu-close>Etapy</a></li>
+          <li><a href="#potrzeby" data-menu-close>Zakresy</a></li>
+          <li><a href="#aktualnosci" data-menu-close>Aktualności</a></li>
+          <li><a href="#kontakt" data-menu-close>Kontakt</a></li>
+        </ul>
+        <aside>
+          <p>Poznań</p>
+          <a href="mailto:knawrocki@juicyevents.pl">knawrocki@juicyevents.pl</a>
+          <a href="tel:+48735298884">+48 735 298 884</a>
+          <div class="menu-social">
+            <a href="https://www.instagram.com/juicyeventsnation/" target="_blank" rel="noreferrer">Instagram</a>
+            <a href="https://www.facebook.com/JuicyEventsPL/" target="_blank" rel="noreferrer">Facebook</a>
+            <a href="https://pl.linkedin.com/company/juicyevents" target="_blank" rel="noreferrer">LinkedIn</a>
+          </div>
+        </aside>
+      </div>
+    </nav>
+
+    <main id="top">
+      <!-- HERO — układ 1:1 jak blaedagency (bez mediów: szkielet) -->
+      <section class="blaed-hero" id="hero">
+        <div class="blaed-hero__inner">
+          <header class="blaed-hero__head">
+            <div class="blaed-hero__brand">
+              <a class="blaed-hero__logo" href="#top" data-logo>JUICY</a>
+              <p class="blaed-hero__baseline" data-baseline>
+                Event Design · Produkcja · Experiential · Private Events
+              </p>
+            </div>
+            <button class="blaed-hero__menu" type="button" aria-label="Otwórz menu" data-menu-open data-nav-toggle>
+              <span></span><span></span>
+            </button>
+          </header>
+
+          <div class="blaed-hero__media" data-hero-media>
+            <video
+              class="blaed-hero__video"
+              src="/media/hero.mp4"
+              muted
+              playsinline
+              loop
+              preload="auto"
+              data-hero-video
+            ></video>
+            <div class="blaed-hero__slices" aria-hidden="true" data-hero-slices></div>
+          </div>
+
+          <h1 class="blaed-hero__title" data-hero-title>
+            <span class="line"><span class="js-line">Za każdym</span></span>
+            <span class="line"><span class="js-line">wydarzeniem</span></span>
+            <span class="line"><span class="js-line">stoi</span></span>
+            <span class="line"><span class="js-line">produkcja</span></span>
+          </h1>
+        </div>
+      </section>
+
+      <!-- STATEMENT -->
+      <section class="statement" id="agencja" data-statement>
+        <div class="statement__media" aria-hidden="true">
+          <div class="statement__media-inner media-parallax" data-parallax="0.25">
+            <img src="/media/venue-01.jpg" alt="" />
+          </div>
+          <div class="statement__veil"></div>
+        </div>
+
+        <div class="statement__content">
+          <h2 class="statement__title">
+            <span class="line"><span>Jesteśmy agencją</span></span>
+            <span class="line"><span>eventową dla firm,</span></span>
+            <span class="line"><span>które wymagają</span></span>
+            <span class="line"><span>pełnej produkcji</span></span>
+          </h2>
+
+          <p class="statement__sub">
+            Od briefu po realizację. Projekt, harmonogram, zespół i standard wykonania.
+          </p>
+
+          <div class="statement__actions">
+            <button class="btn btn--light" type="button" data-showreel-open>Odtwórz showreel</button>
+            <a class="btn btn--ghost" href="#o-nas">Poznaj agencję</a>
+          </div>
+        </div>
+      </section>
+
+      <!-- MANIFESTO / ABOUT -->
+      <section class="manifesto" id="o-nas">
+        <div class="manifesto__media">
+          <button class="video-card" type="button" data-showreel-open aria-label="Odtwórz showreel">
+            <span class="media-parallax" data-parallax="0.22" aria-hidden="true">
+              <img src="/media/hospitality-02.jpg" alt="" />
+            </span>
+          </button>
+          <button class="play-label" type="button" data-showreel-open>
+            <span class="play-icon" aria-hidden="true"></span>
+            Odtwórz showreel
+          </button>
+        </div>
+
+        <div class="manifesto__copy">
+          <h2 data-split>Produkcja wydarzeń, która broni się w czasie i w detalach.</h2>
+          <div data-fade-group>
+            <p>
+              Juicy Events Nation prowadzi projekty od koncepcji do realizacji.
+              Pracujemy dla firm, w których liczy się powtarzalna jakość i spójne doświadczenie uczestnika.
+            </p>
+            <p>
+              Łączymy projektowanie przebiegu z pełną produkcją: scenariuszem wieczoru,
+              sceną, światłem, dźwiękiem, oprawą wizualną oraz obsługą.
+              Każdy etap jest kontrolowany — bez improwizacji w krytycznym momencie.
+            </p>
+            <p class="manifesto__q">Wspólnie dopasujemy model realizacji do skali i celu.</p>
+            <a class="btn btn--outline" href="#kontakt">Wyślij brief</a>
+          </div>
+        </div>
+      </section>
+
+      <!-- STRIP -->
+      <section class="strip" data-pin-strip>
+        <div class="strip__bg media-parallax" data-parallax="0.35" aria-hidden="true">
+          <img src="/media/crowd-01.jpg" alt="" />
+        </div>
+        <div class="strip__content">
+          <p data-strip-line>Jedna agencja.</p>
+          <p class="strip__big" data-strip-line>Pełna odpowiedzialność za produkcję.</p>
+          <p class="strip__brand" data-strip-line>Od briefu do domknięcia projektu — jeden standard.</p>
+        </div>
+      </section>
+
+      <!-- EXPERTISES -->
+      <section class="expertises" id="ekspertyzy">
+        <div class="section-head">
+          <h2 data-split>Kompetencje, które składają się na gotowe wydarzenie.</h2>
+          <p data-fade>Dobrze zaprojektowane doświadczenie ogranicza ryzyko improwizacji i podnosi czytelność przekazu.</p>
+        </div>
+
+        <div class="expertise-list">
+          <article class="expertise" data-row>
+            <div class="expertise__visual">
+              <span class="media-parallax" data-parallax="0.2" aria-hidden="true"><img src="/media/detail-01.jpg" alt="" /></span>
+            </div>
+            <div class="expertise__body">
+              <h3>Event Design</h3>
+              <p>Koncepcja, narracja i układ przestrzenny — zaplanowane pod cel wydarzenia.</p>
+              <a href="#kontakt">Zakres</a>
+            </div>
+          </article>
+
+          <article class="expertise" data-row>
+            <div class="expertise__visual">
+              <span class="media-parallax" data-parallax="0.2" aria-hidden="true"><img src="/media/space-01.jpg" alt="" /></span>
+            </div>
+            <div class="expertise__body">
+              <h3>Produkcja wydarzeń</h3>
+              <p>Planowanie, harmonogram, zespół, próby i realizacja — od kameralnych formatów po B2B.</p>
+              <a href="#kontakt">Zakres</a>
+            </div>
+          </article>
+
+          <article class="expertise" data-row>
+            <div class="expertise__visual">
+              <span class="media-parallax" data-parallax="0.2" aria-hidden="true"><img src="/media/hospitality-01.jpg" alt="" /></span>
+            </div>
+            <div class="expertise__body">
+              <h3>Experiential Marketing</h3>
+              <p>Aktywacje, w których marka jest przeżywana — nie tylko komunikowana.</p>
+              <a href="#kontakt">Zakres</a>
+            </div>
+          </article>
+
+          <article class="expertise" data-row>
+            <div class="expertise__visual">
+              <span class="media-parallax" data-parallax="0.2" aria-hidden="true"><img src="/media/venue-01.jpg" alt="" /></span>
+            </div>
+            <div class="expertise__body">
+              <h3>Wydarzenia prywatne</h3>
+              <p>Dyskrecja, kontrola przebiegu i wysoki poziom wykończenia — end-to-end.</p>
+              <a href="#kontakt">Zakres</a>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <!-- PROJECTS -->
+      <section class="projects" id="projekty">
+        <div class="section-head section-head--row">
+          <h2 data-split>Wybrane realizacje</h2>
+          <a class="link-arrow" href="https://www.instagram.com/juicyeventsnation/" target="_blank" rel="noreferrer">
+            Materiały w socialach
+          </a>
+        </div>
+
+        <div class="project-grid" data-projects>
+          <article class="project" data-project>
+            <a class="project__media" href="https://www.instagram.com/juicyeventsnation/" target="_blank" rel="noreferrer">
+              <span class="media-parallax" data-parallax="0.15" aria-hidden="true"><img src="/media/hospitality-01.jpg" alt="" /></span>
+            </a>
+            <div class="project__meta">
+              <p class="eyebrow">Hospitality · Experiential</p>
+              <h3>Oprawa gościa od pierwszego kontaktu</h3>
+              <p class="stat">Scenografia i serwis</p>
+            </div>
+          </article>
+
+          <article class="project" data-project>
+            <a class="project__media" href="https://www.instagram.com/juicyeventsnation/" target="_blank" rel="noreferrer">
+              <span class="media-parallax" data-parallax="0.15" aria-hidden="true"><img src="/media/crowd-02.jpg" alt="" /></span>
+            </a>
+            <div class="project__meta">
+              <p class="eyebrow">Private · Produkcja</p>
+              <h3>Kameralna realizacja z pełną oprawą przestrzeni</h3>
+              <p class="stat">Atmosfera i kontrola</p>
+            </div>
+          </article>
+
+          <article class="project" data-project>
+            <a class="project__media" href="https://www.instagram.com/juicyeventsnation/" target="_blank" rel="noreferrer">
+              <span class="media-parallax" data-parallax="0.15" aria-hidden="true"><img src="/media/space-01.jpg" alt="" /></span>
+            </a>
+            <div class="project__meta">
+              <p class="eyebrow">Produkcja · AV</p>
+              <h3>Przebieg wieczoru: światło, dźwięk, scena</h3>
+              <p class="stat">Flow i realizacja</p>
+            </div>
+          </article>
+
+          <article class="project" data-project>
+            <a class="project__media" href="https://www.instagram.com/juicyeventsnation/" target="_blank" rel="noreferrer">
+              <span class="media-parallax" data-parallax="0.15" aria-hidden="true"><img src="/media/detail-01.jpg" alt="" /></span>
+            </a>
+            <div class="project__meta">
+              <p class="eyebrow">Detal · Catering</p>
+              <h3>Wykończenie doświadczenia w detalu</h3>
+              <p class="stat">Jakość i konsekwencja</p>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <!-- METHOD -->
+      <section class="method" id="metoda">
+        <div class="method__intro">
+          <p class="eyebrow">Etapy realizacji</p>
+          <h2 data-split>Proces, który domyka brief w kontrolowanej realizacji.</h2>
+        </div>
+
+        <ol class="method__steps">
+          <li data-step>
+            <span>01</span>
+            <h3>Ustalenia</h3>
+            <p>Cel, grupa odbiorców, skala oraz warunki sukcesu — bez mgły w wymaganiach.</p>
+          </li>
+
+          <li data-step>
+            <span>02</span>
+            <h3>Scenariusz i projekt</h3>
+            <p>Przebieg wieczoru, przestrzeń i język wizualny — zgodne z tożsamością marki.</p>
+          </li>
+
+          <li data-step>
+            <span>03</span>
+            <h3>Produkcja</h3>
+            <p>Zespół, dostawcy, próby techniczne oraz realizacja dnia wydarzenia.</p>
+          </li>
+
+          <li data-step>
+            <span>04</span>
+            <h3>Domknięcie</h3>
+            <p>Podsumowanie, wnioski i materiały do dalszej komunikacji.</p>
+          </li>
+        </ol>
+      </section>
+
+      <!-- CHANGE -->
+      <section class="change">
+        <div class="section-head">
+          <h2 data-split>Standard pracy</h2>
+          <p data-fade>Preferujemy jakość wynikającą z kontroli procesu — a nie z jednorazowego efektu.</p>
+        </div>
+        <blockquote class="quote" data-quote>
+          <p>Nie budujemy „na pokaz”. Budujemy powtarzalny standard: precyzję briefu i odpowiedzialność za detal.</p>
+          <footer>— Juicy Events Nation</footer>
+        </blockquote>
+      </section>
+
+      <!-- NEEDS -->
+      <section class="needs" id="potrzeby">
+        <div class="section-head section-head--row">
+          <div>
+            <p class="eyebrow">Zakres współpracy</p>
+            <h2>Obszary, które realizujemy regularnie</h2>
+          </div>
+          <a class="link-arrow" href="#kontakt">Wyślij brief</a>
+        </div>
+
+        <div class="needs-grid">
+          <article class="need">
+            <h3>Wydarzenia B2B budujące relacje</h3>
+            <p class="stat">Do kilkuset uczestników · spójny przebieg</p>
+            <a href="#kontakt">Omówmy</a>
+          </article>
+          <article class="need">
+            <h3>Wydarzenia prywatne wymagające dyskrecji</h3>
+            <p class="stat">Private · pełna produkcja</p>
+            <a href="#kontakt">Omówmy</a>
+          </article>
+          <article class="need">
+            <h3>Aktywacje w przestrzeni i doświadczeniu</h3>
+            <p class="stat">Experiential · scenariusz i realizacja</p>
+            <a href="#kontakt">Omówmy</a>
+          </article>
+          <article class="need">
+            <h3>Serie wydarzeń z powtarzalnym standardem</h3>
+            <p class="stat">Cykl · konsekwencja</p>
+            <a href="#kontakt">Omówmy</a>
+          </article>
+        </div>
+      </section>
+
+      <!-- EXCELLENCE -->
+      <section class="excellence">
+        <div class="excellence__copy">
+          <p class="eyebrow">Standard realizacji</p>
+          <h2>Pracujemy precyzyjnie i odpowiedzialnie za całość projektu. Ten poziom kontroli przekłada się na spokój w dniu wydarzenia.</h2>
+          <a class="btn btn--outline" href="#projekty">Zobacz układ realizacji</a>
+        </div>
+        <div class="excellence__stack">
+          <article>
+            <img src="/media/live-01.jpg" alt="" />
+            <h3>Oprawa artystyczna podporządkowana doświadczeniu uczestnika</h3>
+          </article>
+          <article>
+            <img src="/media/staff-01.jpg" alt="" />
+            <h3>Detal i hospitality spięte w jedną narrację wieczoru</h3>
+          </article>
+          <article>
+            <img src="/media/hospitality-02.jpg" alt="" />
+            <h3>Kontrola przebiegu: od wejścia gości do domknięcia produkcji</h3>
+          </article>
+        </div>
+      </section>
+
+      <!-- NEWS -->
+      <section class="news" id="aktualnosci">
+        <div class="section-head section-head--row">
+          <div>
+            <h2>Aktualności</h2>
+            <p>
+              Materiały z produkcji i komunikacja ekspercka agencji z
+              <a href="https://www.instagram.com/juicyeventsnation/" target="_blank" rel="noreferrer">@juicyeventsnation</a>.
+            </p>
+          </div>
+          <a class="link-arrow" href="https://www.instagram.com/juicyeventsnation/" target="_blank" rel="noreferrer">Profil</a>
+        </div>
+
+        <div class="news-grid">
+          <article class="news-card">
+            <img src="/media/drink-01.jpg" alt="" />
+            <p class="eyebrow">Hospitality</p>
+            <h3>Pierwszy kontakt gościa buduje standard całego wieczoru</h3>
+          </article>
+          <article class="news-card">
+            <img src="/media/plating-01.jpg" alt="" />
+            <p class="eyebrow">Detal</p>
+            <h3>Wykończenie doświadczenia zaczyna się od talerza</h3>
+          </article>
+          <article class="news-card">
+            <img src="/media/space-01.jpg" alt="" />
+            <p class="eyebrow">Backstage</p>
+            <h3>Jak budujemy przebieg wydarzenia jeszcze przed dniem realizacji</h3>
+          </article>
+        </div>
+      </section>
+
+      <!-- CONTACT -->
+      <section class="contact" id="kontakt">
+        <div class="contact__intro">
+          <h2>Porozmawiajmy o Państwa projekcie</h2>
+          <p>Krótka rozmowa pozwala ocenić skalę, termin i model współpracy.</p>
+
+          <div class="contact__person">
+            <span class="contact__avatar" aria-hidden="true">J</span>
+            <div>
+              <strong>Kajetan Nawrocki</strong>
+              <span>Founder · Juicy Events Nation</span>
+              <a href="mailto:knawrocki@juicyevents.pl">knawrocki@juicyevents.pl</a>
+              <a href="tel:+48735298884">+48 735 298 884</a>
+            </div>
+          </div>
+        </div>
+
+        <form class="contact-form" id="contact-form">
+          <p class="form-step">krok <span data-step-label>1</span>/4</p>
+          <p class="form-hello">Prosimy o podstawowe informacje.</p>
+
+          <label>
+            <span>Imię i firma</span>
+            <input name="name" type="text" required placeholder="np. Anna Kowalska · Firma" />
+          </label>
+          <label>
+            <span>Email</span>
+            <input name="email" type="email" required placeholder="kontakt@firma.pl" />
+          </label>
+          <label>
+            <span>Zakres projektu</span>
+            <select name="need" required>
+              <option value="">Wybierz</option>
+              <option>Wydarzenie B2B</option>
+              <option>Wydarzenie prywatne</option>
+              <option>Aktywacja experiential</option>
+              <option>Seria wydarzeń</option>
+              <option>Inne</option>
+            </select>
+          </label>
+          <label>
+            <span>Opis</span>
+            <textarea name="message" rows="4" placeholder="Termin, skala, lokalizacja, cel…"></textarea>
+          </label>
+
+          <button class="btn btn--solid" type="submit">Wyślij brief →</button>
+          <p class="form-note" data-form-status hidden></p>
+        </form>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <div class="footer__top">
+        <div class="mark mark--lg" aria-hidden="true">JUICY</div>
+        <nav>
+          <a href="#projekty">Realizacje</a>
+          <a href="#agencja">Agencja</a>
+          <a href="#ekspertyzy">Kompetencje</a>
+          <a href="#aktualnosci">Aktualności</a>
+          <a href="#potrzeby">Zakresy</a>
+        </nav>
+      </div>
+      <div class="footer__bottom">
+        <p>© <span data-year></span> Juicy Events Nation</p>
+        <div class="footer__links">
+          <a href="https://www.instagram.com/juicyeventsnation/" target="_blank" rel="noreferrer">Instagram</a>
+          <a href="https://www.facebook.com/JuicyEventsPL/" target="_blank" rel="noreferrer">Facebook</a>
+          <a href="https://juicyevents.pl/" target="_blank" rel="noreferrer">juicyevents.pl</a>
+        </div>
+      </div>
+    </footer>
+
+    <button class="theme-fab theme-fab--fixed" type="button" data-theme-toggle>
+      <span class="theme-fab__dot"></span>
+      <span data-theme-label>Dark Mode</span>
+    </button>
+
+    <div class="showreel" id="showreel" aria-hidden="true" role="dialog" aria-label="Showreel">
+      <button class="showreel__close" type="button" data-showreel-close>Zamknij</button>
+      <div class="showreel__stage">
+        <div class="showreel__track" data-showreel-track>
+          <figure class="is-active">
+            <video src="/media/hero.mp4" muted playsinline loop></video>
+            <figcaption>Showreel</figcaption>
+          </figure>
+          <figure>
+            <video src="/media/reel-02.mp4" muted playsinline loop></video>
+            <figcaption>Produkcja</figcaption>
+          </figure>
+          <figure>
+            <video src="/media/reel-03.mp4" muted playsinline loop></video>
+            <figcaption>Detal</figcaption>
+          </figure>
+          <figure>
+            <img src="/media/hospitality-02.jpg" alt="" />
+            <figcaption>Hospitality</figcaption>
+          </figure>
+          <figure>
+            <img src="/media/crowd-02.jpg" alt="" />
+            <figcaption>Private</figcaption>
+          </figure>
+          <figure>
+            <img src="/media/staff-01.jpg" alt="" />
+            <figcaption>Detal</figcaption>
+          </figure>
+        </div>
+        <div class="showreel__controls">
+          <button type="button" data-showreel-prev>←</button>
+          <button type="button" data-showreel-play>Pause</button>
+          <button type="button" data-showreel-next>→</button>
+          <button type="button" disabled aria-disabled="true" data-showreel-mute>Dźwięk off</button>
+        </div>
+      </div>
+    </div>
+
+    <script type="module" src="/src/main.js"></script>
+  </body>
+</html>
