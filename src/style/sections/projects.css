@@ -1,0 +1,199 @@
+.projects {
+  max-width: var(--max);
+  margin: 0 auto;
+  padding: var(--block) var(--pad);
+  background: var(--cream);
+}
+
+.projects__head {
+  margin-bottom: clamp(2.5rem, 6vw, 5rem);
+}
+
+.projects__title {
+  max-width: 24ch;
+  font-size: var(--display-2);
+}
+
+.projects__grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: clamp(2rem, 4vw, 4.5rem) clamp(1.25rem, 3vw, 3rem);
+}
+
+/* Przesunięcie prawej kolumny — rytm Sweetpunk */
+.projects__grid > .project-card:nth-child(even) {
+  transform: translateY(clamp(2rem, 6vw, 6.5rem));
+}
+
+.project-card__link {
+  display: grid;
+  gap: 1rem;
+}
+
+.project-card__media {
+  display: block;
+  aspect-ratio: 4 / 3;
+  overflow: hidden;
+  background: var(--cream-deep);
+}
+
+.project-card__media img,
+.project-card__media video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform 1s var(--ease), filter 0.6s var(--ease);
+}
+
+.project-card:hover .project-card__media img {
+  transform: scale(1.045);
+}
+
+.project-card__title a {
+  color: inherit;
+  text-decoration: none;
+}
+
+/* Karta z wideo — przycisk zamiast statycznego kadru, z możliwością powiększenia */
+.project-card--video {
+  position: relative;
+}
+
+.project-card--video .project-card__media {
+  position: relative;
+  border: 0;
+  padding: 0;
+  margin: 0;
+  width: 100%;
+  font: inherit;
+  color: inherit;
+  text-align: left;
+  background: var(--cream-deep);
+  cursor: pointer;
+  transform: scale(1);
+  transform-origin: center bottom;
+  transition: transform 0.55s var(--ease-expo);
+  will-change: transform;
+}
+
+.project-card--video:hover .project-card__media video {
+  transform: scale(1.045);
+}
+
+.project-card--video .project-card__video-hint {
+  position: absolute;
+  right: 0.9rem;
+  bottom: 0.9rem;
+  padding: 0.32rem 0.7rem;
+  border-radius: 999px;
+  background: var(--accent);
+  color: var(--white);
+  font-size: var(--micro);
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  opacity: 0;
+  transform: translateY(0.4rem);
+  transition: opacity 0.3s var(--ease), transform 0.3s var(--ease);
+}
+
+.project-card--video:hover .project-card__video-hint,
+.project-card--video .project-card__media:focus-visible .project-card__video-hint {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Rozwinięcie: skalujemy tylko medium, od dołu, żeby tytuł/opis zawsze zostały widoczne */
+.project-card--video.is-expanded {
+  z-index: 5;
+}
+
+.project-card--video.is-expanded .project-card__media {
+  transform: scale(1.14);
+  box-shadow: 0 34px 64px -22px rgba(13, 12, 11, 0.4);
+}
+
+.project-card--video.is-expanded .project-card__media video {
+  transform: scale(1);
+}
+
+.project-card--video.is-expanded .project-card__video-hint {
+  opacity: 0;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .project-card--video .project-card__media,
+  .project-card--video .project-card__media video,
+  .project-card--video .project-card__video-hint {
+    transition: none;
+  }
+}
+
+/* Kafelek ze slajdshow zdjęć — crossfade w tle, bez JS-bibliotek */
+.project-card__media[data-slideshow-card] {
+  position: relative;
+}
+
+.slideshow-slide {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  transition: opacity 1s var(--ease);
+}
+
+.slideshow-slide.is-active {
+  opacity: 1;
+  z-index: 1;
+}
+
+.project-card__meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+}
+
+.project-card__meta span {
+  padding: 0.32rem 0.7rem;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  font-size: var(--micro);
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+.project-card__title {
+  max-width: 22ch;
+  font-size: var(--display-4);
+  transition: color 0.35s var(--ease);
+}
+
+.project-card:hover .project-card__title {
+  color: var(--accent);
+}
+
+.project-card__stat {
+  margin: 0;
+  font-size: var(--micro);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+.projects__cta {
+  display: flex;
+  justify-content: center;
+  margin-top: clamp(4rem, 9vw, 9rem);
+}
+
+@media (max-width: 860px) {
+  .projects__grid {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .projects__grid > .project-card:nth-child(even) {
+    transform: none;
+  }
+}

@@ -1,0 +1,93 @@
+.gallery-hero {
+  display: grid;
+  align-content: end;
+  min-height: 68svh;
+  max-width: var(--max);
+  margin: 0 auto;
+  padding: clamp(8rem, 16vw, 13rem) var(--pad) clamp(2.5rem, 5vw, 4rem);
+}
+
+.gallery-hero h1 {
+  max-width: 20ch;
+  font-size: var(--display-1);
+}
+
+.gallery-hero p {
+  margin: 1.5rem 0 0;
+  max-width: 46ch;
+  font-size: clamp(1rem, 1.2vw, 1.15rem);
+  line-height: 1.68;
+  color: var(--muted);
+}
+
+.gallery {
+  max-width: var(--max);
+  margin: 0 auto;
+  padding: 0 var(--pad) var(--block);
+}
+
+.gallery__grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: var(--gutter);
+}
+
+.gallery-item {
+  display: grid;
+  gap: 0.75rem;
+}
+
+.gallery-item__media {
+  aspect-ratio: 4 / 5;
+  overflow: hidden;
+  background: var(--cream-deep);
+}
+
+.gallery-item__media img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 1s var(--ease);
+}
+
+.gallery-item:hover .gallery-item__media img {
+  transform: scale(1.04);
+}
+
+/* Co trzecia kafelka szersza — rytm zamiast równej siatki */
+.gallery-item--wide {
+  grid-column: span 2;
+}
+
+.gallery-item--wide .gallery-item__media {
+  aspect-ratio: 16 / 10;
+}
+
+.gallery-item h2 {
+  font-size: clamp(1rem, 1.2vw, 1.15rem);
+  max-width: 26ch;
+}
+
+.gallery-item p {
+  margin: 0;
+  font-size: var(--micro);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+@media (max-width: 900px) {
+  .gallery__grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 560px) {
+  .gallery__grid {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .gallery-item--wide {
+    grid-column: span 1;
+  }
+}

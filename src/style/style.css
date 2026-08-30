@@ -1,0 +1,18 @@
+@import "./tokens.css";
+@import "./base.css";
+@import "./layout.css";
+@import "./effects.css";
+
+@import "./sections/agency.css";
+@import "./sections/work.css";
+@import "./sections/mission.css";
+@import "./sections/expertise.css";
+@import "./sections/projects.css";
+@import "./sections/method.css";
+@import "./sections/values.css";
+@import "./sections/needs.css";
+@import "./sections/standard.css";
+@import "./sections/team.css";
+@import "./sections/contact.css";
+@import "./sections/gallery.css";
+@import "./sections/realizacje-detail.css";

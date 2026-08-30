@@ -1,0 +1,59 @@
+/* Rozbłysk przechodzący przez nagłówek w momencie odsłony */
+.text-glow {
+  position: relative;
+  display: inline-block;
+  --glow-sweep: 0;
+  --glow-intensity: 0;
+}
+
+.text-glow__base {
+  position: relative;
+  display: inline-block;
+}
+
+.text-glow__fire {
+  position: absolute;
+  inset: 0;
+  display: inline-block;
+  pointer-events: none;
+  opacity: var(--glow-intensity);
+  background: linear-gradient(
+    100deg,
+    var(--accent-warm) 0%,
+    #ffd27a 42%,
+    var(--accent) 100%
+  );
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  -webkit-mask-image: linear-gradient(
+    100deg,
+    transparent 0%,
+    #000 12%,
+    #000 26%,
+    transparent 40%
+  );
+  mask-image: linear-gradient(
+    100deg,
+    transparent 0%,
+    #000 12%,
+    #000 26%,
+    transparent 40%
+  );
+  -webkit-mask-size: 260% 100%;
+  mask-size: 260% 100%;
+  -webkit-mask-repeat: no-repeat;
+  mask-repeat: no-repeat;
+  -webkit-mask-position: calc(var(--glow-sweep) * 160% - 60%) 0;
+  mask-position: calc(var(--glow-sweep) * 160% - 60%) 0;
+}
+
+.is-text-glow-done .text-glow__fire {
+  opacity: 0;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .text-glow__fire {
+    display: none;
+  }
+}

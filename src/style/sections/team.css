@@ -1,0 +1,86 @@
+.team {
+  max-width: var(--max);
+  margin: 0 auto;
+  padding: var(--block) var(--pad);
+}
+
+.team__head {
+  margin-bottom: clamp(2rem, 4vw, 3.5rem);
+}
+
+.team__head h2 {
+  max-width: 22ch;
+  font-size: var(--display-2);
+}
+
+.team__grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 15rem), 1fr));
+  gap: 0;
+  border-top: 1px solid var(--line);
+}
+
+.team-card {
+  display: grid;
+  align-content: start;
+  gap: 0.5rem;
+  padding: clamp(1.5rem, 2.5vw, 2.25rem) clamp(1rem, 1.8vw, 1.6rem);
+  border-bottom: 1px solid var(--line);
+  border-right: 1px solid var(--line);
+  transition: background 0.4s var(--ease), color 0.4s var(--ease);
+}
+
+.team-card:first-child {
+  border-left: 1px solid var(--line);
+}
+
+.team-card:hover {
+  background: var(--ink);
+  color: var(--cream);
+}
+
+.team-card h3 {
+  font-size: var(--display-4);
+}
+
+.team-card__role {
+  margin: 0;
+  font-size: var(--micro);
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--accent);
+}
+
+.team-card__contact {
+  display: grid;
+  gap: 0.25rem;
+  justify-items: start;
+  margin-top: 1.25rem;
+  font-size: clamp(0.85rem, 0.95vw, 0.95rem);
+  color: var(--muted);
+}
+
+.team-card:hover .team-card__contact {
+  color: rgba(246, 244, 239, 0.72);
+}
+
+.team-card__contact a {
+  border-bottom: 1px solid transparent;
+  transition: border-color 0.3s var(--ease);
+}
+
+.team-card__contact a:hover {
+  border-color: currentColor;
+}
+
+.team-card--soon {
+  color: var(--muted);
+}
+
+@media (max-width: 980px) {
+  .team-card,
+  .team-card:first-child {
+    border-left: 1px solid var(--line);
+  }
+}

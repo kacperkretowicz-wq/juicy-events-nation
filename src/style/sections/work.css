@@ -1,0 +1,139 @@
+.work {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  gap: clamp(2rem, 5vw, 5.5rem);
+  align-items: center;
+  max-width: var(--max);
+  margin: 0 auto;
+  padding: 0 var(--pad) var(--block);
+}
+
+.work__media {
+  display: grid;
+  gap: 1.25rem;
+  justify-items: start;
+}
+
+.work__card {
+  position: relative;
+  display: block;
+  width: 62%;
+  aspect-ratio: 4 / 5;
+  padding: 0;
+  border: 0;
+  background: var(--dark);
+  overflow: hidden;
+  cursor: pointer;
+  transition: width 0.7s var(--ease);
+}
+
+/* Kliknięcie (karty lub podpisu) rozwija wideo do pełnego rozmiaru i odtwarza showreel. */
+.work__media.is-expanded .work__card {
+  width: 100%;
+}
+
+.work__card-inner,
+.values__card-inner {
+  position: absolute;
+  inset: -8% 0;
+  display: block;
+}
+
+.work__card-inner img,
+.values__card-inner img,
+.work__video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 1s var(--ease);
+}
+
+.work__card:hover .work__card-inner img {
+  transform: scale(1.04);
+}
+
+/* Podpis „Odtwórz showreel" gaśnie, gdy wideo jest już rozwinięte i gra. */
+.work__media.is-expanded .work__play {
+  opacity: 0;
+  pointer-events: none;
+}
+
+.work__play {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.7rem;
+  padding: 0;
+  background: transparent;
+  border: 0;
+  font-size: var(--micro);
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: color 0.3s var(--ease), opacity 0.3s var(--ease);
+}
+
+.work__play:hover {
+  color: var(--accent);
+}
+
+.work__play-icon {
+  display: grid;
+  place-items: center;
+  width: 2.25rem;
+  height: 2.25rem;
+  border: 1px solid currentColor;
+  border-radius: 50%;
+}
+
+.work__play-icon::after {
+  content: "";
+  width: 0;
+  height: 0;
+  border-left: 0.42rem solid currentColor;
+  border-top: 0.28rem solid transparent;
+  border-bottom: 0.28rem solid transparent;
+  margin-left: 0.12rem;
+}
+
+.work__copy {
+  display: grid;
+  gap: 1.75rem;
+  align-content: center;
+}
+
+.work__copy h2 {
+  max-width: 24ch;
+  font-size: var(--display-3);
+}
+
+.work__copy [data-fade-group] {
+  display: grid;
+  gap: 1.25rem;
+  justify-items: start;
+  max-width: 46ch;
+  color: var(--muted);
+}
+
+.work__copy [data-fade-group] p {
+  margin: 0;
+  font-size: clamp(1rem, 1.15vw, 1.1rem);
+  line-height: 1.68;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .work__card {
+    transition: none;
+  }
+}
+
+@media (max-width: 980px) {
+  .work {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .work__card {
+    width: 78%;
+    aspect-ratio: 3 / 4;
+  }
+}

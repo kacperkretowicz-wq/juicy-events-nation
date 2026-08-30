@@ -1,0 +1,275 @@
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: auto;
+  -webkit-text-size-adjust: 100%;
+}
+
+html.lenis,
+html.lenis body {
+  height: auto;
+}
+
+.lenis.lenis-smooth {
+  scroll-behavior: auto !important;
+}
+
+.lenis.lenis-stopped {
+  overflow: hidden;
+}
+
+body {
+  margin: 0;
+  background: var(--cream);
+  color: var(--ink);
+  font-family: var(--font);
+  font-size: var(--body);
+  line-height: 1.55;
+  overflow-x: hidden;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+}
+
+img,
+video {
+  display: block;
+  max-width: 100%;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+button,
+input,
+select,
+textarea {
+  font: inherit;
+  color: inherit;
+}
+
+h1,
+h2,
+h3 {
+  margin: 0;
+  font-weight: 700;
+  line-height: 0.94;
+  letter-spacing: -0.03em;
+  text-transform: uppercase;
+}
+
+p {
+  margin: 0 0 1rem;
+}
+
+ol,
+ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+/* Ziarno — subtelna tekstura jak w prezentacji */
+.grain {
+  position: fixed;
+  inset: 0;
+  z-index: 9998;
+  pointer-events: none;
+  opacity: 0.05;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+/* ——— Elementy współdzielone ——— */
+
+.eyebrow {
+  margin: 0 0 1rem;
+  font-size: var(--micro);
+  font-weight: 600;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+.eyebrow--light {
+  color: var(--muted-light);
+}
+
+/* Nawiasy kwadratowe jako akcent marki */
+.bracket {
+  position: relative;
+  color: var(--accent);
+}
+
+.bracket::before {
+  content: "[";
+  margin-right: 0.06em;
+}
+
+.bracket::after {
+  content: "]";
+  margin-left: 0.06em;
+}
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.6rem;
+  min-height: 3.25rem;
+  padding: 0.85rem 1.5rem;
+  border: 0;
+  background: var(--white);
+  color: var(--ink);
+  font-size: var(--micro);
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: background 0.35s var(--ease), color 0.35s var(--ease);
+}
+
+/* Sweetpunk: czerwony pasek na prawej krawędzi przycisku */
+.btn--bar {
+  position: relative;
+  padding-right: 2.5rem;
+  border: 1px solid var(--line);
+}
+
+.btn--bar::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  width: 0.6rem;
+  background: var(--accent);
+  transition: width 0.35s var(--ease);
+}
+
+.btn--bar:hover::after {
+  width: 100%;
+}
+
+.btn--bar:hover {
+  color: var(--white);
+}
+
+.btn--bar span,
+.btn--bar {
+  z-index: 0;
+}
+
+.btn--dark {
+  background: var(--ink);
+  color: var(--cream);
+}
+
+.btn--dark:hover {
+  background: var(--accent);
+  color: var(--white);
+}
+
+.btn--ghost-dark {
+  background: transparent;
+  border: 1px solid var(--line);
+  color: var(--ink);
+}
+
+.btn--ghost-dark:hover {
+  background: var(--ink);
+  color: var(--cream);
+}
+
+.link-arrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  width: fit-content;
+  padding-bottom: 0.35rem;
+  border-bottom: 1px solid currentColor;
+  font-size: var(--micro);
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  transition: gap 0.3s var(--ease), color 0.3s var(--ease);
+}
+
+.link-arrow::after {
+  content: "→";
+  border: 0;
+}
+
+.link-arrow:hover {
+  gap: 0.85rem;
+  color: var(--accent);
+}
+
+.link-arrow--light {
+  color: var(--cream);
+}
+
+.social {
+  display: flex;
+  gap: 0.6rem;
+}
+
+.social__icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.4rem;
+  height: 2.4rem;
+  border: 1px solid currentColor;
+  border-radius: 50%;
+  opacity: 0.7;
+  transition: opacity 0.3s var(--ease), color 0.3s var(--ease);
+}
+
+.social__icon svg {
+  width: 1rem;
+  height: 1rem;
+}
+
+.social__icon:hover {
+  opacity: 1;
+  color: var(--accent);
+}
+
+/* Split headline — nośnik animacji linii */
+.is-split .split-line {
+  display: block;
+  overflow: hidden;
+  padding-bottom: 0.06em;
+}
+
+.is-split .split-line__inner {
+  display: block;
+  white-space: nowrap;
+  will-change: transform;
+}
+
+.split-word {
+  display: inline-block;
+}
+
+.line {
+  display: block;
+  overflow: hidden;
+  padding-bottom: 0.06em;
+}
+
+.line > span {
+  display: block;
+  will-change: transform;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .grain {
+    display: none;
+  }
+}
