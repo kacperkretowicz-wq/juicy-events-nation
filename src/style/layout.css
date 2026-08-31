@@ -1,0 +1,685 @@
+/* ——— HEADER ——— */
+
+.site-header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: var(--z-header);
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr);
+  align-items: center;
+  gap: 1rem;
+  padding: 1.1rem var(--pad);
+  color: var(--white);
+  transition: background var(--dur-slow) var(--ease), color var(--dur-slow) var(--ease),
+    backdrop-filter var(--dur-slow) var(--ease), padding var(--dur-slow) var(--ease),
+    border-color var(--dur-slow) var(--ease);
+  border-bottom: 1px solid transparent;
+}
+
+/* Nad CIEMNYMI sekcjami nagłówek też potrzebuje podkładu — bez niego wielkie
+   napisy (np. mostek „Od briefu do wyniku") przejeżdżały przez linki nawigacji
+   i robiła się nieczytelna papka. Scrim włącza się dopiero po odjechaniu od
+   góry strony, żeby nie psuć czystego wejścia w hero. */
+.site-header--floating:not(.site-header--solid) {
+  background: linear-gradient(180deg, rgba(8, 8, 8, 0.82) 0%, rgba(8, 8, 8, 0.52) 70%, rgba(8, 8, 8, 0) 100%);
+  backdrop-filter: blur(10px);
+  border-bottom-color: var(--line-light);
+}
+
+/* Nad jasnym tłem przechodzimy na ciemny tekst + rozmyte tło */
+.site-header--solid {
+  background: color-mix(in srgb, var(--cream) 84%, transparent);
+  backdrop-filter: blur(14px);
+  color: var(--ink);
+  border-bottom-color: var(--line);
+}
+
+/* Po odjechaniu od góry nagłówek jest odrobinę niższy — mniej zabiera kadru. */
+.site-header--floating {
+  padding-top: 0.8rem;
+  padding-bottom: 0.8rem;
+}
+
+/* Pasek postępu czytania — cienka czerwona nitka na dolnej krawędzi. */
+.site-header__progress {
+  position: absolute;
+  left: 0;
+  bottom: -1px;
+  height: 2px;
+  width: 100%;
+  transform: scaleX(var(--progress, 0));
+  transform-origin: left center;
+  background: var(--gradient-accent);
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity var(--dur) var(--ease);
+}
+
+.site-header--floating .site-header__progress {
+  opacity: 1;
+}
+
+.site-header__logo {
+  justify-self: start;
+  display: flex;
+  align-items: center;
+  /* Logo miało 15 px wysokości klikalnej — za mało na palec i na mysz. */
+  min-height: 2.75rem;
+}
+
+/* Logo jest jednobarwne — wymuszamy biel na ciemnym tle i czerń na jasnym. */
+.site-header__logo img {
+  width: clamp(112px, 11vw, 150px);
+  height: auto;
+  filter: brightness(0) invert(1);
+  transition: filter var(--dur-slow) var(--ease);
+}
+
+.site-header--solid .site-header__logo img {
+  filter: brightness(0);
+}
+
+.site-header__nav {
+  justify-self: center;
+  display: flex;
+  gap: clamp(1rem, 2vw, 2.25rem);
+}
+
+.site-header__nav a {
+  position: relative;
+  font-size: var(--micro);
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  /* 21 px wysokości celu → 44 px, bez zmiany wyglądu paska. */
+  padding: 0.75rem 0 0.55rem;
+  opacity: 0.82;
+  transition: opacity var(--dur) var(--ease);
+}
+
+.site-header__nav a:hover {
+  opacity: 1;
+}
+
+.site-header__nav a::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: 0.5rem;
+  width: 0;
+  height: 1px;
+  background: var(--accent);
+  transition: width var(--dur) var(--ease);
+}
+
+.site-header__nav a:hover::after {
+  width: 100%;
+}
+
+/* Aktywna sekcja — scroll-spy w shared.js. Podkreślenie zostaje na stałe,
+   więc użytkownik zawsze wie, w którym miejscu strony jest. */
+.site-header__nav a[aria-current="true"] {
+  opacity: 1;
+  color: var(--accent);
+}
+
+/* Nad jasnym tłem jaśniejsza czerwień nie miałaby kontrastu przy 11 px. */
+.site-header--solid .site-header__nav a[aria-current="true"] {
+  color: var(--accent-text);
+}
+
+.site-header__nav a[aria-current="true"]::after {
+  width: 100%;
+}
+
+.site-header__cta {
+  position: relative;
+  justify-self: end;
+  display: inline-flex;
+  align-items: center;
+  overflow: hidden;
+  padding: 0.65rem 1.25rem;
+  border: 1px solid currentColor;
+  font-size: var(--micro);
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  transition: color var(--dur) var(--ease), border-color var(--dur) var(--ease);
+}
+
+/* Wypełnienie wjeżdża od dołu zamiast skokowej zmiany tła. */
+.site-header__cta::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background: var(--accent);
+  transform: translateY(101%);
+  transition: transform 0.45s var(--ease-expo);
+}
+
+.site-header__cta:hover,
+.site-header__cta:focus-visible {
+  color: var(--ink);
+  border-color: var(--accent);
+}
+
+.site-header__cta:hover::before,
+.site-header__cta:focus-visible::before {
+  transform: translateY(0);
+}
+
+.site-header__burger {
+  display: none;
+  justify-self: end;
+  width: 2.75rem;
+  height: 2.75rem;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.35rem;
+  background: transparent;
+  border: 1px solid currentColor;
+  cursor: pointer;
+}
+
+.site-header__burger span {
+  display: block;
+  width: 1.05rem;
+  height: 1px;
+  background: currentColor;
+  transition: transform var(--dur) var(--ease);
+}
+
+/* ——— MEGA MENU ——— */
+
+.mega-menu {
+  position: fixed;
+  inset: 0;
+  z-index: var(--z-menu);
+  display: grid;
+  align-content: center;
+  padding: calc(var(--pad) * 2) var(--pad);
+  background-color: var(--dark);
+  background-image: var(--gradient-dark);
+  color: var(--cream);
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  clip-path: inset(0 0 100% 0);
+  transition: clip-path 0.8s var(--ease-expo), opacity 0.4s var(--ease),
+    visibility 0s linear 0.8s;
+}
+
+.mega-menu.is-open {
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+  clip-path: inset(0 0 0 0);
+  transition: clip-path 0.8s var(--ease-expo), opacity 0.4s var(--ease),
+    visibility 0s linear 0s;
+}
+
+/* Czerwona łuna w rogu — menu przestaje być płaskim czarnym prostokątem. */
+.mega-menu::before {
+  content: "";
+  position: absolute;
+  right: -10%;
+  top: -20%;
+  width: 60vw;
+  height: 60vw;
+  border-radius: 50%;
+  background: radial-gradient(circle, var(--accent-glow) 0%, transparent 62%);
+  pointer-events: none;
+}
+
+.mega-menu__close {
+  position: absolute;
+  top: var(--pad);
+  right: var(--pad);
+  z-index: 2;
+  padding: 0.6rem 1.15rem;
+  background: transparent;
+  border: 1px solid var(--line-light);
+  color: inherit;
+  font-size: var(--micro);
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: background var(--dur) var(--ease), border-color var(--dur) var(--ease);
+}
+
+.mega-menu__close:hover {
+  background: var(--accent);
+  border-color: var(--accent);
+  color: var(--ink);
+}
+
+.mega-menu__grid {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  grid-template-columns: minmax(0, 1.6fr) minmax(0, 1fr);
+  gap: clamp(2rem, 6vw, 6rem);
+  align-items: end;
+  width: 100%;
+  max-width: var(--max);
+  margin: 0 auto;
+}
+
+.mega-menu__list li {
+  overflow: hidden;
+}
+
+.mega-menu__list a {
+  position: relative;
+  display: flex;
+  align-items: baseline;
+  gap: 1rem;
+  padding: 0.15em 0;
+  font-size: var(--display-2);
+  font-weight: 700;
+  line-height: var(--lh-display);
+  letter-spacing: var(--track-display);
+  text-transform: uppercase;
+  transition: color var(--dur) var(--ease), transform 0.4s var(--ease);
+}
+
+/* Numeracja pozycji menu — porządkuje listę i dokłada „redakcyjny" detal. */
+.mega-menu__list a::before {
+  content: attr(data-index);
+  font-size: var(--micro);
+  font-weight: 600;
+  letter-spacing: 0.18em;
+  color: var(--accent);
+  opacity: 0;
+  transform: translateX(-0.5rem);
+  transition: opacity var(--dur) var(--ease), transform var(--dur) var(--ease);
+}
+
+.mega-menu__list a:hover,
+.mega-menu__list a:focus-visible {
+  color: var(--accent);
+  transform: translateX(0.6rem);
+}
+
+.mega-menu__list a:hover::before,
+.mega-menu__list a:focus-visible::before {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+.mega-menu__aside {
+  display: grid;
+  gap: 0.5rem;
+  justify-items: start;
+  padding-bottom: 0.5rem;
+  font-size: var(--body);
+  color: var(--muted-light);
+}
+
+.mega-menu__aside a {
+  transition: color var(--dur) var(--ease);
+}
+
+.mega-menu__aside a:hover {
+  color: var(--accent);
+}
+
+.mega-menu__aside .social {
+  margin-top: 1rem;
+  color: var(--cream);
+}
+
+/* ——— FOOTER ——— */
+
+.site-footer {
+  position: relative;
+  background-color: var(--dark);
+  background-image: var(--gradient-dark);
+  color: var(--cream);
+  padding: var(--block) 0 0;
+  overflow: hidden;
+}
+
+.site-footer__grid,
+.site-footer__bottom {
+  max-width: var(--max);
+  margin: 0 auto;
+  padding: 0 var(--pad);
+}
+
+/* Spis treści strony — marka + dwie kolumny nawigacji + social. */
+.site-footer__grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1.6fr) repeat(3, minmax(0, 1fr));
+  gap: clamp(1.75rem, 4vw, 3.5rem);
+  padding-bottom: clamp(2.5rem, 5vw, 3.5rem);
+  border-bottom: 1px solid var(--line-light);
+}
+
+.site-footer__brand {
+  display: grid;
+  gap: 1.1rem;
+  align-content: start;
+  max-width: 30ch;
+}
+
+.site-footer__pitch {
+  margin: 0;
+  font-size: var(--display-4);
+  font-weight: 700;
+  letter-spacing: -0.015em;
+  text-transform: uppercase;
+  color: var(--cream);
+}
+
+.site-footer__contact {
+  display: grid;
+  gap: 0.4rem;
+  justify-items: start;
+  font-size: var(--body);
+  color: var(--muted-light);
+}
+
+.site-footer__contact a {
+  width: fit-content;
+  padding: 0.3rem 0;
+  transition: color var(--dur) var(--ease);
+}
+
+.site-footer__contact a:hover {
+  color: var(--accent);
+}
+
+.site-footer__contact p {
+  margin: 0.3rem 0 0;
+}
+
+.site-footer__col {
+  display: grid;
+  gap: 0.7rem;
+  align-content: start;
+}
+
+.site-footer__col-title {
+  margin: 0 0 0.35rem;
+  font-size: var(--micro);
+  font-weight: 600;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--muted-light);
+  opacity: 0.7;
+}
+
+/* :not(.social__icon) — inaczej `width: fit-content` z tej reguły wygrywa
+   specyficznością z `.social__icon { width: 2.75rem }` i okrągłe ikony social
+   w stopce robią się owalami 19x44 px. */
+.site-footer__col a:not(.social__icon) {
+  width: fit-content;
+  padding: 0.3rem 0;
+  font-size: var(--body);
+  color: var(--cream);
+  transition: color var(--dur) var(--ease), transform var(--dur) var(--ease);
+}
+
+.site-footer__col a:not(.social__icon):hover {
+  color: var(--accent);
+  transform: translateX(0.35rem);
+}
+
+.site-footer__col--social .social {
+  margin-top: 0.15rem;
+  color: var(--cream);
+}
+
+.site-footer__bottom {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  align-items: center;
+  justify-content: space-between;
+  padding-top: 1.75rem;
+  padding-bottom: 1.75rem;
+  font-size: var(--micro);
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--muted-light);
+}
+
+.site-footer__bottom p {
+  margin: 0;
+}
+
+.site-footer__totop {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.55rem 0;
+  transition: color var(--dur) var(--ease);
+}
+
+.site-footer__totop:hover {
+  color: var(--accent);
+}
+
+/* Gigantyczny wordmark — sygnatura Sweetpunk */
+.site-footer__wordmark {
+  background-color: var(--accent);
+  background-image: var(--gradient-accent);
+  color: var(--dark);
+  overflow: hidden;
+}
+
+.site-footer__wordmark span {
+  display: block;
+  padding: 0 var(--pad);
+  font-size: clamp(3.5rem, 16.2vw, 17rem);
+  font-weight: 700;
+  line-height: 0.82;
+  letter-spacing: -0.045em;
+  text-transform: uppercase;
+  white-space: nowrap;
+  transform: translateY(0.06em);
+}
+
+/* ——— SHOWREEL ——— */
+
+.showreel {
+  position: fixed;
+  inset: 0;
+  z-index: var(--z-modal);
+  display: grid;
+  place-items: center;
+  padding: var(--pad);
+  background: rgba(8, 8, 8, 0.96);
+  backdrop-filter: blur(6px);
+  color: var(--cream);
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  transition: opacity 0.45s var(--ease), visibility 0s linear 0.45s;
+}
+
+.showreel.is-open {
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+  transition: opacity 0.45s var(--ease), visibility 0s linear 0s;
+}
+
+.showreel__close {
+  position: absolute;
+  top: var(--pad);
+  right: var(--pad);
+  padding: 0.6rem 1.15rem;
+  background: transparent;
+  border: 1px solid var(--line-light);
+  color: inherit;
+  font-size: var(--micro);
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: background var(--dur) var(--ease), border-color var(--dur) var(--ease);
+}
+
+.showreel__close:hover {
+  background: var(--accent);
+  border-color: var(--accent);
+  color: var(--ink);
+}
+
+.showreel__stage {
+  width: min(1180px, 100%);
+}
+
+.showreel__track {
+  position: relative;
+  aspect-ratio: 16 / 9;
+  background: #000;
+  overflow: hidden;
+  box-shadow: var(--shadow-3);
+}
+
+.showreel__track figure {
+  position: absolute;
+  inset: 0;
+  margin: 0;
+  opacity: 0;
+  transform: scale(1.03);
+  transition: opacity 0.6s var(--ease), transform 1.2s var(--ease);
+}
+
+.showreel__track figure.is-active {
+  opacity: 1;
+  transform: scale(1);
+}
+
+.showreel__track video,
+.showreel__track img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.showreel__track figcaption {
+  position: absolute;
+  left: 1.25rem;
+  bottom: 1.25rem;
+  padding: 0.4rem 0.8rem;
+  background: rgba(8, 8, 8, 0.55);
+  backdrop-filter: blur(6px);
+  font-size: var(--micro);
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+/* Pasek odliczający czas do kolejnego ujęcia. */
+.showreel__timer {
+  display: block;
+  height: 2px;
+  background: var(--line-light);
+}
+
+.showreel__timer span {
+  display: block;
+  height: 100%;
+  width: 0;
+  background: var(--accent);
+}
+
+.showreel__controls {
+  display: flex;
+  gap: 0.5rem;
+  align-items: center;
+  margin-top: 1rem;
+}
+
+.showreel__controls button {
+  min-width: 2.75rem;
+  min-height: 2.75rem;
+  padding: 0.55rem 1.1rem;
+  background: transparent;
+  border: 1px solid var(--line-light);
+  color: inherit;
+  font-size: var(--micro);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: background var(--dur) var(--ease), border-color var(--dur) var(--ease);
+}
+
+.showreel__controls button:hover {
+  background: var(--accent);
+  border-color: var(--accent);
+  color: var(--ink);
+}
+
+.showreel__dots {
+  display: flex;
+  gap: 0.4rem;
+  margin-left: auto;
+}
+
+.showreel__dots button {
+  min-width: 0;
+  min-height: 0;
+  width: 2rem;
+  height: 2px;
+  padding: 0;
+  border: 0;
+  background: var(--line-light-strong);
+  cursor: pointer;
+  transition: background var(--dur) var(--ease);
+}
+
+.showreel__dots button[aria-current="true"] {
+  background: var(--accent);
+}
+
+/* ——— RESPONSYWNOŚĆ NAWIGACJI ——— */
+
+@media (max-width: 980px) {
+  .site-header {
+    grid-template-columns: minmax(0, 1fr) auto;
+  }
+
+  .site-header__nav,
+  .site-header__cta {
+    display: none;
+  }
+
+  .site-header__burger {
+    display: flex;
+  }
+
+  .mega-menu__grid {
+    grid-template-columns: minmax(0, 1fr);
+    align-items: start;
+    gap: 2.5rem;
+  }
+
+  .site-footer__grid {
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  }
+
+  .site-footer__brand {
+    grid-column: 1 / -1;
+    max-width: none;
+  }
+
+  .showreel__dots {
+    display: none;
+  }
+}
+
+@media (max-width: 560px) {
+  .site-footer__grid {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 2rem;
+  }
+}

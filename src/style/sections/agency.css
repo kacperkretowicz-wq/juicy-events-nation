@@ -1,0 +1,263 @@
+.agency {
+  position: relative;
+  background: var(--cream);
+}
+
+/* Akt pierwszy — sticky scena z nagłówkiem i kurtyną.
+   Więcej wysokości = więcej scrolla na lot logo, więc jest wolniejszy i finezyjny. */
+.agency__act {
+  height: 320svh;
+}
+
+.agency__stage {
+  position: sticky;
+  top: 0;
+  display: grid;
+  align-items: end;
+  height: 100svh;
+  min-height: 32rem;
+  overflow: hidden;
+  background: var(--cream);
+  isolation: isolate;
+}
+
+/* Wideo kurczy się od dołu — ostra linia odsłania jasne tło stage,
+   bez żadnej dodatkowej "kurtyny". Klip liczony na tym elemencie (rozmiar = stage),
+   parallax osobno na wewnętrznym wrapperze, żeby linia była 1:1 z tekstem. */
+.agency__media {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 100%;
+  z-index: 1;
+  overflow: hidden;
+  will-change: height;
+  /* Border rysuje się na RZECZYWISTEJ (kurczącej się) krawędzi wideo — stąd
+     zmieniamy height, a nie clip-path (ten obcinałby border razem z resztą). */
+  border-bottom: 3px solid var(--accent);
+}
+
+.agency__media-inner {
+  position: absolute;
+  inset: -8% 0;
+  width: 100%;
+  height: 116%;
+}
+
+.agency__media img,
+.agency__media video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* Winieta bez ponownego przyciemnienia u dołu — inaczej granica wideo/tło
+   wygląda jak szeroki, rozmyty pas, a nie ostra, cienka linia. */
+.agency__veil {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to top, rgba(6, 6, 6, 0.78) 0%, rgba(6, 6, 6, 0.18) 45%, rgba(6, 6, 6, 0.18) 100%);
+}
+
+/* Faza A — logo lewo-środek, znika w trakcie "ucieczki" do nagłówka strony */
+.agency__logo-slot {
+  position: absolute;
+  inset: 0;
+  z-index: 3;
+  display: flex;
+  align-items: center;
+  padding: 0 var(--pad);
+  pointer-events: none;
+}
+
+.agency__logo {
+  /* Symetryczna waga wizualna względem napisu po prawej — potem skaluje się
+     w dół do rozmiaru loga w nagłówku (patrz agency.js / flyDelta.scale). */
+  width: clamp(15rem, 24vw, 26rem);
+  height: auto;
+  filter: brightness(0) invert(1);
+  will-change: transform;
+}
+
+/* Faza A — intro prawo-środek, gaśnie razem z ucieczką logo */
+.agency__intro {
+  position: absolute;
+  inset: 0;
+  z-index: 3;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  padding: 0 var(--pad);
+  pointer-events: none;
+}
+
+.agency__intro-title {
+  max-width: 20ch;
+  font-size: var(--display-3);
+  line-height: 1.08;
+  text-align: right;
+  color: var(--cream);
+}
+
+/* Nagłówek — dwie kopie dzielone clip-path, zsynchronizowane z linią wideo */
+.agency__headline {
+  position: relative;
+  z-index: 3;
+  width: 100%;
+  max-width: var(--max);
+  margin: 0 auto;
+  padding: 0 var(--pad) clamp(3rem, 7vw, 6rem);
+}
+
+.agency__layer--light {
+  color: var(--cream);
+}
+
+.agency__layer--dark {
+  position: absolute;
+  inset: 0 var(--pad) clamp(3rem, 7vw, 6rem);
+  color: var(--ink);
+  clip-path: inset(100% 0 0 0);
+}
+
+.agency__layer--dark .agency__kicker {
+  color: var(--muted);
+}
+
+.agency__title {
+  max-width: 22ch;
+  font-size: var(--display-1);
+}
+
+.agency__kicker {
+  margin: 1.75rem 0 0;
+  max-width: 34ch;
+  font-size: var(--micro);
+  font-weight: 600;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: rgba(247, 245, 240, 0.72);
+}
+
+/* ——— Akt drugi — jasny blok z rozwinięciem ———
+   Wcześniej: jedna kolumna dosunięta do prawej krawędzi, lewa połowa ekranu
+   pusta. Teraz: manifest po lewej, rozwinięcie po prawej, z cienką linią
+   dzielącą — układ redakcyjny zamiast wiszącego bloku tekstu. */
+.agency__white {
+  position: relative;
+  z-index: 4;
+  padding: var(--block) var(--pad);
+  background: var(--cream);
+}
+
+.agency__copy {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  gap: clamp(2rem, 5vw, 5rem);
+  align-items: start;
+  width: 100%;
+  max-width: var(--max);
+  margin: 0 auto;
+}
+
+.agency__copy-lead {
+  position: relative;
+  padding-top: 0.5rem;
+}
+
+.agency__lead {
+  max-width: 16ch;
+  font-size: var(--display-2-5);
+}
+
+.agency__copy-body {
+  display: grid;
+  gap: clamp(2rem, 4vw, 3rem);
+  padding-top: 0.75rem;
+  padding-left: clamp(0rem, 3vw, 3rem);
+  border-left: 1px solid var(--line);
+}
+
+.agency__body {
+  display: grid;
+  gap: 1.5rem;
+  justify-items: start;
+  max-width: 46ch;
+  color: var(--muted);
+}
+
+.agency__body p {
+  margin: 0;
+  font-size: var(--body-lg);
+  line-height: var(--lh-body);
+}
+
+/* Trzy filary — domykają kolumnę i porządkują ofertę w jednym rzucie oka. */
+.agency__pillars {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: var(--gutter);
+  max-width: 46ch;
+}
+
+.agency__pillars li {
+  display: grid;
+  gap: 0.45rem;
+  padding-top: 0.9rem;
+  border-top: 2px solid var(--ink);
+  font-size: var(--micro);
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+.agency__pillar-index {
+  color: var(--accent-text);
+}
+
+@media (max-width: 980px) {
+  .agency__logo-slot,
+  .agency__intro {
+    padding: 0 var(--pad);
+  }
+
+  .agency__intro-title {
+    font-size: var(--display-4);
+    max-width: 16ch;
+  }
+
+  .agency__logo {
+    width: clamp(10rem, 40vw, 15rem);
+  }
+
+  .agency__copy {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .agency__lead {
+    max-width: 22ch;
+  }
+
+  .agency__copy-body {
+    padding-left: 0;
+    border-left: 0;
+    border-top: 1px solid var(--line);
+    padding-top: 2rem;
+  }
+}
+
+@media (max-width: 560px) {
+  .agency__pillars {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 0;
+  }
+
+  .agency__pillars li {
+    grid-template-columns: auto minmax(0, 1fr);
+    gap: 1rem;
+    align-items: center;
+    padding: 0.9rem 0;
+    border-top: 1px solid var(--line);
+  }
+}

@@ -1,0 +1,196 @@
+.standard {
+  display: grid;
+  /* Tor jest szerszy niż ekran — kolumna nie może się do niego rozciągnąć. */
+  grid-template-columns: minmax(0, 1fr);
+  align-content: center;
+  gap: clamp(2rem, 4vw, 3.25rem);
+  padding: var(--block) 0;
+  background: var(--sand);
+}
+
+.standard__head {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.5rem;
+  align-items: flex-end;
+  justify-content: space-between;
+  width: 100%;
+  max-width: var(--max);
+  margin: 0 auto;
+  padding: 0 var(--pad);
+}
+
+.standard__head h2 {
+  max-width: 26ch;
+  font-size: var(--display-3);
+}
+
+.standard__controls {
+  display: flex;
+  gap: 0.5rem;
+  flex: none;
+}
+
+.standard__nav {
+  width: 3rem;
+  height: 3rem;
+  display: grid;
+  place-items: center;
+  background: transparent;
+  border: 1px solid var(--line-strong);
+  color: var(--ink);
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background var(--dur) var(--ease), color var(--dur) var(--ease),
+    border-color var(--dur) var(--ease), opacity var(--dur) var(--ease);
+}
+
+.standard__nav:hover:not(:disabled) {
+  background: var(--ink);
+  border-color: var(--ink);
+  color: var(--cream);
+}
+
+.standard__nav:disabled {
+  opacity: 0.32;
+  cursor: default;
+}
+
+/* Tor przewijany natywnie — bez pinowania sekcji. */
+.standard__viewport {
+  --track-inset: max(var(--pad), calc((100vw - var(--max)) / 2 + var(--pad)));
+  padding-left: var(--track-inset);
+  padding-right: var(--pad);
+  overflow-x: auto;
+  scroll-snap-type: x proximity;
+  /* Bez scroll-padding „snapport" zaczyna się na krawędzi padding-boxa, więc
+     przeglądarka dosuwała pierwszy kadr do zera i zjadała lewy margines
+     (kadr 01 był ucięty przy krawędzi ekranu). */
+  scroll-padding-left: var(--track-inset);
+  scroll-behavior: smooth;
+  scrollbar-width: none;
+  overscroll-behavior-x: contain;
+}
+
+.standard__viewport::-webkit-scrollbar {
+  display: none;
+}
+
+.standard__track {
+  display: flex;
+  gap: clamp(1rem, 2vw, 2rem);
+  width: max-content;
+  cursor: grab;
+}
+
+.standard__track.is-dragging {
+  cursor: grabbing;
+}
+
+.standard-card {
+  display: grid;
+  gap: 1rem;
+  align-content: start;
+  /* 21vw sprawiało, że na szerokim ekranie cały tor mieścił się prawie w kadrze
+     i przewijanie nie miało czego pokazać. Większy kadr = realna podróż w bok. */
+  width: clamp(16rem, 27vw, 26rem);
+  scroll-snap-align: start;
+}
+
+/* Kadry o różnej wysokości — rządek równych prostokątów wyglądał sztywno. */
+.standard-card:nth-child(even) {
+  margin-top: clamp(1rem, 3vw, 2.5rem);
+}
+
+.standard-card__media {
+  position: relative;
+  aspect-ratio: 3 / 4;
+  overflow: hidden;
+  background: var(--cream);
+}
+
+.standard-card__media img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  pointer-events: none;
+  transition: transform 1.1s var(--ease);
+}
+
+.standard-card:hover .standard-card__media img {
+  transform: scale(1.05);
+}
+
+/* Numer kadru — ten sam znak porządku co w realizacjach i kompetencjach. */
+.standard-card__media::after {
+  counter-increment: standard-card;
+  content: "0" counter(standard-card);
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  padding: 0.4rem 0.7rem;
+  background: var(--accent);
+  /* Biel na czerwieni to 3.56:1 — za mało dla 11 px. Czarny daje 5.49:1
+     i jest tym samym zestawieniem co wielki wordmark w stopce. */
+  color: var(--ink);
+  font-size: var(--micro);
+  font-weight: 700;
+  letter-spacing: 0.18em;
+}
+
+.standard__track {
+  counter-reset: standard-card;
+}
+
+.standard-card h3 {
+  font-size: clamp(1rem, 1.25vw, 1.2rem);
+  line-height: 1.2;
+  max-width: 24ch;
+}
+
+/* Pasek postępu toru — widać, ile kadrów zostało. */
+.standard__progress {
+  width: 100%;
+  max-width: var(--max);
+  margin: 0 auto;
+  padding: 0 var(--pad);
+}
+
+.standard__progress > span {
+  position: relative;
+  display: block;
+  height: 2px;
+  background: var(--line-strong);
+}
+
+/* „Główka" paska: szerokość = udział widocznego wycinka toru,
+   pozycja = jak daleko jesteśmy. */
+.standard__progress > span::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  height: 100%;
+  left: var(--track-offset, 0%);
+  width: var(--track-progress, 20%);
+  background: var(--accent);
+  transition: left 0.15s linear, width 0.2s linear;
+}
+
+@media (max-width: 980px) {
+  .standard__viewport {
+    --track-inset: var(--pad);
+    scroll-snap-type: x mandatory;
+  }
+
+  .standard-card {
+    width: 72vw;
+  }
+
+  .standard-card:nth-child(even) {
+    margin-top: 0;
+  }
+
+  .standard__controls {
+    display: none;
+  }
+}

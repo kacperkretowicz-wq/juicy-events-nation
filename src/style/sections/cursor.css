@@ -1,0 +1,92 @@
+/* ——— Kursor kontekstowy (cursor.js) ———
+   Pojawia się WYŁĄCZNIE nad kadrami wideo, które da się odtworzyć: hero,
+   „Nasza praca", karty realizacji z podglądem wideo, showreel wartości. Poza
+   nimi nie ma nic — zostaje zwykły kursor systemowy. Biało-czarna pigułka:
+   czarne kółko z trójkątem play po lewej, czarny podpis po prawej, na białym
+   tle — ten sam język co statyczny przycisk „Odtwórz showreel" w treści. */
+
+.cursor {
+  /* Sam punkt śledzenia — 0×0, pozycję niesie wyłącznie transform z JS.
+     Wygląd i wyśrodkowanie są w .cursor__pill (patrz komentarz w cursor.js). */
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: var(--z-cursor);
+  width: 0;
+  height: 0;
+  pointer-events: none;
+  will-change: transform;
+}
+
+.cursor__pill {
+  position: absolute;
+  top: 0;
+  left: 0;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  width: max-content;
+  padding: 0.3rem 1.35rem 0.3rem 0.3rem;
+  border-radius: 999px;
+  background: #fff;
+  box-shadow: 0 16px 34px -14px rgba(0, 0, 0, 0.5);
+  opacity: 0;
+  transform: translate(-50%, -50%) scale(0.72);
+  transition: opacity 0.28s var(--ease), transform 0.4s var(--ease-expo);
+}
+
+.cursor.is-active .cursor__pill {
+  opacity: 1;
+  transform: translate(-50%, -50%) scale(1);
+}
+
+.cursor.is-pressed .cursor__pill {
+  transform: translate(-50%, -50%) scale(0.92);
+}
+
+.cursor__disc {
+  position: relative;
+  display: grid;
+  place-items: center;
+  width: 2.5rem;
+  height: 2.5rem;
+  flex: none;
+  border-radius: 50%;
+  background: var(--ink);
+}
+
+/* Trójkąt „play" — lekko przesunięty w prawo od geometrycznego środka,
+   bo idealnie wyśrodkowany trójkąt optycznie wygląda na przesunięty w lewo. */
+.cursor__disc::before {
+  content: "";
+  width: 0;
+  height: 0;
+  margin-left: 0.15em;
+  border-top: 0.42rem solid transparent;
+  border-bottom: 0.42rem solid transparent;
+  border-left: 0.62rem solid #fff;
+}
+
+.cursor__label {
+  color: var(--ink);
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  line-height: 1.2;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
+/* Gdy kursor niesie etykietę, systemowy wskaźnik tylko przeszkadza —
+   wyłącznie nad elementem, który go faktycznie pokazuje. */
+.has-cursor-fx [data-cursor] {
+  cursor: none;
+}
+
+/* Bez precyzyjnego wskaźnika (dotyk) kursor w ogóle nie powstaje — patrz
+   cursor.js. Ta reguła jest zabezpieczeniem, gdyby element został w DOM. */
+@media (hover: none), (pointer: coarse) {
+  .cursor {
+    display: none;
+  }
+}

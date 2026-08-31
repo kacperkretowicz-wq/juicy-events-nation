@@ -1,0 +1,112 @@
+:root {
+  /* ——— Powierzchnie ———
+     Trzy stopnie jasnego (cream → cream-deep → sand) i trzy ciemnego
+     (dark → dark-soft → dark-warm). Dzięki temu sąsiadujące sekcje różnią się
+     tonem, a nie tylko treścią — strona przestaje być „jednym płaskim kremem". */
+  --cream: #f7f5f0;
+  --cream-deep: #efece4;
+  --sand: #e5e0d5;
+  --white: #ffffff;
+
+  --ink: #0d0c0b;
+  --ink-soft: #201d1a;
+  --dark: #0a0a0a;
+  --dark-soft: #141312;
+  /* Ciepła czerń pod sekcje z czerwienią — chłodna czerń gasi akcent. */
+  --dark-warm: #16110e;
+
+  /* Tekst pomocniczy. --muted przyciemniony z #6d6862 → kontrast 5.4:1 na
+     kremie (było 4.6:1, czyli na styk dla mikro-typografii 11–12 px). */
+  --muted: #5f5a53;
+  /* 3.74:1 na kremie było za mało dla podpowiedzi w formularzu. */
+  --muted-soft: #6d6862;
+  --muted-light: rgba(247, 245, 240, 0.68);
+  --muted-light-soft: rgba(247, 245, 240, 0.46);
+
+  --line: rgba(13, 12, 11, 0.14);
+  --line-strong: rgba(13, 12, 11, 0.28);
+  --line-light: rgba(247, 245, 240, 0.16);
+  --line-light-strong: rgba(247, 245, 240, 0.34);
+
+  /* ——— Akcent ———
+     Pełna rampa zamiast dwóch wartości: potrzebna do gradientów, hoverów
+     i cieni, żeby czerwień miała głębię, a nie była jedną płaską plamą. */
+  --accent: #ff3a2f;
+  --accent-warm: #ff6a1f;
+  --accent-deep: #d4231a;
+  --accent-ink: #7d1109;
+  /* Czerwień do MAŁEGO tekstu na jasnym tle. --accent (#ff3a2f) daje na kremie
+     tylko 3.27:1 — poniżej progu AA 4.5:1 dla 11–12 px. Ten odcień daje 4.75:1
+     i nadal czyta się jak ta sama czerwień marki. */
+  --accent-text: #d4231a;
+  --accent-glow: rgba(255, 58, 47, 0.32);
+  --accent-wash: rgba(255, 58, 47, 0.08);
+  --gradient-accent: linear-gradient(120deg, var(--accent-deep) 0%, var(--accent) 45%, var(--accent-warm) 100%);
+  --gradient-dark: linear-gradient(180deg, var(--dark) 0%, var(--dark-warm) 100%);
+
+  /* ——— Rytm 4/8 ———
+     Skala odstępów zamiast losowych clampów w każdej sekcji. */
+  --space-1: 0.25rem;
+  --space-2: 0.5rem;
+  --space-3: 0.75rem;
+  --space-4: 1rem;
+  --space-5: 1.5rem;
+  --space-6: 2rem;
+  --space-7: 3rem;
+  --space-8: 4.5rem;
+  --space-9: 6.5rem;
+
+  --pad: clamp(1.25rem, 3.2vw, 3.25rem);
+  --max: 1560px;
+  --gutter: clamp(0.75rem, 1.1vw, 1.15rem);
+  --block: clamp(4.5rem, 10vw, 9rem);
+  --block-tight: clamp(3rem, 6vw, 5.5rem);
+
+  /* ——— Elewacja ———
+     Jedna skala cieni dla całej strony (karty, modale, rozwinięcia). */
+  --shadow-1: 0 2px 8px -4px rgba(13, 12, 11, 0.24);
+  --shadow-2: 0 18px 40px -24px rgba(13, 12, 11, 0.42);
+  --shadow-3: 0 40px 80px -32px rgba(13, 12, 11, 0.52);
+  --shadow-accent: 0 24px 60px -28px var(--accent-glow);
+
+  /* ——— Typografia ——— */
+  --font: "Host Grotesk", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  /* Dolne granice obniżone: przy 2.5rem najdłuższe polskie słowa
+     („EKSPERYMENTOWAĆ") nie mieściły się w 390 px i wypadały poza ekran. */
+  --display-1: clamp(2.1rem, 6.4vw, 6.5rem);
+  --display-2: clamp(1.8rem, 4.6vw, 4.5rem);
+  /* Stopień pośredni: nagłówki sekcji, które mają być mocne, ale nie krzyczeć
+     głośniej niż hero — bez niego wszystko skakało z 4.5rem na 2.85rem. */
+  --display-2-5: clamp(1.75rem, 3.5vw, 3.4rem);
+  --display-3: clamp(1.5rem, 2.9vw, 2.85rem);
+  --display-4: clamp(1.15rem, 1.9vw, 1.7rem);
+  --body: clamp(1rem, 1.05vw, 1.1rem);
+  --body-lg: clamp(1.05rem, 1.25vw, 1.25rem);
+  --micro: clamp(0.66rem, 0.74vw, 0.74rem);
+
+  /* Wersaliki z polskimi ogonkami (Ą, Ę) i przecinkami potrzebują luźniejszej
+     interlinii niż 0.94 — przy masce `overflow:hidden` ogonki były ucinane. */
+  --lh-display: 1.0;
+  --lh-body: 1.65;
+  --track-display: -0.028em;
+  --track-micro: 0.16em;
+
+  /* ——— Ruch ——— */
+  --ease: cubic-bezier(0.22, 1, 0.36, 1);
+  --ease-expo: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-out-back: cubic-bezier(0.34, 1.28, 0.64, 1);
+  --dur-fast: 0.18s;
+  --dur: 0.32s;
+  --dur-slow: 0.6s;
+
+  /* ——— Warstwy ———
+     Jawna skala z-index — koniec z przypadkowymi 3 / 900 / 9998. */
+  --z-base: 1;
+  --z-raised: 5;
+  --z-sticky: 400;
+  --z-header: 900;
+  --z-menu: 1000;
+  --z-modal: 1100;
+  --z-cursor: 1400;
+  --z-grain: 1500;
+}

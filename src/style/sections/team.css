@@ -1,0 +1,139 @@
+.team {
+  max-width: var(--max);
+  margin: 0 auto;
+  padding: var(--block) var(--pad);
+}
+
+.team__head {
+  display: grid;
+  gap: 1rem;
+  margin-bottom: clamp(2rem, 4vw, 3.5rem);
+}
+
+.team__head h2 {
+  max-width: 22ch;
+  font-size: var(--display-2);
+}
+
+.team__grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 15rem), 1fr));
+  gap: 0;
+  border-top: 1px solid var(--line);
+}
+
+.team-card {
+  position: relative;
+  display: grid;
+  align-content: start;
+  gap: 0.5rem;
+  padding: clamp(1.5rem, 2.5vw, 2.25rem) clamp(1rem, 1.8vw, 1.6rem);
+  border-bottom: 1px solid var(--line);
+  border-right: 1px solid var(--line);
+  transition: background var(--dur-slow) var(--ease), color var(--dur-slow) var(--ease);
+}
+
+.team-card:first-child {
+  border-left: 1px solid var(--line);
+}
+
+.team-card:hover {
+  background: var(--ink);
+  color: var(--cream);
+}
+
+/* Monogram zamiast pustego miejsca nad nazwiskiem — karty przestają być
+   samym tekstem, a zespół dostaje wizualną „twarz" bez zdjęć. */
+.team-card__mono {
+  display: grid;
+  place-items: center;
+  width: 3.25rem;
+  height: 3.25rem;
+  margin-bottom: 0.75rem;
+  border: 1px solid var(--line);
+  border-radius: 50%;
+  font-size: var(--micro);
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  color: var(--muted);
+  transition: background var(--dur) var(--ease), color var(--dur) var(--ease),
+    border-color var(--dur) var(--ease);
+}
+
+.team-card:hover .team-card__mono {
+  background: var(--accent);
+  border-color: var(--accent);
+  color: var(--ink);
+}
+
+.team-card h3 {
+  font-size: var(--display-4);
+}
+
+.team-card__role {
+  margin: 0;
+  font-size: var(--micro);
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--accent-text);
+}
+
+/* Na hoverze karta robi się czarna — wtedy wraca jasna czerwień. */
+.team-card:hover .team-card__role {
+  color: var(--accent);
+}
+
+.team-card__contact {
+  display: grid;
+  gap: 0.25rem;
+  justify-items: start;
+  margin-top: 1.25rem;
+  font-size: clamp(0.85rem, 0.95vw, 0.95rem);
+  color: var(--muted);
+}
+
+.team-card:hover .team-card__contact {
+  color: rgba(247, 245, 240, 0.78);
+}
+
+.team-card__contact a {
+  padding: 0.3rem 0;
+  border-bottom: 1px solid transparent;
+  transition: border-color var(--dur) var(--ease);
+}
+
+.team-card__contact a:hover {
+  border-color: currentColor;
+}
+
+/* Stan „wkrótce" — celowy, a nie niedokończony. */
+.team-card--soon .team-card__mono {
+  border-style: dashed;
+}
+
+.team-card--soon .team-card__role {
+  color: var(--muted-soft);
+}
+
+.team-card__soon-tag {
+  padding: 0.3rem 0.65rem;
+  border: 1px dashed var(--line-strong);
+  font-size: var(--micro);
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--muted-soft);
+}
+
+.team-card--soon:hover .team-card__soon-tag {
+  border-color: var(--line-light-strong);
+  color: var(--muted-light);
+}
+
+@media (max-width: 980px) {
+  .team-card,
+  .team-card:first-child {
+    border-left: 1px solid var(--line);
+  }
+}

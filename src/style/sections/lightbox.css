@@ -1,0 +1,154 @@
+/* ——— LIGHTBOX GALERII (lightbox.js) ——— */
+
+.gallery-item__media.is-zoomable {
+  cursor: zoom-in;
+}
+
+.gallery-item__media.is-zoomable::after {
+  content: "Powiększ";
+  position: absolute;
+  right: 0.7rem;
+  bottom: 0.7rem;
+  padding: 0.3rem 0.65rem;
+  border-radius: 999px;
+  background: var(--accent);
+  color: var(--white);
+  font-size: var(--micro);
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  opacity: 0;
+  transform: translateY(0.4rem);
+  transition: opacity 0.3s var(--ease), transform 0.3s var(--ease);
+  pointer-events: none;
+}
+
+.gallery-item__media {
+  position: relative;
+}
+
+.gallery-item:hover .gallery-item__media.is-zoomable::after,
+.gallery-item__media.is-zoomable:focus-visible::after {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Na dotyku (brak hovera) podpowiedź jest widoczna od razu, przygaszona. */
+@media (hover: none) {
+  .gallery-item__media.is-zoomable::after {
+    opacity: 0.85;
+    transform: none;
+  }
+}
+
+.lightbox {
+  position: fixed;
+  inset: 0;
+  z-index: 1150;
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr) auto;
+  align-items: center;
+  gap: clamp(0.5rem, 2vw, 1.5rem);
+  padding: clamp(1rem, 4vw, 3rem);
+  background: rgba(8, 8, 8, 0.94);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.35s var(--ease);
+}
+
+.lightbox.is-open {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.lightbox__stage {
+  margin: 0;
+  display: grid;
+  gap: 0.9rem;
+  justify-items: center;
+  align-content: center;
+  min-width: 0;
+}
+
+.lightbox__img {
+  max-width: 100%;
+  max-height: 78vh;
+  object-fit: contain;
+  background: #000;
+}
+
+.lightbox__caption {
+  max-width: 60ch;
+  text-align: center;
+  font-size: var(--micro);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--muted-light);
+}
+
+.lightbox__close {
+  position: absolute;
+  top: clamp(1rem, 3vw, 2rem);
+  right: clamp(1rem, 3vw, 2rem);
+  padding: 0.6rem 1.15rem;
+  background: transparent;
+  border: 1px solid var(--line-light);
+  color: var(--cream);
+  font-size: var(--micro);
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: background 0.3s var(--ease), border-color 0.3s var(--ease);
+}
+
+.lightbox__close:hover {
+  background: var(--accent);
+  border-color: var(--accent);
+}
+
+.lightbox__nav {
+  display: grid;
+  place-items: center;
+  width: clamp(2.6rem, 6vw, 3.4rem);
+  height: clamp(2.6rem, 6vw, 3.4rem);
+  background: transparent;
+  border: 1px solid var(--line-light);
+  border-radius: 50%;
+  color: var(--cream);
+  font-size: 1.1rem;
+  cursor: pointer;
+  transition: background 0.3s var(--ease), border-color 0.3s var(--ease);
+}
+
+.lightbox__nav:hover {
+  background: var(--accent);
+  border-color: var(--accent);
+}
+
+.lightbox__count {
+  position: absolute;
+  left: 50%;
+  bottom: clamp(1rem, 3vw, 2rem);
+  transform: translateX(-50%);
+  margin: 0;
+  font-size: var(--micro);
+  letter-spacing: 0.14em;
+  color: var(--muted-light);
+  font-variant-numeric: tabular-nums;
+}
+
+@media (max-width: 640px) {
+  .lightbox {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .lightbox__nav {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+  }
+
+  .lightbox__nav--prev { left: 0.6rem; }
+  .lightbox__nav--next { right: 0.6rem; }
+}

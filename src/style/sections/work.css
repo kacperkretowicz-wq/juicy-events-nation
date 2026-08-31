@@ -1,0 +1,213 @@
+/* Wcześniej kadr zajmował 62% wąskiej kolumny, a tekst kończył się w połowie
+   wysokości — pod obydwoma zostawała wielka pusta płaszczyzna. Teraz kolumny
+   mają zbliżoną wagę: pełnowymiarowy kadr po lewej, tekst + pasek kadrów po
+   prawej, obie wyrównane do góry. */
+.work {
+  display: grid;
+  grid-template-columns: minmax(0, 0.92fr) minmax(0, 1fr);
+  gap: clamp(2rem, 5vw, 5.5rem);
+  /* stretch (domyślne), żeby kadr mógł dobić do wysokości kolumny z tekstem —
+     przy align-items:start pod kartą zostawało ~300 px pustki. */
+  align-items: stretch;
+  max-width: var(--max);
+  margin: 0 auto;
+  padding: var(--block) var(--pad);
+}
+
+.work__media {
+  display: grid;
+  grid-template-rows: minmax(0, 1fr) auto;
+  gap: 1.25rem;
+  justify-items: start;
+}
+
+.work__card {
+  position: relative;
+  display: block;
+  width: 100%;
+  height: 100%;
+  /* Kadr-plakat: wysokość dyktuje kolumna obok, proporcje domyka object-fit. */
+  min-height: min(34rem, 70svh);
+  padding: 0;
+  border: 0;
+  background: var(--dark);
+  overflow: hidden;
+  cursor: pointer;
+  box-shadow: var(--shadow-2);
+  transition: box-shadow var(--dur-slow) var(--ease);
+}
+
+.work__card:hover {
+  box-shadow: var(--shadow-3);
+}
+
+/* Cienka ramka wjeżdżająca na hover — sygnał „to jest klikalne". */
+.work__card-frame {
+  position: absolute;
+  inset: 0.75rem;
+  border: 1px solid rgba(247, 245, 240, 0.55);
+  opacity: 0;
+  transform: scale(1.02);
+  transition: opacity var(--dur) var(--ease), transform 0.5s var(--ease-expo);
+  pointer-events: none;
+}
+
+.work__card:hover .work__card-frame,
+.work__card:focus-visible .work__card-frame {
+  opacity: 1;
+  transform: scale(1);
+}
+
+/* Kliknięcie (karty lub podpisu) rozwija wideo i odtwarza showreel z dźwiękiem. */
+.work__media.is-expanded .work__card {
+  box-shadow: var(--shadow-3);
+}
+
+.work__media.is-expanded .work__card-frame {
+  opacity: 0;
+}
+
+/* Zapas na parallax: wrapper jest wyższy od karty o tyle, o ile maksymalnie
+   przesuwa go efekt (data-parallax="0.18" → ±9% własnej wysokości).
+   Przy dawnych -8% ruch odsłaniał czarne tło karty u góry i u dołu. */
+.work__card-inner,
+.values__card-inner {
+  position: absolute;
+  inset: -14% 0;
+  display: block;
+}
+
+.work__card-inner img,
+.values__card-inner img,
+.work__video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 1s var(--ease);
+}
+
+.work__card:hover .work__card-inner img,
+.work__card:hover .work__video {
+  transform: scale(1.04);
+}
+
+/* Podpis „Odtwórz showreel" gaśnie, gdy wideo jest już rozwinięte i gra. */
+.work__media.is-expanded .work__play {
+  opacity: 0;
+  pointer-events: none;
+}
+
+.work__play {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.7rem;
+  padding: 0;
+  background: transparent;
+  border: 0;
+  font-size: var(--micro);
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: color var(--dur) var(--ease), opacity var(--dur) var(--ease);
+}
+
+.work__play:hover {
+  color: var(--accent-text);
+}
+
+.work__play-icon {
+  display: grid;
+  place-items: center;
+  width: 2.75rem;
+  height: 2.75rem;
+  border: 1px solid currentColor;
+  border-radius: 50%;
+  transition: background-color var(--dur) var(--ease), color var(--dur) var(--ease),
+    border-color var(--dur) var(--ease);
+}
+
+.work__play:hover .work__play-icon {
+  background: var(--accent);
+  border-color: var(--accent);
+  color: var(--ink);
+}
+
+.work__play-icon::after {
+  content: "";
+  width: 0;
+  height: 0;
+  border-left: 0.42rem solid currentColor;
+  border-top: 0.28rem solid transparent;
+  border-bottom: 0.28rem solid transparent;
+  margin-left: 0.12rem;
+}
+
+.work__copy {
+  display: grid;
+  gap: 1.75rem;
+  align-content: start;
+  padding-top: clamp(0rem, 4vw, 3rem);
+}
+
+.work__copy h2 {
+  max-width: 18ch;
+  font-size: var(--display-2-5);
+}
+
+.work__copy [data-fade-group] {
+  display: grid;
+  gap: 1.25rem;
+  justify-items: start;
+  max-width: 46ch;
+  color: var(--muted);
+}
+
+.work__copy [data-fade-group] p {
+  margin: 0;
+  font-size: var(--body-lg);
+  line-height: var(--lh-body);
+}
+
+/* Trzy kadry domykające kolumnę — różne wysokości dają rytm zamiast rządka. */
+.work__strip {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: var(--gutter);
+  margin-top: clamp(1rem, 3vw, 2.5rem);
+}
+
+.work__thumb {
+  display: block;
+  aspect-ratio: 3 / 4;
+  overflow: hidden;
+  background: var(--cream-deep);
+}
+
+.work__thumb:nth-child(2) {
+  margin-top: clamp(1rem, 3vw, 2.75rem);
+}
+
+.work__thumb:nth-child(3) {
+  margin-top: clamp(0.5rem, 1.5vw, 1.25rem);
+}
+
+@media (max-width: 980px) {
+  .work {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .work__media {
+    grid-template-rows: auto auto;
+  }
+
+  .work__card {
+    width: 100%;
+    height: auto;
+    aspect-ratio: 3 / 4;
+  }
+
+  .work__copy {
+    padding-top: 0;
+  }
+}

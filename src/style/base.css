@@ -1,0 +1,381 @@
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: auto;
+  -webkit-text-size-adjust: 100%;
+}
+
+html.lenis,
+html.lenis body {
+  height: auto;
+}
+
+.lenis.lenis-smooth {
+  scroll-behavior: auto !important;
+}
+
+.lenis.lenis-stopped {
+  overflow: hidden;
+}
+
+body {
+  margin: 0;
+  background: var(--cream);
+  color: var(--ink);
+  font-family: var(--font);
+  font-size: var(--body);
+  line-height: var(--lh-body);
+  overflow-x: hidden;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+}
+
+img,
+video {
+  display: block;
+  max-width: 100%;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+button,
+input,
+select,
+textarea {
+  font: inherit;
+  color: inherit;
+}
+
+h1,
+h2,
+h3 {
+  margin: 0;
+  font-weight: 700;
+  /* 0.94 ucinało ogonki Ą/Ę i przecinki w maskach linii (overflow: hidden). */
+  line-height: var(--lh-display);
+  letter-spacing: var(--track-display);
+  text-transform: uppercase;
+  text-wrap: balance;
+}
+
+p {
+  margin: 0 0 1rem;
+}
+
+ol,
+ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+::selection {
+  background: var(--accent);
+  color: var(--ink);
+}
+
+/* Ziarno — subtelna tekstura jak w prezentacji */
+.grain {
+  position: fixed;
+  inset: 0;
+  z-index: var(--z-grain);
+  pointer-events: none;
+  opacity: 0.05;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+/* ——— Elementy współdzielone ——— */
+
+/* Eyebrow z czerwonym znacznikiem — spina wszystkie sekcje jednym sygnałem. */
+.eyebrow {
+  display: flex;
+  align-items: center;
+  gap: 0.7rem;
+  margin: 0 0 1rem;
+  font-size: var(--micro);
+  font-weight: 600;
+  letter-spacing: var(--track-micro);
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+.eyebrow::before {
+  content: "";
+  width: 1.6rem;
+  height: 2px;
+  flex: none;
+  background: var(--accent);
+}
+
+.eyebrow--light {
+  color: var(--muted-light);
+}
+
+/* Wersja bez znacznika, gdy eyebrow siedzi w ciasnym kadrze. */
+.eyebrow--plain::before {
+  display: none;
+}
+
+/* Nawiasy kwadratowe jako akcent marki */
+.bracket {
+  position: relative;
+  color: var(--accent);
+}
+
+.bracket::before {
+  content: "[";
+  margin-right: 0.06em;
+}
+
+.bracket::after {
+  content: "]";
+  margin-left: 0.06em;
+}
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.6rem;
+  min-height: 3.25rem;
+  padding: 0.85rem 1.5rem;
+  border: 0;
+  background: var(--white);
+  color: var(--ink);
+  font-size: var(--micro);
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: background var(--dur) var(--ease), color var(--dur) var(--ease),
+    box-shadow var(--dur) var(--ease);
+}
+
+/* Sweetpunk: czerwony pasek na prawej krawędzi przycisku.
+   isolation: isolate daje przyciskowi własny kontekst nakładania — dzięki temu
+   ::after z-index:-1 ląduje NAD tłem przycisku, ale POD jego napisem (inaczej
+   rozlany na hover pasek zakrywał tekst). */
+.btn--bar {
+  position: relative;
+  isolation: isolate;
+  padding-right: 2.5rem;
+  border: 1px solid var(--line);
+}
+
+.btn--bar::after {
+  content: "";
+  position: absolute;
+  inset: 0 0 0 auto;
+  z-index: -1;
+  width: 0.6rem;
+  background: var(--gradient-accent);
+  transition: width 0.45s var(--ease-expo);
+}
+
+.btn--bar:hover::after,
+.btn--bar:focus-visible::after {
+  width: 100%;
+}
+
+.btn--bar:hover,
+.btn--bar:focus-visible {
+  color: var(--ink);
+  box-shadow: var(--shadow-accent);
+}
+
+.btn--dark {
+  background: var(--ink);
+  color: var(--cream);
+}
+
+.btn--dark:hover {
+  background: var(--accent);
+  color: var(--ink);
+  box-shadow: var(--shadow-accent);
+}
+
+.btn--ghost-dark {
+  background: transparent;
+  border: 1px solid var(--line-strong);
+  color: var(--ink);
+}
+
+.btn--ghost-dark:hover {
+  background: var(--ink);
+  color: var(--cream);
+}
+
+.link-arrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  width: fit-content;
+  /* Zapas na palec: sam tekst dawał 24 px wysokości celu dotykowego. */
+  padding: 0.6rem 0 0.35rem;
+  border-bottom: 1px solid currentColor;
+  font-size: var(--micro);
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  transition: gap var(--dur) var(--ease), color var(--dur) var(--ease);
+}
+
+.link-arrow::after {
+  content: "→";
+  border: 0;
+}
+
+.link-arrow:hover {
+  gap: 0.85rem;
+  color: var(--accent-text);
+}
+
+.link-arrow--light:hover {
+  color: var(--accent);
+}
+
+.link-arrow--light {
+  color: var(--cream);
+}
+
+.social {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.6rem;
+}
+
+.social__icon {
+  display: inline-flex;
+  flex: none;
+  align-items: center;
+  justify-content: center;
+  width: 2.75rem;
+  height: 2.75rem;
+  border: 1px solid currentColor;
+  border-radius: 50%;
+  opacity: 0.85;
+  transition: opacity var(--dur) var(--ease), color var(--dur) var(--ease),
+    background-color var(--dur) var(--ease), border-color var(--dur) var(--ease),
+    transform var(--dur) var(--ease);
+}
+
+.social__icon svg {
+  width: 1.05rem;
+  height: 1.05rem;
+}
+
+.social__icon:hover,
+.social__icon:focus-visible {
+  opacity: 1;
+  color: var(--white);
+  background: var(--accent);
+  border-color: var(--accent);
+  transform: translateY(-2px);
+}
+
+/* ——— Split headline — nośnik animacji linii ———
+   padding-top + ujemny margines: maska sięga WYŻEJ niż glify (miejsce na
+   akcenty Ó/Ż/Ć), ale rytm składu zostaje bez zmian. padding-bottom robi
+   miejsce ogonkom Ą/Ę i przecinkom, które wcześniej były ucinane. */
+.is-split .split-line,
+.line {
+  display: block;
+  overflow: hidden;
+  padding-top: 0.14em;
+  margin-top: -0.14em;
+  padding-bottom: 0.16em;
+}
+
+.is-split .split-line__inner,
+.line > span {
+  display: block;
+  will-change: transform;
+}
+
+.is-split .split-line__inner {
+  white-space: nowrap;
+}
+
+.split-word {
+  display: inline-block;
+}
+
+/* ——— Stan przed odsłonięciem ———
+   Chowamy treść TYLKO gdy JS działa (klasa .js na <html>, ustawiana inline
+   w <head>). Bez JS wszystko jest widoczne; z JS nie ma mignięcia treści (FOUC),
+   bo stan schowany obowiązuje od pierwszego malowania. */
+.js [data-fade],
+.js [data-fade-group] > *,
+.js [data-project],
+.js [data-need-card],
+.js [data-team-card] {
+  opacity: 0;
+}
+
+/* ——— Widoczny fokus klawiatury ———
+   :where() ma zerową specyficzność, więc nie nadpisuje istniejących reguł. */
+:where(a[href], button, input, select, textarea, [tabindex]):focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 3px;
+  border-radius: 1px;
+}
+
+/* Pola formularza mają outline: none — trzeba je pokonać jawnie. */
+.field input:focus-visible,
+.field select:focus-visible,
+.field textarea:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
+
+/* Link „przejdź do treści" — pierwszy fokusowalny element strony. */
+.skip-link {
+  position: fixed;
+  left: -9999px;
+  top: 0;
+  z-index: 1200;
+  padding: 0.85rem 1.35rem;
+  background: var(--ink);
+  color: var(--cream);
+  font-size: var(--micro);
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+.skip-link:focus {
+  left: 1rem;
+  top: 1rem;
+}
+
+[tabindex="-1"]:focus {
+  outline: none;
+}
+
+/* Treść tylko dla czytników ekranu. */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  clip-path: inset(50%);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* Elementy oznaczone `inert` (zamknięte menu / modal) nie mogą łapać fokusu
+   ani być czytane — samo aria-hidden tego nie załatwia. */
+[inert] {
+  pointer-events: none;
+}
+

@@ -1,0 +1,124 @@
+.values {
+  display: grid;
+  grid-template-columns: minmax(0, 1.05fr) minmax(0, 1fr);
+  gap: clamp(2rem, 5vw, 5.5rem);
+  align-items: center;
+  max-width: var(--max);
+  margin: 0 auto;
+  padding: var(--block) var(--pad);
+  background: var(--cream);
+}
+
+/* Kolaż: duży kadr + mniejszy zachodzący na niego od dołu. */
+.values__media {
+  position: relative;
+  padding-bottom: clamp(2rem, 5vw, 4.5rem);
+  padding-right: clamp(1rem, 3vw, 3rem);
+}
+
+.values__card {
+  position: relative;
+  display: block;
+  width: 100%;
+  aspect-ratio: 16 / 11;
+  padding: 0;
+  border: 0;
+  overflow: hidden;
+  background: var(--dark);
+  cursor: pointer;
+  box-shadow: var(--shadow-2);
+}
+
+.values__card:hover .values__card-inner img {
+  transform: scale(1.04);
+}
+
+.values__inset {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  z-index: 2;
+  display: block;
+  width: clamp(7rem, 22%, 12rem);
+  aspect-ratio: 3 / 4;
+  overflow: hidden;
+  background: var(--cream-deep);
+  border: clamp(0.35rem, 0.6vw, 0.6rem) solid var(--cream);
+  box-shadow: var(--shadow-2);
+}
+
+.values__card-label {
+  position: absolute;
+  left: 1.25rem;
+  bottom: 1.25rem;
+  padding: 0.7rem 1.1rem;
+  background: var(--cream);
+  color: var(--ink);
+  font-size: var(--micro);
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  transition: background var(--dur) var(--ease), color var(--dur) var(--ease);
+}
+
+.values__card:hover .values__card-label,
+.values__card:focus-visible .values__card-label {
+  background: var(--accent);
+  color: var(--ink);
+}
+
+.values__copy {
+  display: grid;
+  gap: 1.75rem;
+  justify-items: start;
+  align-content: center;
+}
+
+.values__title {
+  max-width: 18ch;
+  font-size: var(--display-2);
+}
+
+.values__lead {
+  margin: 0;
+  max-width: 44ch;
+  font-size: var(--body-lg);
+  line-height: var(--lh-body);
+  color: var(--muted);
+}
+
+/* Trzy obietnice pod leadem — porządkują „co zmienia praca z nami". */
+.values__points {
+  display: grid;
+  gap: 0;
+  width: 100%;
+  max-width: 44ch;
+}
+
+.values__points li {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr);
+  gap: 1rem;
+  align-items: baseline;
+  padding: 0.9rem 0;
+  border-top: 1px solid var(--line);
+  font-size: var(--micro);
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+.values__points li:last-child {
+  border-bottom: 1px solid var(--line);
+}
+
+.values__points li::before {
+  content: "—";
+  color: var(--accent);
+}
+
+@media (max-width: 980px) {
+  .values {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}

@@ -1,0 +1,229 @@
+.contact {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 0.95fr);
+  gap: clamp(2rem, 5vw, 5.5rem);
+  max-width: var(--max);
+  margin: 0 auto;
+  padding: var(--block) var(--pad);
+  background: var(--cream);
+}
+
+.contact__intro {
+  display: grid;
+  gap: 1.5rem;
+  align-content: start;
+}
+
+.contact__intro h2 {
+  max-width: 20ch;
+  font-size: var(--display-2);
+}
+
+.contact__intro p {
+  margin: 0;
+  max-width: 40ch;
+  font-size: var(--body-lg);
+  line-height: var(--lh-body);
+  color: var(--muted);
+}
+
+.contact__direct {
+  display: grid;
+  gap: 0.35rem;
+  justify-items: start;
+  font-size: var(--display-4);
+  font-weight: 700;
+  letter-spacing: -0.02em;
+}
+
+.contact__direct a {
+  padding: 0.35rem 0;
+  border-bottom: 1px solid var(--line);
+  transition: color var(--dur) var(--ease), border-color var(--dur) var(--ease);
+}
+
+.contact__direct a:hover {
+  color: var(--accent);
+  border-color: var(--accent);
+}
+
+.contact__social {
+  margin-top: 0.5rem;
+  gap: 0.7rem;
+}
+
+/* Formularz krokowy */
+.contact-form {
+  display: grid;
+  gap: 1.25rem;
+  align-content: start;
+  padding: clamp(1.5rem, 2.6vw, 2.5rem);
+  background: var(--white);
+  border: 1px solid var(--line);
+  box-shadow: var(--shadow-1);
+}
+
+.contact-form__progress {
+  display: grid;
+  gap: 0.6rem;
+}
+
+.contact-form__step {
+  margin: 0;
+  font-size: var(--micro);
+  font-weight: 600;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+.contact-form__bar {
+  display: block;
+  height: 2px;
+  background: var(--line);
+}
+
+.contact-form__bar span {
+  display: block;
+  width: 25%;
+  height: 100%;
+  background: var(--gradient-accent);
+  transition: width 0.5s var(--ease);
+}
+
+.contact-form__hello {
+  margin: 0;
+  font-size: var(--display-4);
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  text-transform: uppercase;
+}
+
+.field {
+  display: grid;
+  gap: 0.4rem;
+}
+
+.field > span:first-child {
+  font-size: var(--micro);
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+.field > span em {
+  font-style: normal;
+  color: var(--accent);
+}
+
+.field input,
+.field select,
+.field textarea {
+  width: 100%;
+  /* 44 px minimalnej wysokości dotykowej — poprzednie pola były niższe. */
+  min-height: 2.9rem;
+  padding: 0.85rem 0;
+  background: transparent;
+  border: 0;
+  border-bottom: 1px solid var(--line);
+  border-radius: 0;
+  outline: none;
+  transition: border-color var(--dur) var(--ease);
+}
+
+.field input::placeholder,
+.field textarea::placeholder {
+  color: var(--muted-soft);
+}
+
+.field input:focus,
+.field select:focus,
+.field textarea:focus {
+  border-color: var(--accent);
+}
+
+.field textarea {
+  resize: vertical;
+}
+
+/* Natywna strzałka <select> nie daje się ostylować — rysujemy własną. */
+.field--select {
+  position: relative;
+}
+
+.field--select select {
+  appearance: none;
+  padding-right: 2rem;
+  cursor: pointer;
+}
+
+.field--select::after {
+  content: "";
+  position: absolute;
+  right: 0.35rem;
+  bottom: 2.1rem;
+  width: 0.5rem;
+  height: 0.5rem;
+  border-right: 1.5px solid var(--muted);
+  border-bottom: 1.5px solid var(--muted);
+  transform: rotate(45deg);
+  pointer-events: none;
+}
+
+/* Błąd pod polem, w kolorze akcentu, z ikoną — nie tylko sam kolor. */
+.field__error {
+  display: none;
+  font-size: var(--micro);
+  letter-spacing: 0.06em;
+  color: var(--accent-deep);
+}
+
+.field__error::before {
+  content: "! ";
+  font-weight: 700;
+}
+
+.field.has-error .field__error {
+  display: block;
+}
+
+.field.has-error input,
+.field.has-error select,
+.field.has-error textarea {
+  border-color: var(--accent-deep);
+}
+
+.field__hint {
+  font-size: var(--micro);
+  letter-spacing: 0.04em;
+  color: var(--muted-soft);
+}
+
+.contact-form__note {
+  margin: 0;
+  font-size: var(--micro);
+  letter-spacing: 0.04em;
+  color: var(--muted-soft);
+}
+
+.contact-form__status {
+  margin: 0;
+  padding: 0.7rem 0.9rem;
+  font-size: var(--micro);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  background: var(--accent-wash);
+  color: var(--accent-deep);
+  border-left: 2px solid var(--accent);
+}
+
+.contact-form__status[data-state="error"] {
+  background: color-mix(in srgb, var(--accent-deep) 10%, transparent);
+}
+
+@media (max-width: 980px) {
+  .contact {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}

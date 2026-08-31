@@ -1,0 +1,15 @@
+/* ——— PARALLAX KADRÓW (parallax-media.js) ——— */
+
+[data-parallax-media] {
+  overflow: hidden;
+}
+
+/* Media wyższe niż kontener i wyśrodkowane — zapas na ruch w obie strony. */
+[data-parallax-media] > img,
+[data-parallax-media] > video {
+  width: 100%;
+  height: 126%;
+  margin-top: -13%;
+  object-fit: cover;
+  will-change: transform;
+}

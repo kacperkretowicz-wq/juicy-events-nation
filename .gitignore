@@ -1,0 +1,17 @@
+node_modules
+dist
+.DS_Store
+*.log
+
+# Oryginały mediów sprzed kompresji (Etap II) — trzymane lokalnie na wszelki wypadek
+_media-backup
+
+# Artefakty QA: zrzuty ze skryptu audytu i klatki nagrania referencyjnego
+.debug-scroll
+.ref-video
+sweetpunk-home.html
+ref
+_sp_structure.txt
+
+# Konfiguracja agenta/preview tego środowiska — nie część projektu.
+.claude
