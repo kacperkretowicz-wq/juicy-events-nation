@@ -121,12 +121,6 @@
   line-height: 1.68;
 }
 
-@media (prefers-reduced-motion: reduce) {
-  .work__card {
-    transition: none;
-  }
-}
-
 @media (max-width: 980px) {
   .work {
     grid-template-columns: minmax(0, 1fr);

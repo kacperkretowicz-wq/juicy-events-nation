@@ -6,7 +6,12 @@ import Lenis from "lenis";
 gsap.registerPlugin(ScrollTrigger, CustomEase);
 CustomEase.create("smoothExpoOut", "M0,0 C0.143,0 0.22,0.534 0.247,0.663 0.277,0.811 0.424,1 1,1");
 
-export const softMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+// Decyzja właściciela strony (2026-08): pełne animacje dla wszystkich, bez względu
+// na systemowe „ogranicz animacje". `?reduced` w URL wciąż daje spokojną wersję
+// (przydatne do pokazania klientowi). Aby wrócić do respektowania ustawienia:
+//   export const softMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+// i przywrócić bloki @media (prefers-reduced-motion) w CSS.
+export const softMotion = new URLSearchParams(window.location.search).has("reduced");
 export const ease = softMotion ? "power2.out" : "smoothExpoOut";
 
 export const lenis = new Lenis({

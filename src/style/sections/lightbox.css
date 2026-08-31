@@ -152,9 +152,3 @@
   .lightbox__nav--prev { left: 0.6rem; }
   .lightbox__nav--next { right: 0.6rem; }
 }
-
-@media (prefers-reduced-motion: reduce) {
-  .lightbox {
-    transition: none;
-  }
-}

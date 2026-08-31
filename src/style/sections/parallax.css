@@ -13,11 +13,3 @@
   object-fit: cover;
   will-change: transform;
 }
-
-@media (prefers-reduced-motion: reduce) {
-  [data-parallax-media] > img,
-  [data-parallax-media] > video {
-    height: 100%;
-    margin-top: 0;
-  }
-}

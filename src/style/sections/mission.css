@@ -64,13 +64,3 @@
   line-height: 1.68;
   color: rgba(246, 244, 239, 0.74);
 }
-
-@media (prefers-reduced-motion: reduce) {
-  .mission {
-    height: auto;
-  }
-
-  .mission__pin {
-    position: relative;
-  }
-}

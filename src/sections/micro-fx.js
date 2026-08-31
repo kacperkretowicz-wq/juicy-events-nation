@@ -1,6 +1,6 @@
 // ——— Mikro-efekty: reveal galerii, hover kart, dryf wordmarku, magnetyczne CTA ———
-// Wszystkie respektują `prefers-reduced-motion` (przez `softMotion` albo `@media`
-// w micro-fx.css). Amplitudy trzymane nisko — mają być wyczuwalne, nie krzykliwe.
+// Amplitudy trzymane nisko — mają być wyczuwalne, nie krzykliwe.
+// (`softMotion` = tylko opt-in `?reduced` w URL — patrz shared.js.)
 
 import { lenis, softMotion } from "../shared.js";
 

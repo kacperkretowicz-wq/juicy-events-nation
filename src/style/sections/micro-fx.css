@@ -43,28 +43,3 @@
 .site-footer__wordmark span {
   will-change: transform;
 }
-
-@media (prefers-reduced-motion: reduce) {
-  .js .fx-clip,
-  .js .fx-clip.is-clip-revealed {
-    clip-path: none;
-    transition: none;
-  }
-
-  .project-card__go {
-    opacity: 1;
-    transform: none;
-    transition: none;
-  }
-
-  .project-card__meta span,
-  .project-card:hover .project-card__meta span {
-    transform: none;
-    transition: none;
-  }
-
-  .site-footer__wordmark span {
-    transform: translateY(0.06em) !important;
-    will-change: auto;
-  }
-}

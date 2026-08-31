@@ -324,9 +324,3 @@ ul {
 [tabindex="-1"]:focus {
   outline: none;
 }
-
-@media (prefers-reduced-motion: reduce) {
-  .grain {
-    display: none;
-  }
-}

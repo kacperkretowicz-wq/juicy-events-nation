@@ -137,14 +137,6 @@
   background: var(--accent);
 }
 
-@media (prefers-reduced-motion: reduce) {
-  .project-card--video .project-card__media,
-  .project-card--video .project-card__media video,
-  .project-card__zoom {
-    transition: none;
-  }
-}
-
 /* Kafelek ze slajdshow zdjęć — crossfade w tle, bez JS-bibliotek */
 .project-card__media[data-slideshow-card] {
   position: relative;

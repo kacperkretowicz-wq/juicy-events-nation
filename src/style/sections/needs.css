@@ -44,12 +44,6 @@
   transform: translateY(-5px);
 }
 
-@media (prefers-reduced-motion: reduce) {
-  .need-card {
-    transition: none;
-  }
-}
-
 .need-card h3 {
   font-size: var(--display-4);
   max-width: 16ch;

@@ -52,12 +52,6 @@
   opacity: 0;
 }
 
-@media (prefers-reduced-motion: reduce) {
-  .text-glow__fire {
-    display: none;
-  }
-}
-
 /* Zakreślacz pod frazą — rozjeżdża się od lewej, gdy fraza wejdzie w kadr
    (initMarks w effects.js). Używać oszczędnie (2–3 miejsca na stronę)
    i nigdy w zdaniu z nawiasem [ ]. box-decoration-break: clone — poprawnie
@@ -79,11 +73,4 @@
 
 .mark.is-marked {
   --mark: 100%;
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .mark {
-    transition: none;
-    --mark: 100%;
-  }
 }

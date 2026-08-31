@@ -201,20 +201,3 @@
     margin-left: 0;
   }
 }
-
-@media (prefers-reduced-motion: reduce) {
-  .agency__act {
-    height: auto;
-  }
-
-  .agency__stage {
-    position: relative;
-  }
-
-  .agency__logo-slot,
-  .agency__intro,
-  .agency__layer--dark {
-    display: none;
-  }
-
-}

@@ -39,13 +39,6 @@
   will-change: transform, opacity;
 }
 
-@media (prefers-reduced-motion: reduce) {
-  .assemble__char {
-    transform: none !important;
-    opacity: 1 !important;
-  }
-}
-
 /* Pinowana lista kroków */
 .method {
   background: var(--dark-soft);
