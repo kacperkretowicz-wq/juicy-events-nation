@@ -29,6 +29,25 @@
   padding: clamp(1.25rem, 2vw, 1.85rem);
   overflow: hidden;
   isolation: isolate;
+  transition: transform 0.4s var(--ease);
+}
+
+/* Cała karta klikalna — link „Omówmy" rozciąga swój obszar na całość. */
+.need-card__cta::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+}
+
+.need-card:hover {
+  transform: translateY(-5px);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .need-card {
+    transition: none;
+  }
 }
 
 .need-card h3 {
@@ -57,6 +76,12 @@
 
 .need-card__cta::after {
   content: " →";
+  display: inline-block;
+  transition: transform 0.3s var(--ease);
+}
+
+.need-card:hover .need-card__cta::after {
+  transform: translateX(0.3rem);
 }
 
 .need-card--light {

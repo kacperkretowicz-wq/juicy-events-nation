@@ -84,13 +84,32 @@ export function initSectionReveals(scope = document) {
     if (el.dataset.fadeBound === "1") return;
     el.dataset.fadeBound = "1";
 
-    gsap.set(el, { opacity: 0, y: 24 });
+    // Stan schowany (opacity: 0) ustawia CSS pod klasą `.js` — bez JS treść jest
+    // widoczna, a z JS nie ma mignięcia. fromTo domyka `y` niezależnie od CSS.
     ScrollTrigger.create({
       trigger: el,
       start: "top 92%",
       once: true,
       onEnter: () =>
-        gsap.to(el, { opacity: 1, y: 0, duration: softMotion ? 0.6 : 0.85, ease, delay: 0.1 }),
+        gsap.fromTo(
+          el,
+          { opacity: 0, y: 24 },
+          { opacity: 1, y: 0, duration: softMotion ? 0.6 : 0.85, ease, delay: 0.1, clearProps: "transform" }
+        ),
+    });
+  });
+}
+
+/** Zakreślacz `.mark` — rysuje się, gdy fraza wejdzie w kadr. */
+export function initMarks(scope = document) {
+  scope.querySelectorAll(".mark").forEach((el) => {
+    if (el.dataset.markBound === "1") return;
+    el.dataset.markBound = "1";
+    ScrollTrigger.create({
+      trigger: el,
+      start: "top 84%",
+      once: true,
+      onEnter: () => el.classList.add("is-marked"),
     });
   });
 }

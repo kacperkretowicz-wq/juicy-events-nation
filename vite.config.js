@@ -14,6 +14,7 @@ export default defineConfig({
         realizacjeRainbow: resolve(__dirname, "realizacje-rainbow.html"),
         realizacjeRetroRush: resolve(__dirname, "realizacje-retro-rush.html"),
         realizacjeVolvo: resolve(__dirname, "realizacje-volvo.html"),
+        politykaPrywatnosci: resolve(__dirname, "polityka-prywatnosci.html"),
       },
     },
   },

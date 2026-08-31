@@ -1,12 +1,20 @@
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import { initHeader, initSplitHeadlines } from "./shared.js";
+import { initHeader, initSplitHeadlines, initSplitResize } from "./shared.js";
 import { initSectionReveals } from "./effects.js";
 import { initProjects } from "./sections/projects.js";
+import { initLightbox } from "./sections/lightbox.js";
+import { initParallaxMedia } from "./sections/parallax-media.js";
+import { claimAudio, releaseAudio } from "./audio-bus.js";
+import { initMicroFx } from "./sections/micro-fx.js";
 
 initHeader();
 initSplitHeadlines();
+initSplitResize();
 initSectionReveals();
 initProjects();
+initLightbox();
+initMicroFx();
+initParallaxMedia();
 
 // Wideo w nagłówku realizacji: autoplay w viewport (bez dźwięku),
 // przycisk włącza dźwięk i odtwarza od początku — jak w agency__reel-cta.
@@ -27,13 +35,26 @@ if (video && "IntersectionObserver" in window) {
 }
 
 if (video && soundBtn) {
+  const muteUi = () => {
+    video.muted = true;
+    soundBtn.textContent = "Włącz dźwięk";
+  };
+
   soundBtn.addEventListener("click", () => {
     const willUnmute = video.muted;
-    video.muted = !willUnmute;
-    if (willUnmute) video.currentTime = 0;
+    if (willUnmute) {
+      claimAudio(video);
+      video.muted = false;
+      video.currentTime = 0;
+      soundBtn.textContent = "Wycisz";
+    } else {
+      muteUi();
+      releaseAudio(video);
+    }
     video.play().catch(() => {});
-    soundBtn.textContent = willUnmute ? "Wycisz" : "Włącz dźwięk";
   });
+
+  video.addEventListener("jen:audio-released", muteUi);
 }
 
 document.documentElement.classList.add("is-loaded");

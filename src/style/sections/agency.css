@@ -33,115 +33,9 @@
   z-index: 1;
   overflow: hidden;
   will-change: height;
-  cursor: none;
   /* Border rysuje się na RZECZYWISTEJ (kurczącej się) krawędzi wideo — stąd
      zmieniamy height, a nie clip-path (ten obcinałby border razem z resztą). */
   border-bottom: 3px solid var(--accent);
-}
-
-/* Przycisk-kursor: podąża za myszą, gdy jest nad wideo hero (natywny kursor jest
-   ukryty przez cursor:none wyżej). Klik jest łapany na całym .agency__media. */
-.agency__reel-cta {
-  position: absolute;
-  top: 0;
-  left: 0;
-  z-index: 4;
-  display: inline-flex;
-  align-items: center;
-  gap: 0.65rem;
-  padding: 0.85rem 1.5rem 0.85rem 1rem;
-  border-radius: 999px;
-  background: var(--white);
-  color: var(--ink);
-  font-size: var(--micro);
-  font-weight: 600;
-  letter-spacing: 0.14em;
-  text-transform: uppercase;
-  white-space: nowrap;
-  opacity: 0;
-  pointer-events: none;
-  isolation: isolate;
-  transform: translate3d(-50%, -50%, 0) scale(0.85);
-  transition: opacity 0.25s var(--ease), transform 0.25s var(--ease), background-color 0.3s var(--ease),
-    color 0.3s var(--ease);
-  will-change: transform, opacity;
-}
-
-.agency__media.is-cursor-active .agency__reel-cta {
-  opacity: 1;
-  transform: translate3d(-50%, -50%, 0) scale(1);
-}
-
-/* Odtwarzanie aktywne — samo obramowanie/tło pill jest przezroczyste,
-   zostaje tylko wyraźny biały napis + ikona (stop). */
-.agency__reel-cta.is-playing {
-  background: transparent;
-  color: var(--white);
-}
-
-/* Krótki błysk czerwonego podświetlenia przy każdym kliknięciu (start/stop) —
-   osobna warstwa pod tekstem/ikoną, żeby nie przerywać zmiany stanu koloru. */
-.agency__reel-cta::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  z-index: -1;
-  border-radius: inherit;
-  background: var(--accent);
-  opacity: 0;
-  transition: opacity 0.45s var(--ease);
-}
-
-.agency__reel-cta.is-flash::before {
-  opacity: 1;
-  transition: opacity 0.05s linear;
-}
-
-.agency__reel-cta-icon {
-  position: relative;
-  display: grid;
-  place-items: center;
-  width: 2.1rem;
-  height: 2.1rem;
-  border-radius: 50%;
-  background: var(--ink);
-  transition: background-color 0.3s var(--ease), border-color 0.3s var(--ease);
-}
-
-.agency__reel-cta-icon::after {
-  content: "";
-  width: 0;
-  height: 0;
-  border-left: 0.42rem solid var(--white);
-  border-top: 0.28rem solid transparent;
-  border-bottom: 0.28rem solid transparent;
-  margin-left: 0.14rem;
-  transition: border-color 0.3s var(--ease), background-color 0.3s var(--ease), width 0.3s var(--ease),
-    height 0.3s var(--ease), margin 0.3s var(--ease);
-}
-
-.agency__reel-cta.is-playing .agency__reel-cta-icon {
-  background: transparent;
-  border: 1.5px solid var(--white);
-}
-
-/* Trójkąt "play" zamienia się w kwadrat "stop" */
-.agency__reel-cta.is-playing .agency__reel-cta-icon::after {
-  width: 0.65rem;
-  height: 0.65rem;
-  margin-left: 0;
-  border: 0;
-  background: var(--white);
-}
-
-@media (hover: none), (pointer: coarse) {
-  .agency__reel-cta {
-    display: none;
-  }
-
-  .agency__media {
-    cursor: pointer;
-  }
 }
 
 .agency__media-inner {
@@ -323,11 +217,4 @@
     display: none;
   }
 
-  .agency__reel-cta {
-    display: none;
-  }
-
-  .agency__media {
-    cursor: pointer;
-  }
 }

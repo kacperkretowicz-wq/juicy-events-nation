@@ -1,47 +1,59 @@
-// Karta projektu z wideo: autoplay w viewport + rozwinięcie kadru po kliknięciu,
-// przy czym tytuł/opis obok karty zawsze zostają w pełni widoczne (skalujemy tylko medium).
+// Karta realizacji z wideo: cały kadr jest linkiem do case study (jak karty
+// zdjęciowe). Wideo gra jako cichy podgląd w viewport, a osobny przycisk w rogu
+// (data-video-zoom) rozwija kadr w miejscu — bez opuszczania strony.
 export function initProjectVideo() {
-  const buttons = [...document.querySelectorAll("[data-video-card]")];
-  if (!buttons.length) return;
+  const cards = [...document.querySelectorAll(".project-card--video")];
+  if (!cards.length) return;
 
   const collapseAll = (except) => {
-    buttons.forEach((button) => {
-      if (button === except) return;
-      const card = button.closest(".project-card");
-      if (!card?.classList.contains("is-expanded")) return;
+    cards.forEach((card) => {
+      if (card === except || !card.classList.contains("is-expanded")) return;
       card.classList.remove("is-expanded");
-      button.setAttribute("aria-expanded", "false");
+      card.querySelector("[data-video-zoom]")?.setAttribute("aria-expanded", "false");
     });
   };
 
-  buttons.forEach((button) => {
-    const card = button.closest(".project-card");
-    const video = button.querySelector("[data-project-video]");
+  cards.forEach((card) => {
+    const media = card.querySelector("[data-video-card]");
+    const video = card.querySelector("[data-project-video]");
+    const zoom = card.querySelector("[data-video-zoom]");
 
-    if (video && "IntersectionObserver" in window) {
+    if (video && media && "IntersectionObserver" in window) {
+      const play = () => video.play().catch(() => {});
       const observer = new IntersectionObserver(
-        (entries) => {
+        (entries) =>
           entries.forEach((entry) => {
-            if (entry.isIntersecting) video.play().catch(() => {});
-            else video.pause();
-          });
-        },
-        { threshold: 0.25 }
+            if (!entry.isIntersecting) {
+              video.pause();
+              return;
+            }
+            // W kadrze: dokładamy pełny bufor i gramy, gdy tylko są dane.
+            // (bez tego karty z preload="metadata" potrafiły zostać na plakacie)
+            if (video.preload !== "auto") {
+              video.preload = "auto";
+              video.load();
+            }
+            if (video.readyState >= 3) play();
+            else video.addEventListener("canplay", play, { once: true });
+          }),
+        { threshold: 0.2 }
       );
-      observer.observe(button);
+      observer.observe(media);
     }
 
-    button.addEventListener("click", (event) => {
+    zoom?.addEventListener("click", (event) => {
+      // Nie nawiguj do case study — tylko rozwiń podgląd.
+      event.preventDefault();
       event.stopPropagation();
-      const expanded = card?.classList.toggle("is-expanded");
-      button.setAttribute("aria-expanded", String(Boolean(expanded)));
-      if (expanded) collapseAll(button);
+      const expanded = card.classList.toggle("is-expanded");
+      zoom.setAttribute("aria-expanded", String(expanded));
+      if (expanded) collapseAll(card);
     });
   });
 
   document.addEventListener("click", (event) => {
-    const openButton = buttons.find((button) => button.closest(".project-card")?.classList.contains("is-expanded"));
-    if (!openButton || openButton.contains(event.target)) return;
+    const open = cards.find((card) => card.classList.contains("is-expanded"));
+    if (!open || open.contains(event.target)) return;
     collapseAll();
   });
 

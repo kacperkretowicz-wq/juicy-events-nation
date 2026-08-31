@@ -26,10 +26,22 @@
   padding: 0 var(--pad) var(--block);
 }
 
+.gallery__lead {
+  margin-bottom: clamp(1.75rem, 4vw, 3rem);
+}
+
+.gallery__lead h2 {
+  max-width: 20ch;
+  font-size: var(--display-3);
+}
+
 .gallery__grid {
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: var(--gutter);
+  /* „dense" domyka luki, gdy szeroki kafelek (span 2) nie mieści się w wierszu.
+     Kolejność zdjęć nie niesie treści, więc zmiana układu jest bezpieczna. */
+  grid-auto-flow: dense;
 }
 
 .gallery-item {

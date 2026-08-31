@@ -1,6 +1,8 @@
 // Karta "Nasza praca": mały, wyciszony podgląd wideo w viewport; po kliknięciu
 // (karty lub podpisu) rozwija się do pełnego rozmiaru, chowa podpis i odtwarza
 // showreel z dźwiękiem od początku.
+import { claimAudio, releaseAudio } from "../audio-bus.js";
+
 export function initWorkVideo() {
   const group = document.querySelector("[data-work-video-group]");
   const video = group?.querySelector("[data-work-video]");
@@ -23,6 +25,7 @@ export function initWorkVideo() {
   const expand = () => {
     group.classList.add("is-expanded");
     triggers.forEach((trigger) => trigger.setAttribute("aria-expanded", "true"));
+    claimAudio(video);
     video.muted = false;
     video.currentTime = 0;
     video.play().catch(() => {});
@@ -32,7 +35,13 @@ export function initWorkVideo() {
     group.classList.remove("is-expanded");
     triggers.forEach((trigger) => trigger.setAttribute("aria-expanded", "false"));
     video.muted = true;
+    releaseAudio(video);
   };
+
+  // Inny film przejął dźwięk — zwiń tę sekcję.
+  video.addEventListener("jen:audio-released", () => {
+    if (group.classList.contains("is-expanded")) collapse();
+  });
 
   triggers.forEach((trigger) => {
     trigger.addEventListener("click", (event) => {

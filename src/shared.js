@@ -27,6 +27,21 @@ window.__jen = { gsap, ScrollTrigger, lenis };
 const yearEl = document.querySelector("[data-year]");
 if (yearEl) yearEl.textContent = String(new Date().getFullYear());
 
+// Bezpiecznik odsłaniania: treść jest chowana przez CSS pod klasą `.js`
+// (koniec FOUC, brak JS = wszystko widoczne). Gdyby system triggerów w ogóle
+// nie wystartował (0 triggerów = coś się wysypało) — po chwili odsłoń wszystko.
+window.addEventListener("load", () => {
+  setTimeout(() => {
+    if (ScrollTrigger.getAll().length > 0) return;
+    document
+      .querySelectorAll("[data-fade], [data-fade-group] > *, [data-project], [data-need-card], [data-team-card]")
+      .forEach((el) => {
+        el.style.opacity = "1";
+        el.style.transform = "none";
+      });
+  }, 3000);
+});
+
 document.querySelectorAll('a[href^="#"]').forEach((link) => {
   link.addEventListener("click", (event) => {
     const href = link.getAttribute("href");
@@ -38,21 +53,15 @@ document.querySelectorAll('a[href^="#"]').forEach((link) => {
   });
 });
 
-/* ——— Header: chowanie przy scrollu w dół + ton nad jasnymi sekcjami ——— */
+/* ——— Header: przyklejony na stałe + ton nad jasnymi sekcjami ———
+   Panel nawigacji (logo + kategorie) jest widoczny cały czas, niezależnie
+   od kierunku scrolla. Chowanie przy scrollu w dół zostało usunięte. */
 
 export function initHeader() {
   const header = document.querySelector("[data-site-header]");
   if (!header) return;
 
   const darkZones = [...document.querySelectorAll("[data-tone='dark']")];
-  let hidden = false;
-  let lastScroll = lenis.scroll;
-
-  const setHidden = (value) => {
-    if (hidden === value) return;
-    hidden = value;
-    header.classList.toggle("site-header--hidden", value);
-  };
 
   const updateTone = () => {
     const probe = header.offsetHeight * 0.5;
@@ -63,25 +72,14 @@ export function initHeader() {
     header.classList.toggle("site-header--solid", !overDark);
   };
 
-  const onScroll = ({ scroll, direction }) => {
-    updateTone();
-
-    if (scroll <= 72) {
-      setHidden(false);
-    } else if (Math.abs(scroll - lastScroll) >= 6) {
-      setHidden(direction > 0);
-    }
-    lastScroll = scroll;
-  };
+  updateTone();
 
   if (softMotion) {
-    updateTone();
     window.addEventListener("scroll", updateTone, { passive: true });
     return;
   }
 
-  lenis.on("scroll", onScroll);
-  updateTone();
+  lenis.on("scroll", updateTone);
 }
 
 /* ——— Mega menu ——— */
@@ -202,6 +200,9 @@ document.addEventListener("keydown", (event) => {
 /** Rozbija nagłówek na słowa, mierzy ich pozycje i skleja z powrotem w linie. */
 function splitIntoLines(el) {
   if (el.dataset.splitDone === "1") return;
+  // Zapamiętaj oryginał PRZED zniszczeniem treści — potrzebny do złożenia
+  // nagłówka od nowa po zmianie szerokości okna (patrz initSplitResize).
+  if (!el.dataset.splitSource) el.dataset.splitSource = el.innerHTML;
 
   const words = [...el.childNodes].flatMap((node) => {
     if (node.nodeType === Node.TEXT_NODE) {
@@ -254,4 +255,62 @@ function splitIntoLines(el) {
 
 export function initSplitHeadlines() {
   document.querySelectorAll("[data-split]").forEach(splitIntoLines);
+}
+
+/**
+ * Podział na linie liczony jest raz, w szerokości startowej. Bez tego po zwężeniu
+ * okna / obrocie telefonu linie z `white-space: nowrap` zostają w starej szerokości
+ * i część tekstu wypada poza `overflow: hidden` — jest bezpowrotnie ucięta.
+ * Tu składamy nagłówki od nowa po realnej zmianie szerokości (próg 40 px odsiewa
+ * chowanie paska adresu na mobile, które zmienia tylko wysokość).
+ */
+export function initSplitResize() {
+  let lastWidth = window.innerWidth;
+  let timer = null;
+
+  const resplit = () => {
+    const heads = [...document.querySelectorAll("[data-split]")].filter(
+      (el) => el.dataset.splitDone === "1" && el.dataset.splitSource
+    );
+    if (!heads.length) return;
+
+    heads.forEach((el) => {
+      // Wróć do surowego HTML i podziel od nowa w aktualnej szerokości.
+      el.innerHTML = el.dataset.splitSource;
+      delete el.dataset.splitDone;
+      splitIntoLines(el);
+
+      // Świeże linie nie mają transformu — nagłówek jest po prostu widoczny
+      // (był już raz odsłonięty, nie powtarzamy wjazdu). clearProps kasuje
+      // ewentualny transform z animacji przerwanej w trakcie resize.
+      const inners = [...el.querySelectorAll(".split-line__inner")];
+      gsap.set(inners, { clearProps: "transform,translate,rotate,scale" });
+
+      // Sieć bezpieczeństwa: gdyby pomiar rozminął się z realną szerokością,
+      // pozwól linii zawinąć się, zamiast dać jej wypaść poza overflow: hidden.
+      inners.forEach((inner) => {
+        if (inner.scrollWidth > inner.parentElement.clientWidth + 1) {
+          inner.style.whiteSpace = "normal";
+        }
+      });
+    });
+
+    // Wysokości sekcji się zmieniły — przelicz pozycje pinów i triggerów.
+    ScrollTrigger.refresh();
+  };
+
+  const schedule = (delay) => {
+    clearTimeout(timer);
+    timer = setTimeout(() => {
+      lastWidth = window.innerWidth;
+      resplit();
+    }, delay);
+  };
+
+  window.addEventListener("resize", () => {
+    if (Math.abs(window.innerWidth - lastWidth) < 40) return;
+    schedule(200);
+  });
+
+  window.addEventListener("orientationchange", () => schedule(250));
 }

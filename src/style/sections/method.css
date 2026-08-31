@@ -24,30 +24,54 @@
   color: var(--accent);
 }
 
+/* Wjazd liter mostka (bridge-assemble.js) — maska + litery z dołu, stagger. */
+.bridge__line.is-assemble {
+  overflow: hidden;
+  padding-bottom: 0.08em;
+}
+
+.assemble__inner {
+  display: inline-block;
+}
+
+.assemble__char {
+  display: inline-block;
+  will-change: transform, opacity;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .assemble__char {
+    transform: none !important;
+    opacity: 1 !important;
+  }
+}
+
 /* Pinowana lista kroków */
 .method {
   background: var(--dark-soft);
   color: var(--cream);
 }
 
+/* Jedna kolumna, wyśrodkowana na stronie — tytuł nad listą kroków. */
 .method__inner {
   display: grid;
-  grid-template-columns: minmax(0, 0.8fr) minmax(0, 1.2fr);
-  gap: clamp(2rem, 5vw, 5rem);
-  min-height: 100svh;
+  grid-template-columns: minmax(0, 1fr);
+  justify-items: center;
+  gap: clamp(2.5rem, 5vw, 4rem);
   max-width: var(--max);
   margin: 0 auto;
-  padding: clamp(5rem, 9vw, 8rem) var(--pad);
+  padding: var(--block) var(--pad);
 }
 
 .method__aside {
   display: grid;
-  align-content: space-between;
-  gap: 2rem;
+  justify-items: center;
+  gap: 1.25rem;
+  text-align: center;
 }
 
 .method__title {
-  max-width: 18ch;
+  max-width: 22ch;
   font-size: var(--display-3);
 }
 
@@ -55,6 +79,7 @@
   display: grid;
   align-content: center;
   gap: clamp(1rem, 2vw, 1.75rem);
+  width: min(100%, 62rem);
 }
 
 .method-step {

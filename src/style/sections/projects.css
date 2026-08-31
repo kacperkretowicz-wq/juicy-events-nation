@@ -55,25 +55,17 @@
   text-decoration: none;
 }
 
-/* Karta z wideo — przycisk zamiast statycznego kadru, z możliwością powiększenia */
+/* Karta z wideo — cały kadr linkuje do case study; osobny przycisk w rogu
+   (project-card__zoom) rozwija podgląd w miejscu. */
 .project-card--video {
   position: relative;
 }
 
 .project-card--video .project-card__media {
-  position: relative;
-  border: 0;
-  padding: 0;
-  margin: 0;
-  width: 100%;
-  font: inherit;
-  color: inherit;
-  text-align: left;
   background: var(--cream-deep);
-  cursor: pointer;
   transform: scale(1);
   transform-origin: center bottom;
-  transition: transform 0.55s var(--ease-expo);
+  transition: transform 0.55s var(--ease-expo), box-shadow 0.55s var(--ease-expo);
   will-change: transform;
 }
 
@@ -81,30 +73,53 @@
   transform: scale(1.045);
 }
 
-.project-card--video .project-card__video-hint {
+/* Przycisk „powiększ podgląd" */
+.project-card__zoom {
   position: absolute;
-  right: 0.9rem;
-  bottom: 0.9rem;
-  padding: 0.32rem 0.7rem;
-  border-radius: 999px;
-  background: var(--accent);
+  top: 0.85rem;
+  right: 0.85rem;
+  z-index: 3;
+  display: grid;
+  place-items: center;
+  width: 2.5rem;
+  height: 2.5rem;
+  padding: 0;
+  border: 0;
+  border-radius: 50%;
+  background: color-mix(in srgb, var(--ink) 72%, transparent);
   color: var(--white);
-  font-size: var(--micro);
-  font-weight: 600;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
+  cursor: pointer;
   opacity: 0;
-  transform: translateY(0.4rem);
-  transition: opacity 0.3s var(--ease), transform 0.3s var(--ease);
+  transform: translateY(-0.3rem);
+  transition: opacity 0.3s var(--ease), transform 0.3s var(--ease), background-color 0.3s var(--ease);
+  backdrop-filter: blur(4px);
 }
 
-.project-card--video:hover .project-card__video-hint,
-.project-card--video .project-card__media:focus-visible .project-card__video-hint {
+.project-card__zoom svg {
+  width: 1.05rem;
+  height: 1.05rem;
+}
+
+.project-card__zoom:hover,
+.project-card__zoom:focus-visible {
+  background: var(--accent);
+}
+
+.project-card--video:hover .project-card__zoom,
+.project-card__zoom:focus-visible {
   opacity: 1;
   transform: translateY(0);
 }
 
-/* Rozwinięcie: skalujemy tylko medium, od dołu, żeby tytuł/opis zawsze zostały widoczne */
+/* Na dotyku (brak hovera) przycisk jest widoczny od razu. */
+@media (hover: none) {
+  .project-card__zoom {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+/* Rozwinięcie: skalujemy tylko medium, od dołu — tytuł/opis zostają widoczne. */
 .project-card--video.is-expanded {
   z-index: 5;
 }
@@ -118,14 +133,14 @@
   transform: scale(1);
 }
 
-.project-card--video.is-expanded .project-card__video-hint {
-  opacity: 0;
+.project-card--video.is-expanded .project-card__zoom {
+  background: var(--accent);
 }
 
 @media (prefers-reduced-motion: reduce) {
   .project-card--video .project-card__media,
   .project-card--video .project-card__media video,
-  .project-card--video .project-card__video-hint {
+  .project-card__zoom {
     transition: none;
   }
 }

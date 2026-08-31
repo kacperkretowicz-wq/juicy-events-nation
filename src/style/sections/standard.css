@@ -5,10 +5,8 @@
   grid-template-columns: minmax(0, 1fr);
   align-content: center;
   gap: clamp(2rem, 4vw, 3.25rem);
-  min-height: 100svh;
-  padding: clamp(3rem, 6vw, 5rem) 0;
+  padding: var(--block) 0;
   background: var(--cream-deep);
-  overflow: hidden;
 }
 
 .standard__head {
@@ -23,8 +21,18 @@
   font-size: var(--display-3);
 }
 
+/* Tor przewijany natywnie — bez pinowania sekcji. */
 .standard__viewport {
   padding-left: max(var(--pad), calc((100vw - var(--max)) / 2 + var(--pad)));
+  padding-right: var(--pad);
+  overflow-x: auto;
+  scroll-snap-type: x proximity;
+  scrollbar-width: thin;
+  overscroll-behavior-x: contain;
+}
+
+.standard-card {
+  scroll-snap-align: start;
 }
 
 .standard__track {

@@ -46,6 +46,11 @@
   border-color: var(--accent);
 }
 
+.contact__social {
+  margin-top: 0.5rem;
+  gap: 0.7rem;
+}
+
 /* Formularz krokowy */
 .contact-form {
   display: grid;
@@ -135,6 +140,7 @@
   text-transform: uppercase;
   color: var(--accent);
 }
+
 
 @media (max-width: 980px) {
   .contact {
