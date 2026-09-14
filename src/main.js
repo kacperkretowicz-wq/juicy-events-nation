@@ -5,14 +5,11 @@ import { initParallaxMedia } from "./sections/parallax-media.js";
 import { initAgency } from "./sections/agency.js";
 import { initExpertise } from "./sections/expertise.js";
 import { initProjects } from "./sections/projects.js";
-import { initProjectVideo } from "./sections/project-video.js";
-import { initProjectSlideshow } from "./sections/project-slideshow.js";
-import { initWorkVideo } from "./sections/work-video.js";
-import { initBridgeAssemble } from "./sections/bridge-assemble.js";
-import { initMethod } from "./sections/method.js";
-import { initStandard } from "./sections/standard.js";
+import { initServices } from "./sections/services.js";
+import { initCaseRotator } from "./sections/case-rotator.js";
 import { initContactForm } from "./sections/contact.js";
 import { initMicroFx } from "./sections/micro-fx.js";
+import { initFloatCta } from "./sections/float-cta.js";
 
 initHeader();
 initSplitHeadlines();
@@ -25,14 +22,11 @@ initParallaxMedia();
 initAgency();
 initExpertise();
 initProjects();
-initProjectVideo();
-initProjectSlideshow();
-initWorkVideo();
-initBridgeAssemble();
-initMethod();
-initStandard();
+initServices();
+initCaseRotator();
 initContactForm();
 initMicroFx();
+initFloatCta();
 
 document.documentElement.classList.add("is-loaded");
 

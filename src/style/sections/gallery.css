@@ -46,7 +46,8 @@
 
 .gallery-item {
   display: grid;
-  gap: 0.75rem;
+  gap: 0.6rem;
+  margin: 0;
 }
 
 .gallery-item__media {
@@ -82,9 +83,7 @@
 
 .gallery-item p {
   margin: 0;
-  font-size: var(--micro);
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
+  font-size: 0.95rem;
   color: var(--muted);
 }
 

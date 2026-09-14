@@ -31,7 +31,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=Host+Grotesk:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400..800&display=swap"
       rel="stylesheet"
     />
     <link rel="icon" href="/media/favicon.svg" type="image/svg+xml" />
@@ -59,7 +59,6 @@
 
   <body>
     <a class="skip-link" href="#top">Przejdź do treści</a>
-    <div class="grain" aria-hidden="true"></div>
 
     <header class="site-header" data-site-header>
       <a class="site-header__logo" href="#top" aria-label="Juicy Events — strona główna">
@@ -67,11 +66,10 @@
       </a>
 
       <nav class="site-header__nav" aria-label="Główne">
+        <a href="#co-robimy">Co robimy</a>
         <a href="#realizacje">Realizacje</a>
-        <a href="#agencja">Agencja</a>
-        <a href="#kompetencje">Kompetencje</a>
-        <a href="#metoda">Metoda</a>
-        <a href="#zakresy">Zakresy</a>
+        <a href="#jak-pracujemy">Jak pracujemy</a>
+        <a href="#zespol">Zespół</a>
       </nav>
 
       <a class="site-header__cta" href="#kontakt">Kontakt</a>
@@ -85,11 +83,9 @@
       <button class="mega-menu__close" type="button" data-menu-close aria-label="Zamknij menu">Zamknij</button>
       <div class="mega-menu__grid">
         <ul class="mega-menu__list">
+          <li><a href="#co-robimy" data-menu-close>Co robimy</a></li>
           <li><a href="#realizacje" data-menu-close>Realizacje</a></li>
-          <li><a href="#agencja" data-menu-close>Agencja</a></li>
-          <li><a href="#kompetencje" data-menu-close>Kompetencje</a></li>
-          <li><a href="#metoda" data-menu-close>Metoda</a></li>
-          <li><a href="#zakresy" data-menu-close>Zakresy</a></li>
+          <li><a href="#jak-pracujemy" data-menu-close>Jak pracujemy</a></li>
           <li><a href="#zespol" data-menu-close>Zespół</a></li>
           <li><a href="#kontakt" data-menu-close>Kontakt</a></li>
         </ul>
@@ -97,23 +93,17 @@
           <p class="eyebrow">Poznań</p>
           <a href="mailto:kontakt@juicyevents.pl">kontakt@juicyevents.pl</a>
           <a href="tel:+48735298884">+48 735 298 884</a>
-          <div class="social">
-            <a href="https://www.instagram.com/juicyeventsnation/" class="social__icon" target="_blank" rel="me noopener noreferrer" aria-label="Instagram">
-              <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M7.0301.084c-1.2768.0602-2.1487.264-2.911.5634-.7888.3075-1.4575.72-2.1228 1.3877-.6652.6677-1.075 1.3368-1.3802 2.127-.2954.7638-.4956 1.6365-.552 2.914-.0564 1.2775-.0689 1.6882-.0626 4.947.0062 3.2586.0206 3.6671.0825 4.9473.061 1.2765.264 2.1482.5635 2.9107.308.7889.72 1.4573 1.388 2.1228.6679.6655 1.3365 1.0743 2.1285 1.38.7632.295 1.6361.4961 2.9134.552 1.2773.056 1.6884.069 4.9462.0627 3.2578-.0062 3.668-.0207 4.9478-.0814 1.28-.0607 2.147-.2652 2.9098-.5633.7889-.3086 1.4578-.72 2.1228-1.3881.665-.6682 1.0745-1.3378 1.3795-2.1284.2957-.7632.4966-1.636.552-2.9124.056-1.2809.0692-1.6898.063-4.948-.0063-3.2583-.021-3.6668-.0817-4.9465-.0607-1.2797-.264-2.1487-.5633-2.9117-.3084-.7889-.72-1.4568-1.3876-2.1228C21.2982 1.33 20.628.9208 19.8378.6165 19.074.321 18.2017.1197 16.9244.0645 15.6471.0093 15.236-.005 11.977.0014 8.718.0076 8.31.0215 7.0301.0839m.1402 21.6932c-1.17-.0509-1.8053-.2453-2.2287-.408-.5606-.216-.96-.4771-1.3819-.895-.422-.4178-.6811-.8186-.9-1.378-.1644-.4234-.3624-1.058-.4171-2.228-.0595-1.2645-.072-1.6442-.079-4.848-.007-3.2037.0053-3.583.0607-4.848.05-1.169.2456-1.805.408-2.2282.216-.5613.4762-.96.895-1.3816.4188-.4217.8184-.6814 1.3783-.9003.423-.1651 1.0575-.3614 2.227-.4171 1.2655-.06 1.6447-.072 4.848-.079 3.2033-.007 3.5835.005 4.8495.0608 1.169.0508 1.8053.2445 2.228.408.5608.216.96.4754 1.3816.895.4217.4194.6816.8176.9005 1.3787.1653.4217.3617 1.056.4169 2.2263.0602 1.2655.0739 1.645.0796 4.848.0058 3.203-.0055 3.5834-.061 4.848-.051 1.17-.245 1.8055-.408 2.2294-.216.5604-.4763.96-.8954 1.3814-.419.4215-.8181.6811-1.3783.9-.4224.1649-1.0577.3617-2.2262.4174-1.2656.0595-1.6448.072-4.8493.079-3.2045.007-3.5825-.006-4.848-.0608M16.953 5.5864A1.44 1.44 0 1 0 18.39 4.144a1.44 1.44 0 0 0-1.437 1.4424M5.8385 12.012c.0067 3.4032 2.7706 6.1557 6.173 6.1493 3.4026-.0065 6.157-2.7701 6.1506-6.1733-.0065-3.4032-2.771-6.1565-6.174-6.1498-3.403.0067-6.156 2.771-6.1496 6.1738M8 12.0077a4 4 0 1 1 4.008 3.9921A3.9996 3.9996 0 0 1 8 12.0077"/></svg>
-            </a>
-            <a href="https://www.facebook.com/share/19XeBrjEGu/" class="social__icon" target="_blank" rel="me noopener noreferrer" aria-label="Facebook">
-              <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M9.101 23.691v-7.98H6.627v-3.667h2.474v-1.58c0-4.085 1.848-5.978 5.858-5.978.401 0 .955.042 1.468.103a8.68 8.68 0 0 1 1.141.195v3.325a8.623 8.623 0 0 0-.653-.036 26.805 26.805 0 0 0-.733-.009c-.707 0-1.259.096-1.675.309a1.686 1.686 0 0 0-.679.622c-.258.42-.374.995-.374 1.752v1.297h3.919l-.386 2.103-.287 1.564h-3.246v8.245C19.396 23.238 24 18.179 24 12.044c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.628 3.874 10.35 9.101 11.647Z"/></svg>
-            </a>
-            <a href="https://www.linkedin.com/company/juicyevents/" class="social__icon" target="_blank" rel="me noopener noreferrer" aria-label="LinkedIn">
-              <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 114.127 0 2.063 2.063 0 01-2.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
-            </a>
+          <div class="mega-menu__links">
+            <a class="mega-menu__link" href="https://www.instagram.com/juicyeventsnation/" target="_blank" rel="me noopener noreferrer">Instagram</a>
+            <a class="mega-menu__link" href="https://www.facebook.com/share/19XeBrjEGu/" target="_blank" rel="me noopener noreferrer">Facebook</a>
+            <a class="mega-menu__link" href="https://www.linkedin.com/company/juicyevents/" target="_blank" rel="me noopener noreferrer">LinkedIn</a>
           </div>
         </aside>
       </div>
     </nav>
 
     <main id="top" tabindex="-1">
-      <!-- AGENCJA — full-bleed wideo (logo → nagłówek) kurczące się w linię → biały blok z copy -->
+      <!-- 1. AGENCJA — full-bleed wideo (logo → nagłówek) kurczące się w linię -->
       <section class="agency" id="agencja" data-agency>
         <div class="agency__act" data-agency-act>
           <div class="agency__stage" data-agency-stage>
@@ -147,12 +137,13 @@
 
             <div class="agency__intro" data-agency-intro>
               <h2 class="agency__intro-title" data-split>
-                Tworzymy wydarzenia, które mówią językiem Twojej <span class="bracket">marki.</span>
+                Agencja eventowa. Wydarzenia firmowe i prywatne.
               </h2>
             </div>
 
             <!-- Faza B/C: logo "wskakuje" do nagłówka, ten napis wjeżdża w jego miejsce
-                 i zmienia kolor w rytm kurczącego się wideo -->
+                 i zmienia kolor w rytm kurczącego się wideo. Nawias [ ] — jedyne
+                 miejsce na stronie, gdzie go używamy. -->
             <div class="agency__headline" data-agency-headline>
               <div class="agency__layer agency__layer--light" data-agency-layer="light">
                 <h1 class="agency__title">
@@ -174,100 +165,215 @@
             </div>
           </div>
         </div>
+      </section>
 
-        <div class="agency__white">
-          <div class="agency__copy">
-            <h2 class="agency__lead" data-split>
-              Jesteśmy partnerem, który potrafi przełożyć emocje na realną wartość biznesową.
-            </h2>
-            <div class="agency__body" data-fade-group>
-              <p>
-                Tworzymy wydarzenia, które mówią językiem Twojej marki —
-                <span class="mark">zmysłowo, precyzyjnie, prawdziwie</span>.
-              </p>
-              <p>
-                Z nami zyskujesz więcej niż efekt „wow". Zyskujesz doświadczenie, które buduje
-                pozycję, zaufanie i emocjonalny kapitał Twojej marki.
-              </p>
-              <a class="btn btn--dark" href="#kontakt">Wyślij brief</a>
+      <!-- 2. CO ROBIMY — „Jaki masz plan?": sześć formatów, każdy wiersz jest linkiem
+           do briefu (kategoria wpisuje się w pole „Co planujesz"). -->
+      <svg style="display:none" aria-hidden="true" xmlns="http://www.w3.org/2000/svg">
+        <symbol id="i-team" viewBox="0 0 24 24"><circle cx="9" cy="8" r="3"/><circle cx="17" cy="9" r="2.5"/><path d="M3 20c0-3.3 2.7-6 6-6s6 2.7 6 6M15 20c0-2.5 1.6-4.5 4-5"/></symbol>
+        <symbol id="i-private" viewBox="0 0 24 24"><path d="M9 3h6l-1 8a2 2 0 0 1-4 0L9 3zM12 13v8M9 21h6"/><path d="M18 4v3M16.5 5.5h3"/></symbol>
+        <symbol id="i-award" viewBox="0 0 24 24"><circle cx="12" cy="9" r="5"/><path d="M8.5 13.5 7 21l5-2.5L17 21l-1.5-7.5"/></symbol>
+        <symbol id="i-launch" viewBox="0 0 24 24"><path d="M12 3v5M12 16v5M3 12h5M16 12h5M6 6l3 3M15 15l3 3M6 18l3-3M15 9l3-3"/></symbol>
+        <symbol id="i-conference" viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="12" rx="1"/><path d="M12 16v4M8 20h8M7 9h10M7 12h6"/></symbol>
+        <symbol id="i-fashion" viewBox="0 0 24 24"><path d="M12 4a2 2 0 1 1 2 2c-1 .5-2 1-2 2v1"/><path d="M12 9 3 15.5a1 1 0 0 0 .6 1.8h16.8a1 1 0 0 0 .6-1.8L12 9z"/></symbol>
+      </svg>
+
+      <section class="services" id="co-robimy" data-tone="dark" data-surface="accent" data-services>
+        <div class="services__inner">
+          <header class="services__head">
+            <div>
+              <p class="section-label">01 / Co robimy</p>
+              <h2 class="services__title" data-split>Jaki masz plan?</h2>
             </div>
-          </div>
+            <p class="services__sub" data-fade>Dla zespołu, dla marki, dla bliskich.<br />Dobieramy format do okazji.</p>
+          </header>
+
+          <ol class="services__index">
+            <li class="service" data-service>
+              <a class="service__link" href="#kontakt" data-plan="Eventy firmowe">
+                <span class="service__num">01</span>
+                <svg class="service__icon" aria-hidden="true"><use href="#i-team"/></svg>
+                <span class="service__name">Eventy firmowe</span>
+                <span class="service__scope">Integracje, kick-off, pikniki i spotkania zespołów</span>
+                <span class="service__arrow" aria-hidden="true">↗</span>
+              </a>
+            </li>
+            <li class="service" data-service>
+              <a class="service__link" href="#kontakt" data-plan="Wydarzenie prywatne">
+                <span class="service__num">02</span>
+                <svg class="service__icon" aria-hidden="true"><use href="#i-private"/></svg>
+                <span class="service__name">Wydarzenia prywatne</span>
+                <span class="service__scope">Urodziny, rocznice i przyjęcia tematyczne</span>
+                <span class="service__arrow" aria-hidden="true">↗</span>
+              </a>
+            </li>
+            <li class="service" data-service>
+              <a class="service__link" href="#kontakt" data-plan="Gala lub jubileusz">
+                <span class="service__num">03</span>
+                <svg class="service__icon" aria-hidden="true"><use href="#i-award"/></svg>
+                <span class="service__name">Gale i jubileusze</span>
+                <span class="service__scope">Bankiety, wręczenia nagród i rocznice firm</span>
+                <span class="service__arrow" aria-hidden="true">↗</span>
+              </a>
+            </li>
+            <li class="service" data-service>
+              <a class="service__link" href="#kontakt" data-plan="Premiera lub aktywacja">
+                <span class="service__num">04</span>
+                <svg class="service__icon" aria-hidden="true"><use href="#i-launch"/></svg>
+                <span class="service__name">Premiery i aktywacje</span>
+                <span class="service__scope">Launch, pre-opening i wydarzenia B2C</span>
+                <span class="service__arrow" aria-hidden="true">↗</span>
+              </a>
+            </li>
+            <li class="service" data-service>
+              <a class="service__link" href="#kontakt" data-plan="Konferencja lub spotkanie B2B">
+                <span class="service__num">05</span>
+                <svg class="service__icon" aria-hidden="true"><use href="#i-conference"/></svg>
+                <span class="service__name">Konferencje i B2B</span>
+                <span class="service__scope">Kongresy, networking i spotkania partnerskie</span>
+                <span class="service__arrow" aria-hidden="true">↗</span>
+              </a>
+            </li>
+            <li class="service" data-service>
+              <a class="service__link" href="#kontakt" data-plan="Moda, sztuka lub sport">
+                <span class="service__num">06</span>
+                <svg class="service__icon" aria-hidden="true"><use href="#i-fashion"/></svg>
+                <span class="service__name">Moda, sztuka i sport</span>
+                <span class="service__scope">Pokazy, oprawa artystyczna i wydarzenia sportowe</span>
+                <span class="service__arrow" aria-hidden="true">↗</span>
+              </a>
+            </li>
+          </ol>
+
+          <footer class="services__foot" data-fade>
+            <p>Jedno wydarzenie. Jeden zespół odpowiedzialny za całość.</p>
+            <a class="services__cta" href="#kontakt">Omówmy Twój pomysł <span aria-hidden="true">→</span></a>
+          </footer>
         </div>
       </section>
 
-      <!-- 3. NASZA PRACA (slajd 5) -->
-      <section class="work" id="praca">
-        <div class="work__media" data-work-video-group>
-          <button
-            class="work__card"
-            type="button"
-            data-work-video-trigger
-            aria-expanded="false"
-            aria-label="Powiększ i odtwórz showreel"
-          >
-            <span class="work__card-inner" data-parallax="0.2" aria-hidden="true">
-              <video
-                class="work__video"
-                data-work-video
-                src="/media/work-reel.mp4"
-                poster="/media/work-reel-poster.jpg"
-                muted
-                loop
-                playsinline
-                preload="metadata"
-              ></video>
+      <!-- 3. REALIZACJE — kafelek-okładka przełącza się sam (case-rotator.js) i podświetla
+           odpowiedni wiersz; najechanie na wiersz wybiera go i zatrzymuje obieg. -->
+      <section class="projects" id="realizacje" data-rotator>
+        <div class="projects__head">
+          <p class="section-label">02 / Realizacje</p>
+          <h2 class="projects__title" data-split>Jak to wygląda w praktyce?</h2>
+        </div>
+
+        <div class="feature" data-rotator-stage data-fade>
+          <a class="feature__slide is-active" href="realizacje-john-deere.html" data-rotator-slide>
+            <img class="feature__photo" decoding="async" loading="eager" width="1800" height="1200" src="/media/realizacje/john-deere/04.jpg" alt="" />
+            <span class="feature__copy">
+              <span class="feature__title">John Deere — 25 lat marki w Polsce</span>
+              <span class="feature__type">Gala jubileuszowa</span>
             </span>
-          </button>
-          <button class="work__play" type="button" data-work-video-trigger>
-            <span class="work__play-icon" aria-hidden="true"></span>
-            Odtwórz showreel
-          </button>
+          </a>
+          <a class="feature__slide" href="realizacje-volvo.html" data-rotator-slide tabindex="-1" aria-hidden="true">
+            <img class="feature__photo" decoding="async" loading="lazy" width="1500" height="1000" src="/media/realizacje/volvo/02.jpg" alt="" />
+            <span class="feature__copy">
+              <span class="feature__title">Volvo — Premiera i networking</span>
+              <span class="feature__type">Premiera produktowa</span>
+            </span>
+          </a>
+          <a class="feature__slide" href="realizacje-multichem.html" data-rotator-slide tabindex="-1" aria-hidden="true">
+            <img class="feature__photo" decoding="async" loading="lazy" width="1800" height="1200" src="/media/realizacje/multichem/05.jpg" alt="" />
+            <span class="feature__copy">
+              <span class="feature__title">Multichem — Konferencja branżowa</span>
+              <span class="feature__type">Konferencja</span>
+            </span>
+          </a>
+          <a class="feature__slide" href="realizacje-active-fashion.html" data-rotator-slide tabindex="-1" aria-hidden="true">
+            <img class="feature__photo" decoding="async" loading="lazy" width="1800" height="1200" src="/media/realizacje/active-fashion/03.jpg" alt="" />
+            <span class="feature__copy">
+              <span class="feature__title">Active Fashion — Pokaz mody z realizacją wideo</span>
+              <span class="feature__type">Pokaz mody</span>
+            </span>
+          </a>
+          <a class="feature__slide" href="realizacje-retro-rush.html" data-rotator-slide tabindex="-1" aria-hidden="true">
+            <img class="feature__photo" decoding="async" loading="lazy" width="1800" height="1200" src="/media/realizacje/retro-rush/03.jpg" alt="" />
+            <span class="feature__copy">
+              <span class="feature__title">Retro Rush — Impreza tematyczna — podróż w czasie</span>
+              <span class="feature__type">Impreza tematyczna</span>
+            </span>
+          </a>
+          <a class="feature__slide" href="realizacje-rainbow.html" data-rotator-slide tabindex="-1" aria-hidden="true">
+            <img class="feature__photo" decoding="async" loading="lazy" width="1200" height="1800" src="/media/realizacje/rainbow/04.jpg" alt="" />
+            <span class="feature__copy">
+              <span class="feature__title">Rainbow — Prywatne wydarzenie z autorską scenografią</span>
+              <span class="feature__type">Wydarzenie prywatne</span>
+            </span>
+          </a>
         </div>
 
-        <div class="work__copy">
-          <p class="eyebrow">Nasza praca</p>
-          <h2 data-split>Od wizji do mierzalnych rezultatów — z precyzją, estetyką i emocją.</h2>
-          <div data-fade-group>
-            <p>
-              Wspieramy marki w budowaniu relacji, które przekładają się na lojalność i sprzedaż.
-              Nasze projekty przyciągają uwagę, budują zaangażowanie i wzmacniają wizerunek.
-            </p>
-            <p>
-              Działamy kompleksowo: od strategii i kreacji po realizację i analizę efektów.
-              Wynik? Wydarzenia, które działają na emocje — i na liczby.
-            </p>
-            <a class="link-arrow" href="#realizacje">Zobacz realizacje</a>
-          </div>
-        </div>
+        <ol class="case-index">
+          <li class="case-row is-active" data-project data-rotator-item>
+            <a class="case-row__link" href="realizacje-john-deere.html">
+              <img decoding="async" loading="lazy" width="1800" height="1200" src="/media/realizacje/john-deere/01.jpg" alt="" />
+              <span class="case-row__name">John Deere</span>
+              <span class="case-row__type">Gala jubileuszowa</span>
+              <span class="case-row__arrow" aria-hidden="true">→</span>
+              <span class="case-row__bar" aria-hidden="true"></span>
+            </a>
+          </li>
+          <li class="case-row" data-project data-rotator-item>
+            <a class="case-row__link" href="realizacje-volvo.html">
+              <img decoding="async" loading="lazy" width="1500" height="1000" src="/media/realizacje/volvo/01.jpg" alt="" />
+              <span class="case-row__name">Volvo</span>
+              <span class="case-row__type">Premiera produktowa</span>
+              <span class="case-row__arrow" aria-hidden="true">→</span>
+              <span class="case-row__bar" aria-hidden="true"></span>
+            </a>
+          </li>
+          <li class="case-row" data-project data-rotator-item>
+            <a class="case-row__link" href="realizacje-multichem.html">
+              <img decoding="async" loading="lazy" width="1800" height="1200" src="/media/realizacje/multichem/03.jpg" alt="" />
+              <span class="case-row__name">Multichem</span>
+              <span class="case-row__type">Konferencja</span>
+              <span class="case-row__arrow" aria-hidden="true">→</span>
+              <span class="case-row__bar" aria-hidden="true"></span>
+            </a>
+          </li>
+          <li class="case-row" data-project data-rotator-item>
+            <a class="case-row__link" href="realizacje-active-fashion.html">
+              <img decoding="async" loading="lazy" width="1800" height="1200" src="/media/realizacje/active-fashion/02.jpg" alt="" />
+              <span class="case-row__name">Active Fashion</span>
+              <span class="case-row__type">Pokaz mody</span>
+              <span class="case-row__arrow" aria-hidden="true">→</span>
+              <span class="case-row__bar" aria-hidden="true"></span>
+            </a>
+          </li>
+          <li class="case-row" data-project data-rotator-item>
+            <a class="case-row__link" href="realizacje-retro-rush.html">
+              <img decoding="async" loading="lazy" width="1800" height="1200" src="/media/realizacje/retro-rush/02.jpg" alt="" />
+              <span class="case-row__name">Retro Rush</span>
+              <span class="case-row__type">Impreza tematyczna</span>
+              <span class="case-row__arrow" aria-hidden="true">→</span>
+              <span class="case-row__bar" aria-hidden="true"></span>
+            </a>
+          </li>
+          <li class="case-row" data-project data-rotator-item>
+            <a class="case-row__link" href="realizacje-rainbow.html">
+              <img decoding="async" loading="lazy" width="1200" height="1800" src="/media/realizacje/rainbow/02.jpg" alt="" />
+              <span class="case-row__name">Rainbow</span>
+              <span class="case-row__type">Wydarzenie prywatne</span>
+              <span class="case-row__arrow" aria-hidden="true">→</span>
+              <span class="case-row__bar" aria-hidden="true"></span>
+            </a>
+          </li>
+        </ol>
       </section>
 
-      <!-- 4. CELE I MISJA (slajd 2) — pinned band -->
-      <section class="mission" data-mission data-tone="dark">
-        <div class="mission__pin">
-          <div class="mission__bg" aria-hidden="true" data-parallax-media="10" data-parallax-trigger=".mission">
-            <img decoding="async" loading="lazy" width="2048" height="758" src="/media/crowd-01.jpg" alt="" />
-          </div>
-          <div class="mission__content">
-            <p class="eyebrow eyebrow--light">Cele i misja</p>
-            <p class="mission__big" data-split>
-              Nie boimy się reinterpretować, eksperymentować, tworzyć.
-            </p>
-            <p class="mission__note" data-fade>
-              Wartość to nie kopiowanie luksusowych wzorców, lecz tworzenie własnego języka — tak,
-              by odbiorcy mogli dotknąć emocji.
-            </p>
-          </div>
-        </div>
-      </section>
-
-      <!-- 5. KOMPETENCJE — pinned lista (slajdy 7-12) -->
-      <section class="expertise" id="kompetencje" data-expertise data-tone="dark">
+      <!-- 5. KOMPETENCJE — pinned lista; pozycje klikalne. Bez powtarzanego CTA. -->
+      <section class="expertise" id="jak-pracujemy" data-expertise data-tone="dark">
         <div class="expertise__inner">
           <div class="expertise__aside">
-            <p class="eyebrow eyebrow--light">Kompetencje</p>
-            <h2 class="expertise__title" data-split>
-              Jedna agencja. Wszystkie kompetencje produkcji eventowej.
-            </h2>
+            <div class="expertise__head">
+              <p class="section-label section-label--light">03 / Jak pracujemy</p>
+              <h2 class="expertise__title" data-split>Kompetencje</h2>
+              <p class="expertise__lead" data-fade>
+                Wszystkie etapy produkcji prowadzi jeden zespół — bez przekazywania projektu między firmami.
+              </p>
+            </div>
             <p class="expertise__count">
               <span data-expertise-current>01</span><span class="expertise__count-sep">/</span><span>05</span>
             </p>
@@ -275,523 +381,203 @@
 
           <div class="expertise__list" data-expertise-list>
             <article class="expertise-item is-active" data-expertise-item>
-              <div class="expertise-item__head">
+              <button class="expertise-item__head" type="button" data-pinned-select aria-expanded="true">
                 <span class="expertise-item__index">01</span>
-                <h3>Kompleksowa organizacja wydarzeń</h3>
-              </div>
+                <h3>Organizacja wydarzeń</h3>
+              </button>
               <div class="expertise-item__body">
-                <p>
-                  Dla Klientów B2B oraz B2C organizujemy imprezy integracyjne i firmowe, gale
-                  i jubileusze, konferencje i kongresy, premiery produktowe marek, Pre Opening
-                  Events, Business Networking Events, Sport Events, Fashion &amp; Art Events,
-                  private events, otwarcia sezonów oraz wydarzenia dedykowane.
-                </p>
-                <a class="link-arrow link-arrow--light" href="#kontakt">Omówmy zakres</a>
+                <p>Prowadzimy projekt od briefu do domknięcia budżetu.</p>
+                <ul class="expertise-item__list">
+                  <li>Koncepcja i scenariusz wydarzenia</li>
+                  <li>Lokalizacja, logistyka, harmonogram</li>
+                  <li>Budżet i rozliczenie</li>
+                  <li>Koordynacja dnia wydarzenia</li>
+                </ul>
               </div>
             </article>
 
             <article class="expertise-item" data-expertise-item>
-              <div class="expertise-item__head">
+              <button class="expertise-item__head" type="button" data-pinned-select aria-expanded="false">
                 <span class="expertise-item__index">02</span>
                 <h3>Event marketing</h3>
-              </div>
+              </button>
               <div class="expertise-item__body">
-                <p>
-                  Event marketing w naszym wykonaniu to połączenie strategii komunikacji,
-                  doświadczenia marki i emocji odbiorcy.
-                </p>
-                <p>
-                  Każde wydarzenie projektujemy jak kampanię: z KPI, precyzyjną koncepcją
-                  i kontrolą efektów. Emocja staje się narzędziem marketingowym, a doświadczenie
-                  — inwestycją, nie kosztem.
-                </p>
-                <a class="link-arrow link-arrow--light" href="#kontakt">Omówmy zakres</a>
+                <p>Wydarzenie planujemy jak kampanię — z celem, KPI i pomiarem efektu.</p>
+                <ul class="expertise-item__list">
+                  <li>Cel i wskaźniki wydarzenia</li>
+                  <li>Komunikacja przed, w trakcie i po</li>
+                  <li>Materiały i content z wydarzenia</li>
+                  <li>Podsumowanie i raport</li>
+                </ul>
               </div>
             </article>
 
             <article class="expertise-item" data-expertise-item>
-              <div class="expertise-item__head">
+              <button class="expertise-item__head" type="button" data-pinned-select aria-expanded="false">
                 <span class="expertise-item__index">03</span>
-                <h3>Scenariusz artystyczny, oprawa muzyczna</h3>
-              </div>
+                <h3>Scenariusz artystyczny i muzyka</h3>
+              </button>
               <div class="expertise-item__body">
-                <p>
-                  Projektujemy i realizujemy warstwę artystyczną wydarzeń — od koncepcji
-                  scenariusza po dobór i kontraktację artystów.
-                </p>
-                <p>
-                  Współpracujemy z DJ-ami, zespołami, wokalistami, muzykami instrumentalnymi
-                  oraz performerami scenicznymi, zapewniając spójność artystyczną z charakterem
-                  wydarzenia i jego celem biznesowym.
-                </p>
-                <a class="link-arrow link-arrow--light" href="#kontakt">Omówmy zakres</a>
+                <p>Dobieramy i kontraktujemy artystów pod charakter wydarzenia.</p>
+                <ul class="expertise-item__list">
+                  <li>DJ-e, zespoły, wokaliści, instrumentaliści</li>
+                  <li>Performerzy i pokazy sceniczne</li>
+                  <li>Prowadzący i konferansjerzy</li>
+                  <li>Booking, kontrakty, ridery techniczne</li>
+                </ul>
               </div>
             </article>
 
             <article class="expertise-item" data-expertise-item>
-              <div class="expertise-item__head">
+              <button class="expertise-item__head" type="button" data-pinned-select aria-expanded="false">
                 <span class="expertise-item__index">04</span>
-                <h3>Technika eventowa, mapping, lasery, AV</h3>
-              </div>
+                <h3>Technika, mapping, AV</h3>
+              </button>
               <div class="expertise-item__body">
-                <p>
-                  Zapewniamy pełną obsługę techniczną wydarzeń — od koncepcji, przez projekt,
-                  po realizację w najdrobniejszych detalach.
-                </p>
-                <p>
-                  Projektujemy światło, dźwięk, mapping i efekty specjalne tak, by nie tylko
-                  uzupełniały scenografię, ale prowadziły narrację marki. Nasze realizacje nie
-                  są dodatkiem — są oprawą, która definiuje charakter wydarzenia.
-                </p>
-                <a class="link-arrow link-arrow--light" href="#kontakt">Omówmy zakres</a>
+                <p>Pełna obsługa techniczna — od projektu po realizację w dniu wydarzenia.</p>
+                <ul class="expertise-item__list">
+                  <li>Światło, dźwięk, ekrany LED</li>
+                  <li>Mapping, lasery, efekty specjalne</li>
+                  <li>Multimedia, streaming, realizacja wizji</li>
+                  <li>Projekt i nadzór techniczny</li>
+                </ul>
               </div>
             </article>
 
             <article class="expertise-item" data-expertise-item>
-              <div class="expertise-item__head">
+              <button class="expertise-item__head" type="button" data-pinned-select aria-expanded="false">
                 <span class="expertise-item__index">05</span>
-                <h3>Katalog usług</h3>
-              </div>
+                <h3>Scenografia, hospitality, dokumentacja</h3>
+              </button>
               <div class="expertise-item__body">
-                <p>
-                  Każdy szczegół ma znaczenie. Oprócz kreacji i produkcji oferujemy pełne
-                  wsparcie w realizacji wydarzeń — od designu przestrzeni po dokumentację emocji.
-                </p>
-                <p>
-                  Projektujemy scenografię, branding i identyfikację wizualną, zapewniamy obsługę
-                  gości i recepcję VIP, realizujemy multimedia, mapping i interaktywne instalacje.
-                  Dbamy o fotografię i video — tak, by całe wydarzenie było spójne i zapamiętane.
-                </p>
-                <a class="link-arrow link-arrow--light" href="#kontakt">Omówmy zakres</a>
+                <p>Wszystko, co gość widzi i czego dotyka.</p>
+                <ul class="expertise-item__list">
+                  <li>Scenografia, branding i identyfikacja wydarzenia</li>
+                  <li>Recepcja, obsługa gości i strefy VIP</li>
+                  <li>Catering i serwis</li>
+                  <li>Fotografia i wideo z wydarzenia</li>
+                </ul>
               </div>
             </article>
           </div>
         </div>
       </section>
 
-      <!-- 6. REALIZACJE — 2 kolumny -->
-      <section class="projects" id="realizacje">
-        <div class="projects__head">
-          <h2 class="projects__title" data-split>
-            Marki, które wybrały <span class="bracket">własną</span> drogę razem z nami
-          </h2>
-        </div>
-
-        <div class="projects__grid" data-projects>
-          <article class="project-card project-card--video" data-project>
-            <a class="project-card__link" href="realizacje-active-fashion.html">
-              <span class="project-card__media" data-video-card>
-                <video
-                  class="project-card__video"
-                  data-project-video
-                  src="/media/realizacje/active-fashion/cover.mp4"
-                  poster="/media/realizacje/active-fashion/cover-poster.jpg"
-                  autoplay
-                  muted
-                  loop
-                  playsinline
-                  preload="metadata"
-                ></video>
-              </span>
-              <span class="project-card__meta">
-                <span>Fashion</span><span>Pokaz</span><span>Produkcja</span>
-              </span>
-              <h3 class="project-card__title">Active Fashion — pokaz mody z pełną oprawą sceniczną</h3>
-              <p class="project-card__stat">Casting · scenografia · storytelling marki</p>
-            </a>
-            <button type="button" class="project-card__zoom" data-video-zoom aria-expanded="false" aria-label="Powiększ podgląd wideo">
-              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 9V4h5M20 15v5h-5M20 9V4h-5M4 15v5h5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
-            </button>
-          </article>
-
-          <article class="project-card" data-project>
-            <a class="project-card__link" href="realizacje-john-deere.html">
-              <span class="project-card__media" data-slideshow-card>
-                <span class="slideshow-slide is-active" data-slideshow-slide><img decoding="async" width="1800" height="1200" src="/media/realizacje/john-deere/01.jpg" alt="John Deere — jubileusz 25 lat marki w Polsce" loading="lazy" /></span>
-                <span class="slideshow-slide" data-slideshow-slide><img decoding="async" width="1800" height="1200" src="/media/realizacje/john-deere/04.jpg" alt="" loading="lazy" /></span>
-                <span class="slideshow-slide" data-slideshow-slide><img decoding="async" width="1800" height="1200" src="/media/realizacje/john-deere/07.jpg" alt="" loading="lazy" /></span>
-                <span class="slideshow-slide" data-slideshow-slide><img decoding="async" width="1800" height="1200" src="/media/realizacje/john-deere/10.jpg" alt="" loading="lazy" /></span>
-              </span>
-              <span class="project-card__meta">
-                <span>B2B</span><span>Jubileusz</span><span>Produkcja</span>
-              </span>
-              <h3 class="project-card__title">John Deere — jubileusz 25 lat marki w Polsce</h3>
-              <p class="project-card__stat">Scenariusz · produkcja · hospitality VIP</p>
-            </a>
-          </article>
-
-          <article class="project-card" data-project>
-            <a class="project-card__link" href="realizacje-multichem.html">
-              <span class="project-card__media" data-slideshow-card>
-                <span class="slideshow-slide is-active" data-slideshow-slide><img decoding="async" width="1200" height="1800" src="/media/realizacje/multichem/01.jpg" alt="Multichem — konferencja z pełną produkcją techniczną" loading="lazy" /></span>
-                <span class="slideshow-slide" data-slideshow-slide><img decoding="async" width="1800" height="1200" src="/media/realizacje/multichem/03.jpg" alt="" loading="lazy" /></span>
-                <span class="slideshow-slide" data-slideshow-slide><img decoding="async" width="1800" height="1200" src="/media/realizacje/multichem/05.jpg" alt="" loading="lazy" /></span>
-                <span class="slideshow-slide" data-slideshow-slide><img decoding="async" width="1800" height="1200" src="/media/realizacje/multichem/06.jpg" alt="" loading="lazy" /></span>
-              </span>
-              <span class="project-card__meta">
-                <span>B2B</span><span>Konferencja</span><span>AV</span>
-              </span>
-              <h3 class="project-card__title">Multichem — konferencja z pełną produkcją techniczną</h3>
-              <p class="project-card__stat">AV · scenografia · przebieg wydarzenia</p>
-            </a>
-          </article>
-
-          <article class="project-card project-card--video" data-project>
-            <a class="project-card__link" href="realizacje-retro-rush.html">
-              <span class="project-card__media" data-video-card>
-                <video
-                  class="project-card__video"
-                  data-project-video
-                  src="/media/realizacje/retro-rush/cover.mp4"
-                  poster="/media/realizacje/retro-rush/cover-poster.jpg"
-                  autoplay
-                  muted
-                  loop
-                  playsinline
-                  preload="metadata"
-                ></video>
-              </span>
-              <span class="project-card__meta">
-                <span>Private</span><span>Muzyka</span><span>Oprawa artystyczna</span>
-              </span>
-              <h3 class="project-card__title">Retro Rush — imprezowa podróż w czasie z pełną oprawą</h3>
-              <p class="project-card__stat">Scenografia · DJ set · storytelling</p>
-            </a>
-            <button type="button" class="project-card__zoom" data-video-zoom aria-expanded="false" aria-label="Powiększ podgląd wideo">
-              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 9V4h5M20 15v5h-5M20 9V4h-5M4 15v5h5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
-            </button>
-          </article>
-
-          <article class="project-card" data-project>
-            <a class="project-card__link" href="realizacje-rainbow.html">
-              <span class="project-card__media" data-slideshow-card>
-                <span class="slideshow-slide is-active" data-slideshow-slide><img decoding="async" width="1200" height="1800" src="/media/realizacje/rainbow/01.jpg" alt="Rainbow — wydarzenie z autorską oprawą artystyczną" loading="lazy" /></span>
-                <span class="slideshow-slide" data-slideshow-slide><img decoding="async" width="1800" height="1200" src="/media/realizacje/rainbow/02.jpg" alt="" loading="lazy" /></span>
-                <span class="slideshow-slide" data-slideshow-slide><img decoding="async" width="1200" height="1800" src="/media/realizacje/rainbow/04.jpg" alt="" loading="lazy" /></span>
-                <span class="slideshow-slide" data-slideshow-slide><img decoding="async" width="1800" height="1200" src="/media/realizacje/rainbow/05.jpg" alt="" loading="lazy" /></span>
-              </span>
-              <span class="project-card__meta">
-                <span>Private</span><span>Atmosfera</span><span>Kreacja</span>
-              </span>
-              <h3 class="project-card__title">Rainbow — wydarzenie z autorską oprawą artystyczną</h3>
-              <p class="project-card__stat">Koncepcja · kolor · doświadczenie gościa</p>
-            </a>
-          </article>
-
-          <article class="project-card" data-project>
-            <a class="project-card__link" href="realizacje-volvo.html">
-              <span class="project-card__media" data-slideshow-card>
-                <span class="slideshow-slide is-active" data-slideshow-slide><img decoding="async" width="1500" height="1000" src="/media/realizacje/volvo/01.jpg" alt="Volvo — networking i premiera z klasą marki premium" loading="lazy" /></span>
-                <span class="slideshow-slide" data-slideshow-slide><img decoding="async" width="1500" height="1000" src="/media/realizacje/volvo/02.jpg" alt="" loading="lazy" /></span>
-                <span class="slideshow-slide" data-slideshow-slide><img decoding="async" width="1500" height="1000" src="/media/realizacje/volvo/04.jpg" alt="" loading="lazy" /></span>
-                <span class="slideshow-slide" data-slideshow-slide><img decoding="async" width="1500" height="1000" src="/media/realizacje/volvo/05.jpg" alt="" loading="lazy" /></span>
-              </span>
-              <span class="project-card__meta">
-                <span>B2B</span><span>Networking</span><span>Premiera</span>
-              </span>
-              <h3 class="project-card__title">Volvo — networking i premiera z klasą marki premium</h3>
-              <p class="project-card__stat">Strategia · hospitality · detal wykonania</p>
-            </a>
-          </article>
-        </div>
-
-        <div class="projects__cta" data-fade>
-          <a class="btn btn--bar" href="realizacje.html">Zobacz więcej realizacji</a>
-        </div>
-      </section>
-
-      <!-- 7. MOSTEK DO METODY -->
-      <section class="bridge" data-tone="dark" data-bridge>
-        <p class="bridge__line" data-assemble>Jasna metoda</p>
-        <p class="bridge__line bridge__line--end" data-assemble>Od briefu do wyniku</p>
-      </section>
-
-      <!-- 8. METODA — pinned kroki -->
-      <section class="method" id="metoda" data-method data-tone="dark">
-        <div class="method__inner">
-          <div class="method__aside">
-            <h2 class="method__title" data-split>
-              Proces, który domyka brief w kontrolowanej realizacji.
-            </h2>
-          </div>
-
-          <ol class="method__steps" data-method-steps>
-            <li class="method-step is-active" data-method-step>
-              <span class="method-step__index">01</span>
-              <div class="method-step__copy">
-                <h3>Ustalenia</h3>
-                <p>Cel, grupa odbiorców, skala oraz warunki sukcesu — bez mgły w wymaganiach.</p>
-              </div>
-            </li>
-            <li class="method-step" data-method-step>
-              <span class="method-step__index">02</span>
-              <div class="method-step__copy">
-                <h3>Scenariusz i projekt</h3>
-                <p>Przebieg wieczoru, przestrzeń i język wizualny — zgodne z tożsamością marki.</p>
-              </div>
-            </li>
-            <li class="method-step" data-method-step>
-              <span class="method-step__index">03</span>
-              <div class="method-step__copy">
-                <h3>Produkcja</h3>
-                <p>Zespół, dostawcy, próby techniczne oraz realizacja dnia wydarzenia.</p>
-              </div>
-            </li>
-            <li class="method-step" data-method-step>
-              <span class="method-step__index">04</span>
-              <div class="method-step__copy">
-                <h3>Domknięcie</h3>
-                <p>Podsumowanie, wnioski i materiały do dalszej komunikacji.</p>
-              </div>
-            </li>
-          </ol>
-        </div>
-      </section>
-
-      <!-- 9. NASZE WARTOŚCI (slajd 3) — split -->
-      <section class="values" id="wartosci">
-        <div class="values__media">
-          <button class="values__card" type="button" data-showreel-open aria-label="Odtwórz showreel">
-            <span class="values__card-inner" data-parallax="0.16" aria-hidden="true">
-              <img decoding="async" loading="lazy" width="720" height="1280" src="/media/staff-01.jpg" alt="" />
-            </span>
-            <span class="values__card-label">Zobacz, jak pracujemy</span>
-          </button>
-        </div>
-
-        <div class="values__copy">
-          <p class="eyebrow">Nasze wartości</p>
-          <h2 class="values__title" data-split>
-            Co <span class="bracket">zmienia</span> praca z Juicy Events?
-          </h2>
-          <p class="values__lead" data-fade>
-            Każde organizowane przez nas wydarzenie jest niepowtarzalną i wyrafinowaną
-            manifestacją naszego podejścia do kreowania
-            <span class="mark">wyjątkowych doświadczeń</span>.
-          </p>
-          <a class="btn btn--bar" href="#kontakt">Porozmawiajmy</a>
-        </div>
-      </section>
-
-      <!-- 10. ZAKRESY — 4 kolorowe karty (slajd 7) -->
-      <section class="needs" id="zakresy">
-        <div class="needs__head">
-          <p class="eyebrow">Co możemy zrobić dla Ciebie</p>
-          <h2 data-split>Dla Klientów B2B oraz B2C</h2>
-        </div>
-
-        <div class="needs__grid">
-          <article class="need-card need-card--light" data-need-card>
-            <h3>Imprezy integracyjne i firmowe</h3>
-            <p class="need-card__stat">Team building · spotkania · eventy wewnętrzne</p>
-            <a class="need-card__cta" href="#kontakt">Omówmy</a>
-          </article>
-
-          <article class="need-card need-card--media" data-need-card>
-            <img decoding="async" loading="lazy" width="1080" height="1440" class="need-card__bg" src="/media/hospitality-01.jpg" alt="" />
-            <h3>Gale, jubileusze i konferencje</h3>
-            <p class="need-card__stat">Od kilkudziesięciu do kilkuset uczestników</p>
-            <a class="need-card__cta" href="#kontakt">Omówmy</a>
-          </article>
-
-          <article class="need-card need-card--dark" data-need-card>
-            <h3>Premiery produktowe i Pre Opening</h3>
-            <p class="need-card__stat">Event marketing · networking · launch</p>
-            <a class="need-card__cta" href="#kontakt">Omówmy</a>
-          </article>
-
-          <article class="need-card need-card--accent" data-need-card>
-            <h3>Private, Fashion &amp; Art, Sport</h3>
-            <p class="need-card__stat">Sezonowe otwarcia · wydarzenia dedykowane</p>
-            <a class="need-card__cta" href="#kontakt">Omówmy</a>
-          </article>
-        </div>
-
-        <div class="needs__cta" data-fade>
-          <a class="btn btn--ghost-dark" href="#kontakt">Sprawdź wszystkie zakresy</a>
-        </div>
-      </section>
-
-      <!-- 11. STANDARD — poziomy scroll -->
-      <section class="standard" id="standard">
-        <div class="standard__head">
-          <p class="eyebrow">Standard realizacji</p>
-          <h2 data-split>
-            Nasz sposób pracy jest wymagający, precyzyjny, konsekwentny. Ten poziom wykończenia
-            wygrywa wieczór.
-          </h2>
-        </div>
-
-        <div class="standard__viewport" data-standard-viewport>
-          <div class="standard__track" data-standard-track>
-            <article class="standard-card">
-              <div class="standard-card__media"><img decoding="async" loading="lazy" width="1440" height="2560" src="/media/live-01.jpg" alt="" /></div>
-              <h3>Oprawa artystyczna podporządkowana doświadczeniu uczestnika</h3>
-            </article>
-            <article class="standard-card">
-              <div class="standard-card__media"><img decoding="async" loading="lazy" width="720" height="1280" src="/media/staff-01.jpg" alt="" /></div>
-              <h3>Detal i hospitality spięte w jedną narrację wieczoru</h3>
-            </article>
-            <article class="standard-card">
-              <div class="standard-card__media"><img decoding="async" loading="lazy" width="1080" height="1920" src="/media/hospitality-02.jpg" alt="" /></div>
-              <h3>Kontrola przebiegu od wejścia gości do domknięcia produkcji</h3>
-            </article>
-            <article class="standard-card">
-              <div class="standard-card__media"><img decoding="async" loading="lazy" width="1080" height="1440" src="/media/drink-01.jpg" alt="" /></div>
-              <h3>Serwis i catering w standardzie premium</h3>
-            </article>
-            <article class="standard-card">
-              <div class="standard-card__media"><img decoding="async" loading="lazy" width="1440" height="2560" src="/media/tech-01.jpg" alt="" /></div>
-              <h3>Technika, która prowadzi narrację, a nie tylko oświetla scenę</h3>
-            </article>
-          </div>
-        </div>
-      </section>
-
-      <!-- 12. ZESPÓŁ -->
+      <!-- 5. ZESPÓŁ — identyfikatory crew („backstage pass"): motyw z branży zamiast listy. -->
       <section class="team" id="zespol">
         <div class="team__head">
-          <p class="eyebrow">Zespół</p>
-          <h2 data-split>Ludzie, z którymi rozpoczniesz projekt</h2>
+          <p class="section-label">04 / Zespół</p>
+          <h2 class="team__title" data-split>Kto odbierze Twój brief?</h2>
         </div>
 
-        <div class="team__grid">
-          <article class="team-card" data-team-card>
-            <h3>Kajetan Vincent Nawrocki</h3>
-            <p class="team-card__role">Owner · Head of Creative &amp; Production</p>
-            <div class="team-card__contact">
+        <ul class="passes">
+          <li class="pass" data-team-card style="--tilt: -2.5deg">
+            <span class="pass__hole" aria-hidden="true"></span>
+            <span class="pass__band"><span>Juicy Events · Crew</span><span>All access</span></span>
+            <span class="pass__initials" aria-hidden="true">KN</span>
+            <h3 class="pass__name">Kajetan Vincent Nawrocki</h3>
+            <p class="pass__role">Owner · Head of Creative &amp; Production</p>
+            <div class="pass__contact">
               <a href="mailto:knawrocki@juicyevents.pl">knawrocki@juicyevents.pl</a>
               <a href="tel:+48735298884">+48 735 298 884</a>
             </div>
-          </article>
-
-          <article class="team-card" data-team-card>
-            <h3>Weronika Okoniewska</h3>
-            <p class="team-card__role">Helpdesk</p>
-            <div class="team-card__contact">
+            <span class="pass__barcode" aria-hidden="true"></span>
+          </li>
+          <li class="pass" data-team-card style="--tilt: 1.5deg">
+            <span class="pass__hole" aria-hidden="true"></span>
+            <span class="pass__band"><span>Juicy Events · Crew</span><span>All access</span></span>
+            <span class="pass__initials" aria-hidden="true">WK</span>
+            <h3 class="pass__name">Weronika Okoniewska-Kulpińska</h3>
+            <p class="pass__role">Helpdesk</p>
+            <div class="pass__contact">
               <a href="mailto:wokoniewska@juicyevents.pl">wokoniewska@juicyevents.pl</a>
             </div>
-          </article>
-
-          <article class="team-card team-card--soon" data-team-card>
-            <h3>Marta</h3>
-            <p class="team-card__role">—</p>
-            <div class="team-card__contact">
-              <span>Dane wkrótce</span>
-            </div>
-          </article>
-
-          <article class="team-card" data-team-card>
-            <h3>Jakub Gral</h3>
-            <p class="team-card__role">Marketing</p>
-            <div class="team-card__contact">
+            <span class="pass__barcode" aria-hidden="true"></span>
+          </li>
+          <li class="pass" data-team-card style="--tilt: -1deg">
+            <span class="pass__hole" aria-hidden="true"></span>
+            <span class="pass__band"><span>Juicy Events · Crew</span><span>All access</span></span>
+            <span class="pass__initials" aria-hidden="true">JG</span>
+            <h3 class="pass__name">Jakub Gral</h3>
+            <p class="pass__role">Marketing</p>
+            <div class="pass__contact">
               <a href="mailto:marketing@juicyevents.pl">marketing@juicyevents.pl</a>
             </div>
-          </article>
-        </div>
+            <span class="pass__barcode" aria-hidden="true"></span>
+          </li>
+        </ul>
       </section>
 
-      <!-- 13. KONTAKT -->
+      <!-- 7. KONTAKT — adres e-mail jest nagłówkiem. Proces to jedno zdanie. Trzy pola. -->
       <section class="contact" id="kontakt">
-        <div class="contact__intro">
-          <h2 data-split>
-            Sprawdźmy razem, jak możemy pomóc zrealizować Twoje <span class="bracket">ambicje</span>
-          </h2>
-          <p data-fade>
-            Krótka rozmowa pozwala ocenić skalę, termin i model współpracy. Napisz do nas —
-            odpowiadamy w ciągu 24 godzin.
-          </p>
-          <div class="contact__direct" data-fade>
-            <a href="mailto:kontakt@juicyevents.pl">kontakt@juicyevents.pl</a>
-            <a href="tel:+48735298884">+48 735 298 884</a>
+        <p class="section-label">05 / Kontakt</p>
+        <a class="contact__mail" href="mailto:kontakt@juicyevents.pl" data-fade>kontakt@juicyevents.pl</a>
+
+        <div class="contact__grid">
+          <div class="contact__intro">
+            <a class="contact__phone" href="tel:+48735298884" data-fade>+48 735 298 884</a>
+            <p class="contact__how" data-fade>
+              Na brief odpowiadamy w 24 h. Koncepcję z kosztorysem dostajesz w
+              <span class="slot" data-slot="dni-kosztorys">X</span> dni roboczych — potem produkcja
+              i podsumowanie po wydarzeniu.
+            </p>
+            <div class="contact__social" data-fade>
+              <a class="contact__link" href="https://www.instagram.com/juicyeventsnation/" target="_blank" rel="me noopener noreferrer">Instagram</a>
+            <a class="contact__link" href="https://www.facebook.com/share/19XeBrjEGu/" target="_blank" rel="me noopener noreferrer">Facebook</a>
+            <a class="contact__link" href="https://www.linkedin.com/company/juicyevents/" target="_blank" rel="me noopener noreferrer">LinkedIn</a>
+            </div>
           </div>
-          <div class="contact__social social" data-fade>
-            <a href="https://www.instagram.com/juicyeventsnation/" class="social__icon" target="_blank" rel="me noopener noreferrer" aria-label="Instagram"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M7.0301.084c-1.2768.0602-2.1487.264-2.911.5634-.7888.3075-1.4575.72-2.1228 1.3877-.6652.6677-1.075 1.3368-1.3802 2.127-.2954.7638-.4956 1.6365-.552 2.914-.0564 1.2775-.0689 1.6882-.0626 4.947.0062 3.2586.0206 3.6671.0825 4.9473.061 1.2765.264 2.1482.5635 2.9107.308.7889.72 1.4573 1.388 2.1228.6679.6655 1.3365 1.0743 2.1285 1.38.7632.295 1.6361.4961 2.9134.552 1.2773.056 1.6884.069 4.9462.0627 3.2578-.0062 3.668-.0207 4.9478-.0814 1.28-.0607 2.147-.2652 2.9098-.5633.7889-.3086 1.4578-.72 2.1228-1.3881.665-.6682 1.0745-1.3378 1.3795-2.1284.2957-.7632.4966-1.636.552-2.9124.056-1.2809.0692-1.6898.063-4.948-.0063-3.2583-.021-3.6668-.0817-4.9465-.0607-1.2797-.264-2.1487-.5633-2.9117-.3084-.7889-.72-1.4568-1.3876-2.1228C21.2982 1.33 20.628.9208 19.8378.6165 19.074.321 18.2017.1197 16.9244.0645 15.6471.0093 15.236-.005 11.977.0014 8.718.0076 8.31.0215 7.0301.0839m.1402 21.6932c-1.17-.0509-1.8053-.2453-2.2287-.408-.5606-.216-.96-.4771-1.3819-.895-.422-.4178-.6811-.8186-.9-1.378-.1644-.4234-.3624-1.058-.4171-2.228-.0595-1.2645-.072-1.6442-.079-4.848-.007-3.2037.0053-3.583.0607-4.848.05-1.169.2456-1.805.408-2.2282.216-.5613.4762-.96.895-1.3816.4188-.4217.8184-.6814 1.3783-.9003.423-.1651 1.0575-.3614 2.227-.4171 1.2655-.06 1.6447-.072 4.848-.079 3.2033-.007 3.5835.005 4.8495.0608 1.169.0508 1.8053.2445 2.228.408.5608.216.96.4754 1.3816.895.4217.4194.6816.8176.9005 1.3787.1653.4217.3617 1.056.4169 2.2263.0602 1.2655.0739 1.645.0796 4.848.0058 3.203-.0055 3.5834-.061 4.848-.051 1.17-.245 1.8055-.408 2.2294-.216.5604-.4763.96-.8954 1.3814-.419.4215-.8181.6811-1.3783.9-.4224.1649-1.0577.3617-2.2262.4174-1.2656.0595-1.6448.072-4.8493.079-3.2045.007-3.5825-.006-4.848-.0608M16.953 5.5864A1.44 1.44 0 1 0 18.39 4.144a1.44 1.44 0 0 0-1.437 1.4424M5.8385 12.012c.0067 3.4032 2.7706 6.1557 6.173 6.1493 3.4026-.0065 6.157-2.7701 6.1506-6.1733-.0065-3.4032-2.771-6.1565-6.174-6.1498-3.403.0067-6.156 2.771-6.1496 6.1738M8 12.0077a4 4 0 1 1 4.008 3.9921A3.9996 3.9996 0 0 1 8 12.0077"/></svg></a>
-            <a href="https://www.facebook.com/share/19XeBrjEGu/" class="social__icon" target="_blank" rel="me noopener noreferrer" aria-label="Facebook"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M9.101 23.691v-7.98H6.627v-3.667h2.474v-1.58c0-4.085 1.848-5.978 5.858-5.978.401 0 .955.042 1.468.103a8.68 8.68 0 0 1 1.141.195v3.325a8.623 8.623 0 0 0-.653-.036 26.805 26.805 0 0 0-.733-.009c-.707 0-1.259.096-1.675.309a1.686 1.686 0 0 0-.679.622c-.258.42-.374.995-.374 1.752v1.297h3.919l-.386 2.103-.287 1.564h-3.246v8.245C19.396 23.238 24 18.179 24 12.044c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.628 3.874 10.35 9.101 11.647Z"/></svg></a>
-            <a href="https://www.linkedin.com/company/juicyevents/" class="social__icon" target="_blank" rel="me noopener noreferrer" aria-label="LinkedIn"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 114.127 0 2.063 2.063 0 01-2.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg></a>
-          </div>
+
+          <form class="contact-form" id="contact-form" data-contact-form>
+            <label class="field">
+              <span>Kto pisze</span>
+              <input name="name" type="text" required placeholder="Imię i firma" />
+            </label>
+            <label class="field">
+              <span>E-mail</span>
+              <input name="email" type="email" required placeholder="adres@firma.pl" />
+            </label>
+            <label class="field">
+              <span>Co planujesz</span>
+              <textarea name="message" rows="4" required placeholder="Rodzaj wydarzenia, termin, liczba gości, miejsce"></textarea>
+            </label>
+
+            <button class="btn btn--bar" type="submit">Wyślij brief</button>
+            <p class="contact-form__status" data-form-status hidden></p>
+          </form>
         </div>
-
-        <form class="contact-form" id="contact-form" data-contact-form>
-          <div class="contact-form__progress">
-            <p class="contact-form__step">krok <span data-step-current>1</span> / 4</p>
-            <span class="contact-form__bar"><span data-step-bar></span></span>
-          </div>
-
-          <p class="contact-form__hello">Cześć! Zacznijmy od poznania się.</p>
-
-          <label class="field">
-            <span>Imię i firma</span>
-            <input name="name" type="text" required placeholder="np. Anna Kowalska · Firma" />
-          </label>
-          <label class="field">
-            <span>Email</span>
-            <input name="email" type="email" required placeholder="kontakt@firma.pl" />
-          </label>
-          <label class="field">
-            <span>Zakres projektu</span>
-            <select name="need" required>
-              <option value="">Wybierz</option>
-              <option>Impreza integracyjna / firmowa</option>
-              <option>Gala, jubileusz lub konferencja</option>
-              <option>Premiera produktowa / Pre Opening</option>
-              <option>Wydarzenie prywatne</option>
-              <option>Fashion &amp; Art / Sport Event</option>
-              <option>Inne — dedykowane</option>
-            </select>
-          </label>
-          <label class="field">
-            <span>Opis</span>
-            <textarea name="message" rows="4" placeholder="Termin, skala, lokalizacja, cel…"></textarea>
-          </label>
-
-          <button class="btn btn--bar" type="submit">Wyślij brief</button>
-          <p class="contact-form__status" data-form-status hidden></p>
-        </form>
       </section>
     </main>
 
     <footer class="site-footer" data-tone="dark">
-      <div class="site-footer__grid">
-        <div class="site-footer__brand">
-          <p class="site-footer__pitch">Event design · Produkcja · Strategia</p>
-          <div class="site-footer__contact">
-            <a href="mailto:kontakt@juicyevents.pl">kontakt@juicyevents.pl</a>
-            <a href="tel:+48735298884">+48 735 298 884</a>
-            <p>Poznań · Polska · Europa</p>
+      <div class="site-footer__inner">
+        <div class="site-footer__row">
+          <div class="site-footer__firm">
+            <p class="site-footer__name">Juicy Events Nation</p>
+            <p><span class="slot" data-slot="adres">ul. Przykładowa 12</span>, <span class="slot" data-slot="kod-pocztowy">61-000</span> Poznań · <span class="slot" data-slot="nip">NIP 000-000-00-00</span></p>
+            <p class="site-footer__muted">Biuro: pn–pt <span class="slot" data-slot="godziny">9–17</span> · realizacje w całej Polsce</p>
+            <p><a href="mailto:kontakt@juicyevents.pl">kontakt@juicyevents.pl</a> · <a href="tel:+48735298884">+48 735 298 884</a></p>
+          </div>
+          <nav class="site-footer__nav" aria-label="Nawigacja">
+            <a href="#co-robimy">Co robimy</a>
+            <a href="#realizacje">Realizacje</a>
+            <a href="#jak-pracujemy">Jak pracujemy</a>
+            <a href="#zespol">Zespół</a>
+            <a href="#kontakt">Kontakt</a>
+          </nav>
+        </div>
+        <div class="site-footer__row site-footer__row--bottom">
+          <div class="site-footer__links">
+            <a class="site-footer__link" href="https://www.instagram.com/juicyeventsnation/" target="_blank" rel="me noopener noreferrer">Instagram</a>
+            <a class="site-footer__link" href="https://www.facebook.com/share/19XeBrjEGu/" target="_blank" rel="me noopener noreferrer">Facebook</a>
+            <a class="site-footer__link" href="https://www.linkedin.com/company/juicyevents/" target="_blank" rel="me noopener noreferrer">LinkedIn</a>
+          </div>
+          <div class="site-footer__links">
+            <span>© <span data-year></span> Juicy Events Nation</span>
+            <a class="site-footer__link" href="/polityka-prywatnosci.html">Polityka prywatności</a>
+            <a class="site-footer__link" href="#top">Na górę ↑</a>
           </div>
         </div>
-
-        <nav class="site-footer__col" aria-label="Nawigacja">
-          <p class="site-footer__col-title">Nawigacja</p>
-          <a href="#realizacje">Realizacje</a>
-          <a href="#agencja">Agencja</a>
-          <a href="#kompetencje">Kompetencje</a>
-          <a href="#metoda">Metoda</a>
-          <a href="#zakresy">Zakresy</a>
-        </nav>
-
-        <nav class="site-footer__col" aria-label="Więcej">
-          <p class="site-footer__col-title">Więcej</p>
-          <a href="realizacje.html">Pełna galeria realizacji</a>
-          <a href="#zespol">Zespół i kontakty</a>
-          <a href="#kontakt">Wyślij brief</a>
-          <a href="/polityka-prywatnosci.html">Polityka prywatności</a>
-        </nav>
-
-        <div class="site-footer__col site-footer__col--social">
-          <p class="site-footer__col-title">Social</p>
-          <div class="social">
-            <a href="https://www.instagram.com/juicyeventsnation/" class="social__icon" target="_blank" rel="me noopener noreferrer" aria-label="Instagram"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M7.0301.084c-1.2768.0602-2.1487.264-2.911.5634-.7888.3075-1.4575.72-2.1228 1.3877-.6652.6677-1.075 1.3368-1.3802 2.127-.2954.7638-.4956 1.6365-.552 2.914-.0564 1.2775-.0689 1.6882-.0626 4.947.0062 3.2586.0206 3.6671.0825 4.9473.061 1.2765.264 2.1482.5635 2.9107.308.7889.72 1.4573 1.388 2.1228.6679.6655 1.3365 1.0743 2.1285 1.38.7632.295 1.6361.4961 2.9134.552 1.2773.056 1.6884.069 4.9462.0627 3.2578-.0062 3.668-.0207 4.9478-.0814 1.28-.0607 2.147-.2652 2.9098-.5633.7889-.3086 1.4578-.72 2.1228-1.3881.665-.6682 1.0745-1.3378 1.3795-2.1284.2957-.7632.4966-1.636.552-2.9124.056-1.2809.0692-1.6898.063-4.948-.0063-3.2583-.021-3.6668-.0817-4.9465-.0607-1.2797-.264-2.1487-.5633-2.9117-.3084-.7889-.72-1.4568-1.3876-2.1228C21.2982 1.33 20.628.9208 19.8378.6165 19.074.321 18.2017.1197 16.9244.0645 15.6471.0093 15.236-.005 11.977.0014 8.718.0076 8.31.0215 7.0301.0839m.1402 21.6932c-1.17-.0509-1.8053-.2453-2.2287-.408-.5606-.216-.96-.4771-1.3819-.895-.422-.4178-.6811-.8186-.9-1.378-.1644-.4234-.3624-1.058-.4171-2.228-.0595-1.2645-.072-1.6442-.079-4.848-.007-3.2037.0053-3.583.0607-4.848.05-1.169.2456-1.805.408-2.2282.216-.5613.4762-.96.895-1.3816.4188-.4217.8184-.6814 1.3783-.9003.423-.1651 1.0575-.3614 2.227-.4171 1.2655-.06 1.6447-.072 4.848-.079 3.2033-.007 3.5835.005 4.8495.0608 1.169.0508 1.8053.2445 2.228.408.5608.216.96.4754 1.3816.895.4217.4194.6816.8176.9005 1.3787.1653.4217.3617 1.056.4169 2.2263.0602 1.2655.0739 1.645.0796 4.848.0058 3.203-.0055 3.5834-.061 4.848-.051 1.17-.245 1.8055-.408 2.2294-.216.5604-.4763.96-.8954 1.3814-.419.4215-.8181.6811-1.3783.9-.4224.1649-1.0577.3617-2.2262.4174-1.2656.0595-1.6448.072-4.8493.079-3.2045.007-3.5825-.006-4.848-.0608M16.953 5.5864A1.44 1.44 0 1 0 18.39 4.144a1.44 1.44 0 0 0-1.437 1.4424M5.8385 12.012c.0067 3.4032 2.7706 6.1557 6.173 6.1493 3.4026-.0065 6.157-2.7701 6.1506-6.1733-.0065-3.4032-2.771-6.1565-6.174-6.1498-3.403.0067-6.156 2.771-6.1496 6.1738M8 12.0077a4 4 0 1 1 4.008 3.9921A3.9996 3.9996 0 0 1 8 12.0077"/></svg></a>
-            <a href="https://www.facebook.com/share/19XeBrjEGu/" class="social__icon" target="_blank" rel="me noopener noreferrer" aria-label="Facebook"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M9.101 23.691v-7.98H6.627v-3.667h2.474v-1.58c0-4.085 1.848-5.978 5.858-5.978.401 0 .955.042 1.468.103a8.68 8.68 0 0 1 1.141.195v3.325a8.623 8.623 0 0 0-.653-.036 26.805 26.805 0 0 0-.733-.009c-.707 0-1.259.096-1.675.309a1.686 1.686 0 0 0-.679.622c-.258.42-.374.995-.374 1.752v1.297h3.919l-.386 2.103-.287 1.564h-3.246v8.245C19.396 23.238 24 18.179 24 12.044c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.628 3.874 10.35 9.101 11.647Z"/></svg></a>
-            <a href="https://www.linkedin.com/company/juicyevents/" class="social__icon" target="_blank" rel="me noopener noreferrer" aria-label="LinkedIn"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 114.127 0 2.063 2.063 0 01-2.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg></a>
-          </div>
-        </div>
-      </div>
-
-      <div class="site-footer__bottom">
-        <p>© <span data-year></span> Juicy Events Nation</p>
-        <a class="site-footer__totop" href="#top">Na górę ↑</a>
       </div>
 
       <div class="site-footer__wordmark" aria-hidden="true">
@@ -799,38 +585,20 @@
       </div>
     </footer>
 
-    <div class="showreel" id="showreel" aria-hidden="true" role="dialog" aria-label="Showreel">
-      <button class="showreel__close" type="button" data-showreel-close>Zamknij</button>
-      <div class="showreel__stage">
-        <div class="showreel__track" data-showreel-track>
-          <figure class="is-active">
-            <video src="/media/showreel-main.mp4" muted playsinline loop></video>
-            <figcaption>Showreel</figcaption>
-          </figure>
-          <figure>
-            <video src="/media/hero.mp4" muted playsinline loop></video>
-            <figcaption>Agencja</figcaption>
-          </figure>
-          <figure>
-            <video src="/media/reel-02.mp4" muted playsinline loop></video>
-            <figcaption>Produkcja</figcaption>
-          </figure>
-          <figure>
-            <video src="/media/reel-03.mp4" muted playsinline loop></video>
-            <figcaption>Detal</figcaption>
-          </figure>
-          <figure>
-            <img decoding="async" loading="lazy" width="1080" height="1920" src="/media/hospitality-02.jpg" alt="" />
-            <figcaption>Hospitality</figcaption>
-          </figure>
-        </div>
-        <div class="showreel__controls">
-          <button type="button" data-showreel-prev aria-label="Poprzedni">←</button>
-          <button type="button" data-showreel-play>Pause</button>
-          <button type="button" data-showreel-next aria-label="Następny">→</button>
-        </div>
-      </div>
-    </div>
+    <!-- Pływające, niebieskie kółko „Kontakt" — sygnatura Juicy (jak na mlynska12.pl).
+         Napis krąży wokół strzałki (SVG textPath + CSS animation), kółko „wskakuje"
+         po wczytaniu strony i chowa się nad sekcją kontaktu (float-cta.js). -->
+    <a class="float-cta" href="#kontakt" data-float-cta aria-label="Przejdź do kontaktu">
+      <svg class="float-cta__ring" viewBox="0 0 100 100" aria-hidden="true">
+        <defs>
+          <path id="float-cta-path" d="M50,50 m-37,0 a37,37 0 1,1 74,0 a37,37 0 1,1 -74,0" />
+        </defs>
+        <text><textPath href="#float-cta-path" textLength="232" lengthAdjust="spacingAndGlyphs">Kontakt · Napisz do nas · Kontakt · Napisz do nas ·</textPath></text>
+      </svg>
+      <span class="float-cta__arrow" aria-hidden="true">
+        <svg viewBox="0 0 24 24"><path d="M5 12h14M13 5l7 7-7 7" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </span>
+    </a>
 
     <script type="module" src="/src/main.js"></script>
   </body>

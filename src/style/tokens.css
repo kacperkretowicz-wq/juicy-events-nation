@@ -11,9 +11,19 @@
   --line: rgba(13, 12, 11, 0.14);
   --line-light: rgba(246, 244, 239, 0.16);
 
-  /* Akcenty */
-  --accent: #ff3a2f;
-  --accent-warm: #ff5f1f;
+  /* Akcent — niebieski Juicy. Decyzja z 2. rundy feedbacku: niebieski zamiast
+     czerwieni, czerwień ograniczona do zera. Wszystkie akcenty (nawiasy w nagłówkach,
+     przyciski, hover, kółko „Kontakt", tło sekcji „Co robimy", menu, stopka)
+     idą z tego jednego tokena. */
+  --accent: #2b4bff;
+  --accent-deep: #1f38d6;
+  --accent-soft: #7f95ff;
+  --accent-warm: #7f95ff;
+  --on-accent: #ffffff;
+
+  /* Jednolity „grade" zdjęć i wideo — wszystkie kadry przechodzą przez ten sam filtr,
+     dzięki czemu materiały z różnych sesji czytają się jak jeden zestaw. */
+  --grade: saturate(0.8) contrast(1.06) brightness(0.98);
 
   /* Rytm */
   --pad: clamp(1.25rem, 3.2vw, 3.25rem);
@@ -21,16 +31,43 @@
   --gutter: clamp(0.75rem, 1.1vw, 1.15rem);
   --block: clamp(4.5rem, 10vw, 9rem);
 
-  /* Typografia */
-  --font: "Host Grotesk", "Helvetica Neue", Helvetica, Arial, sans-serif;
-  --display-1: clamp(2.5rem, 6.4vw, 6.5rem);
+  /* Typografia — Bricolage Grotesque (oś opsz: tekst i display z jednej rodziny).
+     Skala świadomie krótka: wielki tytuł sekcji, lead, tytuł karty, tekst, mikro. */
+  --font: "Bricolage Grotesque", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  --display-1: clamp(2.75rem, 7.2vw, 7.25rem);
   --display-2: clamp(2rem, 4.6vw, 4.5rem);
   --display-3: clamp(1.5rem, 2.9vw, 2.85rem);
-  --display-4: clamp(1.15rem, 1.9vw, 1.7rem);
+  --display-4: clamp(1.15rem, 1.7vw, 1.55rem);
+  --body-lg: clamp(1rem, 1.15vw, 1.12rem);
   --body: clamp(0.98rem, 1.05vw, 1.1rem);
   --micro: clamp(0.62rem, 0.74vw, 0.72rem);
 
   /* Ruch */
   --ease: cubic-bezier(0.22, 1, 0.36, 1);
   --ease-expo: cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* ——— Odcienie niebieskiego do pokazania klientowi ———
+   Dopisz do adresu `?accent=a` / `?accent=b` / `?accent=c` (shared.js ustawia
+   data-accent na <html>). Bez parametru obowiązuje domyślny odcień powyżej.
+   Gdy klient wybierze — przepisz wartości do :root i usuń ten blok. */
+html[data-accent="a"] {
+  --accent: #1a2fd6; /* głębszy kobalt */
+  --accent-deep: #1223a8;
+  --accent-soft: #6d80ff;
+  --accent-warm: #6d80ff;
+}
+
+html[data-accent="b"] {
+  --accent: #0f6fff; /* jaśniejszy lazur */
+  --accent-deep: #0a56cc;
+  --accent-soft: #74adff;
+  --accent-warm: #74adff;
+}
+
+html[data-accent="c"] {
+  --accent: #3d3bff; /* z nutą fioletu */
+  --accent-deep: #2e2cd1;
+  --accent-soft: #8f8dff;
+  --accent-warm: #8f8dff;
 }

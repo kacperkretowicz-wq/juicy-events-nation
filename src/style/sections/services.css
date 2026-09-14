@@ -1,0 +1,148 @@
+/* ——— CO ROBIMY — „Jaki masz plan?" ———
+   Niebieski blok tuż po hero. Tytuł-pytanie zwykłym pismem (nie wersalikami),
+   sześć formatów w wierszach: numer | ikona | nazwa | zakres | strzałka.
+   Każdy wiersz jest linkiem do briefu — kategoria wpisuje się w pole „Co planujesz". */
+.services {
+  background: var(--accent);
+  color: var(--cream);
+}
+
+.services__inner {
+  max-width: var(--max);
+  margin: 0 auto;
+  padding: clamp(3.5rem, 7vw, 6rem) var(--pad) clamp(3rem, 6vw, 5rem);
+}
+
+.services__head {
+  display: flex;
+  align-items: end;
+  justify-content: space-between;
+  gap: 2rem;
+  margin-bottom: clamp(1.5rem, 3vw, 2.5rem);
+}
+
+.services__title {
+  font-size: clamp(3rem, 8.4vw, 8.5rem);
+  font-weight: 600;
+  line-height: 0.95;
+  letter-spacing: -0.055em;
+  text-transform: none;
+}
+
+.services__sub {
+  margin: 0 0 0.5rem;
+  max-width: 30ch;
+  font-size: var(--body);
+  line-height: 1.5;
+  text-align: right;
+  color: rgba(246, 244, 239, 0.88);
+}
+
+.services__index {
+  border-top: 1px solid rgba(246, 244, 239, 0.32);
+}
+
+.service__link {
+  display: grid;
+  grid-template-columns: 2.5rem 2.5rem minmax(0, 1.2fr) minmax(0, 1fr) 2rem;
+  gap: clamp(0.75rem, 2vw, 2.25rem);
+  align-items: center;
+  padding: clamp(0.9rem, 1.5vw, 1.25rem) 0;
+  border-bottom: 1px solid rgba(246, 244, 239, 0.32);
+  transition: padding-left 0.45s var(--ease-expo);
+}
+
+.service__link:hover,
+.service__link:focus-visible {
+  padding-left: 0.75rem;
+}
+
+.service__num {
+  font-size: 0.8rem;
+  letter-spacing: 0.16em;
+  color: rgba(246, 244, 239, 0.75);
+}
+
+.service__icon {
+  width: 1.35rem;
+  height: 1.35rem;
+  fill: none;
+  stroke: var(--cream);
+  stroke-width: 1.5;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.service__name {
+  font-size: clamp(1.35rem, 2.1vw, 1.95rem);
+  font-weight: 600;
+  line-height: 1;
+  letter-spacing: -0.04em;
+}
+
+.service__scope {
+  font-size: 0.92rem;
+  line-height: 1.5;
+  color: rgba(246, 244, 239, 0.82);
+}
+
+.service__arrow {
+  font-size: 1.1rem;
+  text-align: right;
+  transition: transform 0.4s var(--ease-expo);
+}
+
+.service__link:hover .service__arrow {
+  transform: translate(0.2rem, -0.2rem);
+}
+
+.services__foot {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem 2rem;
+  margin-top: clamp(1.5rem, 3vw, 2.25rem);
+  font-size: 0.92rem;
+}
+
+.services__foot p {
+  margin: 0;
+  color: rgba(246, 244, 239, 0.82);
+}
+
+.services__cta {
+  padding-bottom: 0.2rem;
+  border-bottom: 1px solid currentColor;
+  font-weight: 600;
+  transition: color 0.3s var(--ease);
+}
+
+.services__cta:hover {
+  color: var(--ink);
+}
+
+@media (max-width: 980px) {
+  .services__head {
+    flex-direction: column;
+    align-items: start;
+  }
+
+  .services__sub {
+    text-align: left;
+  }
+
+  .service__link {
+    grid-template-columns: 2rem 1.75rem minmax(0, 1fr) 1.5rem;
+    row-gap: 0.3rem;
+  }
+
+  .service__scope {
+    grid-column: 3;
+  }
+
+  .service__arrow {
+    grid-row: 1;
+    grid-column: 4;
+  }
+}

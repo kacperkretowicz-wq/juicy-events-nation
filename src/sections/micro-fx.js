@@ -21,17 +21,37 @@ export function initClipReveal() {
     return;
   }
 
+  // Obserwujemy RODZICA kadru, nie sam kadr: kadr ma clip-path inset(0 100% 0 0),
+  // a nowsze Chromium liczy przecięcie już po przycięciu — dla w pełni przyciętego
+  // elementu daje 0 i reveal nigdy nie startował (zdjęcia w galerii nie pojawiały się).
+  const targetOf = new WeakMap();
   const io = new IntersectionObserver(
     (entries) => {
       entries.forEach((entry) => {
         if (!entry.isIntersecting) return;
-        entry.target.classList.add("is-clip-revealed");
+        (targetOf.get(entry.target) ?? entry.target).classList.add("is-clip-revealed");
         io.unobserve(entry.target);
       });
     },
     { threshold: 0.2, rootMargin: "0px 0px -8% 0px" }
   );
-  targets.forEach((el) => io.observe(el));
+  targets.forEach((el) => {
+    const probe = el.parentElement ?? el;
+    targetOf.set(probe, el);
+    io.observe(probe);
+  });
+
+  // Kadr widoczny już przy starcie (hero podstrony realizacji) odsłaniamy od razu —
+  // wcześniej czekał na pierwszy ruch scrolla i strona otwierała się z pustym kadrem.
+  requestAnimationFrame(() => {
+    targets.forEach((el) => {
+      const rect = el.getBoundingClientRect();
+      if (rect.top < window.innerHeight && rect.bottom > 0) {
+        el.classList.add("is-clip-revealed");
+        io.unobserve(el.parentElement ?? el);
+      }
+    });
+  });
 }
 
 /* Hover na kartach realizacji: „→ Zobacz realizację" + przesuw pigułek. */
@@ -108,9 +128,9 @@ export function initMagneticButtons() {
   });
 }
 
+// Audyt: hover kart i magnetyczne przyciski wyłączone — zostają reveal kadrów
+// i dryf wordmarku (funkcje zostawione w pliku na wypadek powrotu).
 export function initMicroFx() {
   initClipReveal();
-  initCardHover();
   initWordmarkDrift();
-  initMagneticButtons();
 }

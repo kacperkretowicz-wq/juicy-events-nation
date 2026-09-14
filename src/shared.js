@@ -11,7 +11,12 @@ CustomEase.create("smoothExpoOut", "M0,0 C0.143,0 0.22,0.534 0.247,0.663 0.277,0
 // (przydatne do pokazania klientowi). Aby wrócić do respektowania ustawienia:
 //   export const softMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 // i przywrócić bloki @media (prefers-reduced-motion) w CSS.
-export const softMotion = new URLSearchParams(window.location.search).has("reduced");
+const params = new URLSearchParams(window.location.search);
+export const softMotion = params.has("reduced");
+
+// Podgląd alternatywnych akcentów dla klienta: `?accent=a|b|c` (palety w tokens.css).
+const accent = params.get("accent");
+if (accent && /^[abc]$/.test(accent)) document.documentElement.dataset.accent = accent;
 export const ease = softMotion ? "power2.out" : "smoothExpoOut";
 
 export const lenis = new Lenis({
@@ -39,7 +44,7 @@ window.addEventListener("load", () => {
   setTimeout(() => {
     if (ScrollTrigger.getAll().length > 0) return;
     document
-      .querySelectorAll("[data-fade], [data-fade-group] > *, [data-project], [data-need-card], [data-team-card]")
+      .querySelectorAll("[data-fade], [data-fade-group] > *, [data-project], [data-service], [data-team-card]")
       .forEach((el) => {
         el.style.opacity = "1";
         el.style.transform = "none";
@@ -90,7 +95,6 @@ export function initHeader() {
 /* ——— Mega menu ——— */
 
 const menu = document.getElementById("mega-menu");
-const showreel = document.getElementById("showreel");
 
 function lockScroll() {
   document.body.style.overflow = "hidden";
@@ -98,7 +102,7 @@ function lockScroll() {
 }
 
 function unlockScroll() {
-  if (menu?.classList.contains("is-open") || showreel?.classList.contains("is-open")) return;
+  if (menu?.classList.contains("is-open")) return;
   document.body.style.overflow = "";
   lenis.start();
 }
@@ -125,79 +129,9 @@ function closeMenu() {
 document.querySelectorAll("[data-menu-open]").forEach((btn) => btn.addEventListener("click", openMenu));
 document.querySelectorAll("[data-menu-close]").forEach((btn) => btn.addEventListener("click", closeMenu));
 
-/* ——— Showreel ——— */
-
-const reelFigures = [...document.querySelectorAll("[data-showreel-track] figure")];
-let reelIndex = 0;
-let reelTimer = null;
-let reelPlaying = true;
-
-function showReelSlide(index) {
-  reelFigures.forEach((figure, i) => {
-    const active = i === index;
-    figure.classList.toggle("is-active", active);
-    const video = figure.querySelector("video");
-    if (!video) return;
-    if (active && reelPlaying) video.play().catch(() => {});
-    else {
-      video.pause();
-      if (!active) video.currentTime = 0;
-    }
-  });
-  reelIndex = index;
-}
-
-function playReel() {
-  clearInterval(reelTimer);
-  reelPlaying = true;
-  const playBtn = document.querySelector("[data-showreel-play]");
-  if (playBtn) playBtn.textContent = "Pause";
-  reelFigures[reelIndex]?.querySelector("video")?.play().catch(() => {});
-  reelTimer = setInterval(() => showReelSlide((reelIndex + 1) % reelFigures.length), 3400);
-}
-
-function stopReel() {
-  reelPlaying = false;
-  clearInterval(reelTimer);
-  const playBtn = document.querySelector("[data-showreel-play]");
-  if (playBtn) playBtn.textContent = "Play";
-  reelFigures.forEach((figure) => figure.querySelector("video")?.pause());
-}
-
-function openShowreel() {
-  if (!showreel) return;
-  showreel.classList.add("is-open");
-  showreel.setAttribute("aria-hidden", "false");
-  lockScroll();
-  showReelSlide(0);
-  playReel();
-}
-
-function closeShowreel() {
-  if (!showreel) return;
-  showreel.classList.remove("is-open");
-  showreel.setAttribute("aria-hidden", "true");
-  stopReel();
-  unlockScroll();
-}
-
-document.querySelectorAll("[data-showreel-open]").forEach((btn) => btn.addEventListener("click", openShowreel));
-document.querySelectorAll("[data-showreel-close]").forEach((btn) => btn.addEventListener("click", closeShowreel));
-document.querySelector("[data-showreel-prev]")?.addEventListener("click", () => {
-  showReelSlide((reelIndex - 1 + reelFigures.length) % reelFigures.length);
-});
-document.querySelector("[data-showreel-next]")?.addEventListener("click", () => {
-  showReelSlide((reelIndex + 1) % reelFigures.length);
-});
-document.querySelector("[data-showreel-play]")?.addEventListener("click", () => {
-  if (reelPlaying) stopReel();
-  else playReel();
-});
-
 document.addEventListener("keydown", (event) => {
   if (event.key !== "Escape") return;
   closeMenu();
-  closeShowreel();
 });
 
 /* ——— Nagłówki dzielone na linie (nośnik animacji wjazdu) ——— */

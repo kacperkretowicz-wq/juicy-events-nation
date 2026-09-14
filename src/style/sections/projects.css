@@ -1,28 +1,228 @@
+/* ——— REALIZACJE ———
+   Strona główna: kafelek-okładka z sześcioma slajdami (crossfade, obieg co kilka sekund —
+   case-rotator.js) + indeks; aktywny wiersz jest podświetlony i ma pasek postępu.
+   Podstrona realizacje.html: siatka kart (.project-card) — niżej. */
 .projects {
   max-width: var(--max);
   margin: 0 auto;
-  padding: var(--block) var(--pad);
+  padding: calc(var(--block) * 0.85) var(--pad) var(--block);
   background: var(--cream);
 }
 
 .projects__head {
-  margin-bottom: clamp(2.5rem, 6vw, 5rem);
+  margin-bottom: clamp(1.5rem, 3vw, 2.5rem);
 }
 
 .projects__title {
-  max-width: 24ch;
-  font-size: var(--display-2);
+  font-size: clamp(2.5rem, 6.4vw, 6rem);
+  font-weight: 600;
+  line-height: 0.95;
+  letter-spacing: -0.05em;
+  text-transform: none;
 }
 
+/* Okładka: slajdy jeden na drugim, aktywny widoczny */
+.feature {
+  position: relative;
+  aspect-ratio: 21 / 9;
+  overflow: hidden;
+  background: var(--ink);
+  color: var(--cream);
+}
+
+.feature__slide {
+  position: absolute;
+  inset: 0;
+  display: block;
+  opacity: 0;
+  transition: opacity 0.9s var(--ease);
+}
+
+.feature__slide.is-active {
+  opacity: 1;
+  z-index: 1;
+}
+
+.feature__photo {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transform: scale(1.06);
+  transition: transform 6s linear;
+}
+
+.feature__slide.is-active .feature__photo {
+  transform: scale(1);
+}
+
+.feature__slide::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to top, rgba(6, 6, 6, 0.82) 0%, rgba(6, 6, 6, 0.1) 55%);
+}
+
+.feature__copy {
+  position: absolute;
+  left: clamp(1.25rem, 2.6vw, 2.5rem);
+  right: clamp(1.25rem, 2.6vw, 2.5rem);
+  bottom: clamp(1.25rem, 2.6vw, 2.25rem);
+  z-index: 1;
+  display: flex;
+  align-items: end;
+  justify-content: space-between;
+  gap: 2rem;
+}
+
+.feature__title {
+  max-width: 18ch;
+  font-size: clamp(1.6rem, 3.8vw, 3.5rem);
+  font-weight: 800;
+  line-height: 0.95;
+  letter-spacing: -0.025em;
+  text-transform: uppercase;
+}
+
+.feature__type {
+  font-size: var(--body);
+  color: rgba(246, 244, 239, 0.85);
+  white-space: nowrap;
+}
+
+/* Indeks */
+.case-index {
+  margin-top: 0.75rem;
+  border-top: 1px solid var(--line);
+}
+
+.case-row__link {
+  position: relative;
+  display: grid;
+  grid-template-columns: 7rem minmax(0, 1.4fr) minmax(0, 1fr) 2.5rem;
+  gap: clamp(1rem, 2.2vw, 2rem);
+  align-items: center;
+  padding: clamp(0.9rem, 1.4vw, 1.15rem) 0;
+  border-bottom: 1px solid var(--line);
+  transition: padding-left 0.45s var(--ease-expo);
+}
+
+.case-row.is-active .case-row__link,
+.case-row__link:hover {
+  padding-left: 0.75rem;
+}
+
+.case-row__link img {
+  width: 7rem;
+  height: 4.9rem;
+  object-fit: cover;
+  filter: var(--grade);
+  transition: opacity 0.4s var(--ease);
+}
+
+.case-row:not(.is-active) .case-row__link img {
+  opacity: 0.75;
+}
+
+.case-row__name {
+  font-size: clamp(1.35rem, 2.1vw, 1.9rem);
+  font-weight: 800;
+  line-height: 1;
+  letter-spacing: -0.025em;
+  text-transform: uppercase;
+  transition: color 0.35s var(--ease);
+}
+
+.case-row.is-active .case-row__name,
+.case-row__link:hover .case-row__name {
+  color: var(--accent);
+}
+
+.case-row__type {
+  font-size: var(--body);
+  color: var(--muted);
+}
+
+.case-row__arrow {
+  font-size: 1.5rem;
+  text-align: right;
+  color: var(--accent);
+  opacity: 0;
+  transition: opacity 0.35s var(--ease);
+}
+
+.case-row.is-active .case-row__arrow,
+.case-row__link:hover .case-row__arrow {
+  opacity: 1;
+}
+
+/* Pasek postępu — rośnie przez czas trwania slajdu, zatrzymuje się na hover. */
+.case-row__bar {
+  position: absolute;
+  left: 0;
+  bottom: -1px;
+  height: 2px;
+  width: 0;
+  background: var(--accent);
+}
+
+.case-row.is-active .case-row__bar {
+  animation: case-row-bar var(--rotator-ms, 4500ms) linear forwards;
+}
+
+.projects.is-paused .case-row__bar {
+  animation-play-state: paused;
+}
+
+@keyframes case-row-bar {
+  from {
+    width: 0;
+  }
+  to {
+    width: 100%;
+  }
+}
+
+@media (max-width: 860px) {
+  .feature {
+    aspect-ratio: 4 / 3;
+  }
+
+  .feature__copy {
+    flex-direction: column;
+    align-items: start;
+    gap: 0.5rem;
+  }
+
+  .feature__type {
+    white-space: normal;
+  }
+
+  .case-row__link {
+    grid-template-columns: 5rem minmax(0, 1fr) 2rem;
+    row-gap: 0.25rem;
+  }
+
+  .case-row__link img {
+    width: 5rem;
+    height: 3.5rem;
+    grid-row: span 2;
+  }
+
+  .case-row__type {
+    grid-column: 2;
+  }
+
+  .case-row__arrow {
+    grid-row: 1;
+    grid-column: 3;
+  }
+}
+
+/* ——— Karty na podstronie realizacje.html ——— */
 .projects__grid {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: clamp(2rem, 4vw, 4.5rem) clamp(1.25rem, 3vw, 3rem);
-}
-
-/* Przesunięcie prawej kolumny — rytm Sweetpunk */
-.projects__grid > .project-card:nth-child(even) {
-  transform: translateY(clamp(2rem, 6vw, 6.5rem));
 }
 
 .project-card__link {
@@ -43,30 +243,15 @@
   height: 100%;
   object-fit: cover;
   display: block;
-  transition: transform 1s var(--ease), filter 0.6s var(--ease);
+  transition: transform 1s var(--ease);
 }
 
 .project-card:hover .project-card__media img {
   transform: scale(1.045);
 }
 
-.project-card__title a {
-  color: inherit;
-  text-decoration: none;
-}
-
-/* Karta z wideo — cały kadr linkuje do case study; osobny przycisk w rogu
-   (project-card__zoom) rozwija podgląd w miejscu. */
 .project-card--video {
   position: relative;
-}
-
-.project-card--video .project-card__media {
-  background: var(--cream-deep);
-  transform: scale(1);
-  transform-origin: center bottom;
-  transition: transform 0.55s var(--ease-expo), box-shadow 0.55s var(--ease-expo);
-  will-change: transform;
 }
 
 .project-card--video:hover .project-card__media video {
@@ -90,8 +275,7 @@
   color: var(--white);
   cursor: pointer;
   opacity: 0;
-  transform: translateY(-0.3rem);
-  transition: opacity 0.3s var(--ease), transform 0.3s var(--ease), background-color 0.3s var(--ease);
+  transition: opacity 0.3s var(--ease), background-color 0.3s var(--ease);
   backdrop-filter: blur(4px);
 }
 
@@ -108,36 +292,25 @@
 .project-card--video:hover .project-card__zoom,
 .project-card__zoom:focus-visible {
   opacity: 1;
-  transform: translateY(0);
 }
 
-/* Na dotyku (brak hovera) przycisk jest widoczny od razu. */
 @media (hover: none) {
   .project-card__zoom {
     opacity: 1;
-    transform: none;
   }
 }
 
-/* Rozwinięcie: skalujemy tylko medium, od dołu — tytuł/opis zostają widoczne. */
 .project-card--video.is-expanded {
   z-index: 5;
 }
 
 .project-card--video.is-expanded .project-card__media {
   transform: scale(1.14);
+  transform-origin: center bottom;
+  transition: transform 0.55s var(--ease-expo);
   box-shadow: 0 34px 64px -22px rgba(13, 12, 11, 0.4);
 }
 
-.project-card--video.is-expanded .project-card__media video {
-  transform: scale(1);
-}
-
-.project-card--video.is-expanded .project-card__zoom {
-  background: var(--accent);
-}
-
-/* Kafelek ze slajdshow zdjęć — crossfade w tle, bez JS-bibliotek */
 .project-card__media[data-slideshow-card] {
   position: relative;
 }
@@ -157,17 +330,14 @@
 .project-card__meta {
   display: flex;
   flex-wrap: wrap;
-  gap: 0.4rem;
+  gap: 0 0.55rem;
+  font-size: var(--body);
+  color: var(--accent);
 }
 
-.project-card__meta span {
-  padding: 0.32rem 0.7rem;
-  border: 1px solid var(--line);
-  border-radius: 999px;
-  font-size: var(--micro);
-  font-weight: 600;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
+.project-card__meta span + span::before {
+  content: "·";
+  margin-right: 0.55rem;
   color: var(--muted);
 }
 
@@ -183,9 +353,7 @@
 
 .project-card__stat {
   margin: 0;
-  font-size: var(--micro);
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
+  font-size: var(--body);
   color: var(--muted);
 }
 
@@ -198,9 +366,5 @@
 @media (max-width: 860px) {
   .projects__grid {
     grid-template-columns: minmax(0, 1fr);
-  }
-
-  .projects__grid > .project-card:nth-child(even) {
-    transform: none;
   }
 }

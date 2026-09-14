@@ -57,10 +57,11 @@ h1,
 h2,
 h3 {
   margin: 0;
-  font-weight: 700;
+  font-weight: 800;
   line-height: 0.94;
-  letter-spacing: -0.03em;
+  letter-spacing: -0.025em;
   text-transform: uppercase;
+  font-optical-sizing: auto;
 }
 
 p {
@@ -74,24 +75,11 @@ ul {
   list-style: none;
 }
 
-/* Ziarno — subtelna tekstura jak w prezentacji */
-.grain {
-  position: fixed;
-  inset: 0;
-  z-index: 9998;
-  pointer-events: none;
-  opacity: 0.05;
-  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
-}
-
 /* ——— Elementy współdzielone ——— */
 
 .eyebrow {
   margin: 0 0 1rem;
-  font-size: var(--micro);
-  font-weight: 600;
-  letter-spacing: 0.16em;
-  text-transform: uppercase;
+  font-size: var(--body);
   color: var(--muted);
 }
 
@@ -174,6 +162,17 @@ ul {
   color: var(--white);
 }
 
+/* Kremowy przycisk na niebieskim tle (sekcja „Co robimy"). */
+.btn--light {
+  background: var(--cream);
+  color: var(--accent);
+}
+
+.btn--light:hover {
+  background: var(--ink);
+  color: var(--cream);
+}
+
 .btn--ghost-dark {
   background: transparent;
   border: 1px solid var(--line);
@@ -213,35 +212,32 @@ ul {
   color: var(--cream);
 }
 
-.social {
-  display: flex;
-  gap: 0.6rem;
+.link-arrow--light:hover {
+  color: var(--accent-soft);
 }
 
-.social__icon {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  width: 2.75rem;
-  height: 2.75rem;
-  border: 1px solid currentColor;
-  border-radius: 50%;
-  opacity: 0.85;
-  transition: opacity 0.3s var(--ease), color 0.3s var(--ease),
-    background-color 0.3s var(--ease), border-color 0.3s var(--ease);
+/* Etykieta sekcji: „01 / Co robimy" — mała, wersaliki, przed tytułem. */
+.section-label {
+  margin: 0 0 1.1rem;
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--muted);
 }
 
-.social__icon svg {
-  width: 1.05rem;
-  height: 1.05rem;
+.section-label--light,
+[data-surface="accent"] .section-label {
+  color: rgba(246, 244, 239, 0.75);
 }
 
-.social__icon:hover,
-.social__icon:focus-visible {
-  opacity: 1;
-  color: var(--white);
-  background: var(--accent);
-  border-color: var(--accent);
+/* ——— Pola do uzupełnienia przez klienta ———
+   Każde ma data-slot="…" — po otrzymaniu danych wpisujemy treść i zdejmujemy klasę.
+   Do finalnej publikacji na stronie nie może zostać żaden .slot. */
+.slot {
+  padding: 0 0.1em;
+  border-bottom: 2px dashed var(--accent);
+  color: var(--accent);
 }
 
 /* Split headline — nośnik animacji linii */
@@ -279,7 +275,7 @@ ul {
 .js [data-fade],
 .js [data-fade-group] > *,
 .js [data-project],
-.js [data-need-card],
+.js [data-service],
 .js [data-team-card] {
   opacity: 0;
 }

@@ -6,6 +6,7 @@ import { initLightbox } from "./sections/lightbox.js";
 import { initParallaxMedia } from "./sections/parallax-media.js";
 import { claimAudio, releaseAudio } from "./audio-bus.js";
 import { initMicroFx } from "./sections/micro-fx.js";
+import { initFloatCta } from "./sections/float-cta.js";
 
 initHeader();
 initSplitHeadlines();
@@ -14,6 +15,7 @@ initSectionReveals();
 initProjects();
 initLightbox();
 initMicroFx();
+initFloatCta();
 initParallaxMedia();
 
 // Wideo w nagłówku realizacji: autoplay w viewport (bez dźwięku),

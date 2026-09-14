@@ -3,7 +3,7 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { ease, softMotion } from "../shared.js";
 
 export function initProjects() {
-  const cards = [...document.querySelectorAll("[data-project], [data-need-card], [data-team-card]")];
+  const cards = [...document.querySelectorAll("[data-project], [data-service], [data-team-card]")];
   if (!cards.length) return;
 
   cards.forEach((card) => {

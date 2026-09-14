@@ -54,8 +54,10 @@ function headlineLines(root) {
   return [root];
 }
 
+/* Linie wjeżdżają z dołu — bez rozbłysku (usunięty w audycie: efekt „z zestawu",
+   który osłabiał intro i kółko). prepareGlow zostaje w pliku na wypadek powrotu. */
 export function prepareHeadline(root) {
-  const lines = headlineLines(root).map(prepareGlow).filter(Boolean);
+  const lines = headlineLines(root);
   gsap.set(lines, { yPercent: 110 });
   return lines;
 }

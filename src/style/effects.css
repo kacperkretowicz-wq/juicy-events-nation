@@ -19,8 +19,8 @@
   opacity: var(--glow-intensity);
   background: linear-gradient(
     100deg,
-    var(--accent-warm) 0%,
-    #ffd27a 42%,
+    var(--accent-soft) 0%,
+    #dfe6ff 42%,
     var(--accent) 100%
   );
   -webkit-background-clip: text;
@@ -73,4 +73,18 @@
 
 .mark.is-marked {
   --mark: 100%;
+}
+
+/* ——— Jednolity grade materiałów ———
+   Zdjęcia i wideo pochodzą z różnych sesji i aparatów. Ten sam filtr na każdym
+   kadrze (wartość w tokens.css) daje im wspólny charakter — mniej „kolażu",
+   więcej jednego stylu. Hover-transformy zostają, filtr jest niezależny. */
+.agency__media video,
+.work__video,
+.project-card__media img,
+.project-card__media video,
+.gallery-item__media img,
+.realizacje-hero-photo img,
+.realizacje-video__el {
+  filter: var(--grade);
 }

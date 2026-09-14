@@ -123,7 +123,7 @@
   display: grid;
   align-content: center;
   padding: calc(var(--pad) * 2) var(--pad);
-  background: var(--dark);
+  background: var(--accent);
   color: var(--cream);
   opacity: 0;
   pointer-events: none;
@@ -153,8 +153,9 @@
 }
 
 .mega-menu__close:hover {
-  background: var(--accent);
-  border-color: var(--accent);
+  background: var(--cream);
+  border-color: var(--cream);
+  color: var(--accent);
 }
 
 .mega-menu__grid {
@@ -179,7 +180,7 @@
 }
 
 .mega-menu__list a:hover {
-  color: var(--accent);
+  color: var(--ink);
   transform: translateX(0.6rem);
 }
 
@@ -189,143 +190,136 @@
   justify-items: start;
   padding-bottom: 0.5rem;
   font-size: var(--body);
-  color: var(--muted-light);
+  color: rgba(246, 244, 239, 0.75);
+}
+
+.mega-menu__aside .eyebrow {
+  color: rgba(246, 244, 239, 0.75);
 }
 
 .mega-menu__aside a:hover {
-  color: var(--accent);
+  color: var(--ink);
 }
 
-.mega-menu__aside .social {
+.mega-menu__links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.25rem;
   margin-top: 1rem;
   color: var(--cream);
 }
 
-/* ——— FOOTER ——— */
+.mega-menu__link {
+  border-bottom: 1px solid rgba(246, 244, 239, 0.4);
+}
+
+/* ——— FOOTER ———
+   Dwa wiersze zamiast czterech kolumn z tytułami: firma (adres, NIP, godziny — rzeczy,
+   których szablon nie ma) + nawigacja w linii; pod spodem social słowami i copyright. */
 
 .site-footer {
   background: var(--dark);
   color: var(--cream);
-  padding: var(--block) 0 0;
+  padding: calc(var(--block) * 0.7) 0 0;
   overflow: hidden;
 }
 
-.site-footer__grid,
-.site-footer__bottom {
+.site-footer__inner {
   max-width: var(--max);
   margin: 0 auto;
   padding: 0 var(--pad);
 }
 
-/* Spis treści strony — marka + dwie kolumny nawigacji + social. */
-.site-footer__grid {
+.site-footer__row {
   display: grid;
-  grid-template-columns: minmax(0, 1.6fr) repeat(3, minmax(0, 1fr));
-  gap: clamp(1.75rem, 4vw, 3.5rem);
-  padding-bottom: clamp(2.5rem, 5vw, 3.5rem);
+  grid-template-columns: minmax(0, 1.4fr) minmax(0, 1fr);
+  gap: 2rem 3rem;
+  padding-bottom: clamp(2rem, 3.5vw, 2.75rem);
   border-bottom: 1px solid var(--line-light);
 }
 
-.site-footer__brand {
+.site-footer__firm {
   display: grid;
-  gap: 1.1rem;
-  align-content: start;
-  max-width: 30ch;
+  gap: 0.35rem;
+  font-size: var(--body);
+  line-height: 1.6;
 }
 
-.site-footer__pitch {
+.site-footer__firm p {
   margin: 0;
+  max-width: none;
+}
+
+.site-footer__name {
+  margin-bottom: 0.5rem !important;
   font-size: var(--display-4);
-  font-weight: 700;
-  letter-spacing: -0.015em;
+  font-weight: 800;
+  letter-spacing: -0.02em;
   text-transform: uppercase;
-  color: var(--cream);
 }
 
-.site-footer__contact {
-  display: grid;
-  gap: 0.4rem;
-  justify-items: start;
-  font-size: var(--body);
+.site-footer__muted {
   color: var(--muted-light);
 }
 
-.site-footer__contact a {
-  width: fit-content;
-  transition: color 0.3s var(--ease);
+.site-footer__firm a:hover {
+  color: var(--accent-soft);
 }
 
-.site-footer__contact a:hover {
-  color: var(--accent);
+.site-footer .slot {
+  color: var(--accent-soft);
+  border-color: var(--accent-soft);
 }
 
-.site-footer__contact p {
-  margin: 0.3rem 0 0;
-}
-
-.site-footer__col {
-  display: grid;
-  gap: 0.7rem;
-  align-content: start;
-}
-
-.site-footer__col-title {
-  margin: 0 0 0.35rem;
-  font-size: var(--micro);
-  font-weight: 600;
-  letter-spacing: 0.16em;
-  text-transform: uppercase;
-  color: var(--muted-light);
-  opacity: 0.7;
-}
-
-.site-footer__col a {
-  width: fit-content;
-  font-size: var(--body);
-  color: var(--cream);
-  transition: color 0.3s var(--ease), transform 0.3s var(--ease);
-}
-
-.site-footer__col a:hover {
-  color: var(--accent);
-  transform: translateX(0.35rem);
-}
-
-.site-footer__col--social .social {
-  margin-top: 0.15rem;
-  color: var(--cream);
-}
-
-.site-footer__bottom {
+.site-footer__nav {
   display: flex;
   flex-wrap: wrap;
-  gap: 1rem;
-  align-items: center;
-  justify-content: space-between;
-  padding-top: 1.75rem;
-  padding-bottom: 1.75rem;
-  font-size: var(--micro);
-  letter-spacing: 0.14em;
-  text-transform: uppercase;
-  color: var(--muted-light);
+  align-content: start;
+  justify-content: end;
+  gap: 0.5rem 1.75rem;
+  font-size: var(--body);
 }
 
-.site-footer__bottom p {
-  margin: 0;
-}
-
-.site-footer__totop {
+.site-footer__nav a {
   transition: color 0.3s var(--ease);
 }
 
-.site-footer__totop:hover {
-  color: var(--accent);
+.site-footer__nav a:hover {
+  color: var(--accent-soft);
+}
+
+.site-footer__row--bottom {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 1rem 2rem;
+  padding: 1.4rem 0;
+  border-bottom: 0;
+  font-size: 0.95rem;
+  color: var(--muted-light);
+}
+
+.site-footer__links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.4rem;
+}
+
+.site-footer__link {
+  color: var(--cream);
+  border-bottom: 1px solid rgba(246, 244, 239, 0.35);
+  transition: color 0.3s var(--ease), border-color 0.3s var(--ease);
+}
+
+.site-footer__link:hover {
+  color: var(--accent-soft);
+  border-color: var(--accent-soft);
 }
 
 /* Gigantyczny wordmark — sygnatura Sweetpunk */
 .site-footer__wordmark {
   background: var(--accent);
-  color: var(--dark);
+  color: var(--cream);
   overflow: hidden;
 }
 
@@ -341,101 +335,116 @@
   transform: translateY(0.06em);
 }
 
-/* ——— SHOWREEL ——— */
-
-.showreel {
+/* ——— PŁYWAJĄCE CTA „KONTAKT" ———
+   Niebieskie kółko w prawym dolnym rogu, na każdej podstronie — sygnatura Juicy
+   (jak na mlynska12.pl) i najkrótsza droga do kontaktu. Napis krąży wokół strzałki,
+   kółko „wskakuje" po wczytaniu strony; na hover rośnie, a strzałka rusza w górę.
+   Chowa się, gdy sekcja kontaktu / stopka są już na ekranie (float-cta.js). */
+.float-cta {
   position: fixed;
-  inset: 0;
-  z-index: 1100;
+  right: clamp(1rem, 2.4vw, 2.5rem);
+  bottom: clamp(1rem, 2.4vw, 2.5rem);
+  z-index: 850;
   display: grid;
   place-items: center;
-  padding: var(--pad);
-  background: rgba(8, 8, 8, 0.96);
-  color: var(--cream);
-  opacity: 0;
-  pointer-events: none;
-  transition: opacity 0.45s var(--ease);
+  width: clamp(6.5rem, 10.5vw, 10rem);
+  height: clamp(6.5rem, 10.5vw, 10rem);
+  border-radius: 50%;
+  background: var(--accent);
+  color: var(--on-accent);
+  box-shadow: 0 22px 48px -18px color-mix(in srgb, var(--accent) 75%, transparent);
+  transform: scale(0);
+  animation: float-cta-in 0.9s cubic-bezier(0.34, 1.56, 0.64, 1) 0.9s forwards;
+  transition: background 0.35s var(--ease), opacity 0.35s var(--ease), box-shadow 0.35s var(--ease);
 }
 
-.showreel.is-open {
-  opacity: 1;
-  pointer-events: auto;
+@keyframes float-cta-in {
+  from {
+    transform: scale(0) rotate(-40deg);
+  }
+  to {
+    transform: scale(1) rotate(0deg);
+  }
 }
 
-.showreel__close {
-  position: absolute;
-  top: var(--pad);
-  right: var(--pad);
-  padding: 0.6rem 1.15rem;
-  background: transparent;
-  border: 1px solid var(--line-light);
-  color: inherit;
-  font-size: var(--micro);
-  font-weight: 600;
-  letter-spacing: 0.14em;
-  text-transform: uppercase;
-  cursor: pointer;
-}
-
-.showreel__stage {
-  width: min(1180px, 100%);
-}
-
-.showreel__track {
-  position: relative;
-  aspect-ratio: 16 / 9;
-  background: #000;
-  overflow: hidden;
-}
-
-.showreel__track figure {
+/* Napis na okręgu — obraca się w miejscu, na hover przyspiesza. */
+.float-cta__ring {
   position: absolute;
   inset: 0;
-  margin: 0;
-  opacity: 0;
-  transition: opacity 0.6s var(--ease);
-}
-
-.showreel__track figure.is-active {
-  opacity: 1;
-}
-
-.showreel__track video,
-.showreel__track img {
   width: 100%;
   height: 100%;
-  object-fit: cover;
-}
-
-.showreel__track figcaption {
-  position: absolute;
-  left: 1.25rem;
-  bottom: 1.25rem;
-  font-size: var(--micro);
+  fill: currentColor;
+  font-family: var(--font);
+  font-size: 8.4px;
+  font-weight: 700;
   letter-spacing: 0.14em;
   text-transform: uppercase;
+  animation: float-cta-spin 16s linear infinite;
 }
 
-.showreel__controls {
-  display: flex;
-  gap: 0.5rem;
-  margin-top: 1rem;
+@keyframes float-cta-spin {
+  to {
+    transform: rotate(360deg);
+  }
 }
 
-.showreel__controls button {
-  padding: 0.55rem 1.1rem;
-  background: transparent;
-  border: 1px solid var(--line-light);
-  color: inherit;
-  font-size: var(--micro);
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-  cursor: pointer;
+/* Strzałka w środku — na hover obraca się o 45° w górę, jak „wyjdź do kontaktu". */
+.float-cta__arrow {
+  display: grid;
+  place-items: center;
+  width: 2.6rem;
+  height: 2.6rem;
+  border-radius: 50%;
+  background: color-mix(in srgb, var(--on-accent) 14%, transparent);
+  transition: transform 0.5s var(--ease-expo), background 0.35s var(--ease);
 }
 
-.showreel__controls button:hover {
-  background: var(--accent);
-  border-color: var(--accent);
+.float-cta__arrow svg {
+  width: 1.15rem;
+  height: 1.15rem;
+}
+
+.float-cta:hover,
+.float-cta:focus-visible {
+  background: var(--accent-deep);
+  box-shadow: 0 26px 56px -18px color-mix(in srgb, var(--accent) 90%, transparent);
+}
+
+.float-cta:hover .float-cta__ring {
+  animation-duration: 6s;
+}
+
+.float-cta:hover .float-cta__arrow {
+  transform: rotate(-45deg);
+  background: color-mix(in srgb, var(--on-accent) 22%, transparent);
+}
+
+/* Nad niebieską sekcją: kremowe kółko z niebieskim napisem. */
+.float-cta.is-inverted {
+  background: var(--cream);
+  color: var(--accent);
+  box-shadow: 0 22px 48px -18px rgba(13, 12, 11, 0.45);
+}
+
+.float-cta.is-inverted:hover,
+.float-cta.is-inverted:focus-visible {
+  background: var(--white);
+}
+
+.float-cta.is-inverted .float-cta__arrow {
+  background: color-mix(in srgb, var(--accent) 12%, transparent);
+}
+
+/* Schowane nad kontaktem — łagodnie, bez kasowania animacji wejścia. */
+.float-cta.is-hidden {
+  opacity: 0;
+  pointer-events: none;
+}
+
+@media (max-width: 720px) {
+  .float-cta__ring {
+    font-size: 9.2px;
+  }
 }
 
 /* ——— RESPONSYWNOŚĆ NAWIGACJI ——— */
@@ -460,19 +469,11 @@
     gap: 2.5rem;
   }
 
-  .site-footer__grid {
-    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
-  }
-
-  .site-footer__brand {
-    grid-column: 1 / -1;
-    max-width: none;
-  }
-}
-
-@media (max-width: 560px) {
-  .site-footer__grid {
+  .site-footer__row {
     grid-template-columns: minmax(0, 1fr);
-    gap: 2rem;
+  }
+
+  .site-footer__nav {
+    justify-content: start;
   }
 }

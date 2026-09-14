@@ -1,35 +1,61 @@
-/* ——— Strony pojedynczych realizacji (realizacje-<slug>.html) ——— */
+/* ——— Strony pojedynczych realizacji (realizacje-<slug>.html) ———
+   Karta projektu: tytuł + tabela faktów, kadr/wideo, jeden cytat, zdjęcia z podpisami. */
 
-.realizacje-hero {
+.case-head {
   display: grid;
-  align-content: end;
-  min-height: 52svh;
+  grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr);
+  gap: clamp(2rem, 5vw, 5rem);
+  align-items: end;
   max-width: var(--max);
   margin: 0 auto;
-  padding: clamp(8rem, 16vw, 12rem) var(--pad) clamp(2rem, 4vw, 3rem);
+  padding: clamp(8rem, 15vw, 11rem) var(--pad) clamp(2rem, 4vw, 3rem);
 }
 
-.realizacje-hero h1 {
-  max-width: 20ch;
+.case-head h1 {
+  max-width: 14ch;
   font-size: var(--display-1);
+  line-height: 0.9;
 }
 
-.realizacje-hero__tagline {
-  margin: 1.25rem 0 1.5rem;
-  max-width: 46ch;
-  font-size: clamp(1rem, 1.2vw, 1.15rem);
-  line-height: 1.68;
+.case-head__sub {
+  margin: 1.25rem 0 0;
+  max-width: 40ch;
+  font-size: var(--body-lg);
+  line-height: 1.5;
   color: var(--muted);
 }
 
-.realizacje-hero .project-card__meta {
-  margin-top: 0.25rem;
+.case-facts {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0 1.5rem;
+  margin: 0;
+  border-top: 1px solid var(--line);
+}
+
+.case-facts > div {
+  display: grid;
+  gap: 0.2rem;
+  padding: 0.85rem 0;
+  border-bottom: 1px solid var(--line);
+}
+
+.case-facts dt {
+  font-size: 0.9rem;
+  color: var(--muted);
+}
+
+.case-facts dd {
+  margin: 0;
+  font-size: var(--body);
+  font-weight: 600;
+  line-height: 1.4;
 }
 
 .realizacje-media {
   max-width: var(--max);
   margin: 0 auto;
-  padding: 0 var(--pad) clamp(3rem, 6vw, 5rem);
+  padding: 0 var(--pad);
 }
 
 .realizacje-video {
@@ -73,7 +99,7 @@
 }
 
 .realizacje-hero-photo {
-  aspect-ratio: 16 / 9;
+  aspect-ratio: 21 / 9;
   overflow: hidden;
   background: var(--cream-deep);
 }
@@ -84,28 +110,37 @@
   object-fit: cover;
 }
 
-.realizacje-body {
+/* Jeden cytat — od klienta albo od Kajetana */
+.case-quote {
   max-width: var(--max);
   margin: 0 auto;
   padding: clamp(3rem, 6vw, 5rem) var(--pad);
-  display: grid;
-  grid-template-columns: minmax(0, 1fr) minmax(0, 1.4fr);
-  gap: clamp(2rem, 5vw, 5rem);
 }
 
-.realizacje-body__aside p.eyebrow {
-  margin-bottom: 0.75rem;
+.case-quote blockquote {
+  margin: 0;
 }
 
-.realizacje-body__copy p {
-  margin: 0 0 1.15rem;
-  max-width: 62ch;
+.case-quote p {
+  margin: 0;
+  max-width: 34ch;
+  font-size: clamp(1.35rem, 2.4vw, 2.1rem);
+  font-weight: 500;
+  line-height: 1.25;
+  letter-spacing: -0.02em;
+}
+
+.case-quote cite {
+  display: block;
+  margin-top: 1rem;
+  font-style: normal;
+  font-size: var(--body);
   color: var(--muted);
-  line-height: 1.7;
 }
 
-.realizacje-body__copy p:last-child {
-  margin-bottom: 0;
+.gallery-item__caption {
+  font-size: 0.95rem;
+  color: var(--muted);
 }
 
 .realizacje-nav {
@@ -120,7 +155,12 @@
 }
 
 @media (max-width: 860px) {
-  .realizacje-body {
+  .case-head {
     grid-template-columns: minmax(0, 1fr);
+    align-items: start;
+  }
+
+  .realizacje-hero-photo {
+    aspect-ratio: 4 / 3;
   }
 }

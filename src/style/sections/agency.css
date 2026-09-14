@@ -4,9 +4,10 @@
 }
 
 /* Akt pierwszy — sticky scena z nagłówkiem i kurtyną.
-   Więcej wysokości = więcej scrolla na lot logo, więc jest wolniejszy i finezyjny. */
+   Wysokość = ile scrolla zajmuje lot logo i kurczenie wideo. Skrócone z 320svh
+   (feedback: strona za długa) — animacja jest ta sama, tylko szybciej domyka. */
 .agency__act {
-  height: 320svh;
+  height: 260svh;
 }
 
 .agency__stage {
@@ -114,6 +115,11 @@
   color: var(--cream);
 }
 
+.agency__layer--light .bracket,
+.agency__intro-title .bracket {
+  color: var(--accent-soft);
+}
+
 .agency__layer--dark {
   position: absolute;
   inset: 0 var(--pad) clamp(3rem, 7vw, 6rem);
@@ -140,44 +146,6 @@
   color: rgba(246, 244, 239, 0.72);
 }
 
-/* Akt drugi — jasny blok z rozwinięciem */
-.agency__white {
-  position: relative;
-  z-index: 4;
-  display: grid;
-  justify-content: end;
-  padding: var(--block) var(--pad);
-  background: var(--cream);
-}
-
-.agency__copy {
-  display: grid;
-  gap: clamp(1.5rem, 3vw, 2.75rem);
-  width: min(100%, 62rem);
-  margin-left: auto;
-  max-width: var(--max);
-}
-
-.agency__lead {
-  max-width: 26ch;
-  font-size: var(--display-2);
-}
-
-.agency__body {
-  display: grid;
-  gap: 1.25rem;
-  justify-items: start;
-  max-width: 46ch;
-  margin-left: auto;
-  color: var(--muted);
-}
-
-.agency__body p {
-  margin: 0;
-  font-size: clamp(1rem, 1.25vw, 1.2rem);
-  line-height: 1.65;
-}
-
 @media (max-width: 980px) {
   .agency__logo-slot,
   .agency__intro {
@@ -191,13 +159,5 @@
 
   .agency__logo {
     width: clamp(10rem, 40vw, 15rem);
-  }
-
-  .agency__white {
-    justify-content: stretch;
-  }
-
-  .agency__body {
-    margin-left: 0;
   }
 }
