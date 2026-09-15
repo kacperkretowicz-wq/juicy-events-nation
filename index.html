@@ -104,44 +104,39 @@
 
     <main id="top" tabindex="-1">
       <!-- 1. AGENCJA — full-bleed wideo (logo → nagłówek) kurczące się w linię -->
-      <!-- agency--intro: film startuje w małym kwadracie (patrz agency.js /
-           INTRO_HOLD). Klasę zdejmuje JS, dlatego reguły intro są w CSS pod
-           html.js — bez JS kadr od razu jest pełnoekranowy. -->
-      <section class="agency agency--intro" id="agencja" data-agency>
+      <section class="agency" id="agencja" data-agency>
         <div class="agency__act" data-agency-act>
           <div class="agency__stage" data-agency-stage>
             <!-- Ton nagłówka śledzi SAMO wideo (ono się kurczy), a nie całą scenę —
                  inaczej header zostaje biały nad kremowym tłem i znika. -->
             <div class="agency__media" data-agency-media data-tone="dark">
-              <!-- Ramka kadru: niesie klip intro (mały kwadrat → cały hero) i jest
-                   klikalnym obszarem showreelu, więc kursor-pigułka pojawia się
-                   dokładnie nad widocznym filmem, a nie nad całą sceną. -->
-              <div
-                class="agency__frame"
-                data-agency-frame
-                data-cursor="Odtwórz showreel"
-                data-cursor-icon="play"
-              >
-                <div class="agency__media-inner" data-agency-media-inner>
-                  <video
-                    src="/media/hero.mp4"
-                    poster="/media/hero-poster.jpg"
-                    muted
-                    playsinline
-                    loop
-                    autoplay
-                    preload="metadata"
-                    data-agency-video
-                  ></video>
-                  <div class="agency__veil" aria-hidden="true"></div>
-                </div>
+              <div class="agency__media-inner" data-agency-media-inner>
+                <video
+                  src="/media/hero.mp4"
+                  poster="/media/hero-poster.jpg"
+                  muted
+                  playsinline
+                  loop
+                  autoplay
+                  preload="metadata"
+                  data-agency-video
+                ></video>
+                <div class="agency__veil" aria-hidden="true"></div>
               </div>
               <div class="agency__edge" data-agency-edge aria-hidden="true"></div>
+
+              <!-- Podąża za kursorem, gdy jest nad wideo (natywny wskaźnik jest
+                   ukryty przez cursor:none). Klik łapany na całym .agency__media
+                   odtwarza showreel od początku, z dźwiękiem. -->
+              <div class="agency__reel-cta" data-agency-reel-cta aria-hidden="true">
+                <span class="agency__reel-cta-icon" aria-hidden="true"></span>
+                <span class="agency__reel-cta-label" data-agency-reel-label>Odtwórz showreel</span>
+              </div>
             </div>
 
-            <!-- Klawiaturowy odpowiednik kliknięcia w kadr — widoczny tylko przy
-                 nawigacji tabem, bo dla myszy afordancją jest kursor-pigułka. -->
-            <button class="agency__reel-cta" type="button" data-agency-reel>
+            <!-- Klawiaturowy odpowiednik kliknięcia w kadr — pigułka wyżej jest
+                 afordancją tylko dla myszy, więc nie da się jej sfokusować. -->
+            <button class="agency__reel-key" type="button" data-agency-reel-key>
               Odtwórz showreel z dźwiękiem
             </button>
 

@@ -34,6 +34,8 @@
   z-index: 1;
   overflow: hidden;
   will-change: clip-path;
+  /* Natywny wskaźnik ustępuje pigułce showreelu (patrz .agency__reel-cta). */
+  cursor: none;
 }
 
 /* Cienka linia na krawędzi kurczącego się wideo — osobny element, żeby
@@ -48,35 +50,6 @@
   transform: translateY(-100%);
   pointer-events: none;
   z-index: 2;
-}
-
-/* Ramka kadru — osobna warstwa klipu, żeby intro (mały kwadrat) nie kolidowało
-   z klipem wipe'u na .agency__media, którym steruje scroll. */
-.agency__frame {
-  position: absolute;
-  inset: 0;
-  overflow: hidden;
-}
-
-/* Intro: film gra w małym kwadracie na środku sceny. Po INTRO_HOLD (agency.js)
-   klasa spada i kadr JEDNYM cięciem wypełnia hero — bez transition, bo ma to
-   być cięcie montażowe, nie rozjazd. Pod html.js, bo klasę zdejmuje JS. */
-html.js .agency--intro .agency__frame {
-  --intro-square: min(38vh, 34vw);
-  clip-path: inset(
-    calc(50% - var(--intro-square) / 2) calc(50% - var(--intro-square) / 2)
-  );
-}
-
-/* W kwadracie scena jest ciemna — na kremowym tle białe logo i intro po prostu
-   by zniknęły. */
-html.js .agency--intro .agency__stage {
-  background: var(--dark);
-}
-
-/* Niebieska krawędź wipe'u nie ma czego rozdzielać, dopóki kadr jest kwadratem. */
-html.js .agency--intro .agency__edge {
-  opacity: 0;
 }
 
 .agency__media-inner {
@@ -101,9 +74,116 @@ html.js .agency--intro .agency__edge {
   background: linear-gradient(to top, rgba(6, 6, 6, 0.78) 0%, rgba(6, 6, 6, 0.18) 45%, rgba(6, 6, 6, 0.18) 100%);
 }
 
-/* Showreel z klawiatury — dla myszy afordancją jest kursor-pigułka (cursor.js),
-   więc przycisk wychodzi z ukrycia tylko przy nawigacji tabem. */
+/* ——— Przycisk-kursor showreelu (hero-reel.js) ———
+   Podąża za myszą nad wideo hero i zastępuje natywny wskaźnik. Stan spoczynku:
+   biała pigułka z czarnym krążkiem play. Stan odtwarzania: pigułka robi się
+   PRZEZROCZYSTA, zostaje sam biały napis i obwódka ze znakiem stop. Każdy klik
+   daje krótki błysk akcentem (is-flash). */
 .agency__reel-cta {
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 4;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.65rem;
+  padding: 0.85rem 1.5rem 0.85rem 1rem;
+  border-radius: 999px;
+  background: var(--white);
+  color: var(--ink);
+  font-size: var(--micro);
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  white-space: nowrap;
+  opacity: 0;
+  pointer-events: none;
+  isolation: isolate;
+  transform: translate3d(-50%, -50%, 0) scale(0.85);
+  transition: opacity 0.25s var(--ease), transform 0.25s var(--ease),
+    background-color 0.3s var(--ease), color 0.3s var(--ease);
+  will-change: transform, opacity;
+}
+
+.agency__media.is-cursor-active .agency__reel-cta {
+  opacity: 1;
+  transform: translate3d(-50%, -50%, 0) scale(1);
+}
+
+.agency__reel-cta.is-playing {
+  background: transparent;
+  color: var(--white);
+}
+
+/* Błysk przy kliknięciu — osobna warstwa pod tekstem i ikoną, żeby nie przerywać
+   przejścia kolorów samej pigułki. */
+.agency__reel-cta::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  border-radius: inherit;
+  background: var(--accent);
+  opacity: 0;
+  transition: opacity 0.45s var(--ease);
+}
+
+.agency__reel-cta.is-flash::before {
+  opacity: 1;
+  transition: opacity 0.05s linear;
+}
+
+.agency__reel-cta-icon {
+  position: relative;
+  display: grid;
+  place-items: center;
+  width: 2.1rem;
+  height: 2.1rem;
+  border-radius: 50%;
+  background: var(--ink);
+  transition: background-color 0.3s var(--ease), border-color 0.3s var(--ease);
+}
+
+.agency__reel-cta-icon::after {
+  content: "";
+  width: 0;
+  height: 0;
+  border-left: 0.42rem solid var(--white);
+  border-top: 0.28rem solid transparent;
+  border-bottom: 0.28rem solid transparent;
+  margin-left: 0.14rem;
+  transition: border-color 0.3s var(--ease), background-color 0.3s var(--ease),
+    width 0.3s var(--ease), height 0.3s var(--ease), margin 0.3s var(--ease);
+}
+
+.agency__reel-cta.is-playing .agency__reel-cta-icon {
+  background: transparent;
+  border: 1.5px solid var(--white);
+}
+
+/* Trójkąt „play" zamienia się w kwadrat „stop" */
+.agency__reel-cta.is-playing .agency__reel-cta-icon::after {
+  width: 0.65rem;
+  height: 0.65rem;
+  margin-left: 0;
+  border: 0;
+  background: var(--white);
+}
+
+/* Bez precyzyjnego wskaźnika nie ma czego śledzić — zostaje zwykły tap w kadr. */
+@media (hover: none), (pointer: coarse) {
+  .agency__reel-cta {
+    display: none;
+  }
+
+  .agency__media {
+    cursor: pointer;
+  }
+}
+
+/* Showreel z klawiatury — pigułka jest afordancją tylko dla myszy, więc ten
+   przycisk wychodzi z ukrycia wyłącznie przy nawigacji tabem. */
+.agency__reel-key {
   position: absolute;
   left: var(--pad);
   bottom: var(--pad);
@@ -121,7 +201,7 @@ html.js .agency--intro .agency__edge {
   pointer-events: none;
 }
 
-.agency__reel-cta:focus-visible {
+.agency__reel-key:focus-visible {
   opacity: 1;
   pointer-events: auto;
 }
