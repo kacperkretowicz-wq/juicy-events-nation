@@ -67,8 +67,10 @@
         <div class="hero-intro__frame" data-hero-intro-frame>
           <img class="hero-intro__img" src="" alt="" data-hero-intro-img />
         </div>
-        <span class="hero-intro__mark hero-intro__mark--j" data-hero-intro-j>J</span>
-        <span class="hero-intro__mark hero-intro__mark--e" data-hero-intro-e>E</span>
+        <!-- Oba znaki mają viewBox całego logotypu, więc nałożone na siebie
+             (przesunięcie 0,0) odtwarzają „Je!" co do piksela. -->
+        <img class="hero-intro__mark" src="/media/mark-j.svg" alt="" data-hero-intro-j />
+        <img class="hero-intro__mark" src="/media/mark-e.svg" alt="" data-hero-intro-e />
       </div>
     </div>
 

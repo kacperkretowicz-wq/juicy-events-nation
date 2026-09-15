@@ -2,18 +2,27 @@ import gsap from "gsap";
 import { lenis } from "../shared.js";
 
 // Intro przy każdym wejściu i odświeżeniu. Choreografia:
-//   1. litery J i E stoją obok siebie na środku,
-//   2. rozjeżdżają się na boki, a między nimi rośnie pojedyncza linia,
+//   1. logotyp „Je!" na środku (oba znaki nałożone, przesunięcie 0,0),
+//   2. J i e! rozjeżdżają się na boki, a między nimi rośnie pojedyncza linia,
 //   3. linia rozwija się w prostokątną ramkę, J dojeżdża do jej lewego górnego,
-//      a E do prawego dolnego narożnika,
+//      a e! do prawego dolnego narożnika,
 //   4. w ramce błyskają zdjęcia z realizacji (CUT ms na zdjęcie).
 
 const CUT = 300; // ms na jedno zdjęcie
 const CUTS = 6; // liczba cięć
 
-const HOLD = 0.35; // s: „JE" razem, zanim ruszą
-const SPREAD = 0.55; // s: rozjazd liter + linia na pełną szerokość
+const HOLD = 0.35; // s: logotyp w całości, zanim znaki ruszą
+const SPREAD = 0.55; // s: rozjazd znaków + linia na pełną szerokość
 const OPEN = 0.6; // s: linia rozwija się w prostokąt
+
+// Pudło logotypu w jednostkach źródła (viewBox obu znaków) i środki liter w tym
+// pudle — zmierzone na obrysach glifów. Animujemy pudła, a celujemy środkami
+// liter, dlatego każde przesunięcie liczymy względem tych punktów.
+const BOX = { w: 322, h: 219 };
+const LETTER = {
+  j: { x: 69.4, y: 111.1 },
+  e: { x: 221.6, y: 109.5 },
+};
 
 // Zdjęcia leżą w public/, więc Vite ich nie indeksuje — liczby plików trzymamy
 // tutaj (katalogi mają numerację 01..N).
@@ -103,12 +112,26 @@ export function initHeroIntro() {
   const run = () => {
     const w = stage.offsetWidth;
     const h = stage.offsetHeight;
-    // Punkt startowy: litery stykają się barkami na środku.
-    const together = (markJ.offsetWidth + markE.offsetWidth) / 4;
+    const scale = markJ.offsetWidth / BOX.w;
 
-    gsap.set([markJ, markE], { xPercent: -50, yPercent: -50, y: 0 });
-    gsap.set(markJ, { x: -together });
-    gsap.set(markE, { x: together });
+    // Gdzie środek litery leży względem środka jej pudła.
+    const offset = (letter) => ({
+      x: (letter.x - BOX.w / 2) * scale,
+      y: (letter.y - BOX.h / 2) * scale,
+    });
+    const oJ = offset(LETTER.j);
+    const oE = offset(LETTER.e);
+    // Przesunięcie pudła takie, by ŚRODEK litery wypadł w punkcie (tx, ty)
+    // liczonym od środka sceny.
+    const aim = (o, tx, ty) => ({ x: tx - o.x, y: ty - o.y });
+
+    const jSide = aim(oJ, -w / 2, 0);
+    const eSide = aim(oE, w / 2, 0);
+    const jCorner = aim(oJ, -w / 2, -h / 2);
+    const eCorner = aim(oE, w / 2, h / 2);
+
+    // Faza 1: zerowe przesunięcie = nienaruszony logotyp na środku.
+    gsap.set([markJ, markE], { xPercent: -50, yPercent: -50, x: 0, y: 0 });
     // Wysokość startowa (grubość linii) zostaje z CSS — GSAP dopisze ją sobie
     // z computed style przy animacji do pełnego prostokąta.
     gsap.set(frame, { width: 0 });
@@ -117,13 +140,13 @@ export function initHeroIntro() {
       .timeline({ defaults: { ease: "power3.inOut" } })
       // Faza 2: rozjazd na boki + linia rośnie do pełnej szerokości ramki.
       .addLabel("spread", HOLD)
-      .to(markJ, { x: -w / 2, duration: SPREAD }, "spread")
-      .to(markE, { x: w / 2, duration: SPREAD }, "spread")
+      .to(markJ, { x: jSide.x, y: jSide.y, duration: SPREAD }, "spread")
+      .to(markE, { x: eSide.x, y: eSide.y, duration: SPREAD }, "spread")
       .to(frame, { width: w, duration: SPREAD }, "spread")
-      // Faza 3: linia rozwija się w prostokąt, litery jadą w narożniki.
+      // Faza 3: linia rozwija się w prostokąt, znaki jadą w narożniki.
       .addLabel("open")
-      .to(markJ, { y: -h / 2, duration: OPEN }, "open")
-      .to(markE, { y: h / 2, duration: OPEN }, "open")
+      .to(markJ, { x: jCorner.x, y: jCorner.y, duration: OPEN }, "open")
+      .to(markE, { x: eCorner.x, y: eCorner.y, duration: OPEN }, "open")
       .to(frame, { height: h, duration: OPEN }, "open")
       .call(flicker, null, "open");
   };

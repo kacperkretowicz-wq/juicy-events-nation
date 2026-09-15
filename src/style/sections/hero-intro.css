@@ -11,6 +11,8 @@ html.js .hero-intro {
   --intro-w: 56vmin;
   --intro-h: 34vmin;
   --intro-line: 0.32rem;
+  /* Szerokość pudła logotypu, w którym siedzą oba znaki. */
+  --intro-mark: 34vmin;
 
   position: fixed;
   inset: 0;
@@ -66,19 +68,18 @@ html.js .hero-intro.is-done {
   display: block;
 }
 
-/* Litery zamiast strzałek z inspiracji. Pozycję nadaje GSAP (x/y od środka),
-   dlatego tu tylko wyśrodkowanie i skala. */
+/* Litery „J" i „e!" z logotypu — zamiast strzałek z inspiracji. Oba pliki mają
+   viewBox całego logo, więc wystarczy je nałożyć, by odtworzyć znak; pozycję
+   nadaje GSAP (x/y od środka pudła), dlatego tu tylko wyśrodkowanie i rozmiar.
+   aspect-ratio trzyma layout, zanim SVG się wczyta. */
 .hero-intro__mark {
   position: absolute;
   left: 50%;
   top: 50%;
   /* Nad ramką — w inspiracji znaki nachodzą na kadr, nie chowają się pod nim. */
   z-index: 2;
-  font-family: var(--font-display);
-  font-size: clamp(3.5rem, 15vmin, 13rem);
-  font-weight: 800;
-  line-height: 0.78;
-  color: var(--white);
-  user-select: none;
+  width: var(--intro-mark);
+  height: auto;
+  aspect-ratio: 1288 / 872;
   will-change: transform;
 }
