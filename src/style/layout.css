@@ -171,10 +171,11 @@
 .mega-menu__list a {
   display: block;
   padding: 0.15em 0;
+  font-family: var(--font-display);
   font-size: var(--display-2);
   font-weight: 700;
   line-height: 1;
-  letter-spacing: -0.03em;
+  letter-spacing: 0.002em;
   text-transform: uppercase;
   transition: color 0.3s var(--ease), transform 0.4s var(--ease);
 }
