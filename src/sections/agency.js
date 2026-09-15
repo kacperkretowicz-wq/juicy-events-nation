@@ -15,6 +15,7 @@ export function initAgency() {
   if (!section) return;
 
   const act = section.querySelector("[data-agency-act]");
+  const stage = section.querySelector("[data-agency-stage]");
   const media = section.querySelector("[data-agency-media]");
   const mediaInner = section.querySelector("[data-agency-media-inner]");
   const video = section.querySelector("[data-agency-video]");
@@ -91,6 +92,26 @@ export function initAgency() {
   measureFly();
   window.addEventListener("resize", measureFly);
 
+  // Klip ciemnej kopii napisu liczymy w pikselach, nie w procentach. Procenty
+  // w clip-path odnoszą się do własnego boksu elementu, a warstwa napisu jest
+  // kilka razy niższa od stage — przez to granica tekstu rozjeżdżała się z linią
+  // wideo i w połowie animacji powstawał pas, gdzie biały napis leżał już na
+  // kremowym tle, a czarny jeszcze się nie odsłonił. Dlatego trzeba znać
+  // odległość warstwy od góry stage.
+  let darkOffsetTop = 0;
+  const measureLayers = () => {
+    if (!darkLayer || !stage) return;
+    let y = 0;
+    // offsetTop (a nie getBoundingClientRect) — pomiar niezależny od transformów
+    // GSAP nałożonych na .agency__headline.
+    for (let node = darkLayer; node && node !== stage; node = node.offsetParent) {
+      y += node.offsetTop;
+    }
+    darkOffsetTop = y;
+  };
+  measureLayers();
+  ScrollTrigger.addEventListener("refresh", measureLayers);
+
   if (logo) gsap.set(logo, { transformOrigin: "left top" });
   if (headerLogo) gsap.set(headerLogo, { autoAlpha: 0 });
   if (media) media.style.clipPath = "inset(0 0 0% 0)";
@@ -127,7 +148,14 @@ export function initAgency() {
       const visible = (1 - wipeT) * 100; // % wysokości wideo wciąż widoczne od góry
       media.style.clipPath = `inset(0 0 ${100 - visible}% 0)`;
       if (edge) edge.style.top = `${visible}%`;
-      if (darkLayer) darkLayer.style.clipPath = `inset(${visible}% 0 0 0)`;
+      if (darkLayer) {
+        // Linia wideo w pikselach od góry stage → ta sama wartość w układzie
+        // warstwy napisu. Napis przełącza się na czarny dokładnie tam, gdzie
+        // przechodzi granica, bez pasa "znikniętego" tekstu.
+        const edgePx = (visible / 100) * stage.clientHeight;
+        const clipTop = Math.max(0, edgePx - darkOffsetTop);
+        darkLayer.style.clipPath = `inset(${clipTop}px 0 0 0)`;
+      }
     },
   });
 }
