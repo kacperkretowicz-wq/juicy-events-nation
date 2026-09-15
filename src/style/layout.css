@@ -7,9 +7,9 @@
   right: 0;
   z-index: 900;
   display: grid;
-  grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr);
+  grid-template-columns: auto 1fr auto auto;
   align-items: center;
-  gap: 1rem;
+  gap: 1.25rem;
   padding: 1.1rem var(--pad);
   color: var(--white);
   transition: background 0.4s var(--ease), color 0.4s var(--ease),
@@ -93,7 +93,7 @@
 }
 
 .site-header__burger {
-  display: none;
+  display: flex;
   justify-self: end;
   width: 2.75rem;
   height: 2.75rem;

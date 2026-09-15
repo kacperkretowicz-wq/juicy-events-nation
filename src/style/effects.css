@@ -88,3 +88,36 @@
 .realizacje-video__el {
   filter: var(--grade);
 }
+
+/* ——— Przejście stron / siatka kwadratów (identyczne jak leveled-agency.fr) ——— */
+.page-transition {
+  inset: 0;
+  pointer-events: none;
+  position: fixed;
+  width: 100vw;
+  height: 100vh;
+  z-index: 99999;
+  overflow: hidden;
+}
+
+.page-transition_grid {
+  display: grid;
+  grid-template-columns: repeat(var(--cols, 6), 1fr);
+  grid-template-rows: repeat(var(--rows, 4), 1fr);
+  width: 100vw;
+  height: 100vh;
+  gap: 0;
+}
+
+.page-transition_cell {
+  background-color: var(--rndm-color);
+  opacity: 0;
+  visibility: hidden;
+  /* Likwidacja szpar subpixelowych między kwadratami */
+  outline: 1px solid var(--rndm-color);
+  margin: -0.5px;
+  transform: translateZ(0);
+  will-change: opacity, visibility;
+}
+
+
