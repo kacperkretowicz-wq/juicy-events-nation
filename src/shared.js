@@ -108,11 +108,16 @@ function unlockScroll() {
   lenis.start();
 }
 
+const menuToggles = [...document.querySelectorAll("[data-menu-open]")];
+const setToggleState = (open) =>
+  menuToggles.forEach((btn) => btn.setAttribute("aria-expanded", String(open)));
+
 function openMenu() {
   if (!menu) return;
   menu.style.display = "";
   menu.classList.add("is-open");
   menu.setAttribute("aria-hidden", "false");
+  setToggleState(true);
   lockScroll();
   gsap.fromTo(
     menu.querySelectorAll(".mega-menu__list li"),
@@ -125,6 +130,7 @@ function closeMenu() {
   if (!menu) return;
   menu.classList.remove("is-open");
   menu.setAttribute("aria-hidden", "true");
+  setToggleState(false);
   unlockScroll();
   setTimeout(() => {
     if (!menu.classList.contains("is-open")) {
@@ -138,11 +144,12 @@ function closeMenuInstant() {
   menu.classList.remove("is-open");
   menu.setAttribute("aria-hidden", "true");
   menu.style.display = "none";
+  setToggleState(false);
   unlockScroll();
   gsap.set(menu.querySelectorAll(".mega-menu__list li"), { opacity: 0, yPercent: 110 });
 }
 
-document.querySelectorAll("[data-menu-open]").forEach((btn) => btn.addEventListener("click", openMenu));
+menuToggles.forEach((btn) => btn.addEventListener("click", openMenu));
 document.querySelectorAll("button[data-menu-close]").forEach((btn) => btn.addEventListener("click", closeMenu));
 
 document.addEventListener("keydown", (event) => {
