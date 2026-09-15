@@ -33,9 +33,8 @@
 .expertise__title {
   font-size: clamp(2.25rem, 4.8vw, 4.5rem);
   font-weight: 600;
-  line-height: 0.95;
-  letter-spacing: -0.05em;
-  text-transform: none;
+  line-height: 0.86;
+  letter-spacing: 0.002em;
 }
 
 .expertise__lead {

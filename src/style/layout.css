@@ -326,10 +326,11 @@
 .site-footer__wordmark span {
   display: block;
   padding: 0 var(--pad);
+  font-family: var(--font-display);
   font-size: clamp(3.5rem, 16.2vw, 17rem);
   font-weight: 700;
   line-height: 0.82;
-  letter-spacing: -0.045em;
+  letter-spacing: 0.002em;
   text-transform: uppercase;
   white-space: nowrap;
   transform: translateY(0.06em);

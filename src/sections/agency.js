@@ -22,25 +22,34 @@ export function initAgency() {
   const intro = section.querySelector("[data-agency-intro]");
   const headline = section.querySelector("[data-agency-headline]");
   const darkLayer = section.querySelector("[data-agency-layer='dark']");
+  const edge = section.querySelector("[data-agency-edge]");
   const lightTitle = section.querySelector("[data-agency-layer='light'] .agency__title");
   const headerLogo = document.querySelector(".site-header__logo img");
 
   if (video) {
+    const syncPlayback = (play) => {
+      if (play) video.play().catch(() => {});
+      else if (video.muted) video.pause();
+    };
+
     ScrollTrigger.create({
       trigger: section,
       start: "top bottom",
       end: "bottom top",
-      onEnter: () => video.play().catch(() => {}),
-      onEnterBack: () => video.play().catch(() => {}),
+      onEnter: () => syncPlayback(true),
+      onEnterBack: () => syncPlayback(true),
       // Gdy dźwięk jest włączony (klik na "Odtwórz showreel"), wideo/muzyka gra
       // dalej niezależnie od tego, gdzie na stronie jest scroll.
-      onLeave: () => {
-        if (video.muted) video.pause();
-      },
-      onLeaveBack: () => {
-        if (video.muted) video.pause();
-      },
+      onLeave: () => syncPlayback(false),
+      onLeaveBack: () => syncPlayback(false),
     });
+
+    const playIfVisible = () => {
+      const rect = section.getBoundingClientRect();
+      if (rect.top < window.innerHeight && rect.bottom > 0) syncPlayback(true);
+    };
+    playIfVisible();
+    video.addEventListener("loadeddata", playIfVisible, { once: true });
   }
 
   if (lightTitle) {
@@ -84,6 +93,8 @@ export function initAgency() {
 
   if (logo) gsap.set(logo, { transformOrigin: "left top" });
   if (headerLogo) gsap.set(headerLogo, { autoAlpha: 0 });
+  if (media) media.style.clipPath = "inset(0 0 0% 0)";
+  if (edge) edge.style.top = "100%";
 
   ScrollTrigger.create({
     trigger: act,
@@ -111,12 +122,12 @@ export function initAgency() {
       if (intro) gsap.set(intro, { autoAlpha: 1 - fadeEase(introT) });
       gsap.set(headline, { autoAlpha: introT, yPercent: 12 * (1 - flyT) });
 
-      // Wideo realnie kurczy swoją wysokość (nie clip-path!) — dzięki temu border-bottom
-      // rysuje ostrą, cienką linię dokładnie na aktualnej krawędzi, bez "kurtyny".
+      // Wipe przez clip-path (compositor) + osobna linia — bez zmiany height na każdej klatce.
       const wipeT = gsap.utils.clamp(0, 1, (progress - LOGO_END) / (1 - LOGO_END));
-      const edge = (1 - wipeT) * 100; // % wysokości wideo wciąż widoczne od góry
-      media.style.height = `${edge}%`;
-      if (darkLayer) darkLayer.style.clipPath = `inset(${edge}% 0 0 0)`;
+      const visible = (1 - wipeT) * 100; // % wysokości wideo wciąż widoczne od góry
+      media.style.clipPath = `inset(0 0 ${100 - visible}% 0)`;
+      if (edge) edge.style.top = `${visible}%`;
+      if (darkLayer) darkLayer.style.clipPath = `inset(${visible}% 0 0 0)`;
     },
   });
 }

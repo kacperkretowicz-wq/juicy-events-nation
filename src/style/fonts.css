@@ -1,0 +1,68 @@
+/* ——— FONTY MARKI ———
+   Flexible (Art Grootfontein) — nagłówki i duże nazwy. Krój jest TYLKO wersalikowy,
+   dlatego wszystkie nagłówki mają text-transform: uppercase.
+   MonoLisa (monolisa.dev) — podtytuły, opisy, cały tekst bieżący.
+
+   Oba kroje są licencjonowane — pliki nie są trzymane w repo. Wrzuć wykupione
+   webfonty do public/fonts/ pod nazwami poniżej. Dopóki ich nie ma, przeglądarka
+   przechodzi do zamienników z Google Fonts (Big Shoulders Display / JetBrains Mono)
+   o zbliżonych proporcjach — układ i rytm strony są wtedy poprawne.
+
+   Zakres font-weight: 100 900 jest celowy: Flexible H1000 W200 ma jedną grubość,
+   a ten zapis pozwala, by istniejące w CSS `font-weight: 800` nadal ją trafiało
+   (bez tego przeglądarka syntezowałaby sztuczny pogrubiony wariant). */
+
+@font-face {
+  font-family: "Flexible";
+  src: url("/fonts/Flexible-H1000-W200.woff2") format("woff2"),
+    url("/fonts/Flexible-H1000-W200.woff") format("woff"),
+    url("/fonts/Flexible-H1000-W200.otf") format("opentype");
+  font-weight: 100 900;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "MonoLisa";
+  src: url("/fonts/MonoLisa-Regular.woff2") format("woff2"),
+    url("/fonts/MonoLisa-Regular.woff") format("woff");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "MonoLisa";
+  src: url("/fonts/MonoLisa-Medium.woff2") format("woff2"),
+    url("/fonts/MonoLisa-Medium.woff") format("woff");
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "MonoLisa";
+  src: url("/fonts/MonoLisa-SemiBold.woff2") format("woff2"),
+    url("/fonts/MonoLisa-SemiBold.woff") format("woff");
+  font-weight: 600;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "MonoLisa";
+  src: url("/fonts/MonoLisa-Bold.woff2") format("woff2"),
+    url("/fonts/MonoLisa-Bold.woff") format("woff");
+  font-weight: 700 900;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "MonoLisa";
+  src: url("/fonts/MonoLisa-RegularItalic.woff2") format("woff2"),
+    url("/fonts/MonoLisa-RegularItalic.woff") format("woff");
+  font-weight: 400;
+  font-style: italic;
+  font-display: swap;
+}

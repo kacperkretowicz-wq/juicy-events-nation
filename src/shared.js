@@ -30,7 +30,6 @@ export const lenis = new Lenis({
 document.documentElement.classList.add("lenis", "lenis-smooth");
 lenis.on("scroll", ScrollTrigger.update);
 gsap.ticker.add((time) => lenis.raf(time * 1000));
-gsap.ticker.lagSmoothing(0);
 
 window.__jen = { gsap, ScrollTrigger, lenis };
 

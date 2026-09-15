@@ -20,9 +20,8 @@
 .legal__title {
   font-size: clamp(2.5rem, 6.4vw, 6rem);
   font-weight: 600;
-  line-height: 0.95;
-  letter-spacing: -0.05em;
-  text-transform: none;
+  line-height: 0.86;
+  letter-spacing: 0.002em;
   max-width: 12ch;
 }
 
@@ -130,6 +129,9 @@
   padding-top: 1.25rem;
   border-top: 1px solid var(--line);
   font-size: var(--display-4);
+  /* Śródtytuły polityki zostają w MonoLisie: Flexible nie ma minusek, a caps
+     na kilkudziesięciu punktach regulaminu byłby nieczytelny. */
+  font-family: var(--font);
   text-transform: none;
   letter-spacing: -0.02em;
   scroll-margin-top: 6rem;

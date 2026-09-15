@@ -14,7 +14,10 @@ export function initPinnedList({ section, items, dwell = 0.72, onChange }) {
 
   const triggers = items.map((item) => item.querySelector("[data-pinned-select]"));
 
+  let activeIndex = -1;
   const setActive = (index) => {
+    if (index === activeIndex) return;
+    activeIndex = index;
     items.forEach((item, i) => item.classList.toggle("is-active", i === index));
     triggers.forEach((btn, i) => btn?.setAttribute("aria-expanded", String(i === index)));
     onChange?.(index);

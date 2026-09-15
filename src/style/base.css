@@ -53,13 +53,16 @@ textarea {
   color: inherit;
 }
 
+/* Flexible jest wysoki i wąski, więc nagłówki dostają ciaśniejszy interlinaż
+   i neutralny tracking — ujemny zlepiałby wersaliki tego kroju. */
 h1,
 h2,
 h3 {
   margin: 0;
+  font-family: var(--font-display);
   font-weight: 800;
-  line-height: 0.94;
-  letter-spacing: -0.025em;
+  line-height: 0.86;
+  letter-spacing: 0.002em;
   text-transform: uppercase;
   font-optical-sizing: auto;
 }

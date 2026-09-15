@@ -31,9 +31,13 @@
   --gutter: clamp(0.75rem, 1.1vw, 1.15rem);
   --block: clamp(4.5rem, 10vw, 9rem);
 
-  /* Typografia — Bricolage Grotesque (oś opsz: tekst i display z jednej rodziny).
+  /* Typografia — dwa kroje: Flexible (nagłówki, duże nazwy) i MonoLisa (podtytuły,
+     opisy, tekst bieżący). Deklaracje @font-face i zamienniki: fonts.css.
      Skala świadomie krótka: wielki tytuł sekcji, lead, tytuł karty, tekst, mikro. */
-  --font: "Bricolage Grotesque", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  --font-display: "Flexible", "Big Shoulders Display", "Haettenschweiler",
+    "Arial Narrow", sans-serif;
+  --font: "MonoLisa", "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo,
+    Consolas, monospace;
   --display-1: clamp(2.75rem, 7.2vw, 7.25rem);
   --display-2: clamp(2rem, 4.6vw, 4.5rem);
   --display-3: clamp(1.5rem, 2.9vw, 2.85rem);

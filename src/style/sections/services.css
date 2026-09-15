@@ -24,9 +24,8 @@
 .services__title {
   font-size: clamp(3rem, 8.4vw, 8.5rem);
   font-weight: 600;
-  line-height: 0.95;
-  letter-spacing: -0.055em;
-  text-transform: none;
+  line-height: 0.86;
+  letter-spacing: 0.002em;
 }
 
 .services__sub {
@@ -74,10 +73,12 @@
 }
 
 .service__name {
-  font-size: clamp(1.35rem, 2.1vw, 1.95rem);
+  font-family: var(--font-display);
+  font-size: clamp(1.5rem, 2.4vw, 2.2rem);
   font-weight: 600;
   line-height: 1;
-  letter-spacing: -0.04em;
+  letter-spacing: 0.002em;
+  text-transform: uppercase;
 }
 
 .service__scope {

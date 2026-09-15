@@ -14,9 +14,8 @@
 .team__title {
   font-size: clamp(2.5rem, 6.4vw, 6rem);
   font-weight: 600;
-  line-height: 0.95;
-  letter-spacing: -0.05em;
-  text-transform: none;
+  line-height: 0.86;
+  letter-spacing: 0.002em;
 }
 
 .passes {
@@ -79,10 +78,11 @@
   right: -0.15em;
   bottom: 2.4rem;
   z-index: -1;
+  font-family: var(--font-display);
   font-size: clamp(7rem, 12vw, 12rem);
   font-weight: 800;
   line-height: 0.8;
-  letter-spacing: -0.06em;
+  letter-spacing: 0.002em;
   color: rgba(43, 75, 255, 0.28);
   pointer-events: none;
 }
