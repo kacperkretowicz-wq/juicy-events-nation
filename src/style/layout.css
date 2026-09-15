@@ -431,8 +431,18 @@
 }
 
 @media (max-width: 720px) {
+  .float-cta {
+    width: 5.25rem;
+    height: 5.25rem;
+  }
+
   .float-cta__ring {
-    font-size: 9.2px;
+    font-size: 7.2px;
+  }
+
+  .float-cta__arrow {
+    width: 2rem;
+    height: 2rem;
   }
 }
 
@@ -459,6 +469,14 @@
 @media (max-width: 620px) {
   .site-header {
     grid-template-columns: minmax(0, 1fr) auto;
+    /* Stałe tło, żeby treść nie prześwitywała przez przezroczysty pasek
+       (na desktopie header jest przezroczysty nad ciemnymi sekcjami). */
+    background: color-mix(in srgb, var(--dark) 78%, transparent);
+    backdrop-filter: blur(16px);
+  }
+
+  .site-header--solid {
+    background: color-mix(in srgb, var(--cream) 86%, transparent);
   }
 
   .site-header__cta {
@@ -467,5 +485,9 @@
 
   .site-header__menu {
     justify-self: end;
+  }
+
+  .site-header__logo img {
+    width: 6.5rem;
   }
 }

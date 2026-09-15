@@ -174,6 +174,8 @@
   .expertise__inner {
     grid-template-columns: minmax(0, 1fr);
     min-height: 0;
+    padding-top: clamp(6rem, 18vw, 8rem);
+    padding-bottom: 6.5rem;
   }
 
   .expertise__count {
@@ -184,10 +186,107 @@
     opacity: 1;
   }
 
+  /* Bez JS panele zostają otwarte — nie ma czym ich rozwinąć. Z JS (klasa na
+     <html> ląduje jeszcze w <head>) startują zwinięte, także ten z is-active
+     w HTML, i otwierają się dopiero po tapnięciu w nagłówek. */
   .expertise-item__body {
     max-height: none;
     padding-top: 1.25rem;
     padding-left: 0;
     opacity: 1;
   }
+
+  html.js .expertise-item__body {
+    max-height: 0;
+    padding-top: 0;
+    padding-left: 0;
+    opacity: 0;
+  }
+
+  html.js .expertise.is-accordion .expertise-item.is-active .expertise-item__body {
+    max-height: calc(var(--panel-h, 40rem) + 1.5rem);
+    padding-top: 1rem;
+    opacity: 1;
+  }
+
+  html.js .expertise-item__head {
+    grid-template-columns: auto minmax(0, 1fr) auto;
+    align-items: center;
+    min-height: 3.25rem;
+    padding: 0.35rem 0;
+  }
+
+  html.js .expertise-item__head::before,
+  html.js .expertise-item__head::after {
+    content: "";
+    grid-column: 3;
+    grid-row: 1;
+    justify-self: end;
+    align-self: center;
+    width: 0.9rem;
+    height: 2px;
+    background: var(--accent-soft);
+    transition: transform 0.45s var(--ease);
+  }
+
+  html.js .expertise-item__head::after {
+    transform: rotate(90deg);
+  }
+
+  html.js .expertise.is-accordion .expertise-item.is-active .expertise-item__head::after {
+    transform: rotate(90deg) scaleX(0);
+  }
+}
+
+/* Akordeon — klasę wstawia pinned-list.js tam, gdzie sekcja nie jest przypinana
+   (wąski ekran, reduced motion), czyli wyłącznie razem z obsługą kliknięć. */
+.expertise.is-accordion .expertise-item {
+  opacity: 1;
+}
+
+.expertise.is-accordion .expertise-item__body {
+  max-height: 0;
+  padding-top: 0;
+  padding-left: 0;
+  opacity: 0;
+}
+
+.expertise.is-accordion .expertise-item.is-active .expertise-item__body {
+  /* Zmierzona wysokość treści powiększona o wewnętrzny odstęp — bez tego
+     padding-top nie zmieściłby się w limicie i ucinał ostatni wiersz. */
+  max-height: calc(var(--panel-h, 40rem) + 1.5rem);
+  padding-top: 1rem;
+  opacity: 1;
+}
+
+/* Palec musi mieć w co trafić — sam nagłówek ma ledwie 24 px wysokości. */
+.expertise.is-accordion .expertise-item__head {
+  grid-template-columns: auto minmax(0, 1fr) auto;
+  align-items: center;
+  min-height: 3.25rem;
+  padding: 0.35rem 0;
+}
+
+/* Plus składany z dwóch kresek w tej samej komórce siatki; po rozwinięciu
+   pionowa znika, więc zostaje minus. Pseudoelementy istnieją tylko w trybie
+   akordeonu, żeby nie doklejały się do listy na desktopie. */
+.expertise.is-accordion .expertise-item__head::before,
+.expertise.is-accordion .expertise-item__head::after {
+  content: "";
+  grid-column: 3;
+  grid-row: 1;
+  justify-self: end;
+  align-self: center;
+  width: 0.9rem;
+  height: 2px;
+  background: var(--accent-soft);
+  transition: transform 0.45s var(--ease);
+}
+
+.expertise.is-accordion .expertise-item__head::after {
+  transform: rotate(90deg);
+}
+
+.expertise.is-accordion .expertise-item.is-active .expertise-item__head::after {
+  transform: rotate(90deg) scaleX(0);
 }
