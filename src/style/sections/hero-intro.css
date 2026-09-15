@@ -1,0 +1,84 @@
+/* ——— Intro strony: z liter JE powstaje ramka, w której migają realizacje ———
+   Choreografia (hero-intro.js): JE obok siebie → litery rozjeżdżają się na boki,
+   między nimi rośnie pojedyncza linia → linia rozwija się w prostokąt, a J i E
+   dojeżdżają do jego przeciwległych narożników. Bramkowane przez html.js, bo bez
+   JS nakładka nie miałaby jak się zdjąć. */
+.hero-intro {
+  display: none;
+}
+
+html.js .hero-intro {
+  --intro-w: 56vmin;
+  --intro-h: 34vmin;
+  --intro-line: 0.32rem;
+
+  position: fixed;
+  inset: 0;
+  /* Nad nagłówkiem (900), float-cta (850) i mega-menu (1000). */
+  z-index: 2000;
+  display: grid;
+  place-items: center;
+  overflow: hidden;
+  background: var(--dark);
+  opacity: 1;
+  transition: opacity 0.22s linear;
+}
+
+/* Zejście po ostatnim cięciu — krótkie, żeby czytało się jak cięcie montażowe. */
+html.js .hero-intro.is-done {
+  opacity: 0;
+  pointer-events: none;
+}
+
+/* Układ odniesienia dla animacji: rozmiar docelowej ramki. Litery jeżdżą
+   transformami liczonymi od środka tego pola. */
+.hero-intro__stage {
+  position: relative;
+  width: var(--intro-w);
+  height: var(--intro-h);
+}
+
+/* Ramka rośnie z linii: JS animuje width, a potem height (start = sama grubość
+   obramowania, czyli wizualnie jedna linia). */
+.hero-intro__frame {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  box-sizing: border-box;
+  width: 0;
+  height: var(--intro-line);
+  transform: translate(-50%, -50%);
+  border: var(--intro-line) solid var(--white);
+  overflow: hidden;
+  will-change: width, height;
+}
+
+/* Zdjęcie ma stały rozmiar docelowy i jest wyśrodkowane, więc rozwijająca się
+   ramka odsłania je jak kurtyna, zamiast je ściskać. */
+.hero-intro__img {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: var(--intro-w);
+  height: var(--intro-h);
+  transform: translate(-50%, -50%);
+  object-fit: cover;
+  display: block;
+}
+
+/* Litery zamiast strzałek z inspiracji. Pozycję nadaje GSAP (x/y od środka),
+   dlatego tu tylko wyśrodkowanie i skala. */
+.hero-intro__mark {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  /* Nad ramką — w inspiracji znaki nachodzą na kadr, nie chowają się pod nim. */
+  z-index: 2;
+  font-family: var(--font-display);
+  font-size: clamp(3.5rem, 15vmin, 13rem);
+  font-weight: 800;
+  line-height: 0.78;
+  color: var(--white);
+  user-select: none;
+  will-change: transform;
+}

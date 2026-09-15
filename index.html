@@ -60,6 +60,18 @@
   <body>
     <a class="skip-link" href="#top">Przejdź do treści</a>
 
+    <!-- Intro: z liter JE powstaje ramka, w której błyskają realizacje.
+         Choreografię prowadzi hero-intro.js; bez JS nakładka jest ukryta w CSS. -->
+    <div class="hero-intro" data-hero-intro role="presentation" aria-hidden="true">
+      <div class="hero-intro__stage" data-hero-intro-stage>
+        <div class="hero-intro__frame" data-hero-intro-frame>
+          <img class="hero-intro__img" src="" alt="" data-hero-intro-img />
+        </div>
+        <span class="hero-intro__mark hero-intro__mark--j" data-hero-intro-j>J</span>
+        <span class="hero-intro__mark hero-intro__mark--e" data-hero-intro-e>E</span>
+      </div>
+    </div>
+
     <header class="site-header" data-site-header>
       <a class="site-header__logo" href="#top" aria-label="Juicy Events — strona główna">
         <img src="/media/logo-juicy-events.png" alt="Juicy Events" width="420" height="80" decoding="async" />

@@ -11,6 +11,7 @@ import { initContactForm } from "./sections/contact.js";
 import { initMicroFx } from "./sections/micro-fx.js";
 import { initFloatCta } from "./sections/float-cta.js";
 import { initHeroReel } from "./sections/hero-reel.js";
+import { initHeroIntro } from "./sections/hero-intro.js";
 
 initHeader();
 initSplitHeadlines();
@@ -29,6 +30,7 @@ initContactForm();
 initMicroFx();
 initFloatCta();
 initHeroReel();
+initHeroIntro();
 
 document.documentElement.classList.add("is-loaded");
 

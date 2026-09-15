@@ -78,6 +78,9 @@ export function initHeroReel() {
   keyBtn?.addEventListener("click", toggle);
   // Inny odtwarzacz przejął dźwięk (audio-bus) — pigułka musi to pokazać.
   video.addEventListener("jen:audio-released", deactivate);
+  // Film gra pod nakładką intra, więc po jej zejściu cofamy go na punkt startowy —
+  // inaczej „od 31 sekundy" liczyłoby się od momentu wczytania, nie od odsłony.
+  video.addEventListener("jen:intro-done", seekToStart);
 
   if (!cta || softMotion) return;
   if (window.matchMedia("(hover: none), (pointer: coarse)").matches) return;
