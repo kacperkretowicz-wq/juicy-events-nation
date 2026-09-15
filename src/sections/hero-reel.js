@@ -63,6 +63,9 @@ export function initHeroReel() {
     if (keyBtn) keyBtn.textContent = "Odtwórz showreel z dźwiękiem";
     video.muted = true;
     releaseAudio(video);
+    // Wyjście z showreelu wraca do stanu tła, czyli tam, gdzie zaczyna wejście
+    // na stronę — inaczej hero zostawałoby na przypadkowej klatce z showreelu.
+    seekToStart();
   };
 
   const toggle = () => {
