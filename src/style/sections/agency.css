@@ -50,6 +50,35 @@
   z-index: 2;
 }
 
+/* Ramka kadru — osobna warstwa klipu, żeby intro (mały kwadrat) nie kolidowało
+   z klipem wipe'u na .agency__media, którym steruje scroll. */
+.agency__frame {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+}
+
+/* Intro: film gra w małym kwadracie na środku sceny. Po INTRO_HOLD (agency.js)
+   klasa spada i kadr JEDNYM cięciem wypełnia hero — bez transition, bo ma to
+   być cięcie montażowe, nie rozjazd. Pod html.js, bo klasę zdejmuje JS. */
+html.js .agency--intro .agency__frame {
+  --intro-square: min(38vh, 34vw);
+  clip-path: inset(
+    calc(50% - var(--intro-square) / 2) calc(50% - var(--intro-square) / 2)
+  );
+}
+
+/* W kwadracie scena jest ciemna — na kremowym tle białe logo i intro po prostu
+   by zniknęły. */
+html.js .agency--intro .agency__stage {
+  background: var(--dark);
+}
+
+/* Niebieska krawędź wipe'u nie ma czego rozdzielać, dopóki kadr jest kwadratem. */
+html.js .agency--intro .agency__edge {
+  opacity: 0;
+}
+
 .agency__media-inner {
   position: absolute;
   inset: -8% 0;
@@ -70,6 +99,31 @@
   position: absolute;
   inset: 0;
   background: linear-gradient(to top, rgba(6, 6, 6, 0.78) 0%, rgba(6, 6, 6, 0.18) 45%, rgba(6, 6, 6, 0.18) 100%);
+}
+
+/* Showreel z klawiatury — dla myszy afordancją jest kursor-pigułka (cursor.js),
+   więc przycisk wychodzi z ukrycia tylko przy nawigacji tabem. */
+.agency__reel-cta {
+  position: absolute;
+  left: var(--pad);
+  bottom: var(--pad);
+  z-index: 4;
+  padding: 0.68rem 1.4rem;
+  border: 0;
+  background: var(--accent);
+  color: var(--on-accent);
+  font-size: var(--micro);
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  cursor: pointer;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.agency__reel-cta:focus-visible {
+  opacity: 1;
+  pointer-events: auto;
 }
 
 /* Faza A — logo lewo-środek, znika w trakcie "ucieczki" do nagłówka strony */

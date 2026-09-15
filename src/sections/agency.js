@@ -2,11 +2,14 @@ import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { softMotion } from "../shared.js";
 import { prepareHeadline, revealLines } from "../effects.js";
+import { claimAudio, releaseAudio } from "../audio-bus.js";
 
 // Faza A→B (0 → LOGO_END progresu aktu): logo ucieka do nagłówka strony,
 // intro po prawej gaśnie, a "Po co Ci agencja" wjeżdża w jego miejsce.
 // Rozciągnięte na więcej scrolla + eased, żeby lot był wolniejszy i finezyjny.
 const LOGO_END = 0.48;
+// Ile film gra w małym kwadracie, zanim jednym cięciem wypełni hero.
+const INTRO_HOLD = 10000;
 const flyEase = gsap.parseEase("power2.inOut");
 const fadeEase = gsap.parseEase("power1.out");
 
@@ -25,13 +28,71 @@ export function initAgency() {
   const darkLayer = section.querySelector("[data-agency-layer='dark']");
   const edge = section.querySelector("[data-agency-edge]");
   const lightTitle = section.querySelector("[data-agency-layer='light'] .agency__title");
+  const frame = section.querySelector("[data-agency-frame]");
+  const reelBtn = section.querySelector("[data-agency-reel]");
   const headerLogo = document.querySelector(".site-header__logo img");
+
+  // ——— Intro: mały kwadrat → cięcie na pełny hero ———
+  // Kadr rozsuwa się po INTRO_HOLD albo od razu przy pierwszym scrollu — inaczej
+  // wipe (kurczenie wideo w linię) grałby na kwadracie i nie miałby sensu.
+  // Sam klip nie rusza layoutu, więc nie ma tu czego odświeżać w ScrollTriggerze.
+  const openFrame = () => section.classList.remove("agency--intro");
+  const introTimer = setTimeout(openFrame, INTRO_HOLD);
+  const openOnScroll = () => {
+    // Próg, bo przeglądarka potrafi wystrzelić "scroll" przy odtwarzaniu
+    // zapamiętanej pozycji, jeszcze przed jakimkolwiek ruchem użytkownika.
+    if (window.scrollY < 60) return;
+    clearTimeout(introTimer);
+    openFrame();
+    window.removeEventListener("scroll", openOnScroll);
+  };
+  window.addEventListener("scroll", openOnScroll, { passive: true });
 
   if (video) {
     const syncPlayback = (play) => {
       if (play) video.play().catch(() => {});
       else if (video.muted) video.pause();
     };
+
+    // ——— Showreel: kliknięcie w kadr odtwarza film OD POCZĄTKU z dźwiękiem ———
+    // Afordancją dla myszy jest kursor-pigułka (cursor.js) czytająca data-cursor
+    // z ramki kadru, dlatego po każdym przełączeniu podmieniamy jej podpis.
+    const setAffordance = (playing) => {
+      if (frame) {
+        frame.dataset.cursor = playing ? "Wycisz" : "Odtwórz showreel";
+        frame.dataset.cursorIcon = playing ? "mute" : "play";
+      }
+      if (reelBtn) {
+        reelBtn.textContent = playing ? "Wycisz showreel" : "Odtwórz showreel z dźwiękiem";
+      }
+    };
+
+    const mute = () => {
+      video.muted = true;
+      releaseAudio(video);
+      setAffordance(false);
+    };
+
+    const toggleReel = () => {
+      if (video.muted) {
+        claimAudio(video);
+        video.muted = false;
+        video.currentTime = 0;
+        video.play().catch(() => {
+          // Przeglądarka może odmówić odtwarzania z dźwiękiem — wracamy do stanu
+          // wyciszonego, żeby podpis nie kłamał.
+          mute();
+        });
+        setAffordance(true);
+      } else {
+        mute();
+      }
+    };
+
+    frame?.addEventListener("click", toggleReel);
+    reelBtn?.addEventListener("click", toggleReel);
+    // Inny moduł przejął dźwięk (audio-bus) — nasz przycisk musi to odzwierciedlić.
+    video.addEventListener("jen:audio-released", () => setAffordance(false));
 
     ScrollTrigger.create({
       trigger: section,
@@ -77,20 +138,35 @@ export function initAgency() {
     scrollTrigger: { trigger: act, start: "top top", end: "bottom bottom", scrub: true },
   });
 
-  // Zmierz raz dokąd ma "wskoczyć" logo (do rzeczywistej pozycji logo w nagłówku).
+  // Dokąd ma "wskoczyć" logo — do rzeczywistej pozycji logo w nagłówku.
+  //
+  // Pozycję startową liczymy WZGLĘDEM STAGE, nie względem okna. Lot gra tylko
+  // wtedy, gdy stage jest przypięty do góry ekranu (start: "top top"), więc
+  // wtedy "offset w stage" == "pozycja w oknie" i cel wypada dokładnie pod
+  // logiem w nagłówku. Surowy getBoundingClientRect() logo zależał od scrolla
+  // (przy wejściu na stronę z zapamiętaną pozycją albo z #hashem delta wychodziła
+  // zupełnie inna) i dodatkowo zawierał transform, który sami tu nakładamy.
   let flyDelta = { x: 0, y: 0, scale: 1 };
   const measureFly = () => {
-    if (!logo || !headerLogo) return;
+    if (!logo || !headerLogo || !stage) return;
+    // Pomiar na czystym logo — inaczej mierzylibyśmy pozycję już przesuniętą.
+    const prev = { x: gsap.getProperty(logo, "x"), y: gsap.getProperty(logo, "y"), scale: gsap.getProperty(logo, "scale") };
+    gsap.set(logo, { x: 0, y: 0, scale: 1 });
     const from = logo.getBoundingClientRect();
+    const stageRect = stage.getBoundingClientRect();
     const to = headerLogo.getBoundingClientRect();
     flyDelta = {
-      x: to.left - from.left,
-      y: to.top - from.top,
+      x: to.left - (from.left - stageRect.left),
+      y: to.top - (from.top - stageRect.top),
       scale: to.width / from.width,
     };
+    gsap.set(logo, prev);
   };
   measureFly();
   window.addEventListener("resize", measureFly);
+  // Fonty i kadry dociągają się po pierwszym renderze i przesuwają layout —
+  // ScrollTrigger i tak wtedy robi refresh, więc przy nim mierzymy ponownie.
+  ScrollTrigger.addEventListener("refresh", measureFly);
 
   // Klip ciemnej kopii napisu liczymy w pikselach, nie w procentach. Procenty
   // w clip-path odnoszą się do własnego boksu elementu, a warstwa napisu jest

@@ -10,6 +10,7 @@ import { initCaseRotator } from "./sections/case-rotator.js";
 import { initContactForm } from "./sections/contact.js";
 import { initMicroFx } from "./sections/micro-fx.js";
 import { initFloatCta } from "./sections/float-cta.js";
+import { initCursor } from "./sections/cursor.js";
 
 initHeader();
 initSplitHeadlines();
@@ -27,6 +28,7 @@ initCaseRotator();
 initContactForm();
 initMicroFx();
 initFloatCta();
+initCursor();
 
 document.documentElement.classList.add("is-loaded");
 
