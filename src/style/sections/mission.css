@@ -1,5 +1,5 @@
 .mission {
-  height: 175svh;
+  height: 240svh;
   background: var(--dark);
   color: var(--cream);
 }
@@ -32,8 +32,8 @@
   inset: 0;
   background: radial-gradient(
     120% 90% at 20% 100%,
-    rgba(8, 8, 8, 0.88) 0%,
-    rgba(8, 8, 8, 0.42) 60%,
+    rgba(8, 8, 8, 0.9) 0%,
+    rgba(8, 8, 8, 0.45) 55%,
     rgba(8, 8, 8, 0.72) 100%
   );
 }
@@ -41,15 +41,26 @@
 .mission__content {
   position: relative;
   z-index: 1;
+  display: grid;
+  gap: clamp(1.5rem, 3vw, 2.5rem);
   width: 100%;
   max-width: var(--max);
   margin: 0 auto;
   padding: 0 var(--pad);
+  text-align: left;
 }
 
-.mission__big {
+/* Sweetpunk: duży lead w jednej linii + slot ze słowem pod spodem. */
+.mission__headline {
+  display: grid;
+  gap: 0.06em;
+  width: 100%;
+  max-width: 100%;
+  overflow: hidden;
+}
+
+.mission__lead {
   margin: 0;
-  max-width: 24ch;
   font-size: var(--display-1);
   font-weight: 700;
   line-height: 0.94;
@@ -57,10 +68,46 @@
   text-transform: uppercase;
 }
 
+.mission__rotator {
+  position: relative;
+  width: fit-content;
+  max-width: 100%;
+  height: 1.05em;
+  overflow: hidden;
+  font-size: var(--display-1);
+  font-weight: 700;
+  line-height: 0.94;
+  letter-spacing: -0.03em;
+  text-transform: uppercase;
+}
+
+.mission__word {
+  position: absolute;
+  left: 0;
+  top: 0;
+  white-space: nowrap;
+  will-change: transform, opacity;
+}
+
 .mission__note {
-  margin: 2rem 0 0;
+  margin: 0;
   max-width: 44ch;
   font-size: clamp(1rem, 1.2vw, 1.15rem);
   line-height: 1.68;
   color: rgba(246, 244, 239, 0.74);
+  will-change: transform, opacity;
+}
+
+@media (max-width: 980px) {
+  .mission__lead,
+  .mission__rotator {
+    font-size: clamp(2.1rem, 7.5vw, 3.5rem);
+  }
+}
+
+@media (max-width: 620px) {
+  .mission__lead,
+  .mission__rotator {
+    font-size: clamp(1.75rem, 8.5vw, 2.35rem);
+  }
 }

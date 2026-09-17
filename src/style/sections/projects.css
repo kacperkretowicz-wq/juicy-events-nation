@@ -17,174 +17,115 @@
 .projects__grid {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: clamp(2rem, 4vw, 4.5rem) clamp(1.25rem, 3vw, 3rem);
-}
-
-/* Przesunięcie prawej kolumny — rytm Sweetpunk */
-.projects__grid > .project-card:nth-child(even) {
-  transform: translateY(clamp(2rem, 6vw, 6.5rem));
+  gap: clamp(2.5rem, 5vw, 5rem) clamp(1.5rem, 3vw, 3rem);
 }
 
 .project-card__link {
   display: grid;
-  gap: 1rem;
+  gap: 0.85rem;
 }
 
+/* ——— Kadr Sweetpunk: statyczna okładka + okienko peek na hover ——— */
 .project-card__media {
+  position: relative;
   display: block;
-  aspect-ratio: 4 / 3;
+  aspect-ratio: 3 / 2;
   overflow: hidden;
   background: var(--cream-deep);
 }
 
-.project-card__media img,
-.project-card__media video {
+.project-card__cover {
   width: 100%;
   height: 100%;
   object-fit: cover;
   display: block;
-  transition: transform 1s var(--ease), filter 0.6s var(--ease);
 }
 
-.project-card:hover .project-card__media img {
-  transform: scale(1.045);
-}
-
-.project-card__title a {
-  color: inherit;
-  text-decoration: none;
-}
-
-/* Karta z wideo — cały kadr linkuje do case study; osobny przycisk w rogu
-   (project-card__zoom) rozwija podgląd w miejscu. */
-.project-card--video {
-  position: relative;
-}
-
-.project-card--video .project-card__media {
-  background: var(--cream-deep);
-  transform: scale(1);
-  transform-origin: center bottom;
-  transition: transform 0.55s var(--ease-expo), box-shadow 0.55s var(--ease-expo);
-  will-change: transform;
-}
-
-.project-card--video:hover .project-card__media video {
-  transform: scale(1.045);
-}
-
-/* Przycisk „powiększ podgląd" */
-.project-card__zoom {
+.project-card__peek {
   position: absolute;
-  top: 0.85rem;
-  right: 0.85rem;
-  z-index: 3;
-  display: grid;
-  place-items: center;
-  width: 2.5rem;
-  height: 2.5rem;
-  padding: 0;
-  border: 0;
-  border-radius: 50%;
-  background: color-mix(in srgb, var(--ink) 72%, transparent);
-  color: var(--white);
-  cursor: pointer;
+  left: 50%;
+  top: 50%;
+  z-index: 2;
+  width: clamp(6.5rem, 38%, 11.5rem);
+  aspect-ratio: 9 / 16;
+  overflow: hidden;
+  background: var(--ink);
+  box-shadow: 0 22px 48px -16px rgba(13, 12, 11, 0.55);
   opacity: 0;
-  transform: translateY(-0.3rem);
-  transition: opacity 0.3s var(--ease), transform 0.3s var(--ease), background-color 0.3s var(--ease);
-  backdrop-filter: blur(4px);
+  transform: translate(-50%, -46%) scale(0.94);
+  transition:
+    opacity 0.38s var(--ease-expo),
+    transform 0.48s var(--ease-expo);
+  pointer-events: none;
 }
 
-.project-card__zoom svg {
-  width: 1.05rem;
-  height: 1.05rem;
+.project-card__peek img,
+.project-card__peek video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
 }
 
-.project-card__zoom:hover,
-.project-card__zoom:focus-visible {
-  background: var(--accent);
-}
-
-.project-card--video:hover .project-card__zoom,
-.project-card__zoom:focus-visible {
-  opacity: 1;
-  transform: translateY(0);
-}
-
-/* Na dotyku (brak hovera) przycisk jest widoczny od razu. */
-@media (hover: none) {
-  .project-card__zoom {
-    opacity: 1;
-    transform: none;
-  }
-}
-
-/* Rozwinięcie: skalujemy tylko medium, od dołu — tytuł/opis zostają widoczne. */
-.project-card--video.is-expanded {
-  z-index: 5;
-}
-
-.project-card--video.is-expanded .project-card__media {
-  transform: scale(1.14);
-  box-shadow: 0 34px 64px -22px rgba(13, 12, 11, 0.4);
-}
-
-.project-card--video.is-expanded .project-card__media video {
-  transform: scale(1);
-}
-
-.project-card--video.is-expanded .project-card__zoom {
-  background: var(--accent);
-}
-
-/* Kafelek ze slajdshow zdjęć — crossfade w tle, bez JS-bibliotek */
-.project-card__media[data-slideshow-card] {
-  position: relative;
-}
-
-.slideshow-slide {
+.peek-slide {
   position: absolute;
   inset: 0;
   opacity: 0;
-  transition: opacity 1s var(--ease);
+  transition: opacity 0.12s linear;
 }
 
-.slideshow-slide.is-active {
+.peek-slide.is-active {
   opacity: 1;
   z-index: 1;
 }
 
+.project-card:hover .project-card__peek,
+.project-card:focus-within .project-card__peek {
+  opacity: 1;
+  transform: translate(-50%, -50%) scale(1);
+}
+
+/* Meta w nawiasach — jak Sweetpunk [BUT] [SOCIAL MEDIA] */
 .project-card__meta {
   display: flex;
   flex-wrap: wrap;
-  gap: 0.4rem;
+  gap: 0.35rem 0.65rem;
+  font-size: var(--body);
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--ink);
 }
 
-.project-card__meta span {
-  padding: 0.32rem 0.7rem;
-  border: 1px solid var(--line);
-  border-radius: 999px;
-  font-size: var(--micro);
-  font-weight: 600;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-  color: var(--muted);
+.project-card__meta span::before {
+  content: "[ ";
+}
+
+.project-card__meta span::after {
+  content: " ]";
 }
 
 .project-card__title {
-  max-width: 22ch;
-  font-size: var(--display-4);
+  max-width: none;
+  font-family: var(--font-display);
+  font-size: clamp(1.35rem, 2.35vw, 2.35rem);
+  font-weight: 800;
+  line-height: 0.95;
+  letter-spacing: 0.002em;
+  text-transform: uppercase;
   transition: color 0.35s var(--ease);
 }
 
-.project-card:hover .project-card__title {
+.project-card:hover .project-card__title,
+.project-card:focus-within .project-card__title {
   color: var(--accent);
 }
 
 .project-card__stat {
   margin: 0;
   font-size: var(--micro);
-  letter-spacing: 0.12em;
+  font-weight: 700;
+  letter-spacing: 0.1em;
   text-transform: uppercase;
   color: var(--muted);
 }
@@ -195,12 +136,32 @@
   margin-top: clamp(4rem, 9vw, 9rem);
 }
 
+@media (hover: none) {
+  .project-card__peek {
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(1);
+  }
+}
+
 @media (max-width: 860px) {
   .projects__grid {
     grid-template-columns: minmax(0, 1fr);
   }
 
-  .projects__grid > .project-card:nth-child(even) {
-    transform: none;
+  .project-card__media {
+    aspect-ratio: 4 / 3;
   }
+
+  .project-card__peek {
+    width: clamp(5.5rem, 34%, 9rem);
+  }
+}
+
+/* ——— Karty na podstronie realizacje.html (bez peek) ——— */
+.projects__grid .project-card__media:not(:has(.project-card__peek)) img,
+.projects__grid .project-card__media:not(:has(.project-card__peek)) video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
 }

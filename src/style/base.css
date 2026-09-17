@@ -151,7 +151,7 @@ ul {
   z-index: -1;
   width: 0.6rem;
   background: var(--accent);
-  transition: width 0.35s var(--ease);
+  transition: width 0.7s var(--ease);
 }
 
 .btn--bar:hover::after,
@@ -211,6 +211,28 @@ ul {
 
 .link-arrow--light {
   color: var(--cream);
+}
+
+/* Etykieta sekcji: „01 / Co robimy" — mała, wersaliki, przed tytułem. */
+.section-label {
+  margin: 0 0 1.1rem;
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+.section-label--light,
+[data-surface="accent"] .section-label {
+  color: rgba(246, 244, 239, 0.75);
+}
+
+/* Pola do uzupełnienia przez klienta — po wpisaniu treści zdejmujemy klasę .slot. */
+.slot {
+  padding: 0 0.1em;
+  border-bottom: 2px dashed var(--accent);
+  color: var(--accent);
 }
 
 .social {

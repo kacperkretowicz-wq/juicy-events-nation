@@ -6,7 +6,7 @@
 /* Akt pierwszy — sticky scena z nagłówkiem i kurtyną.
    Więcej wysokości = więcej scrolla na lot logo, więc jest wolniejszy i finezyjny. */
 .agency__act {
-  height: 320svh;
+  height: 260svh;
 }
 
 .agency__stage {
@@ -32,10 +32,20 @@
   height: 100%;
   z-index: 1;
   overflow: hidden;
-  will-change: height;
-  /* Border rysuje się na RZECZYWISTEJ (kurczącej się) krawędzi wideo — stąd
-     zmieniamy height, a nie clip-path (ten obcinałby border razem z resztą). */
-  border-bottom: 3px solid var(--accent);
+  will-change: clip-path;
+  cursor: none;
+}
+
+.agency__edge {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 100%;
+  height: 3px;
+  background: var(--accent);
+  transform: translateY(-100%);
+  pointer-events: none;
+  z-index: 2;
 }
 
 .agency__media-inner {
@@ -58,6 +68,134 @@
   position: absolute;
   inset: 0;
   background: linear-gradient(to top, rgba(6, 6, 6, 0.78) 0%, rgba(6, 6, 6, 0.18) 45%, rgba(6, 6, 6, 0.18) 100%);
+}
+
+/* ——— Przycisk-kursor showreelu (hero-reel.js) ——— */
+.agency__reel-cta {
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 4;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.9rem 1.55rem 0.9rem 1.15rem;
+  border-radius: 999px;
+  border: 1px solid color-mix(in srgb, var(--white) 72%, transparent);
+  background: color-mix(in srgb, var(--white) 14%, transparent);
+  backdrop-filter: blur(16px) saturate(140%);
+  -webkit-backdrop-filter: blur(16px) saturate(140%);
+  color: var(--white);
+  font-size: var(--micro);
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  white-space: nowrap;
+  box-shadow: 0 10px 36px -14px rgba(0, 0, 0, 0.45);
+  opacity: 0;
+  pointer-events: none;
+  isolation: isolate;
+  transform: translate3d(-50%, -50%, 0) scale(0.85);
+  transition: opacity 0.25s var(--ease), transform 0.25s var(--ease),
+    background-color 0.3s var(--ease), border-color 0.3s var(--ease),
+    box-shadow 0.3s var(--ease);
+  will-change: transform, opacity;
+}
+
+.agency__media.is-cursor-active .agency__reel-cta {
+  opacity: 1;
+  transform: translate3d(-50%, -50%, 0) scale(1);
+}
+
+.agency__reel-cta.is-playing {
+  background: color-mix(in srgb, var(--white) 8%, transparent);
+  border-color: color-mix(in srgb, var(--white) 88%, transparent);
+}
+
+.agency__reel-cta::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  border-radius: inherit;
+  background: color-mix(in srgb, var(--white) 42%, transparent);
+  opacity: 0;
+  transition: opacity 0.45s var(--ease);
+}
+
+.agency__reel-cta.is-flash::before {
+  opacity: 1;
+  transition: opacity 0.05s linear;
+}
+
+.agency__reel-cta-icon {
+  position: relative;
+  display: grid;
+  place-items: center;
+  flex-shrink: 0;
+  width: 1.35rem;
+  height: 1.35rem;
+  transition: border-color 0.3s var(--ease), width 0.3s var(--ease), height 0.3s var(--ease);
+}
+
+.agency__reel-cta-icon::after {
+  content: "";
+  width: 0;
+  height: 0;
+  border-left: 0.46rem solid currentColor;
+  border-top: 0.3rem solid transparent;
+  border-bottom: 0.3rem solid transparent;
+  margin-left: 0.16rem;
+  transition: border-color 0.3s var(--ease), background-color 0.3s var(--ease),
+    width 0.3s var(--ease), height 0.3s var(--ease), margin 0.3s var(--ease);
+}
+
+.agency__reel-cta.is-playing .agency__reel-cta-icon {
+  width: 2rem;
+  height: 2rem;
+  border-radius: 50%;
+  border: 1.5px solid color-mix(in srgb, var(--white) 85%, transparent);
+}
+
+.agency__reel-cta.is-playing .agency__reel-cta-icon::after {
+  width: 0.62rem;
+  height: 0.62rem;
+  margin-left: 0;
+  border: 0;
+  background: currentColor;
+}
+
+@media (hover: none), (pointer: coarse) {
+  .agency__reel-cta {
+    display: none;
+  }
+
+  .agency__media {
+    cursor: pointer;
+  }
+}
+
+.agency__reel-key {
+  position: absolute;
+  left: var(--pad);
+  bottom: var(--pad);
+  z-index: 4;
+  padding: 0.68rem 1.4rem;
+  border: 0;
+  background: var(--accent);
+  color: var(--on-accent);
+  font-size: var(--micro);
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  cursor: pointer;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.agency__reel-key:focus-visible {
+  opacity: 1;
+  pointer-events: auto;
 }
 
 /* Faza A — logo lewo-środek, znika w trakcie "ucieczki" do nagłówka strony */
@@ -140,44 +278,6 @@
   color: rgba(246, 244, 239, 0.72);
 }
 
-/* Akt drugi — jasny blok z rozwinięciem */
-.agency__white {
-  position: relative;
-  z-index: 4;
-  display: grid;
-  justify-content: end;
-  padding: var(--block) var(--pad);
-  background: var(--cream);
-}
-
-.agency__copy {
-  display: grid;
-  gap: clamp(1.5rem, 3vw, 2.75rem);
-  width: min(100%, 62rem);
-  margin-left: auto;
-  max-width: var(--max);
-}
-
-.agency__lead {
-  max-width: 26ch;
-  font-size: var(--display-2);
-}
-
-.agency__body {
-  display: grid;
-  gap: 1.25rem;
-  justify-items: start;
-  max-width: 46ch;
-  margin-left: auto;
-  color: var(--muted);
-}
-
-.agency__body p {
-  margin: 0;
-  font-size: clamp(1rem, 1.25vw, 1.2rem);
-  line-height: 1.65;
-}
-
 @media (max-width: 980px) {
   .agency__logo-slot,
   .agency__intro {
@@ -193,11 +293,4 @@
     width: clamp(10rem, 40vw, 15rem);
   }
 
-  .agency__white {
-    justify-content: stretch;
-  }
-
-  .agency__body {
-    margin-left: 0;
-  }
 }

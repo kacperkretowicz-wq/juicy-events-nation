@@ -1,14 +1,14 @@
-// Kafelek-slajdshow dla realizacji bez wideo: proste crossfade zdjęć w karcie,
-// aktywne tylko gdy kafelek jest w viewport (IntersectionObserver — jak w project-video.js).
-const INTERVAL = 3500;
+// Szybki podgląd zdjęć w okienku peek — tylko na hover (0,4 s / slajd).
+const INTERVAL = 400;
 
 export function initProjectSlideshow() {
-  const cards = [...document.querySelectorAll("[data-slideshow-card]")];
-  if (!cards.length) return;
+  const peeks = [...document.querySelectorAll("[data-peek-slideshow]")];
+  if (!peeks.length) return;
 
-  cards.forEach((card) => {
-    const slides = [...card.querySelectorAll("[data-slideshow-slide]")];
-    if (slides.length < 2) return;
+  peeks.forEach((peek) => {
+    const card = peek.closest(".project-card");
+    const slides = [...peek.querySelectorAll("[data-peek-slide]")];
+    if (!card || slides.length < 2) return;
 
     let index = 0;
     let timer = null;
@@ -19,22 +19,34 @@ export function initProjectSlideshow() {
       slides[index]?.classList.add("is-active");
     };
 
+    const reset = () => {
+      window.clearInterval(timer);
+      timer = null;
+      show(0);
+    };
+
     const start = () => {
       if (timer) return;
       timer = window.setInterval(() => show((index + 1) % slides.length), INTERVAL);
     };
 
-    const stop = () => {
-      window.clearInterval(timer);
-      timer = null;
-    };
+    const canHover = window.matchMedia("(hover: hover)").matches;
 
+    if (canHover) {
+      card.addEventListener("mouseenter", start);
+      card.addEventListener("mouseleave", reset);
+      card.addEventListener("focusin", start);
+      card.addEventListener("focusout", (event) => {
+        if (!card.contains(event.relatedTarget)) reset();
+      });
+      return;
+    }
+
+    // Dotyk: podgląd w viewport bez hovera.
     if ("IntersectionObserver" in window) {
       const observer = new IntersectionObserver(
-        (entries) => {
-          entries.forEach((entry) => (entry.isIntersecting ? start() : stop()));
-        },
-        { threshold: 0.25 }
+        (entries) => entries.forEach((entry) => (entry.isIntersecting ? start() : reset())),
+        { threshold: 0.45 }
       );
       observer.observe(card);
     } else {

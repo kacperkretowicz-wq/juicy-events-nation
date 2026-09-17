@@ -2,35 +2,50 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { softMotion } from "../shared.js";
 
 /**
- * Przypina sekcję i przełącza aktywny element listy wraz z postępem scrolla.
- * Bez pinowania (reduced motion, mobile) lista pozostaje w pełni rozwinięta.
+ * Lista kompetencji — zwykły scroll strony + akordeon na klik.
+ * Naraz może być rozwinięty tylko jeden panel; ponowne kliknięcie zwija.
  */
-export function initPinnedList({ section, items, dwell = 0.72, onChange }) {
+export function initPinnedList({ section, items, onChange }) {
   if (!section || items.length < 2) return;
 
-  const setActive = (index) => {
-    items.forEach((item, i) => item.classList.toggle("is-active", i === index));
-    onChange?.(index);
+  const triggers = items.map((item) => item.querySelector("[data-pinned-select]"));
+  const bodies = items.map((item) => item.querySelector("[data-pinned-body]"));
+
+  section.classList.add("is-accordion");
+
+  const measure = () => {
+    bodies.forEach((body, i) => {
+      if (body) items[i].style.setProperty("--panel-h", `${body.scrollHeight}px`);
+    });
   };
 
-  if (softMotion || window.matchMedia("(max-width: 980px)").matches) {
-    items.forEach((item) => item.classList.add("is-active"));
-    return;
-  }
+  const setExclusive = (index) => {
+    items.forEach((item, i) => {
+      const open = i === index;
+      item.classList.toggle("is-active", open);
+      triggers[i]?.setAttribute("aria-expanded", String(open));
+    });
+    if (index >= 0) onChange?.(index);
+  };
 
-  setActive(0);
+  measure();
+  window.addEventListener("resize", measure);
+  ScrollTrigger.addEventListener("refresh", measure);
 
-  ScrollTrigger.create({
-    trigger: section,
-    start: "top top",
-    end: () => `+=${Math.round(window.innerHeight * dwell * items.length)}`,
-    pin: true,
-    anticipatePin: 1,
-    scrub: true,
-    invalidateOnRefresh: true,
-    onUpdate: ({ progress }) => {
-      const index = Math.min(items.length - 1, Math.floor(progress * items.length));
-      setActive(index);
-    },
+  if (softMotion) return;
+
+  items.forEach((item, i) => {
+    const btn = triggers[i];
+    if (!btn) return;
+
+    btn.addEventListener("click", () => {
+      const wasOpen = item.classList.contains("is-active");
+      if (wasOpen) {
+        setExclusive(-1);
+        return;
+      }
+      setExclusive(i);
+      measure();
+    });
   });
 }

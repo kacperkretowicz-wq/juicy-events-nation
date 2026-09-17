@@ -6,6 +6,7 @@ import { initLightbox } from "./sections/lightbox.js";
 import { initParallaxMedia } from "./sections/parallax-media.js";
 import { claimAudio, releaseAudio } from "./audio-bus.js";
 import { initMicroFx } from "./sections/micro-fx.js";
+import { initFloatCta } from "./sections/float-cta.js";
 
 initHeader();
 initSplitHeadlines();
@@ -56,6 +57,8 @@ if (video && soundBtn) {
 
   video.addEventListener("jen:audio-released", muteUi);
 }
+
+initFloatCta();
 
 document.documentElement.classList.add("is-loaded");
 window.addEventListener("load", () => ScrollTrigger.refresh());

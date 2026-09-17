@@ -10,35 +10,6 @@
   transition: clip-path 0.95s var(--ease-expo);
 }
 
-/* Hover kart realizacji */
-.project-card__go {
-  display: block;
-  margin-top: 0.4rem;
-  font-size: var(--micro);
-  font-weight: 600;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-  color: var(--accent);
-  opacity: 0;
-  transform: translateY(0.35rem);
-  transition: opacity 0.32s var(--ease), transform 0.32s var(--ease);
-}
-
-.project-card:hover .project-card__go,
-.project-card:focus-within .project-card__go {
-  opacity: 1;
-  transform: translateY(0);
-}
-
-.project-card__meta span {
-  transition: transform 0.3s var(--ease), border-color 0.3s var(--ease);
-}
-
-.project-card:hover .project-card__meta span {
-  transform: translateX(0.3rem);
-  border-color: color-mix(in srgb, var(--accent) 55%, var(--line));
-}
-
 /* Dryf wordmarku w stopce */
 .site-footer__wordmark span {
   will-change: transform;

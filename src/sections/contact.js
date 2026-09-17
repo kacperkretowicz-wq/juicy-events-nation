@@ -23,14 +23,13 @@ export function initContactForm() {
   form.addEventListener("submit", (event) => {
     event.preventDefault();
     const data = new FormData(form);
-    const subject = encodeURIComponent(`Brief — Juicy Events · ${data.get("need")}`);
+    const subject = encodeURIComponent(`Brief — Juicy Events · ${data.get("name")}`);
     const body = encodeURIComponent(
       [
         "Dzień dobry,",
         "",
         `Zgłaszający: ${data.get("name")}`,
         `Email: ${data.get("email")}`,
-        `Zakres: ${data.get("need")}`,
         "",
         data.get("message") || "",
         "",

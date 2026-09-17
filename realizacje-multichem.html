@@ -46,20 +46,19 @@
       <a class="site-header__logo" href="/" aria-label="Juicy Events — strona główna">
         <img src="/media/logo-juicy-events.png" alt="Juicy Events" width="420" height="80" decoding="async" />
       </a>
-
-      <nav class="site-header__nav" aria-label="Główne">
-        <a href="/#realizacje">Realizacje</a>
-        <a href="/#agencja">Agencja</a>
-        <a href="/#kompetencje">Kompetencje</a>
-        <a href="/#metoda">Metoda</a>
-        <a href="/#zakresy">Zakresy</a>
-      </nav>
+      <button
+        class="site-header__menu"
+        type="button"
+        aria-controls="mega-menu"
+        aria-expanded="false"
+        data-menu-open
+      >
+        <span class="site-header__menu-bars" aria-hidden="true"><span></span><span></span></span>
+        <span>Menu</span>
+      </button>
 
       <a class="site-header__cta" href="/#kontakt">Kontakt</a>
 
-      <button class="site-header__burger" type="button" aria-label="Otwórz menu" data-menu-open>
-        <span></span><span></span>
-      </button>
     </header>
 
     <nav class="mega-menu" id="mega-menu" aria-hidden="true">
@@ -200,6 +199,18 @@
         <span>Juicy Events</span>
       </div>
     </footer>
+
+    <a class="float-cta" href="/#kontakt" data-float-cta aria-label="Przejdź do kontaktu">
+      <svg class="float-cta__ring" viewBox="0 0 100 100" aria-hidden="true">
+        <defs>
+          <path id="float-cta-path" d="M50,50 m-37,0 a37,37 0 1,1 74,0 a37,37 0 1,1 -74,0" />
+        </defs>
+        <text><textPath href="#float-cta-path" textLength="232" lengthAdjust="spacingAndGlyphs">Kontakt · Napisz do nas · Kontakt · Napisz do nas ·</textPath></text>
+      </svg>
+      <span class="float-cta__arrow" aria-hidden="true">
+        <svg viewBox="0 0 24 24"><path d="M5 12h14M13 5l7 7-7 7" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </span>
+    </a>
 
     <script type="module" src="/src/realizacje-detail.js"></script>
   </body>

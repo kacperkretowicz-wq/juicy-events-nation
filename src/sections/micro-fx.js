@@ -34,25 +34,6 @@ export function initClipReveal() {
   targets.forEach((el) => io.observe(el));
 }
 
-/* Hover na kartach realizacji: „→ Zobacz realizację" + przesuw pigułek. */
-export function initCardHover() {
-  document.querySelectorAll(".project-card").forEach((card) => {
-    const link = card.querySelector(".project-card__link");
-    const stat = card.querySelector(".project-card__stat");
-    if (!link || card.querySelector(".project-card__go")) return;
-
-    const go = document.createElement("span");
-    go.className = "project-card__go";
-    go.setAttribute("aria-hidden", "true");
-    go.textContent = "→ Zobacz realizację";
-    (stat || link).insertAdjacentElement("afterend", go);
-
-    card.querySelectorAll(".project-card__meta span").forEach((pill, i) => {
-      pill.style.transitionDelay = `${i * 35}ms`;
-    });
-  });
-}
-
 /* Dryf gigantycznego wordmarku w stopce (±60 px). */
 export function initWordmarkDrift() {
   const word = document.querySelector(".site-footer__wordmark span");
@@ -60,9 +41,8 @@ export function initWordmarkDrift() {
 
   const update = () => {
     const rect = word.getBoundingClientRect();
-    // progres od wejścia dołu ekranu do wyjścia górą
     const p = 1 - (rect.top + rect.height) / (window.innerHeight + rect.height);
-    const shift = (Math.min(1, Math.max(0, p)) - 0.5) * 120;
+    const shift = (Math.min(1, Math.max(0, p)) - 0.5) * 36;
     word.style.transform = `translate(${shift}px, 0.06em)`;
   };
   update();
@@ -110,7 +90,6 @@ export function initMagneticButtons() {
 
 export function initMicroFx() {
   initClipReveal();
-  initCardHover();
   initWordmarkDrift();
   initMagneticButtons();
 }
