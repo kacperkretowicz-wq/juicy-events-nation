@@ -5,11 +5,28 @@ export function initWorkVideo() {
   const group = document.querySelector("[data-work-video-group]");
   const video = group?.querySelector("[data-work-video]");
   const triggers = [...(group?.querySelectorAll("[data-work-video-trigger]") ?? [])];
+  const playBtn = group?.querySelector(".work__play");
   if (!group || !video || !triggers.length) return;
 
   const previewSrc = video.dataset.workPreview || video.getAttribute("src") || "";
   const showreelSrc = video.dataset.workShowreel || "";
   let mode = "preview";
+
+  const showreelPreload = document.createElement("video");
+  if (showreelSrc) {
+    showreelPreload.muted = true;
+    showreelPreload.playsInline = true;
+    showreelPreload.preload = "auto";
+    showreelPreload.src = showreelSrc;
+    showreelPreload.load();
+  }
+
+  const warmShowreel = () => {
+    if (!showreelSrc || showreelPreload.readyState >= 2) return;
+    showreelPreload.load();
+  };
+  group.addEventListener("pointerenter", warmShowreel, { once: true });
+  window.addEventListener("load", warmShowreel, { once: true });
 
   const loadPreview = () => {
     if (!previewSrc) return;
@@ -21,6 +38,7 @@ export function initWorkVideo() {
       video.load();
     }
     video.play().catch(() => {});
+    playBtn?.classList.remove("is-exit");
   };
 
   const loadShowreel = () => {
@@ -34,12 +52,12 @@ export function initWorkVideo() {
     video.src = showreelSrc;
     video.load();
     return new Promise((resolve) => {
-      const onReady = () => {
-        video.removeEventListener("loadeddata", onReady);
+      const done = () => {
+        video.removeEventListener("canplay", done);
         resolve();
       };
-      if (video.readyState >= 2) resolve();
-      else video.addEventListener("loadeddata", onReady, { once: true });
+      if (video.readyState >= 3) resolve();
+      else video.addEventListener("canplay", done, { once: true });
     });
   };
 
@@ -61,6 +79,7 @@ export function initWorkVideo() {
   const expand = async () => {
     group.classList.add("is-expanded");
     triggers.forEach((trigger) => trigger.setAttribute("aria-expanded", "true"));
+    playBtn?.classList.add("is-exit");
     claimAudio(video);
     video.muted = false;
     await loadShowreel();
@@ -71,6 +90,7 @@ export function initWorkVideo() {
   const collapse = () => {
     group.classList.remove("is-expanded");
     triggers.forEach((trigger) => trigger.setAttribute("aria-expanded", "false"));
+    playBtn?.classList.remove("is-exit");
     releaseAudio(video);
     loadPreview();
   };

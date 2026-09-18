@@ -8,8 +8,8 @@ import { softMotion } from "../shared.js";
 // ruch nigdy nie odsłania krawędzi.
 //
 // data-parallax-media       — wartość = amplituda w % (domyślnie 8)
-// data-parallax-trigger     — opcjonalny selektor przodka jako trigger scrolla
-//                             (dla sekcji pinowanych, np. .mission)
+// data-parallax-trigger     — selektor sekcji-pin (np. .mission, .contact):
+//                             scroll od „top top” do „bottom bottom” — cały dystans sticky.
 export function initParallaxMedia(scope = document) {
   if (softMotion) return;
 
@@ -18,9 +18,11 @@ export function initParallaxMedia(scope = document) {
     if (!media) return;
 
     const shift = parseFloat(container.dataset.parallaxMedia) || 8;
-    const trigger = container.dataset.parallaxTrigger
-      ? container.closest(container.dataset.parallaxTrigger) || container
+    const triggerSel = container.dataset.parallaxTrigger;
+    const trigger = triggerSel
+      ? container.closest(triggerSel) || container
       : container;
+    const pinnedSection = Boolean(triggerSel);
 
     gsap.fromTo(
       media,
@@ -30,8 +32,8 @@ export function initParallaxMedia(scope = document) {
         ease: "none",
         scrollTrigger: {
           trigger,
-          start: "top bottom",
-          end: "bottom top",
+          start: pinnedSection ? "top top" : "top bottom",
+          end: pinnedSection ? "bottom bottom" : "bottom top",
           scrub: true,
           invalidateOnRefresh: true,
         },

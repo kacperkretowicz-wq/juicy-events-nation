@@ -57,6 +57,14 @@
     <a class="skip-link" href="#top">Przejdź do treści</a>
     <div class="grain" aria-hidden="true"></div>
 
+    <div class="hero-intro" data-hero-intro role="presentation" aria-hidden="true">
+      <img class="hero-intro__bg" src="" alt="" data-hero-intro-img decoding="async" />
+      <div class="hero-intro__logo" data-hero-intro-logo>
+        <img class="hero-intro__mark" src="/media/mark-j.svg" alt="" data-hero-intro-j />
+        <img class="hero-intro__mark" src="/media/mark-e.svg" alt="" data-hero-intro-e />
+      </div>
+    </div>
+
     <header class="site-header" data-site-header>
       <a class="site-header__logo" href="#top" aria-label="Juicy Events — strona główna">
         <img src="/media/logo-juicy-events.png" alt="Juicy Events" width="420" height="80" decoding="async" />
@@ -129,7 +137,13 @@
 
               <div class="agency__reel-cta" data-agency-reel-cta aria-hidden="true">
                 <span class="agency__reel-cta-icon" aria-hidden="true"></span>
-                <span class="agency__reel-cta-label" data-agency-reel-label>Odtwórz showreel</span>
+                <span class="agency__reel-cta-copy" data-agency-reel-label>
+                  <span class="agency__reel-cta-idle">
+                    <span class="agency__reel-cta-line">Odtwórz</span>
+                    <span class="agency__reel-cta-line">showreel</span>
+                  </span>
+                  <span class="agency__reel-cta-exit">Zamknij</span>
+                </span>
               </div>
             </div>
 
@@ -148,7 +162,7 @@
             </div>
 
             <div class="agency__intro" data-agency-intro>
-              <h2 class="agency__intro-title" data-split>
+              <h2 class="agency__intro-title">
                 Tworzymy wydarzenia, które mówią językiem Twojej <span class="bracket">marki.</span>
               </h2>
             </div>
@@ -194,24 +208,33 @@
                 data-work-video
                 data-work-preview="/media/work-preview.mov"
                 data-work-showreel="/media/work-showreel.mp4"
+                preload="metadata"
                 src="/media/work-preview.mov"
                 poster="/media/work-preview-poster.jpg"
                 muted
                 loop
                 playsinline
-                preload="metadata"
               ></video>
             </span>
           </button>
-          <button class="work__play" type="button" data-work-video-trigger>
-            <span class="work__play-icon" aria-hidden="true"></span>
-            Odtwórz showreel
+          <button class="work__play" type="button" data-work-video-trigger aria-label="Odtwórz showreel">
+            <span class="work__play-ui work__play-ui--idle" aria-hidden="true">
+              <span class="work__play-icon"></span>
+              <span class="work__play-copy">
+                <span>Odtwórz</span>
+                <span>showreel</span>
+              </span>
+            </span>
+            <span class="work__play-ui work__play-ui--exit" aria-hidden="true">
+              <span class="work__play-icon work__play-icon--exit"></span>
+              <span>Zamknij</span>
+            </span>
           </button>
         </div>
 
         <div class="work__copy">
           <p class="eyebrow">Nasza praca</p>
-          <h2 data-split>Od wizji do mierzalnych rezultatów — z precyzją, estetyką i emocją.</h2>
+          <h2 data-headline-reveal>Od wizji do mierzalnych rezultatów — z precyzją, estetyką i emocją.</h2>
           <div data-fade-group>
             <p>
               Wspieramy marki w budowaniu relacji, które przekładają się na lojalność i sprzedaż.
@@ -261,7 +284,7 @@
         <div class="expertise__inner">
           <div class="expertise__aside">
             <p class="eyebrow eyebrow--light">Kompetencje</p>
-            <h2 class="expertise__title" data-split>
+            <h2 class="expertise__title" data-headline-reveal>
               Jedna agencja. Wszystkie kompetencje produkcji eventowej.
             </h2>
             <p class="expertise__count">
@@ -368,7 +391,7 @@
       <!-- 6. REALIZACJE — 2 kolumny -->
       <section class="projects" id="realizacje">
         <div class="projects__head">
-          <h2 class="projects__title" data-split>
+          <h2 class="projects__title">
             Marki, które wybrały <span class="bracket">własną</span> drogę razem z nami
           </h2>
         </div>
@@ -492,7 +515,14 @@
       <section class="team" id="zespol">
         <div class="team__head">
           <p class="section-label">06 / Zespół</p>
-          <h2 class="team__title" data-split>Kto odbierze Twój brief?</h2>
+          <h2
+            class="team__title"
+            data-headline-reveal
+            data-reveal-trigger=".team__head"
+            data-reveal-start="top 85%"
+          >
+            Kto odbierze Twój brief?
+          </h2>
         </div>
 
         <ul class="passes">
@@ -533,48 +563,84 @@
         </ul>
       </section>
 
-      <!-- 7. KONTAKT — adres e-mail jest nagłówkiem. Proces to jedno zdanie. Trzy pola. -->
-      <section class="contact" id="kontakt">
-        <p class="section-label">07 / Kontakt</p>
-        <a class="contact__mail" href="mailto:kontakt@juicyevents.pl" data-fade>kontakt@juicyevents.pl</a>
+      <!-- 7. KONTAKT — pełnoekranowy kadr + szkło (Sweetpunk) tuż nad stopką. -->
+      <section class="contact" id="kontakt" data-tone="dark">
+        <div class="contact__pin">
+          <div class="contact__bg" aria-hidden="true" data-parallax-media="10" data-parallax-trigger=".contact">
+            <img
+              src="/media/contact-closing.jpg"
+              alt=""
+              width="1920"
+              height="1280"
+              loading="lazy"
+              decoding="async"
+            />
+          </div>
 
-        <div class="contact__grid">
-          <div class="contact__intro">
-            <a class="contact__phone" href="tel:+48735298884" data-fade>+48 735 298 884</a>
-            <p class="contact__how" data-fade>
-              Na brief odpowiadamy w 24 h. Koncepcję z kosztorysem dostajesz w
-              <span class="slot" data-slot="dni-kosztorys">X</span> dni roboczych — potem produkcja
-              i podsumowanie po wydarzeniu.
-            </p>
-            <div class="contact__social" data-fade>
-              <a class="contact__link" href="https://www.instagram.com/juicyeventsnation/" target="_blank" rel="me noopener noreferrer">Instagram</a>
-            <a class="contact__link" href="https://www.facebook.com/share/19XeBrjEGu/" target="_blank" rel="me noopener noreferrer">Facebook</a>
-            <a class="contact__link" href="https://www.linkedin.com/company/juicyevents/" target="_blank" rel="me noopener noreferrer">LinkedIn</a>
+          <div class="contact__inner">
+          <div class="contact__lead">
+            <p class="section-label contact__label" data-fade>07 / Kontakt</p>
+            <p class="contact__kicker" data-fade>Gotowy zrobić z nami ten krok?</p>
+            <h2 class="contact__title" data-headline-reveal>
+              Porozmawiajmy, jak zrealizować Twoje
+              <span class="contact__bracket">[ambicje]</span>
+            </h2>
+            <div class="contact__actions" data-fade>
+              <a class="contact__cta" href="mailto:kontakt@juicyevents.pl">[Napisz do nas]</a>
+              <a class="contact__phone" href="tel:+48735298884">+48 735 298 884</a>
             </div>
           </div>
 
-          <form class="contact-form" id="contact-form" data-contact-form>
-            <label class="field">
-              <span>Kto pisze</span>
-              <input name="name" type="text" required placeholder="Imię i firma" />
-            </label>
-            <label class="field">
-              <span>E-mail</span>
-              <input name="email" type="email" required placeholder="adres@firma.pl" />
-            </label>
-            <label class="field">
-              <span>Co planujesz</span>
-              <textarea name="message" rows="4" required placeholder="Rodzaj wydarzenia, termin, liczba gości, miejsce"></textarea>
-            </label>
+          <div class="contact__panel" data-fade>
+            <div class="contact__card">
+              <div class="contact__card-head">
+                <span class="contact__avatar" aria-hidden="true">KN</span>
+                <div>
+                  <p class="contact__card-name">Kajetan Vincent Nawrocki</p>
+                  <p class="contact__card-role">Owner · Head of Creative &amp; Production</p>
+                </div>
+              </div>
+              <p class="contact__card-copy">
+                Cześć! Na brief odpowiadamy w 24&nbsp;h. Koncepcję z kosztorysem dostajesz w
+                <span class="slot" data-slot="dni-kosztorys">X</span> dni roboczych.
+              </p>
+            </div>
 
-            <button class="btn btn--bar" type="submit">Wyślij brief</button>
-            <p class="contact-form__status" data-form-status hidden></p>
-          </form>
+            <form class="contact-form" id="contact-form" data-contact-form>
+              <label class="field field--glass">
+                <span class="visually-hidden">Kto pisze</span>
+                <input name="name" type="text" required placeholder="Imię i firma" autocomplete="name" />
+              </label>
+              <label class="field field--glass">
+                <span class="visually-hidden">E-mail</span>
+                <input name="email" type="email" required placeholder="adres@firma.pl" autocomplete="email" />
+              </label>
+              <label class="field field--glass">
+                <span class="visually-hidden">Co planujesz</span>
+                <textarea name="message" rows="3" required placeholder="Rodzaj wydarzenia, termin, goście, miejsce"></textarea>
+              </label>
+
+              <div class="contact-form__foot">
+                <button class="contact-form__submit" type="submit" aria-label="Wyślij brief">
+                  <span aria-hidden="true">→</span>
+                </button>
+              </div>
+              <p class="contact-form__status" data-form-status hidden></p>
+            </form>
+
+            <div class="contact__social">
+              <a class="contact__link" href="https://www.instagram.com/juicyeventsnation/" target="_blank" rel="me noopener noreferrer">Instagram</a>
+              <a class="contact__link" href="https://www.facebook.com/share/19XeBrjEGu/" target="_blank" rel="me noopener noreferrer">Facebook</a>
+              <a class="contact__link" href="https://www.linkedin.com/company/juicyevents/" target="_blank" rel="me noopener noreferrer">LinkedIn</a>
+            </div>
+          </div>
+          </div>
         </div>
       </section>
     </main>
 
     <footer class="site-footer" data-tone="dark">
+      <div class="site-footer__void" aria-hidden="true"></div>
       <div class="site-footer__inner">
         <div class="site-footer__row">
           <div class="site-footer__firm">

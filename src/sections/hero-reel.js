@@ -15,7 +15,9 @@ export function initHeroReel() {
   const media = document.querySelector("[data-agency-media]");
   const video = media?.querySelector("[data-agency-video]");
   const cta = media?.querySelector("[data-agency-reel-cta]");
-  const label = cta?.querySelector("[data-agency-reel-label]");
+  const labelRoot = cta?.querySelector("[data-agency-reel-label]");
+  const labelIdle = labelRoot?.querySelector(".agency__reel-cta-idle");
+  const labelExit = labelRoot?.querySelector(".agency__reel-cta-exit");
   const keyBtn = document.querySelector("[data-agency-reel-key]");
   if (!media || !video) return;
 
@@ -44,8 +46,9 @@ export function initHeroReel() {
   const activate = () => {
     playing = true;
     cta?.classList.add("is-playing");
-    if (label) label.textContent = "Wyłącz odtwarzanie";
-    if (keyBtn) keyBtn.textContent = "Wyłącz odtwarzanie";
+    labelIdle?.setAttribute("hidden", "");
+    labelExit?.removeAttribute("hidden");
+    if (keyBtn) keyBtn.textContent = "Zamknij showreel";
     claimAudio(video);
     video.muted = false;
     video.currentTime = 0;
@@ -59,7 +62,8 @@ export function initHeroReel() {
   const deactivate = () => {
     playing = false;
     cta?.classList.remove("is-playing");
-    if (label) label.textContent = "Odtwórz showreel";
+    labelExit?.setAttribute("hidden", "");
+    labelIdle?.removeAttribute("hidden");
     if (keyBtn) keyBtn.textContent = "Odtwórz showreel z dźwiękiem";
     video.muted = true;
     releaseAudio(video);

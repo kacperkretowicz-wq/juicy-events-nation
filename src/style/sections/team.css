@@ -18,6 +18,10 @@
   letter-spacing: 0.002em;
 }
 
+.team__title.is-split .split-line {
+  overflow: hidden;
+}
+
 .passes {
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));

@@ -15,9 +15,16 @@ export function initMission() {
   if (!section || words.length < 3 || !rotator) return;
 
   let queueState = { active: 0, t: 0 };
+  const mobileMission = window.matchMedia("(max-width: 620px)");
+
+  const wordAnchor = () =>
+    mobileMission.matches
+      ? { left: "50%", xPercent: -50, transformOrigin: "center bottom" }
+      : { left: 0, xPercent: 0, transformOrigin: "left bottom" };
 
   const applyQueue = (active, t) => {
     queueState = { active, t };
+    const anchor = wordAnchor();
     words.forEach((word, i) => {
       let y = 0;
       let opacity = FADED;
@@ -41,7 +48,7 @@ export function initMission() {
         opacity = FADED;
       }
 
-      gsap.set(word, { yPercent: y, opacity });
+      gsap.set(word, { ...anchor, yPercent: y, opacity });
     });
   };
 
@@ -60,15 +67,28 @@ export function initMission() {
 
     let size = parseFloat(getComputedStyle(line).fontSize);
     let widest = measureWidest();
-    let leadWidth = lead?.getBoundingClientRect().width ?? 0;
-    let available = Math.max(80, lineWidth - leadWidth - gap);
 
-    while (widest > available && size > 28) {
-      size *= 0.97;
-      if (line) line.style.fontSize = `${size}px`;
-      widest = measureWidest();
-      leadWidth = lead?.getBoundingClientRect().width ?? 0;
-      available = Math.max(80, lineWidth - leadWidth - gap);
+    if (mobileMission.matches) {
+      const minSize = 32;
+      let available = Math.max(120, lineWidth);
+      while (widest > available && size > minSize) {
+        size *= 0.97;
+        if (line) line.style.fontSize = `${size}px`;
+        widest = measureWidest();
+        available = Math.max(120, line?.getBoundingClientRect().width ?? lineWidth);
+      }
+      rotator.style.width = `${Math.ceil(widest)}px`;
+    } else {
+      let leadWidth = lead?.getBoundingClientRect().width ?? 0;
+      let available = Math.max(80, lineWidth - leadWidth - gap);
+
+      while (widest > available && size > 28) {
+        size *= 0.97;
+        if (line) line.style.fontSize = `${size}px`;
+        widest = measureWidest();
+        leadWidth = lead?.getBoundingClientRect().width ?? 0;
+        available = Math.max(80, lineWidth - leadWidth - gap);
+      }
     }
 
     gsap.set(words, { position: "absolute" });

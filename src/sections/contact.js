@@ -1,4 +1,27 @@
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { bindContactHeadlineReveal, kickVisibleHeadlines } from "../effects.js";
+
 const RECIPIENT = "kontakt@juicyevents.pl";
+
+/** Po wczytaniu kadru przeliczamy triggery — kontakt jest na końcu strony. */
+export function initContactParallaxRefresh() {
+  const img = document.querySelector(".contact__bg img");
+  if (!img) return;
+
+  const refresh = () => {
+    ScrollTrigger.refresh();
+    kickVisibleHeadlines(".contact__title[data-headline-reveal]");
+  };
+  if (img.complete) {
+    refresh();
+    return;
+  }
+  img.addEventListener("load", refresh, { once: true });
+}
+
+export function initContactHeadlineReveal() {
+  bindContactHeadlineReveal();
+}
 
 export function initContactForm() {
   const form = document.querySelector("[data-contact-form]");

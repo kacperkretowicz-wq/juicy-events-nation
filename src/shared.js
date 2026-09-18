@@ -344,8 +344,10 @@ function splitIntoLines(el) {
   el.dataset.splitDone = "1";
 }
 
+export const HEADLINE_SPLIT_SELECTOR = "[data-headline-reveal], [data-split]";
+
 export function initSplitHeadlines() {
-  document.querySelectorAll("[data-split]").forEach(splitIntoLines);
+  document.querySelectorAll(HEADLINE_SPLIT_SELECTOR).forEach(splitIntoLines);
 }
 
 /**
@@ -360,7 +362,7 @@ export function initSplitResize() {
   let timer = null;
 
   const resplit = () => {
-    const heads = [...document.querySelectorAll("[data-split]")].filter(
+    const heads = [...document.querySelectorAll(HEADLINE_SPLIT_SELECTOR)].filter(
       (el) => el.dataset.splitDone === "1" && el.dataset.splitSource
     );
     if (!heads.length) return;
@@ -375,7 +377,8 @@ export function initSplitResize() {
       // (był już raz odsłonięty, nie powtarzamy wjazdu). clearProps kasuje
       // ewentualny transform z animacji przerwanej w trakcie resize.
       const inners = [...el.querySelectorAll(".split-line__inner")];
-      gsap.set(inners, { clearProps: "transform,translate,rotate,scale" });
+      gsap.set(inners, { clearProps: "transform,translate,rotate,scale,clipPath,webkitClipPath" });
+      inners.forEach((inner) => inner.classList.add("is-headline-revealed"));
 
       // Sieć bezpieczeństwa: gdyby pomiar rozminął się z realną szerokością,
       // pozwól linii zawinąć się, zamiast dać jej wypaść poza overflow: hidden.

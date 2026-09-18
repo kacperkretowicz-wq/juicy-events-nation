@@ -1,8 +1,19 @@
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { ease, softMotion } from "../shared.js";
+import { kickVisibleHeadlines } from "../effects.js";
 
 export function initProjects() {
+  const grid = document.querySelector("[data-projects]");
+  const onGridLayout = () => {
+    ScrollTrigger.refresh();
+    kickVisibleHeadlines(".team__title[data-headline-reveal]");
+  };
+  grid?.querySelectorAll("img").forEach((img) => {
+    if (img.complete) return;
+    img.addEventListener("load", onGridLayout);
+  });
+
   const cards = [...document.querySelectorAll("[data-project], [data-need-card], [data-team-card]")];
   if (!cards.length) return;
 

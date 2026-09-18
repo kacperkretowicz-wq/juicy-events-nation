@@ -209,14 +209,20 @@
 .site-footer {
   background: var(--dark);
   color: var(--cream);
-  padding: calc(var(--block) * 0.7) 0 0;
+  padding: 0;
   overflow: hidden;
+}
+
+/* Gruba czarna strefa między kontaktem a treścią stopki (Sweetpunk). */
+.site-footer__void {
+  min-height: clamp(5rem, 14vw, 9.5rem);
+  background: var(--dark);
 }
 
 .site-footer__inner {
   max-width: var(--max);
   margin: 0 auto;
-  padding: 0 var(--pad);
+  padding: clamp(2.5rem, 5vw, 4rem) var(--pad) clamp(2rem, 4vw, 3rem);
 }
 
 .site-footer__row {

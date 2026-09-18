@@ -1,7 +1,6 @@
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { softMotion } from "../shared.js";
-import { prepareHeadline, revealLines } from "../effects.js";
 
 // Faza A→B (0 → LOGO_END progresu aktu): logo ucieka do nagłówka strony,
 // intro po prawej gaśnie, a "Po co Ci agencja" wjeżdża w jego miejsce.
@@ -24,7 +23,6 @@ export function initAgency() {
   const headline = section.querySelector("[data-agency-headline]");
   const darkLayer = section.querySelector("[data-agency-layer='dark']");
   const edge = section.querySelector("[data-agency-edge]");
-  const lightTitle = section.querySelector("[data-agency-layer='light'] .agency__title");
   const headerLogo = document.querySelector(".site-header__logo img");
 
   // Sam showreel (pigułka-kursor, dźwięk, punkt startu filmu) siedzi w hero-reel.js.
@@ -52,16 +50,6 @@ export function initAgency() {
     };
     playIfVisible();
     video.addEventListener("loadeddata", playIfVisible, { once: true });
-  }
-
-  if (lightTitle) {
-    const lines = prepareHeadline(lightTitle);
-    ScrollTrigger.create({
-      trigger: section,
-      start: "top 70%",
-      once: true,
-      onEnter: () => revealLines(lines),
-    });
   }
 
   if (softMotion || !act) {

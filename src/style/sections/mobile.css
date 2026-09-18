@@ -39,9 +39,17 @@
     padding-bottom: clamp(3.5rem, 12vw, 5rem);
   }
 
-  .work__card {
+  .work__media {
     width: 100%;
+  }
+
+  .work__card {
+    width: 68%;
     aspect-ratio: 4 / 5;
+  }
+
+  .work__media.is-expanded .work__card {
+    width: 100%;
   }
 
   .work__copy h2 {
@@ -53,15 +61,28 @@
   }
 
   .mission__pin {
-    align-items: end;
-    padding-bottom: clamp(2rem, 9vw, 3.25rem);
+    align-items: center;
+    padding-bottom: 0;
+  }
+
+  .mission__content {
+    text-align: center;
+    justify-items: center;
+  }
+
+  .mission__headline {
+    display: flex;
+    justify-content: center;
+    width: 100%;
   }
 
   .mission__line {
     grid-template-columns: minmax(0, 1fr);
-    row-gap: 0.12em;
-    align-items: start;
-    font-size: clamp(1.65rem, 8.2vw, 2.2rem);
+    justify-items: center;
+    row-gap: 0.2em;
+    align-items: center;
+    font-size: clamp(2.15rem, 10.5vw, 3rem);
+    text-align: center;
   }
 
   .mission__lead {
@@ -69,12 +90,20 @@
   }
 
   .mission__rotator {
-    align-self: start;
-    width: 100%;
+    align-self: center;
+    margin-inline: auto;
   }
 
   .mission__note {
-    font-size: 0.98rem;
+    font-size: clamp(1.02rem, 4.2vw, 1.12rem);
+    max-width: 34ch;
+    margin-inline: auto;
+    text-align: center;
+  }
+
+  .mission .eyebrow {
+    text-align: center;
+    width: 100%;
   }
 
   .projects {
@@ -91,16 +120,66 @@
   }
 
   .project-card__title {
-    font-size: clamp(1.02rem, 4.1vw, 1.2rem);
-    line-height: 1.25;
+    font-size: clamp(0.82rem, 3.6vw, 1rem);
+    line-height: 1.15;
+  }
+
+  .projects__grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: clamp(1.5rem, 5vw, 2rem) 0.75rem;
+  }
+
+  .project-card__media {
+    aspect-ratio: 3 / 4;
+  }
+
+  .project-card__peek {
+    width: clamp(3.25rem, 38%, 4.5rem);
+  }
+
+  .team__head {
+    margin-bottom: 1.5rem;
   }
 
   .passes {
-    max-width: 100%;
+    display: flex;
+    flex-direction: row;
+    align-items: stretch;
+    gap: 0.85rem;
+    max-width: none;
+    margin-inline: calc(-1 * var(--pad));
+    padding-inline: var(--pad);
+    padding-bottom: 0.35rem;
+    overflow-x: auto;
+    overflow-y: hidden;
+    scroll-snap-type: x mandatory;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
   }
 
-  .contact__grid {
-    gap: 2.5rem;
+  .passes::-webkit-scrollbar {
+    display: none;
+  }
+
+  .passes > li.pass {
+    flex: 0 0 calc(50% - 0.45rem);
+    min-width: calc(50% - 0.45rem);
+    scroll-snap-align: start;
+    list-style: none;
+    transform: none;
+  }
+
+  .contact {
+    height: 200svh;
+  }
+
+  .contact__inner {
+    gap: 2rem;
+    padding-top: clamp(5.5rem, 18vw, 7rem);
+  }
+
+  .site-footer__void {
+    min-height: clamp(3.5rem, 12vw, 5.5rem);
   }
 
   .site-footer__wordmark span {

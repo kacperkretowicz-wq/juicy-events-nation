@@ -14,6 +14,10 @@
   font-size: var(--display-2);
 }
 
+.projects__title.is-split .split-line {
+  overflow: hidden;
+}
+
 .projects__grid {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
