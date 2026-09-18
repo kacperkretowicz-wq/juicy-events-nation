@@ -147,32 +147,50 @@
     padding-bottom: clamp(5rem, 14vw, 7.5rem);
   }
 
+  /* Pełna szerokość + wysokość od treści — wcześniej 50% + aspect-ratio 4/5
+     ucinało maile i „All access" na wąskich ekranach. */
   .passes {
-    display: flex;
-    flex-direction: row;
-    align-items: stretch;
-    gap: 0.85rem;
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+    gap: 1.25rem;
     max-width: none;
-    margin-inline: calc(-1 * var(--pad));
-    padding-inline: var(--pad);
-    padding-bottom: 0.35rem;
-    overflow-x: auto;
-    overflow-y: hidden;
-    scroll-snap-type: x mandatory;
-    -webkit-overflow-scrolling: touch;
-    scrollbar-width: none;
-  }
-
-  .passes::-webkit-scrollbar {
-    display: none;
+    margin-inline: 0;
+    padding-inline: 0;
+    padding-bottom: 0;
+    overflow: visible;
   }
 
   .passes > li.pass {
-    flex: 0 0 calc(50% - 0.45rem);
-    min-width: calc(50% - 0.45rem);
-    scroll-snap-align: start;
+    width: 100%;
+    min-width: 0;
+    aspect-ratio: auto;
+    min-height: 22rem;
     list-style: none;
     transform: none;
+  }
+
+  .pass__band {
+    font-size: 0.62rem;
+    letter-spacing: 0.12em;
+    gap: 0.5rem;
+  }
+
+  .pass__name {
+    font-size: clamp(1.45rem, 6.8vw, 1.9rem);
+  }
+
+  .pass__role,
+  .pass__contact {
+    font-size: 0.92rem;
+  }
+
+  .pass__contact {
+    margin-top: 0.85rem;
+    gap: 0.35rem;
+  }
+
+  .pass__contact a {
+    overflow-wrap: anywhere;
   }
 
   .contact {
