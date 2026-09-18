@@ -147,24 +147,35 @@
     padding-bottom: clamp(5rem, 14vw, 7.5rem);
   }
 
-  /* Pełna szerokość + wysokość od treści — wcześniej 50% + aspect-ratio 4/5
-     ucinało maile i „All access" na wąskich ekranach. */
+  /* Karuzela L→P jak wcześniej, ale ~85% szerokości (nie 50%) + wysokość od treści,
+     żeby maile i „All access" nie były ucięte. */
   .passes {
-    display: grid;
-    grid-template-columns: minmax(0, 1fr);
-    gap: 1.25rem;
+    display: flex;
+    flex-direction: row;
+    align-items: stretch;
+    gap: 0.85rem;
     max-width: none;
-    margin-inline: 0;
-    padding-inline: 0;
-    padding-bottom: 0;
-    overflow: visible;
+    margin-inline: calc(-1 * var(--pad));
+    padding-inline: var(--pad);
+    padding-bottom: 0.35rem;
+    overflow-x: auto;
+    overflow-y: hidden;
+    scroll-snap-type: x mandatory;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+  }
+
+  .passes::-webkit-scrollbar {
+    display: none;
   }
 
   .passes > li.pass {
-    width: 100%;
-    min-width: 0;
+    flex: 0 0 min(22rem, calc(100% - 1.75rem));
+    width: min(22rem, calc(100% - 1.75rem));
+    min-width: min(22rem, calc(100% - 1.75rem));
     aspect-ratio: auto;
     min-height: 22rem;
+    scroll-snap-align: start;
     list-style: none;
     transform: none;
   }
