@@ -2,6 +2,7 @@ import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { CustomEase } from "gsap/CustomEase";
 import Lenis from "lenis";
+import { initPageTransition, transitionTo, animateLeave, getCurrentColor } from "./page-transition.js";
 
 gsap.registerPlugin(ScrollTrigger, CustomEase);
 CustomEase.create("smoothExpoOut", "M0,0 C0.143,0 0.22,0.534 0.247,0.663 0.277,0.811 0.424,1 1,1");
@@ -48,6 +49,7 @@ window.addEventListener("load", () => {
 });
 
 document.querySelectorAll('a[href^="#"]').forEach((link) => {
+  if (link.closest(".mega-menu")) return;
   link.addEventListener("click", (event) => {
     const href = link.getAttribute("href");
     if (!href || href === "#") return;
@@ -220,6 +222,68 @@ document.addEventListener("keydown", (event) => {
   if (event.key !== "Escape") return;
   closeMenu();
   closeShowreel();
+});
+
+/* ——— Przejście z siatką kwadratów (menu → sekcja na stronie głównej) ——— */
+initPageTransition();
+
+function handleNavigationTransition(link, event) {
+  const href = link.getAttribute("href");
+  if (!href || href === "#") return;
+
+  if (
+    link.target === "_blank" ||
+    href.startsWith("mailto:") ||
+    href.startsWith("tel:") ||
+    href.startsWith("http://") ||
+    href.startsWith("https://")
+  ) {
+    closeMenu();
+    return;
+  }
+
+  const currentPath = window.location.pathname.replace(/\/index\.html$/, "/");
+  let targetSelector = null;
+
+  if (href.startsWith("#")) {
+    targetSelector = href;
+  } else if (href.startsWith("/#") && (currentPath === "/" || currentPath === "")) {
+    targetSelector = href.replace(/^\//, "");
+  }
+
+  if (targetSelector) {
+    const target = document.querySelector(targetSelector);
+    if (target) {
+      event.preventDefault();
+      transitionTo(async () => {
+        closeMenuInstant();
+        lenis.scrollTo(target, { immediate: true, offset: 0 });
+        ScrollTrigger.refresh();
+        history.pushState(null, "", targetSelector);
+      });
+      return;
+    }
+  }
+
+  event.preventDefault();
+  animateLeave().then(() => {
+    sessionStorage.setItem("jen_page_transition_color", getCurrentColor());
+    window.location.href = href;
+  });
+}
+
+document.querySelectorAll(".mega-menu a").forEach((link) => {
+  link.addEventListener("click", (event) => handleNavigationTransition(link, event));
+});
+
+document.querySelectorAll(".site-header__cta").forEach((link) => {
+  const href = link.getAttribute("href");
+  if (href && href.startsWith("/#")) {
+    const currentPath = window.location.pathname.replace(/\/index\.html$/, "/");
+    if (currentPath !== "/" && currentPath !== "") {
+      link.addEventListener("click", (event) => handleNavigationTransition(link, event));
+    }
+  }
 });
 
 /* ——— Nagłówki dzielone na linie (nośnik animacji wjazdu) ——— */

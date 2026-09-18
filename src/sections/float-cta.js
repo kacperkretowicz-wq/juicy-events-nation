@@ -22,7 +22,7 @@ export function initFloatCta() {
     zones.forEach((zone) => io.observe(zone));
   }
 
-  // Nad niebieskimi powierzchniami (`data-surface="accent"`) kółko odwraca kolory —
+  // Nad pomarańczowymi powierzchniami (`data-surface="accent"`) kółko odwraca kolory —
   // niebieskie na niebieskim znikałoby. Sprawdzamy środek kółka przy każdym scrollu.
   const accentZones = [...document.querySelectorAll("[data-surface='accent']")];
   if (!accentZones.length) return;

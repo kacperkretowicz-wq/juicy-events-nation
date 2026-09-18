@@ -1,6 +1,4 @@
-// Karta "Nasza praca": mały, wyciszony podgląd wideo w viewport; po kliknięciu
-// (karty lub podpisu) rozwija się do pełnego rozmiaru, chowa podpis i odtwarza
-// showreel z dźwiękiem od początku.
+// Karta "Nasza praca": wyciszony podgląd (krótki klip); po kliknięciu — pełny showreel z dźwiękiem.
 import { claimAudio, releaseAudio } from "../audio-bus.js";
 
 export function initWorkVideo() {
@@ -9,12 +7,50 @@ export function initWorkVideo() {
   const triggers = [...(group?.querySelectorAll("[data-work-video-trigger]") ?? [])];
   if (!group || !video || !triggers.length) return;
 
+  const previewSrc = video.dataset.workPreview || video.getAttribute("src") || "";
+  const showreelSrc = video.dataset.workShowreel || "";
+  let mode = "preview";
+
+  const loadPreview = () => {
+    if (!previewSrc) return;
+    mode = "preview";
+    video.loop = true;
+    video.muted = true;
+    if (video.getAttribute("src") !== previewSrc) {
+      video.src = previewSrc;
+      video.load();
+    }
+    video.play().catch(() => {});
+  };
+
+  const loadShowreel = () => {
+    if (!showreelSrc) {
+      video.currentTime = 0;
+      video.loop = false;
+      return Promise.resolve();
+    }
+    mode = "showreel";
+    video.loop = false;
+    video.src = showreelSrc;
+    video.load();
+    return new Promise((resolve) => {
+      const onReady = () => {
+        video.removeEventListener("loadeddata", onReady);
+        resolve();
+      };
+      if (video.readyState >= 2) resolve();
+      else video.addEventListener("loadeddata", onReady, { once: true });
+    });
+  };
+
+  loadPreview();
+
   if ("IntersectionObserver" in window) {
     const observer = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
-          if (entry.isIntersecting) video.play().catch(() => {});
-          else if (!group.classList.contains("is-expanded")) video.pause();
+          if (entry.isIntersecting && mode === "preview") video.play().catch(() => {});
+          else if (!group.classList.contains("is-expanded") && mode === "preview") video.pause();
         });
       },
       { threshold: 0.25 }
@@ -22,11 +58,12 @@ export function initWorkVideo() {
     observer.observe(group);
   }
 
-  const expand = () => {
+  const expand = async () => {
     group.classList.add("is-expanded");
     triggers.forEach((trigger) => trigger.setAttribute("aria-expanded", "true"));
     claimAudio(video);
     video.muted = false;
+    await loadShowreel();
     video.currentTime = 0;
     video.play().catch(() => {});
   };
@@ -34,11 +71,14 @@ export function initWorkVideo() {
   const collapse = () => {
     group.classList.remove("is-expanded");
     triggers.forEach((trigger) => trigger.setAttribute("aria-expanded", "false"));
-    video.muted = true;
     releaseAudio(video);
+    loadPreview();
   };
 
-  // Inny film przejął dźwięk — zwiń tę sekcję.
+  video.addEventListener("ended", () => {
+    if (mode === "showreel" && group.classList.contains("is-expanded")) collapse();
+  });
+
   video.addEventListener("jen:audio-released", () => {
     if (group.classList.contains("is-expanded")) collapse();
   });

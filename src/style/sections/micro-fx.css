@@ -1,13 +1,31 @@
 /* ——— Mikro-efekty (micro-fx.js) ——— */
 
-/* Reveal zdjęć maską — galeria i hero podstron */
-.js .fx-clip {
-  clip-path: inset(0 100% 0 0);
+/* Wejście kadrów — galeria realizacji i hero podstron (fade + delikatny lift) */
+.js .fx-media-reveal {
+  --reveal-delay: 0ms;
+  opacity: 0;
+  transform: translate3d(0, 1rem, 0);
+  transition:
+    opacity 1.05s var(--ease-expo),
+    transform 1.15s var(--ease-expo);
+  transition-delay: var(--reveal-delay);
 }
 
-.js .fx-clip.is-clip-revealed {
-  clip-path: inset(0 0 0 0);
-  transition: clip-path 0.95s var(--ease-expo);
+.js .fx-media-reveal > img,
+.js .fx-media-reveal > video {
+  transform: scale(1.03);
+  transition: transform 1.35s var(--ease-expo);
+  transition-delay: var(--reveal-delay);
+}
+
+.js .fx-media-reveal.is-media-revealed {
+  opacity: 1;
+  transform: translate3d(0, 0, 0);
+}
+
+.js .fx-media-reveal.is-media-revealed > img,
+.js .fx-media-reveal.is-media-revealed > video {
+  transform: scale(1);
 }
 
 /* Dryf wordmarku w stopce */

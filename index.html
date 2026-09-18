@@ -11,7 +11,7 @@
     />
 
     <link rel="canonical" href="https://juicyevents.pl/" />
-    <meta name="theme-color" content="#0a0a0a" />
+    <meta name="theme-color" content="#0f0f0f" />
     <link rel="manifest" href="/site.webmanifest" />
 
     <meta property="og:type" content="website" />
@@ -28,12 +28,8 @@
     <meta name="twitter:title" content="Juicy Events — agencja eventowa dla marek, które chcą więcej" />
     <meta name="twitter:description" content="Event design, produkcja i strategia. Tworzymy wydarzenia, które mówią językiem Twojej marki — od briefu po mierzalny wynik." />
     <meta name="twitter:image" content="https://juicyevents.pl/media/og-cover.jpg" />
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Host+Grotesk:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap"
-      rel="stylesheet"
-    />
+    <link rel="preload" href="/fonts/DenimINK-Regular.woff2" as="font" type="font/woff2" crossorigin />
+    <link rel="preload" href="/fonts/DenimINKWD-SemiBold.woff2" as="font" type="font/woff2" crossorigin />
     <link rel="icon" href="/media/favicon.svg" type="image/svg+xml" />
     <link rel="stylesheet" href="/src/style/style.css" />
   
@@ -196,8 +192,10 @@
               <video
                 class="work__video"
                 data-work-video
-                src="/media/work-reel.mp4"
-                poster="/media/work-reel-poster.jpg"
+                data-work-preview="/media/work-preview.mov"
+                data-work-showreel="/media/work-showreel.mp4"
+                src="/media/work-preview.mov"
+                poster="/media/work-preview-poster.jpg"
                 muted
                 loop
                 playsinline
@@ -232,21 +230,23 @@
       <section class="mission" data-mission data-tone="dark">
         <div class="mission__pin">
           <div class="mission__bg" aria-hidden="true" data-parallax-media="10" data-parallax-trigger=".mission">
-            <img decoding="async" loading="lazy" width="2048" height="758" src="/media/crowd-01.jpg" alt="" />
+            <img decoding="async" loading="lazy" width="1024" height="682" src="/media/mission-crowd.jpg" alt="" />
           </div>
           <div class="mission__content">
             <p class="eyebrow eyebrow--light">Cele i misja</p>
             <div
               class="mission__headline"
               data-mission-headline
-              aria-label="Nie boimy się eksperymentować, reinterpretować, tworzyć."
+              aria-label="Nie boimy się reinterpretować, eksperymentować, tworzyć."
             >
-              <p class="mission__lead">Nie boimy się</p>
-              <div class="mission__rotator" data-mission-rotator>
-                <span class="mission__word" data-mission-word>eksperymentować,</span>
-                <span class="mission__word" data-mission-word>reinterpretować,</span>
-                <span class="mission__word" data-mission-word>tworzyć.</span>
-              </div>
+              <p class="mission__line">
+                <span class="mission__lead">Nie boimy się</span>
+                <span class="mission__rotator" data-mission-rotator>
+                  <span class="mission__word" data-mission-word>reinterpretować,</span>
+                  <span class="mission__word" data-mission-word>eksperymentować,</span>
+                  <span class="mission__word" data-mission-word>tworzyć.</span>
+                </span>
+              </p>
             </div>
             <p class="mission__note" data-mission-note>
               Wartość to nie kopiowanie luksusowych wzorców, lecz tworzenie własnego języka — tak,

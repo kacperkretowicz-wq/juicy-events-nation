@@ -1,0 +1,145 @@
+/* ——— Mobile polish (≤620px) ——— */
+
+@media (max-width: 620px) {
+  .site-header {
+    padding-top: max(0.85rem, env(safe-area-inset-top, 0px));
+    padding-left: max(var(--pad), env(safe-area-inset-left, 0px));
+    padding-right: max(var(--pad), env(safe-area-inset-right, 0px));
+  }
+
+  .mega-menu {
+    padding-top: max(calc(var(--pad) * 2.2), calc(env(safe-area-inset-top, 0px) + 3rem));
+    padding-bottom: max(var(--pad), env(safe-area-inset-bottom, 0px));
+    align-content: start;
+  }
+
+  .mega-menu__list {
+    gap: 0.35rem;
+  }
+
+  .float-cta {
+    right: max(0.85rem, env(safe-area-inset-right, 0px));
+    bottom: max(0.85rem, env(safe-area-inset-bottom, 0px));
+  }
+
+  .agency__act {
+    height: 220svh;
+  }
+
+  .agency__title {
+    font-size: clamp(2rem, 9.5vw, 2.75rem);
+  }
+
+  .agency__intro {
+    padding-top: clamp(5.5rem, 20vw, 7rem);
+  }
+
+  .work {
+    gap: 2rem;
+    padding-bottom: clamp(3.5rem, 12vw, 5rem);
+  }
+
+  .work__card {
+    width: 100%;
+    aspect-ratio: 4 / 5;
+  }
+
+  .work__copy h2 {
+    font-size: clamp(1.65rem, 7vw, 2.1rem);
+  }
+
+  .mission {
+    height: 200svh;
+  }
+
+  .mission__pin {
+    align-items: end;
+    padding-bottom: clamp(2rem, 9vw, 3.25rem);
+  }
+
+  .mission__line {
+    grid-template-columns: minmax(0, 1fr);
+    row-gap: 0.12em;
+    align-items: start;
+    font-size: clamp(1.65rem, 8.2vw, 2.2rem);
+  }
+
+  .mission__lead {
+    white-space: normal;
+  }
+
+  .mission__rotator {
+    align-self: start;
+    width: 100%;
+  }
+
+  .mission__note {
+    font-size: 0.98rem;
+  }
+
+  .projects {
+    padding-top: clamp(3.5rem, 12vw, 5rem);
+  }
+
+  .projects__title {
+    font-size: clamp(1.75rem, 7.5vw, 2.35rem);
+  }
+
+  .project-card__meta {
+    font-size: 0.72rem;
+    gap: 0.25rem 0.45rem;
+  }
+
+  .project-card__title {
+    font-size: clamp(1.02rem, 4.1vw, 1.2rem);
+    line-height: 1.25;
+  }
+
+  .passes {
+    max-width: 100%;
+  }
+
+  .contact__grid {
+    gap: 2.5rem;
+  }
+
+  .site-footer__wordmark span {
+    font-size: clamp(2.75rem, 18vw, 4.5rem);
+    padding-bottom: 0.15em;
+  }
+
+  .realizacje-hero {
+    padding-top: clamp(6.5rem, 22vw, 8.5rem);
+    min-height: auto;
+  }
+
+  .realizacje-hero h1 {
+    font-size: clamp(2rem, 9vw, 2.75rem);
+  }
+
+  .realizacje-body {
+    padding-top: clamp(2.5rem, 8vw, 3.5rem);
+  }
+
+  .realizacje-nav {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1.25rem;
+  }
+
+  .realizacje-nav nav {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.65rem 1rem;
+  }
+}
+
+@media (max-width: 980px) {
+  .expertise__inner {
+    scroll-margin-top: 5rem;
+  }
+
+  #top {
+    scroll-margin-top: 4.5rem;
+  }
+}

@@ -1,0 +1,51 @@
+/* Denim (Displaay) — ten sam układ co Sweetpunk:
+   Denim INK = tekst bieżący, Denim INK WD = nagłówki i duże napisy.
+   Pliki w public/fonts/ — na produkcji wymagana licencja web od Displaay. */
+
+@font-face {
+  font-family: "Denim INK";
+  src: url("/fonts/DenimINK-Regular.woff2") format("woff2");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Denim INK";
+  src: url("/fonts/DenimINK-Medium.woff2") format("woff2");
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Denim INK";
+  src: url("/fonts/DenimINK-SemiBold.woff2") format("woff2");
+  font-weight: 600;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Denim INK WD";
+  src: url("/fonts/DenimINKWD-Regular.woff2") format("woff2");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Denim INK WD";
+  src: url("/fonts/DenimINKWD-Medium.woff2") format("woff2");
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Denim INK WD";
+  src: url("/fonts/DenimINKWD-SemiBold.woff2") format("woff2");
+  font-weight: 600;
+  font-style: normal;
+  font-display: swap;
+}

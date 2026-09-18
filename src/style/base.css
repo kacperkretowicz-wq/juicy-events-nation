@@ -57,9 +57,10 @@ h1,
 h2,
 h3 {
   margin: 0;
-  font-weight: 700;
+  font-family: var(--font-display);
+  font-weight: 600;
   line-height: 0.94;
-  letter-spacing: -0.03em;
+  letter-spacing: -0.02em;
   text-transform: uppercase;
 }
 
@@ -225,7 +226,7 @@ ul {
 
 .section-label--light,
 [data-surface="accent"] .section-label {
-  color: rgba(246, 244, 239, 0.75);
+  color: var(--on-dark-muted);
 }
 
 /* Pola do uzupełnienia przez klienta — po wpisaniu treści zdejmujemy klasę .slot. */

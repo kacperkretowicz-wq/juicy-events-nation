@@ -7,24 +7,32 @@ export function initProjects() {
   if (!cards.length) return;
 
   cards.forEach((card) => {
+    const reveal = () => {
+      if (card.dataset.revealed === "1") return;
+      card.dataset.revealed = "1";
+      gsap.fromTo(
+        card,
+        { opacity: 0, y: softMotion ? 16 : 56 },
+        {
+          opacity: 1,
+          y: 0,
+          duration: softMotion ? 0.6 : 0.95,
+          ease,
+          overwrite: "auto",
+          clearProps: "transform",
+        }
+      );
+    };
+
     // Stan schowany ustawia CSS pod `.js` (bez JS karty są widoczne, bez FOUC).
     ScrollTrigger.create({
       trigger: card,
       start: "top 92%",
       once: true,
-      onEnter: () =>
-        gsap.fromTo(
-          card,
-          { opacity: 0, y: softMotion ? 16 : 56 },
-          {
-            opacity: 1,
-            y: 0,
-            duration: softMotion ? 0.6 : 0.95,
-            ease,
-            overwrite: "auto",
-            clearProps: "transform",
-          }
-        ),
+      onEnter: reveal,
+      onRefresh(self) {
+        if (self.isActive) reveal();
+      },
     });
   });
 }

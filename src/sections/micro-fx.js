@@ -4,34 +4,63 @@
 
 import { lenis, softMotion } from "../shared.js";
 
-/* Reveal zdjęć rozjeżdżającą się maską — galeria i hero podstron.
-   UWAGA: karty realizacji celowo POZA tym efektem. Mają już własny reveal
-   (opacity), a druga, niezależna bramka potrafiła zostawić kartę niewidoczną. */
-export function initClipReveal() {
+/* Delikatne wejście kadrów — galeria i hero podstron realizacji.
+   Karty na stronie głównej mają osobny reveal (projects.js). */
+function revealMediaFrame(el) {
+  if (el.classList.contains("is-media-revealed")) return;
+  el.classList.add("is-media-revealed");
+}
+
+export function initMediaReveal() {
   const targets = [
     ...document.querySelectorAll(".gallery-item__media"),
     ...document.querySelectorAll(".realizacje-hero-photo"),
   ];
   if (!targets.length) return;
 
-  targets.forEach((el) => el.classList.add("fx-clip"));
+  targets.forEach((el) => {
+    el.classList.add("fx-media-reveal");
+    const grid = el.closest(".gallery__grid");
+    if (grid) {
+      const peers = [...grid.querySelectorAll(".gallery-item__media")];
+      const i = peers.indexOf(el);
+      // Lekki stagger w rzędzie — bez „kaskady” po całej siatce.
+      el.style.setProperty("--reveal-delay", `${(i % 3) * 65}ms`);
+    }
+  });
 
   if (softMotion || !("IntersectionObserver" in window)) {
-    targets.forEach((el) => el.classList.add("is-clip-revealed"));
+    targets.forEach(revealMediaFrame);
     return;
   }
 
+  const targetOf = new WeakMap();
   const io = new IntersectionObserver(
     (entries) => {
       entries.forEach((entry) => {
         if (!entry.isIntersecting) return;
-        entry.target.classList.add("is-clip-revealed");
+        revealMediaFrame(targetOf.get(entry.target) ?? entry.target);
         io.unobserve(entry.target);
       });
     },
-    { threshold: 0.2, rootMargin: "0px 0px -8% 0px" }
+    { threshold: 0.12, rootMargin: "0px 0px -6% 0px" }
   );
-  targets.forEach((el) => io.observe(el));
+
+  targets.forEach((el) => {
+    const probe = el.closest(".gallery-item") ?? el.parentElement ?? el;
+    targetOf.set(probe, el);
+    io.observe(probe);
+  });
+
+  requestAnimationFrame(() => {
+    targets.forEach((el) => {
+      const rect = el.getBoundingClientRect();
+      if (rect.top < window.innerHeight * 0.94 && rect.bottom > 0) {
+        revealMediaFrame(el);
+        io.unobserve(el.closest(".gallery-item") ?? el.parentElement ?? el);
+      }
+    });
+  });
 }
 
 /* Dryf gigantycznego wordmarku w stopce (±60 px). */
@@ -89,7 +118,7 @@ export function initMagneticButtons() {
 }
 
 export function initMicroFx() {
-  initClipReveal();
+  initMediaReveal();
   initWordmarkDrift();
   initMagneticButtons();
 }

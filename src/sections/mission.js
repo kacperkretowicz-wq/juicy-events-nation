@@ -4,8 +4,8 @@ import { softMotion } from "../shared.js";
 
 // Jedna linia: „Nie boimy się” + slot. Kolejka tylko w dół — aktywne słowo w slocie,
 // następne czekają pod spodem, zużyte idą nad (bez zamiany z góry na dół).
-const FADED = 0.28;
-const STEP = 108;
+const FADED = 0.34;
+const STEP = 100;
 
 export function initMission() {
   const section = document.querySelector("[data-mission]");
@@ -46,9 +46,31 @@ export function initMission() {
   };
 
   const fitRotator = () => {
+    const line = rotator.closest(".mission__line");
+    const lead = line?.querySelector(".mission__lead");
+    rotator.style.width = "";
+    if (line) line.style.fontSize = "";
+
     gsap.set(words, { position: "relative", yPercent: 0, opacity: 1 });
-    const widest = Math.max(...words.map((word) => word.getBoundingClientRect().width));
-    rotator.style.width = `${Math.ceil(widest)}px`;
+
+    const lineWidth = line?.getBoundingClientRect().width ?? 0;
+    const gap = parseFloat(getComputedStyle(line).columnGap) || 0;
+    const measureWidest = () =>
+      Math.max(...words.map((word) => word.getBoundingClientRect().width));
+
+    let size = parseFloat(getComputedStyle(line).fontSize);
+    let widest = measureWidest();
+    let leadWidth = lead?.getBoundingClientRect().width ?? 0;
+    let available = Math.max(80, lineWidth - leadWidth - gap);
+
+    while (widest > available && size > 28) {
+      size *= 0.97;
+      if (line) line.style.fontSize = `${size}px`;
+      widest = measureWidest();
+      leadWidth = lead?.getBoundingClientRect().width ?? 0;
+      available = Math.max(80, lineWidth - leadWidth - gap);
+    }
+
     gsap.set(words, { position: "absolute" });
     applyQueue(queueState.active, queueState.t);
   };
@@ -57,9 +79,9 @@ export function initMission() {
     fitRotator();
     words.forEach((word, i) => {
       gsap.set(word, {
-        position: i === 0 ? "relative" : "absolute",
+        position: "absolute",
         yPercent: 0,
-        opacity: i === 0 ? 1 : 0,
+        opacity: i === 0 ? 1 : FADED,
       });
     });
     if (note) gsap.set(note, { opacity: 1, yPercent: 0 });

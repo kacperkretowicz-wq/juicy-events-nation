@@ -45,7 +45,7 @@
 
 .pass:hover {
   transform: rotate(0deg) translateY(-8px);
-  box-shadow: 0 40px 60px -28px rgba(43, 75, 255, 0.5);
+  box-shadow: 0 40px 60px -28px rgba(15, 15, 15, 0.55);
 }
 
 /* Otwór na smycz */
@@ -83,7 +83,7 @@
   font-weight: 800;
   line-height: 0.8;
   letter-spacing: 0.002em;
-  color: rgba(43, 75, 255, 0.28);
+  color: rgba(135, 138, 140, 0.38);
   pointer-events: none;
 }
 
@@ -108,7 +108,7 @@
 }
 
 .pass__contact a {
-  border-bottom: 1px solid rgba(246, 244, 239, 0.3);
+  border-bottom: 1px solid var(--on-dark-line);
   transition: color 0.3s var(--ease), border-color 0.3s var(--ease);
 }
 
