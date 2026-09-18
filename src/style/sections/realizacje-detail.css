@@ -51,27 +51,6 @@
   object-fit: cover;
 }
 
-.realizacje-video__sound {
-  position: absolute;
-  right: 1rem;
-  bottom: 1rem;
-  padding: 0.55rem 1.05rem;
-  border: 0;
-  border-radius: 999px;
-  background: var(--accent);
-  color: var(--white);
-  font-size: var(--micro);
-  font-weight: 600;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-  cursor: pointer;
-  transition: background 0.3s var(--ease);
-}
-
-.realizacje-video__sound:hover {
-  background: var(--ink);
-}
-
 .realizacje-hero-photo {
   aspect-ratio: 16 / 9;
   overflow: hidden;

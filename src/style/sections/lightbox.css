@@ -4,41 +4,8 @@
   cursor: zoom-in;
 }
 
-.gallery-item__media.is-zoomable::after {
-  content: "Powiększ";
-  position: absolute;
-  right: 0.7rem;
-  bottom: 0.7rem;
-  padding: 0.3rem 0.65rem;
-  border-radius: 999px;
-  background: var(--accent);
-  color: var(--white);
-  font-size: var(--micro);
-  font-weight: 600;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-  opacity: 0;
-  transform: translateY(0.4rem);
-  transition: opacity 0.3s var(--ease), transform 0.3s var(--ease);
-  pointer-events: none;
-}
-
 .gallery-item__media {
   position: relative;
-}
-
-.gallery-item:hover .gallery-item__media.is-zoomable::after,
-.gallery-item__media.is-zoomable:focus-visible::after {
-  opacity: 1;
-  transform: translateY(0);
-}
-
-/* Na dotyku (brak hovera) podpowiedź jest widoczna od razu, przygaszona. */
-@media (hover: none) {
-  .gallery-item__media.is-zoomable::after {
-    opacity: 0.85;
-    transform: none;
-  }
 }
 
 .lightbox {

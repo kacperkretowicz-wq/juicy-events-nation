@@ -78,7 +78,7 @@ export function initLightbox() {
     media.classList.add("is-zoomable");
     media.setAttribute("role", "button");
     media.setAttribute("tabindex", "0");
-    media.setAttribute("aria-label", `Powiększ zdjęcie ${i + 1}`);
+    media.setAttribute("aria-label", `Zdjęcie ${i + 1} z galerii`);
     media.addEventListener("click", () => open(i));
     media.addEventListener("keydown", (e) => {
       if (e.key === "Enter" || e.key === " ") {

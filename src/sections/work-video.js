@@ -12,6 +12,10 @@ export function initWorkVideo() {
   const showreelSrc = video.dataset.workShowreel || "";
   let mode = "preview";
 
+  video.preload = "auto";
+  video.muted = true;
+  video.playsInline = true;
+
   const showreelPreload = document.createElement("video");
   if (showreelSrc) {
     showreelPreload.muted = true;
@@ -21,12 +25,26 @@ export function initWorkVideo() {
     showreelPreload.load();
   }
 
-  const warmShowreel = () => {
-    if (!showreelSrc || showreelPreload.readyState >= 2) return;
-    showreelPreload.load();
+  const tryPlayPreview = () => {
+    if (mode !== "preview" || group.classList.contains("is-expanded")) return;
+    video.play().catch(() => {});
   };
-  group.addEventListener("pointerenter", warmShowreel, { once: true });
-  window.addEventListener("load", warmShowreel, { once: true });
+
+  const onPreviewReady = () => {
+    video.removeEventListener("loadeddata", onPreviewReady);
+    video.removeEventListener("canplay", onPreviewReady);
+    tryPlayPreview();
+  };
+
+  video.addEventListener("loadeddata", onPreviewReady);
+  video.addEventListener("canplay", onPreviewReady);
+  video.addEventListener(
+    "playing",
+    () => {
+      video.removeAttribute("poster");
+    },
+    { once: true }
+  );
 
   const loadPreview = () => {
     if (!previewSrc) return;
@@ -37,7 +55,7 @@ export function initWorkVideo() {
       video.src = previewSrc;
       video.load();
     }
-    video.play().catch(() => {});
+    tryPlayPreview();
     playBtn?.classList.remove("is-exit");
   };
 
@@ -56,22 +74,23 @@ export function initWorkVideo() {
         video.removeEventListener("canplay", done);
         resolve();
       };
-      if (video.readyState >= 3) resolve();
+      if (video.readyState >= 2) resolve();
       else video.addEventListener("canplay", done, { once: true });
     });
   };
 
   loadPreview();
+  document.addEventListener("jen:intro-done", tryPlayPreview, { once: true });
 
   if ("IntersectionObserver" in window) {
     const observer = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
-          if (entry.isIntersecting && mode === "preview") video.play().catch(() => {});
+          if (entry.isIntersecting && mode === "preview") tryPlayPreview();
           else if (!group.classList.contains("is-expanded") && mode === "preview") video.pause();
         });
       },
-      { threshold: 0.25 }
+      { threshold: 0.08, rootMargin: "120px 0px" }
     );
     observer.observe(group);
   }
