@@ -7,7 +7,7 @@ export function initProjects() {
   const grid = document.querySelector("[data-projects]");
   const onGridLayout = () => {
     ScrollTrigger.refresh();
-    kickVisibleHeadlines(".team__title[data-headline-reveal]");
+    kickVisibleHeadlines();
   };
   grid?.querySelectorAll("img").forEach((img) => {
     if (img.complete) return;

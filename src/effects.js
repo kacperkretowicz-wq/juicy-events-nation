@@ -1,6 +1,6 @@
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import { ease, softMotion } from "./shared.js";
+import { collectHeadlineRevealRoots, ease, softMotion } from "./shared.js";
 
 /** Owija linię w dwie warstwy: bazową i rozbłysk przesuwany maską. */
 function prepareGlow(node) {
@@ -25,6 +25,36 @@ function prepareGlow(node) {
   return node;
 }
 
+/** Przygotowanie poświaty bez wjazdu linii (np. nagłówki kompetencji przy scrollu). */
+export function ensureHeadlineGlow(node) {
+  if (!node) return null;
+  return prepareGlow(node);
+}
+
+/** Sam sweep czerwonej poświaty — można odtwarzać wielokrotnie. */
+export function playGlowSweep(node) {
+  if (!node) return;
+  ensureHeadlineGlow(node);
+
+  const glowSweepDur = 1.28;
+  const glowHoldDur = 0.45;
+  const glowFadeDur = 0.95;
+
+  gsap.killTweensOf(node);
+  node.classList.remove("is-text-glow-done");
+
+  gsap
+    .timeline()
+    .set(node, { "--glow-intensity": 1, "--glow-sweep": 0 })
+    .to(node, { "--glow-sweep": 1, duration: glowSweepDur, ease: "power2.inOut" })
+    .to(
+      node,
+      { "--glow-intensity": 0, duration: glowFadeDur, ease: "power2.out" },
+      glowSweepDur + glowHoldDur
+    )
+    .add(() => node.classList.add("is-text-glow-done"));
+}
+
 function playHeadlineReveal(lines, root) {
   if (root?.dataset.headlineRevealStarted === "1") return;
   if (root) root.dataset.headlineRevealStarted = "1";
@@ -32,23 +62,30 @@ function playHeadlineReveal(lines, root) {
 }
 
 export function revealLines(nodes, delay = 0) {
+  const lineStagger = 0.12;
+  const riseDur = softMotion ? 1.55 : 2.15;
+  const glowSweepDelay = 0.14;
+  const glowSweepDur = 1.28;
+  const glowHoldDur = 0.45;
+  const glowFadeDur = 0.95;
+
   nodes.forEach((node, i) => {
     if (node.dataset.glowPlayed === "1") return;
     node.dataset.glowPlayed = "1";
 
-    const tl = gsap.timeline({ delay: delay + i * 0.055 });
-    tl.to(node, { yPercent: 0, duration: softMotion ? 0.7 : 0.95, ease }, 0);
+    const tl = gsap.timeline({ delay: delay + i * lineStagger });
+    tl.to(node, { yPercent: 0, duration: riseDur, ease }, 0);
 
     if (node.classList.contains("text-glow")) {
-      tl.to(node, { "--glow-sweep": 1, "--glow-intensity": 1, duration: 0.55, ease: "power2.inOut" }, 0.06).to(
-        node,
-        {
-          "--glow-intensity": 0,
-          duration: 0.4,
-          ease: "power2.out",
-          onComplete: () => node.classList.add("is-text-glow-done"),
-        }
-      );
+      tl.set(node, { "--glow-intensity": 1 }, glowSweepDelay)
+        .fromTo(
+          node,
+          { "--glow-sweep": 0 },
+          { "--glow-sweep": 1, duration: glowSweepDur, ease: "power2.inOut" },
+          glowSweepDelay
+        )
+        .to(node, { "--glow-intensity": 0, duration: glowFadeDur, ease: "power2.out" }, glowSweepDelay + glowSweepDur + glowHoldDur)
+        .add(() => node.classList.add("is-text-glow-done"));
     }
   });
 }
@@ -67,9 +104,7 @@ export function prepareHeadline(root) {
   return lines;
 }
 
-const HEADLINE_REVEAL_SELECTOR = "[data-headline-reveal]";
-
-/** Odsłona nagłówka — tylko elementy z data-headline-reveal (wykluczenia w HTML). */
+/** Odsłona nagłówka + czerwona poświata (większe h1/h2 w main — patrz collectHeadlineRevealRoots). */
 export function bindHeadlineReveal(root) {
   if (!root || root.dataset.revealBound === "1") return;
 
@@ -93,7 +128,7 @@ export function bindHeadlineReveal(root) {
 
 /** Kontakt: sticky pin — trigger na sekcji, nie na h2. */
 export function bindContactHeadlineReveal() {
-  const title = document.querySelector(".contact__title[data-headline-reveal]");
+  const title = document.querySelector(".contact__title");
   if (!title || title.dataset.contactRevealBound === "1") return;
 
   const section = title.closest(".contact");
@@ -114,10 +149,19 @@ export function bindContactHeadlineReveal() {
   });
 }
 
+/** Po zmianie layoutu (intro, piny) — przelicz triggery i odtwórz to, co już jest w kadrze. */
+export function syncHeadlineReveals() {
+  ScrollTrigger.refresh();
+  repairHeadlineLines();
+  kickVisibleHeadlines();
+}
+
 /** Nagłówki już w kadrze po layout shift (miniatury realizacji itd.). */
-export function kickVisibleHeadlines(selectors = HEADLINE_REVEAL_SELECTOR) {
-  const list = typeof selectors === "string" ? selectors : selectors.join(",");
-  document.querySelectorAll(list).forEach((root) => {
+export function kickVisibleHeadlines(roots = null) {
+  const list = roots ?? collectHeadlineRevealRoots();
+  const targets = typeof roots === "string" ? [...document.querySelectorAll(roots)] : list;
+
+  targets.forEach((root) => {
     const lines = headlineLines(root).filter((line) => line.dataset.glowReady === "1");
     if (!lines.length || lines.every((line) => line.dataset.glowPlayed === "1")) return;
 
@@ -129,25 +173,36 @@ export function kickVisibleHeadlines(selectors = HEADLINE_REVEAL_SELECTOR) {
   });
 }
 
-/** Linie zostawione poniżej kadru po przerwanej animacji / starym bugu. */
+/** Stare bugi: ujemny transform / animacja przerwana po glowPlayed. Nie ruszać yPercent: 110 przed reveal. */
 export function repairHeadlineLines() {
-  document.querySelectorAll(`${HEADLINE_REVEAL_SELECTOR} .split-line__inner`).forEach((line) => {
-    const yPercent = gsap.getProperty(line, "yPercent");
-    if (typeof yPercent === "number" && yPercent > 8) {
+  collectHeadlineRevealRoots().forEach((root) => {
+    root.querySelectorAll(".split-line__inner").forEach((line) => {
+      const x = gsap.getProperty(line, "x");
+      const xPercent = gsap.getProperty(line, "xPercent");
+      const broken =
+        (typeof x === "number" && x < -20) ||
+        (typeof xPercent === "number" && xPercent < -5);
+
+      const stuckAfterPlay =
+        line.dataset.glowPlayed === "1" &&
+        !line.classList.contains("is-text-glow-done") &&
+        typeof gsap.getProperty(line, "yPercent") === "number" &&
+        gsap.getProperty(line, "yPercent") > 8;
+
+      if (!broken && !stuckAfterPlay) return;
+
       gsap.set(line, { yPercent: 0, clearProps: "transform" });
       line.classList.add("is-text-glow-done");
       line.dataset.glowPlayed = "1";
-    }
+    });
   });
 }
 
 export function initSectionReveals(scope = document) {
-  scope.querySelectorAll(HEADLINE_REVEAL_SELECTOR).forEach((root) => {
+  collectHeadlineRevealRoots(scope).forEach((root) => {
     if (root.closest(".contact")) return;
     bindHeadlineReveal(root);
   });
-
-  repairHeadlineLines();
 
   const fadeTargets = [
     ...scope.querySelectorAll("[data-fade]"),

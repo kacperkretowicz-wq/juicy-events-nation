@@ -1,7 +1,7 @@
 .projects {
   max-width: var(--max);
   margin: 0 auto;
-  padding: var(--block) var(--pad);
+  padding: var(--block) var(--pad) calc(var(--block) * 1.15);
   background: var(--cream);
 }
 

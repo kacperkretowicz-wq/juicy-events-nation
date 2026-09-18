@@ -1,32 +1,55 @@
-/* ——— ZESPÓŁ — backstage passy ———
-   Trzy identyfikatory crew, lekko przekrzywione jak rzucone na stół; na hover prostują się.
-   Motyw z branży eventowej zamiast listy „nasz zespół". Bez zdjęć — inicjały jako znak wodny. */
+/* ——— ZESPÓŁ — nagłówek jak kompetencje (czarne tło), passy na jasnym. */
+
 .team {
-  max-width: var(--max);
-  margin: 0 auto;
-  padding: var(--block) var(--pad) calc(var(--block) * 0.6);
+  max-width: none;
+  margin: 0;
+  padding: 0;
+}
+
+/* Płaskie tło jak .expertise — bez gradientu. */
+.team__band {
+  background: var(--dark);
+  color: var(--cream);
+  padding: clamp(6.5rem, 13vw, 9.5rem) var(--pad) clamp(4.5rem, 9vw, 7rem);
 }
 
 .team__head {
-  margin-bottom: clamp(2rem, 4vw, 3.5rem);
+  max-width: var(--max);
+  margin: 0 auto;
+  display: grid;
+  gap: clamp(1.5rem, 3vw, 2rem);
 }
 
 .team__title {
-  font-size: clamp(2.5rem, 6.4vw, 6rem);
+  margin: 0;
+  max-width: 18ch;
+  font-size: var(--display-3);
   font-weight: 600;
-  line-height: 0.86;
+  line-height: 0.95;
   letter-spacing: 0.002em;
+  color: var(--cream);
+}
+
+.team__accent {
+  color: var(--accent);
 }
 
 .team__title.is-split .split-line {
   overflow: hidden;
 }
 
+.team__inner {
+  max-width: var(--max);
+  margin: 0 auto;
+  padding: clamp(4rem, 8vw, 6rem) var(--pad) clamp(6rem, 12vw, 10.5rem);
+  background: var(--cream);
+}
+
 .passes {
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: clamp(1.25rem, 3vw, 3rem);
-  padding: 1rem 0;
+  padding: 0.5rem 0 1rem;
 }
 
 .pass {
@@ -52,7 +75,6 @@
   box-shadow: 0 40px 60px -28px rgba(15, 15, 15, 0.55);
 }
 
-/* Otwór na smycz */
 .pass__hole {
   justify-self: center;
   width: 2.75rem;
@@ -76,7 +98,6 @@
   text-transform: uppercase;
 }
 
-/* Inicjały jako znak wodny w tle */
 .pass__initials {
   position: absolute;
   right: -0.15em;
@@ -121,7 +142,6 @@
   border-color: var(--accent-soft);
 }
 
-/* Kod kreskowy — sam CSS, kilka nałożonych gradientów daje nierówne kreski */
 .pass__barcode {
   display: block;
   height: 2.25rem;
@@ -142,8 +162,11 @@
     max-width: 24rem;
   }
 
-  /* Inline --tilt ma pierwszeństwo — na telefonie prostujemy wprost. */
   .pass {
     transform: none;
+  }
+
+  .team__title {
+    max-width: none;
   }
 }

@@ -24,7 +24,7 @@
   --pad: clamp(1.25rem, 3.2vw, 3.25rem);
   --max: 1560px;
   --gutter: clamp(0.75rem, 1.1vw, 1.15rem);
-  --block: clamp(4.5rem, 10vw, 9rem);
+  --block: clamp(5.5rem, 12vw, 10.5rem);
 
   /* Typografia — Denim jak Sweetpunk (fonts.css) */
   --font: "Denim INK", Arial, Helvetica, sans-serif;

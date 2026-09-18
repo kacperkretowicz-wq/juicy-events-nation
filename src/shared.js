@@ -344,10 +344,44 @@ function splitIntoLines(el) {
   el.dataset.splitDone = "1";
 }
 
+/** Większe nagłówki z efektem poświaty — auto na stronie, wykluczenia poniżej. */
+const HEADLINE_REVEAL_QUERY =
+  "main h1, main h2, main .expertise-panel__head h3, .legal__title, [data-headline-reveal]";
+
+export function isHeadlineRevealExcluded(el) {
+  if (!el?.textContent?.trim()) return true;
+  if (el.closest("[data-no-headline-reveal]")) return true;
+  if (el.closest("[data-mission-headline]")) return true;
+  if (el.closest("[data-agency-headline]")) return true;
+  if (el.closest(".agency__layer--dark")) return true;
+  if (el.closest(".hero-intro")) return true;
+  if (el.closest("[aria-hidden='true']")) return true;
+  if (el.closest(".project-card")) return true;
+  if (el.closest(".pass")) return true;
+  return false;
+}
+
+export function collectHeadlineRevealRoots(scope = document) {
+  const seen = new Set();
+  const roots = [];
+  scope.querySelectorAll(HEADLINE_REVEAL_QUERY).forEach((el) => {
+    if (seen.has(el) || isHeadlineRevealExcluded(el)) return;
+    seen.add(el);
+    roots.push(el);
+  });
+  scope.querySelectorAll("[data-split]").forEach((el) => {
+    if (seen.has(el) || isHeadlineRevealExcluded(el)) return;
+    seen.add(el);
+    roots.push(el);
+  });
+  return roots;
+}
+
+/** @deprecated tylko dla starych odwołań — używaj collectHeadlineRevealRoots() */
 export const HEADLINE_SPLIT_SELECTOR = "[data-headline-reveal], [data-split]";
 
 export function initSplitHeadlines() {
-  document.querySelectorAll(HEADLINE_SPLIT_SELECTOR).forEach(splitIntoLines);
+  collectHeadlineRevealRoots().forEach(splitIntoLines);
 }
 
 /**
@@ -362,7 +396,7 @@ export function initSplitResize() {
   let timer = null;
 
   const resplit = () => {
-    const heads = [...document.querySelectorAll(HEADLINE_SPLIT_SELECTOR)].filter(
+    const heads = collectHeadlineRevealRoots().filter(
       (el) => el.dataset.splitDone === "1" && el.dataset.splitSource
     );
     if (!heads.length) return;

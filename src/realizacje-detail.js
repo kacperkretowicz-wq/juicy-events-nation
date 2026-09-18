@@ -1,9 +1,9 @@
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { initHeader, initSplitHeadlines, initSplitResize } from "./shared.js";
-import { initSectionReveals } from "./effects.js";
+import { initSectionReveals, syncHeadlineReveals } from "./effects.js";
 import { initProjects } from "./sections/projects.js";
 import { initLightbox } from "./sections/lightbox.js";
-import { initParallaxMedia } from "./sections/parallax-media.js";
+import { bootSiteClosing } from "./site-closing-boot.js";
 import { claimAudio, releaseAudio } from "./audio-bus.js";
 import { initMicroFx } from "./sections/micro-fx.js";
 import { initFloatCta } from "./sections/float-cta.js";
@@ -15,8 +15,6 @@ initSectionReveals();
 initProjects();
 initLightbox();
 initMicroFx();
-initParallaxMedia();
-
 // Wideo w nagłówku realizacji: autoplay w viewport (bez dźwięku),
 // przycisk włącza dźwięk i odtwarza od początku — jak w agency__reel-cta.
 const video = document.querySelector("[data-realizacje-video]");
@@ -59,6 +57,8 @@ if (video && soundBtn) {
 }
 
 initFloatCta();
+bootSiteClosing();
 
 document.documentElement.classList.add("is-loaded");
-window.addEventListener("load", () => ScrollTrigger.refresh());
+syncHeadlineReveals();
+window.addEventListener("load", () => syncHeadlineReveals());

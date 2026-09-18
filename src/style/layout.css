@@ -213,9 +213,9 @@
   overflow: hidden;
 }
 
-/* Gruba czarna strefa między kontaktem a treścią stopki (Sweetpunk). */
+/* Cienki oddech pod kadrem — kontakt już kończy się w czerni. */
 .site-footer__void {
-  min-height: clamp(5rem, 14vw, 9.5rem);
+  min-height: clamp(1.25rem, 3vw, 2rem);
   background: var(--dark);
 }
 

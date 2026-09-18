@@ -7,11 +7,60 @@
   display: grid;
   grid-template-columns: minmax(0, 0.85fr) minmax(0, 1.15fr);
   gap: clamp(2rem, 5vw, 5rem);
-  align-items: stretch;
-  min-height: 100svh;
+  align-items: start;
   max-width: var(--max);
   margin: 0 auto;
-  padding: clamp(5rem, 9vw, 8rem) var(--pad) clamp(3rem, 6vw, 5rem);
+  padding: clamp(5.5rem, 10vw, 8.5rem) var(--pad) clamp(4.5rem, 8vw, 7rem);
+}
+
+/* ——— Sweetpunk scroll: lewy nagłówek sticky, prawa lista jedzie ——— */
+.expertise.is-scroll .expertise__inner {
+  padding-top: 0;
+  padding-bottom: 0;
+}
+
+.expertise.is-scroll .expertise__aside {
+  position: sticky;
+  top: 0;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  height: 100svh;
+  min-height: 28rem;
+  padding: clamp(5.5rem, 10vw, 7rem) 0 clamp(2.5rem, 8vh, 5rem);
+}
+
+.expertise.is-scroll .expertise__aside .eyebrow {
+  margin-bottom: auto;
+}
+
+.expertise.is-scroll .expertise__title {
+  margin-top: auto;
+}
+
+.expertise.is-scroll .expertise__list {
+  padding: clamp(7rem, 22vh, 12rem) 0 clamp(10rem, 32vh, 18rem);
+}
+
+.expertise.is-scroll .expertise-item {
+  opacity: 0.38;
+  padding: clamp(2.25rem, 5.5vh, 3.75rem) 0;
+}
+
+.expertise.is-scroll .expertise-item.is-active {
+  opacity: 1;
+}
+
+.expertise.is-scroll .expertise-item__body {
+  max-height: none;
+  opacity: 1;
+  overflow: visible;
+  padding-top: clamp(1rem, 2.5vh, 1.5rem);
+  padding-left: clamp(2.5rem, 5vw, 4.5rem);
+}
+
+.expertise.is-scroll .expertise-item__head {
+  cursor: pointer;
 }
 
 .expertise__aside {
@@ -29,7 +78,7 @@
   display: flex;
   align-items: baseline;
   gap: 0.25rem;
-  margin: 0;
+  margin: 0.75rem 0 0;
   font-size: var(--micro);
   font-weight: 600;
   letter-spacing: 0.18em;
@@ -93,8 +142,51 @@
 }
 
 .expertise-item__head h3 {
+  display: inline;
   font-size: var(--display-4);
-  transition: color 0.45s var(--ease);
+  transition: color 0.55s var(--ease);
+}
+
+/* [ tytuł ] — wolny fade nawiasów (bez sweep poświaty). */
+.expertise-item__head h3::before,
+.expertise-item__head h3::after {
+  display: inline-block;
+  overflow: hidden;
+  color: var(--accent);
+  opacity: 0;
+  max-width: 0;
+  vertical-align: baseline;
+  transition:
+    opacity 1.25s var(--ease),
+    max-width 1.25s var(--ease),
+    margin 1.25s var(--ease);
+}
+
+.expertise-item__head h3::before {
+  content: "[";
+  margin-right: 0;
+}
+
+.expertise-item__head h3::after {
+  content: "]";
+  margin-left: 0;
+}
+
+.expertise-item.is-active .expertise-item__head h3::before {
+  opacity: 1;
+  max-width: 0.65em;
+  margin-right: 0.1em;
+}
+
+.expertise-item.is-active .expertise-item__head h3::after {
+  opacity: 1;
+  max-width: 0.65em;
+  margin-left: 0.1em;
+}
+
+.expertise.is-scroll .expertise-item__head h3 {
+  color: rgba(245, 245, 240, 0.52);
+  transition: color 0.55s var(--ease);
 }
 
 .expertise-item.is-active .expertise-item__head h3,
@@ -171,42 +263,62 @@
 
 @media (max-width: 980px) {
   .expertise__inner {
+    scroll-margin-top: 5rem;
+  }
+
+  /* Ten sam układ co desktop: sticky lewa kolumna + scroll listy. */
+  .expertise.is-scroll .expertise__inner {
+    grid-template-columns: minmax(0, 0.4fr) minmax(0, 0.6fr);
+    gap: clamp(0.65rem, 2.5vw, 1.1rem);
+  }
+
+  .expertise.is-scroll .expertise__aside {
+    min-height: 22rem;
+    padding: clamp(5rem, 16vw, 6.25rem) 0 clamp(1.25rem, 4vh, 2rem);
+  }
+
+  .expertise.is-scroll .expertise__title {
+    max-width: 11ch;
+    font-size: clamp(0.98rem, 4.1vw, 1.22rem);
+    line-height: 1.1;
+  }
+
+  .expertise.is-scroll .expertise__count {
+    display: flex;
+    margin-top: 0.5rem;
+    font-size: 0.58rem;
+  }
+
+  .expertise.is-scroll .expertise__list {
+    padding: clamp(4.5rem, 16vh, 7rem) 0 clamp(7rem, 22vh, 11rem);
+  }
+
+  .expertise.is-scroll .expertise-item {
+    padding: clamp(1.75rem, 4.5vh, 2.5rem) 0;
+  }
+
+  .expertise.is-scroll .expertise-item__body {
+    padding-left: 0;
+    padding-top: 0.75rem;
+  }
+
+  .expertise.is-scroll .expertise-item__head {
     grid-template-columns: minmax(0, 1fr);
+    gap: 0.3rem;
     min-height: 0;
-    padding-top: clamp(6rem, 18vw, 8rem);
-    padding-bottom: 6.5rem;
   }
 
-  .expertise__count {
-    display: none;
+  .expertise.is-scroll .expertise-item__index {
+    font-size: 0.58rem;
   }
 
-  .expertise-item {
-    opacity: 1;
+  .expertise.is-scroll .expertise-item__head h3 {
+    font-size: clamp(0.88rem, 3.6vw, 1.05rem);
+    line-height: 1.18;
   }
 
-  .expertise-item__body {
-    max-height: none;
-    padding-top: 1.25rem;
-    padding-left: 0;
-    opacity: 1;
-  }
-
-  html.js .expertise-item__body {
-    max-height: 0;
-    padding-top: 0;
-    padding-left: 0;
-    opacity: 0;
-  }
-
-  html.js .expertise.is-accordion .expertise-item.is-active .expertise-item__body {
-    max-height: calc(var(--panel-h, 40rem) + 1.5rem);
-    padding-top: 1rem;
-    opacity: 1;
-  }
-
-  html.js .expertise-item__head h3 {
-    font-size: clamp(1.05rem, 4.2vw, 1.35rem);
-    line-height: 1.2;
+  .expertise.is-scroll .expertise-item__body p {
+    font-size: clamp(0.82rem, 3.2vw, 0.92rem);
+    line-height: 1.55;
   }
 }

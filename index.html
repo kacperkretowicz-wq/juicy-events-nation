@@ -169,7 +169,7 @@
 
             <!-- Faza B/C: logo "wskakuje" do nagłówka, ten napis wjeżdża w jego miejsce
                  i zmienia kolor w rytm kurczącego się wideo -->
-            <div class="agency__headline" data-agency-headline>
+            <div class="agency__headline" data-agency-headline data-no-headline-reveal>
               <div class="agency__layer agency__layer--light" data-agency-layer="light">
                 <h1 class="agency__title">
                   <span class="line"><span>Po co Ci agencja,</span></span>
@@ -279,7 +279,7 @@
         </div>
       </section>
 
-      <!-- 5. KOMPETENCJE — akordeon na klik (zwykły scroll) -->
+      <!-- 5. KOMPETENCJE — sticky tytuł + scroll listy (Sweetpunk), desktop i mobile -->
       <section class="expertise" id="kompetencje" data-expertise data-tone="dark">
         <div class="expertise__inner">
           <div class="expertise__aside">
@@ -513,18 +513,21 @@
 
       <!-- 5. ZESPÓŁ — identyfikatory crew („backstage pass"): motyw z branży zamiast listy. -->
       <section class="team" id="zespol">
-        <div class="team__head">
-          <p class="section-label">06 / Zespół</p>
-          <h2
-            class="team__title"
-            data-headline-reveal
-            data-reveal-trigger=".team__head"
-            data-reveal-start="top 85%"
-          >
-            Kto odbierze Twój brief?
-          </h2>
+        <div class="team__band" data-tone="dark">
+          <div class="team__head">
+            <p class="eyebrow eyebrow--light">06 / Zespół</p>
+            <h2
+              class="team__title"
+              data-headline-reveal
+              data-reveal-trigger=".team__head"
+              data-reveal-start="top 85%"
+            >
+              Kto odbierze Twój <span class="team__accent">[brief]</span>?
+            </h2>
+          </div>
         </div>
 
+        <div class="team__inner">
         <ul class="passes">
           <li class="pass" data-team-card style="--tilt: -2.5deg">
             <span class="pass__hole" aria-hidden="true"></span>
@@ -561,120 +564,10 @@
             <span class="pass__barcode" aria-hidden="true"></span>
           </li>
         </ul>
-      </section>
-
-      <!-- 7. KONTAKT — pełnoekranowy kadr + szkło (Sweetpunk) tuż nad stopką. -->
-      <section class="contact" id="kontakt" data-tone="dark">
-        <div class="contact__pin">
-          <div class="contact__bg" aria-hidden="true" data-parallax-media="10" data-parallax-trigger=".contact">
-            <img
-              src="/media/contact-closing.jpg"
-              alt=""
-              width="1920"
-              height="1280"
-              loading="lazy"
-              decoding="async"
-            />
-          </div>
-
-          <div class="contact__inner">
-          <div class="contact__lead">
-            <p class="section-label contact__label" data-fade>07 / Kontakt</p>
-            <p class="contact__kicker" data-fade>Gotowy zrobić z nami ten krok?</p>
-            <h2 class="contact__title" data-headline-reveal>
-              Porozmawiajmy, jak zrealizować Twoje
-              <span class="contact__bracket">[ambicje]</span>
-            </h2>
-            <div class="contact__actions" data-fade>
-              <a class="contact__cta" href="mailto:kontakt@juicyevents.pl">[Napisz do nas]</a>
-              <a class="contact__phone" href="tel:+48735298884">+48 735 298 884</a>
-            </div>
-          </div>
-
-          <div class="contact__panel" data-fade>
-            <div class="contact__card">
-              <div class="contact__card-head">
-                <span class="contact__avatar" aria-hidden="true">KN</span>
-                <div>
-                  <p class="contact__card-name">Kajetan Vincent Nawrocki</p>
-                  <p class="contact__card-role">Owner · Head of Creative &amp; Production</p>
-                </div>
-              </div>
-              <p class="contact__card-copy">
-                Cześć! Na brief odpowiadamy w 24&nbsp;h. Koncepcję z kosztorysem dostajesz w
-                <span class="slot" data-slot="dni-kosztorys">X</span> dni roboczych.
-              </p>
-            </div>
-
-            <form class="contact-form" id="contact-form" data-contact-form>
-              <label class="field field--glass">
-                <span class="visually-hidden">Kto pisze</span>
-                <input name="name" type="text" required placeholder="Imię i firma" autocomplete="name" />
-              </label>
-              <label class="field field--glass">
-                <span class="visually-hidden">E-mail</span>
-                <input name="email" type="email" required placeholder="adres@firma.pl" autocomplete="email" />
-              </label>
-              <label class="field field--glass">
-                <span class="visually-hidden">Co planujesz</span>
-                <textarea name="message" rows="3" required placeholder="Rodzaj wydarzenia, termin, goście, miejsce"></textarea>
-              </label>
-
-              <div class="contact-form__foot">
-                <button class="contact-form__submit" type="submit" aria-label="Wyślij brief">
-                  <span aria-hidden="true">→</span>
-                </button>
-              </div>
-              <p class="contact-form__status" data-form-status hidden></p>
-            </form>
-
-            <div class="contact__social">
-              <a class="contact__link" href="https://www.instagram.com/juicyeventsnation/" target="_blank" rel="me noopener noreferrer">Instagram</a>
-              <a class="contact__link" href="https://www.facebook.com/share/19XeBrjEGu/" target="_blank" rel="me noopener noreferrer">Facebook</a>
-              <a class="contact__link" href="https://www.linkedin.com/company/juicyevents/" target="_blank" rel="me noopener noreferrer">LinkedIn</a>
-            </div>
-          </div>
-          </div>
         </div>
       </section>
-    </main>
 
-    <footer class="site-footer" data-tone="dark">
-      <div class="site-footer__void" aria-hidden="true"></div>
-      <div class="site-footer__inner">
-        <div class="site-footer__row">
-          <div class="site-footer__firm">
-            <p class="site-footer__name">Juicy Events Nation</p>
-            <p><span class="slot" data-slot="adres">ul. Przykładowa 12</span>, <span class="slot" data-slot="kod-pocztowy">61-000</span> Poznań · <span class="slot" data-slot="nip">NIP 000-000-00-00</span></p>
-            <p class="site-footer__muted">Biuro: pn–pt <span class="slot" data-slot="godziny">9–17</span> · realizacje w całej Polsce</p>
-            <p><a href="mailto:kontakt@juicyevents.pl">kontakt@juicyevents.pl</a> · <a href="tel:+48735298884">+48 735 298 884</a></p>
-          </div>
-          <nav class="site-footer__nav" aria-label="Nawigacja">
-            <a href="#agencja">Agencja</a>
-            <a href="#kompetencje">Kompetencje</a>
-            <a href="#realizacje">Realizacje</a>
-            <a href="#zespol">Zespół</a>
-            <a href="#kontakt">Kontakt</a>
-          </nav>
-        </div>
-        <div class="site-footer__row site-footer__row--bottom">
-          <div class="site-footer__links">
-            <a class="site-footer__link" href="https://www.instagram.com/juicyeventsnation/" target="_blank" rel="me noopener noreferrer">Instagram</a>
-            <a class="site-footer__link" href="https://www.facebook.com/share/19XeBrjEGu/" target="_blank" rel="me noopener noreferrer">Facebook</a>
-            <a class="site-footer__link" href="https://www.linkedin.com/company/juicyevents/" target="_blank" rel="me noopener noreferrer">LinkedIn</a>
-          </div>
-          <div class="site-footer__links">
-            <span>© <span data-year></span> Juicy Events Nation</span>
-            <a class="site-footer__link" href="/polityka-prywatnosci.html">Polityka prywatności</a>
-            <a class="site-footer__link" href="#top">Na górę ↑</a>
-          </div>
-        </div>
-      </div>
-
-      <div class="site-footer__wordmark" aria-hidden="true">
-        <span>Juicy Events</span>
-      </div>
-    </footer>
+      <!-- @site-closing -->
 
     <div class="showreel" id="showreel" aria-hidden="true" role="dialog" aria-label="Showreel">
       <button class="showreel__close" type="button" data-showreel-close>Zamknij</button>
@@ -709,17 +602,7 @@
       </div>
     </div>
 
-    <a class="float-cta" href="#kontakt" data-float-cta aria-label="Przejdź do kontaktu">
-      <svg class="float-cta__ring" viewBox="0 0 100 100" aria-hidden="true">
-        <defs>
-          <path id="float-cta-path" d="M50,50 m-37,0 a37,37 0 1,1 74,0 a37,37 0 1,1 -74,0" />
-        </defs>
-        <text><textPath href="#float-cta-path" textLength="232" lengthAdjust="spacingAndGlyphs">Kontakt · Napisz do nas · Kontakt · Napisz do nas ·</textPath></text>
-      </svg>
-      <span class="float-cta__arrow" aria-hidden="true">
-        <svg viewBox="0 0 24 24"><path d="M5 12h14M13 5l7 7-7 7" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
-      </span>
-    </a>
+    <!-- @float-cta -->
 
     <script type="module" src="/src/main.js"></script>
   </body>

@@ -120,6 +120,15 @@ export function initPinnedList({ section, items, dwell = 0.72, onChange }) {
     ScrollTrigger.refresh();
   };
 
+  const destroy = () => {
+    mq.removeEventListener("change", applyMode);
+    if (mode === "accordion") disableAccordion();
+    if (mode === "pin") disablePin();
+    mode = null;
+  };
+
   applyMode();
   mq.addEventListener("change", applyMode);
+
+  return { destroy };
 }
