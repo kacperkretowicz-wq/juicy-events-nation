@@ -67,13 +67,6 @@
     -webkit-backdrop-filter: none;
   }
 
-  .projects,
-  .team,
-  .gallery {
-    content-visibility: auto;
-    contain-intrinsic-size: auto 1200px;
-  }
-
   .mission {
     height: 200svh;
   }
@@ -143,16 +136,23 @@
   }
 
   .projects__grid {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-    gap: clamp(1.5rem, 5vw, 2rem) 0.75rem;
+    grid-template-columns: minmax(0, 1fr);
+    gap: clamp(2.5rem, 8vw, 3.5rem);
   }
 
   .project-card__media {
-    aspect-ratio: 3 / 4;
+    aspect-ratio: 4 / 3;
   }
 
   .project-card__peek {
-    width: clamp(3.25rem, 38%, 4.5rem);
+    display: none !important;
+  }
+
+  .project-card__cover {
+    height: 118%;
+    max-height: none;
+    margin-top: -9%;
+    object-position: center;
   }
 
   .team__band {

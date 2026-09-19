@@ -3,6 +3,32 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { ease, softMotion } from "../shared.js";
 import { kickVisibleHeadlines } from "../effects.js";
 
+/** Na mobile: delikatny dryf okładki w kadrze podczas scrolla. */
+export function initProjectCoverDrift() {
+  if (softMotion) return;
+  if (!window.matchMedia("(max-width: 980px)").matches) return;
+
+  document.querySelectorAll("[data-projects] .project-card__cover").forEach((cover) => {
+    const media = cover.closest(".project-card__media");
+    if (!media) return;
+
+    gsap.fromTo(
+      cover,
+      { yPercent: -10 },
+      {
+        yPercent: 10,
+        ease: "none",
+        scrollTrigger: {
+          trigger: media,
+          start: "top bottom",
+          end: "bottom top",
+          scrub: true,
+        },
+      }
+    );
+  });
+}
+
 export function initProjects() {
   const grid = document.querySelector("[data-projects]");
   const onGridLayout = () => {

@@ -22,10 +22,6 @@ export const mobileScrollProfile = touchCoarse || narrowViewport;
 
 ScrollTrigger.config({ ignoreMobileResize: true });
 
-if (!softMotion && mobileScrollProfile) {
-  ScrollTrigger.normalizeScroll(true);
-}
-
 const lenisEasing = (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t));
 
 export const lenis = new Lenis(

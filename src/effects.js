@@ -252,8 +252,6 @@ export function initParallax(scope = document) {
   const mobile = window.matchMedia("(max-width: 980px)").matches;
 
   scope.querySelectorAll("[data-parallax]").forEach((el) => {
-    if (mobile && el.closest(".work__card-inner")) return;
-
     let strength = parseFloat(el.dataset.parallax) || 0.15;
     if (mobile) strength *= 0.45;
 

@@ -266,31 +266,40 @@
     scroll-margin-top: 5rem;
   }
 
-  /* Ten sam układ co desktop: sticky lewa kolumna + scroll listy. */
+  /* Mobile: nagłówek sekcji statyczny nad listą (bez sticky 100svh). */
   .expertise.is-scroll .expertise__inner {
-    grid-template-columns: minmax(0, 0.4fr) minmax(0, 0.6fr);
-    gap: clamp(0.65rem, 2.5vw, 1.1rem);
+    grid-template-columns: minmax(0, 1fr);
+    gap: clamp(2rem, 6vw, 2.75rem);
+    padding-top: clamp(5rem, 16vw, 6.5rem);
+    padding-bottom: clamp(4rem, 12vw, 6rem);
   }
 
   .expertise.is-scroll .expertise__aside {
-    min-height: 22rem;
-    padding: clamp(5rem, 16vw, 6.25rem) 0 clamp(1.25rem, 4vh, 2rem);
+    position: static;
+    height: auto;
+    min-height: 0;
+    padding: 0;
+  }
+
+  .expertise.is-scroll .expertise__aside .eyebrow {
+    margin-bottom: 1.25rem;
   }
 
   .expertise.is-scroll .expertise__title {
-    max-width: 11ch;
-    font-size: clamp(0.98rem, 4.1vw, 1.22rem);
-    line-height: 1.1;
+    margin-top: 0;
+    max-width: 16ch;
+    font-size: clamp(1.65rem, 7vw, 2.1rem);
+    line-height: 1.05;
   }
 
   .expertise.is-scroll .expertise__count {
     display: flex;
-    margin-top: 0.5rem;
-    font-size: 0.58rem;
+    margin-top: 0.65rem;
+    font-size: 0.62rem;
   }
 
   .expertise.is-scroll .expertise__list {
-    padding: clamp(4.5rem, 16vh, 7rem) 0 clamp(7rem, 22vh, 11rem);
+    padding: 0;
   }
 
   .expertise.is-scroll .expertise-item {
