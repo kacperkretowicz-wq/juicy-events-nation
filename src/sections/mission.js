@@ -1,6 +1,6 @@
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import { softMotion } from "../shared.js";
+import { mobileScrollProfile, softMotion } from "../shared.js";
 
 // Jedna linia: „Nie boimy się” + slot. Kolejka tylko w dół — aktywne słowo w slocie,
 // następne czekają pod spodem, zużyte idą nad (bez zamiany z góry na dół).
@@ -110,7 +110,6 @@ export function initMission() {
 
   fitRotator();
   window.addEventListener("resize", fitRotator);
-  ScrollTrigger.addEventListener("refresh", fitRotator);
 
   applyQueue(0, 0);
   if (note) gsap.set(note, { opacity: 0, yPercent: 12 });
@@ -121,7 +120,8 @@ export function initMission() {
     trigger: section,
     start: "top top",
     end: "bottom bottom",
-    scrub: true,
+    scrub: mobileScrollProfile ? 0.55 : true,
+    fastScrollEnd: mobileScrollProfile,
     onUpdate: ({ progress }) => {
       const active = Math.min(words.length - 1, Math.floor(progress / step));
       const t = active === words.length - 1 ? 0 : gsap.utils.clamp(0, 1, (progress - active * step) / step);

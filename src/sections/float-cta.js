@@ -1,6 +1,6 @@
 // Pływające kółko „Kontakt" — widoczne wszędzie, chowa się, gdy sekcja kontaktu
 // (lub stopka z danymi kontaktowymi) jest już na ekranie; wtedy tylko by zasłaniało.
-import { lenis } from "../shared.js";
+import { onScrollFrame } from "../shared.js";
 
 export function initFloatCta() {
   const cta = document.querySelector("[data-float-cta]");
@@ -38,17 +38,7 @@ export function initFloatCta() {
     cta.classList.toggle("is-inverted", overAccent);
   };
 
-  let ticking = false;
-  const scheduleTone = () => {
-    if (ticking) return;
-    ticking = true;
-    requestAnimationFrame(() => {
-      ticking = false;
-      updateTone();
-    });
-  };
-
-  scheduleTone();
-  lenis.on("scroll", scheduleTone);
-  window.addEventListener("resize", scheduleTone);
+  updateTone();
+  onScrollFrame(updateTone);
+  window.addEventListener("resize", updateTone);
 }

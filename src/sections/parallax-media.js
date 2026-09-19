@@ -1,6 +1,6 @@
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import { softMotion } from "../shared.js";
+import { mobileScrollProfile, softMotion } from "../shared.js";
 
 // Delikatny parallax na kadrach oznaczonych `data-parallax-media`.
 // Kontener ma overflow:hidden, a media wewnątrz jest wyższe niż kontener
@@ -17,7 +17,8 @@ function bindParallaxMedia(container) {
   const media = centered ? container : container.querySelector("img, video");
   if (!media) return;
 
-  const shift = parseFloat(container.dataset.parallaxMedia) || 8;
+  let shift = parseFloat(container.dataset.parallaxMedia) || 8;
+  if (mobileScrollProfile) shift *= 0.55;
   const triggerSel = container.dataset.parallaxTrigger;
   const trigger = triggerSel ? container.closest(triggerSel) || container : container;
   const pinnedSection = Boolean(triggerSel);
@@ -28,7 +29,8 @@ function bindParallaxMedia(container) {
     trigger,
     start: pinnedSection ? "top top" : "top bottom",
     end: pinnedSection ? "bottom bottom" : "bottom top",
-    scrub: true,
+    scrub: mobileScrollProfile ? 0.55 : true,
+    fastScrollEnd: mobileScrollProfile,
     invalidateOnRefresh: true,
   };
 
@@ -48,14 +50,6 @@ function bindParallaxMedia(container) {
     );
   }
   container._parallaxScrollTrigger = tween.scrollTrigger;
-
-  const refresh = () => ScrollTrigger.refresh();
-  const img = container.querySelector("img");
-  if (img) {
-    if (img.complete) refresh();
-    else img.addEventListener("load", refresh, { once: true });
-    img.addEventListener("error", refresh, { once: true });
-  }
 }
 
 export function initParallaxMedia(scope = document) {

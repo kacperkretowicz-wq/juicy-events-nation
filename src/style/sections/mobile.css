@@ -56,6 +56,24 @@
     font-size: clamp(1.65rem, 7vw, 2.1rem);
   }
 
+  .work__play {
+    backdrop-filter: none;
+    -webkit-backdrop-filter: none;
+    background: color-mix(in srgb, var(--cream) 78%, transparent);
+  }
+
+  .site-header--solid .site-header__panel {
+    backdrop-filter: none;
+    -webkit-backdrop-filter: none;
+  }
+
+  .projects,
+  .team,
+  .gallery {
+    content-visibility: auto;
+    contain-intrinsic-size: auto 1200px;
+  }
+
   .mission {
     height: 200svh;
   }

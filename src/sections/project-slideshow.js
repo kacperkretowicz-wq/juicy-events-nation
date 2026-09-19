@@ -1,3 +1,5 @@
+import { isScrollActive, touchCoarse } from "../shared.js";
+
 // Szybki podgląd zdjęć w okienku peek — tylko na hover (0,4 s / slajd).
 const INTERVAL = 400;
 
@@ -27,7 +29,11 @@ export function initProjectSlideshow() {
 
     const start = () => {
       if (timer) return;
-      timer = window.setInterval(() => show((index + 1) % slides.length), INTERVAL);
+      if (touchCoarse && isScrollActive()) return;
+      timer = window.setInterval(() => {
+        if (touchCoarse && isScrollActive()) return;
+        show((index + 1) % slides.length);
+      }, INTERVAL);
     };
 
     const canHover = window.matchMedia("(hover: hover)").matches;
@@ -42,10 +48,14 @@ export function initProjectSlideshow() {
       return;
     }
 
-    // Dotyk: podgląd w viewport bez hovera.
     if ("IntersectionObserver" in window) {
       const observer = new IntersectionObserver(
-        (entries) => entries.forEach((entry) => (entry.isIntersecting ? start() : reset())),
+        (entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) start();
+            else reset();
+          });
+        },
         { threshold: 0.45 }
       );
       observer.observe(card);

@@ -1,3 +1,5 @@
+import { isScrollActive, touchCoarse } from "../shared.js";
+
 // Wideo w okienku peek — gra tylko na hover (okładka to statyczny poster).
 export function initProjectVideo() {
   const peeks = [...document.querySelectorAll("[data-peek-video]")];
@@ -9,6 +11,7 @@ export function initProjectVideo() {
     if (!card || !video) return;
 
     const play = () => {
+      if (touchCoarse && isScrollActive()) return;
       video.preload = "auto";
       video.play().catch(() => {});
     };
@@ -32,7 +35,12 @@ export function initProjectVideo() {
 
     if ("IntersectionObserver" in window) {
       const observer = new IntersectionObserver(
-        (entries) => entries.forEach((entry) => (entry.isIntersecting ? play() : stop())),
+        (entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) play();
+            else stop();
+          });
+        },
         { threshold: 0.45 }
       );
       observer.observe(card);

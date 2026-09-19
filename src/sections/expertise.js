@@ -99,6 +99,12 @@ export function initExpertise() {
     ScrollTrigger.refresh();
   };
 
+  let resizeTimer = null;
+  const onResize = () => {
+    clearTimeout(resizeTimer);
+    resizeTimer = setTimeout(() => ScrollTrigger.refresh(), 200);
+  };
+
   applyMode();
-  window.addEventListener("resize", () => ScrollTrigger.refresh());
+  window.addEventListener("resize", onResize);
 }

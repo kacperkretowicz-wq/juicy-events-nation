@@ -1,7 +1,7 @@
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { initHeader, initSplitHeadlines, initSplitResize } from "./shared.js";
 import { initParallax, initSectionReveals, initMarks, syncHeadlineReveals } from "./effects.js";
-import { rebuildParallaxMedia } from "./sections/parallax-media.js";
+import { initParallaxMedia, rebuildParallaxMedia } from "./sections/parallax-media.js";
 import { initHeroIntro } from "./sections/hero-intro.js";
 import { initAgency } from "./sections/agency.js";
 import { initHeroReel } from "./sections/hero-reel.js";
@@ -38,18 +38,17 @@ bootSiteClosing();
 
 document.documentElement.classList.add("is-loaded");
 
-rebuildParallaxMedia();
-syncHeadlineReveals();
+initParallaxMedia();
+syncHeadlineReveals({ refresh: false });
 
-window.addEventListener("load", () => {
+let layoutFinalized = false;
+const finalizeScrollLayout = () => {
+  if (layoutFinalized) return;
+  layoutFinalized = true;
   rebuildParallaxMedia();
   syncHeadlineReveals();
-});
-setTimeout(() => {
-  rebuildParallaxMedia();
-  syncHeadlineReveals();
-}, 4500);
-document.addEventListener("jen:intro-done", () => {
-  rebuildParallaxMedia();
-  syncHeadlineReveals();
-});
+};
+
+document.addEventListener("jen:intro-done", finalizeScrollLayout);
+window.addEventListener("load", finalizeScrollLayout);
+document.fonts?.ready?.then(finalizeScrollLayout);

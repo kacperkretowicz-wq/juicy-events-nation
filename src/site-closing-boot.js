@@ -6,15 +6,17 @@ import { initParallaxMedia, rebuildParallaxMedia } from "./sections/parallax-med
 export function bootSiteClosing() {
   initSiteClosing();
   initParallaxMedia();
-  rebuildParallaxMedia();
-  syncHeadlineReveals();
+  syncHeadlineReveals({ refresh: false });
 
-  window.addEventListener("load", () => {
+  let layoutFinalized = false;
+  const finalizeScrollLayout = () => {
+    if (layoutFinalized) return;
+    layoutFinalized = true;
     rebuildParallaxMedia();
     syncHeadlineReveals();
-  });
-  document.addEventListener("jen:intro-done", () => {
-    rebuildParallaxMedia();
-    syncHeadlineReveals();
-  });
+  };
+
+  window.addEventListener("load", finalizeScrollLayout);
+  document.fonts?.ready?.then(finalizeScrollLayout);
+  document.addEventListener("jen:intro-done", finalizeScrollLayout);
 }

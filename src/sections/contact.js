@@ -1,5 +1,4 @@
 import { bindContactHeadlineReveal, syncHeadlineReveals } from "../effects.js";
-import { rebuildParallaxMedia } from "./parallax-media.js";
 
 const RECIPIENT = "kontakt@juicyevents.pl";
 
@@ -8,10 +7,7 @@ export function initContactParallaxRefresh() {
   const img = document.querySelector(".contact__bg img");
   if (!img) return;
 
-  const refresh = () => {
-    rebuildParallaxMedia();
-    syncHeadlineReveals();
-  };
+  const refresh = () => syncHeadlineReveals();
   if (img.complete) {
     refresh();
     return;

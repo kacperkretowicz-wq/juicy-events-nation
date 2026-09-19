@@ -3,6 +3,7 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { CustomEase } from "gsap/CustomEase";
 import Lenis from "lenis";
 import { initPageTransition, transitionTo, animateLeave, getCurrentColor } from "./page-transition.js";
+import { flushScrollFrame, markScrollActivity, onScrollFrame } from "./scroll-frame.js";
 
 gsap.registerPlugin(ScrollTrigger, CustomEase);
 CustomEase.create("smoothExpoOut", "M0,0 C0.143,0 0.22,0.534 0.247,0.663 0.277,0.811 0.424,1 1,1");
@@ -15,18 +16,54 @@ CustomEase.create("smoothExpoOut", "M0,0 C0.143,0 0.22,0.534 0.247,0.663 0.277,0
 export const softMotion = new URLSearchParams(window.location.search).has("reduced");
 export const ease = softMotion ? "power2.out" : "smoothExpoOut";
 
-export const lenis = new Lenis({
-  duration: softMotion ? 0.75 : 1.15,
-  lerp: softMotion ? 0.1 : 0.085,
-  easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
-  smoothWheel: true,
-  wheelMultiplier: 0.92,
-});
+export const touchCoarse = window.matchMedia("(hover: none) and (pointer: coarse)").matches;
+export const narrowViewport = window.matchMedia("(max-width: 980px)").matches;
+export const mobileScrollProfile = touchCoarse || narrowViewport;
+
+ScrollTrigger.config({ ignoreMobileResize: true });
+
+if (!softMotion && mobileScrollProfile) {
+  ScrollTrigger.normalizeScroll(true);
+}
+
+const lenisEasing = (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t));
+
+export const lenis = new Lenis(
+  softMotion
+    ? {
+        duration: 0.75,
+        lerp: 0.1,
+        easing: lenisEasing,
+        smoothWheel: true,
+        wheelMultiplier: 0.92,
+      }
+    : mobileScrollProfile
+      ? {
+          duration: 0.88,
+          lerp: 0.14,
+          easing: lenisEasing,
+          smoothWheel: true,
+          wheelMultiplier: 0.92,
+        }
+      : {
+          duration: 1.15,
+          lerp: 0.085,
+          easing: lenisEasing,
+          smoothWheel: true,
+          wheelMultiplier: 0.92,
+        }
+);
 
 document.documentElement.classList.add("lenis", "lenis-smooth");
-lenis.on("scroll", ScrollTrigger.update);
+lenis.on("scroll", () => {
+  markScrollActivity();
+  ScrollTrigger.update();
+  flushScrollFrame();
+});
 gsap.ticker.add((time) => lenis.raf(time * 1000));
-gsap.ticker.lagSmoothing(0);
+gsap.ticker.lagSmoothing(mobileScrollProfile && !softMotion ? 800 : 0);
+
+export { onScrollFrame, isScrollActive } from "./scroll-frame.js";
 
 window.__jen = { gsap, ScrollTrigger, lenis };
 
@@ -86,7 +123,7 @@ export function initHeader() {
     return;
   }
 
-  lenis.on("scroll", updateTone);
+  onScrollFrame(updateTone);
 }
 
 /* ——— Mega menu ——— */

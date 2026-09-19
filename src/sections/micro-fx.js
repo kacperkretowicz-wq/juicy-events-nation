@@ -2,7 +2,7 @@
 // Amplitudy trzymane nisko — mają być wyczuwalne, nie krzykliwe.
 // (`softMotion` = tylko opt-in `?reduced` w URL — patrz shared.js.)
 
-import { lenis, softMotion } from "../shared.js";
+import { onScrollFrame, softMotion } from "../shared.js";
 
 /* Delikatne wejście kadrów — galeria i hero podstron realizacji.
    Karty na stronie głównej mają osobny reveal (projects.js). */
@@ -75,7 +75,7 @@ export function initWordmarkDrift() {
     word.style.transform = `translate(${shift}px, 0.06em)`;
   };
   update();
-  lenis.on("scroll", update);
+  onScrollFrame(update);
   window.addEventListener("resize", update);
 }
 

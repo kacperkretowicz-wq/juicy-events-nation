@@ -149,11 +149,17 @@ export function bindContactHeadlineReveal() {
   });
 }
 
+let headlineSyncRaf = null;
+
 /** Po zmianie layoutu (intro, piny) — przelicz triggery i odtwórz to, co już jest w kadrze. */
-export function syncHeadlineReveals() {
-  ScrollTrigger.refresh();
-  repairHeadlineLines();
-  kickVisibleHeadlines();
+export function syncHeadlineReveals({ refresh = true } = {}) {
+  if (headlineSyncRaf) cancelAnimationFrame(headlineSyncRaf);
+  headlineSyncRaf = requestAnimationFrame(() => {
+    headlineSyncRaf = null;
+    repairHeadlineLines();
+    kickVisibleHeadlines();
+    if (refresh) ScrollTrigger.refresh();
+  });
 }
 
 /** Nagłówki już w kadrze po layout shift (miniatury realizacji itd.). */
@@ -243,15 +249,27 @@ export function initMarks(scope = document) {
 export function initParallax(scope = document) {
   if (softMotion) return;
 
+  const mobile = window.matchMedia("(max-width: 980px)").matches;
+
   scope.querySelectorAll("[data-parallax]").forEach((el) => {
-    const strength = parseFloat(el.dataset.parallax) || 0.15;
+    if (mobile && el.closest(".work__card-inner")) return;
+
+    let strength = parseFloat(el.dataset.parallax) || 0.15;
+    if (mobile) strength *= 0.45;
+
     gsap.fromTo(
       el,
       { yPercent: -strength * 50 },
       {
         yPercent: strength * 50,
         ease: "none",
-        scrollTrigger: { trigger: el, start: "top bottom", end: "bottom top", scrub: true },
+        scrollTrigger: {
+          trigger: el,
+          start: "top bottom",
+          end: "bottom top",
+          scrub: mobile ? 0.55 : true,
+          fastScrollEnd: mobile,
+        },
       }
     );
   });
