@@ -22,33 +22,21 @@ export const mobileScrollProfile = touchCoarse || narrowViewport;
 
 ScrollTrigger.config({ ignoreMobileResize: true });
 
+if (!softMotion && touchCoarse) {
+  ScrollTrigger.normalizeScroll(true);
+}
+
 const lenisEasing = (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t));
 
-export const lenis = new Lenis(
-  softMotion
-    ? {
-        duration: 0.75,
-        lerp: 0.1,
-        easing: lenisEasing,
-        smoothWheel: true,
-        wheelMultiplier: 0.92,
-      }
-    : mobileScrollProfile
-      ? {
-          duration: 0.88,
-          lerp: 0.14,
-          easing: lenisEasing,
-          smoothWheel: true,
-          wheelMultiplier: 0.92,
-        }
-      : {
-          duration: 1.15,
-          lerp: 0.085,
-          easing: lenisEasing,
-          smoothWheel: true,
-          wheelMultiplier: 0.92,
-        }
-);
+const lenisBase = {
+  duration: softMotion ? 0.75 : 1.15,
+  lerp: softMotion ? 0.1 : 0.085,
+  easing: lenisEasing,
+  smoothWheel: true,
+  wheelMultiplier: 0.92,
+};
+
+export const lenis = new Lenis(lenisBase);
 
 document.documentElement.classList.add("lenis", "lenis-smooth");
 lenis.on("scroll", () => {

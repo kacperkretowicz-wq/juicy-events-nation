@@ -265,8 +265,7 @@ export function initParallax(scope = document) {
           trigger: el,
           start: "top bottom",
           end: "bottom top",
-          scrub: mobile ? 0.55 : true,
-          fastScrollEnd: mobile,
+          scrub: true,
         },
       }
     );

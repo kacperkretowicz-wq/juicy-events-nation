@@ -29,8 +29,7 @@ function bindParallaxMedia(container) {
     trigger,
     start: pinnedSection ? "top top" : "top bottom",
     end: pinnedSection ? "bottom bottom" : "bottom top",
-    scrub: mobileScrollProfile ? 0.55 : true,
-    fastScrollEnd: mobileScrollProfile,
+    scrub: true,
     invalidateOnRefresh: true,
   };
 

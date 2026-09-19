@@ -110,7 +110,6 @@ export function initMission() {
 
   fitRotator();
   window.addEventListener("resize", fitRotator);
-  ScrollTrigger.addEventListener("refresh", fitRotator);
 
   applyQueue(0, 0);
   if (note) gsap.set(note, { opacity: 0, yPercent: 12 });
@@ -122,6 +121,7 @@ export function initMission() {
     start: "top top",
     end: "bottom bottom",
     scrub: true,
+    invalidateOnRefresh: true,
     onUpdate: ({ progress }) => {
       const active = Math.min(words.length - 1, Math.floor(progress / step));
       const t = active === words.length - 1 ? 0 : gsap.utils.clamp(0, 1, (progress - active * step) / step);

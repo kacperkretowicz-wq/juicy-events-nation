@@ -6,6 +6,7 @@ import { initLightbox } from "./sections/lightbox.js";
 import { initMicroFx } from "./sections/micro-fx.js";
 import { initFloatCta } from "./sections/float-cta.js";
 import { bootSiteClosing } from "./site-closing-boot.js";
+import { bindScrollLayoutSettle } from "./scroll-layout.js";
 
 initHeader();
 initSplitHeadlines();
@@ -18,5 +19,5 @@ initFloatCta();
 bootSiteClosing();
 
 document.documentElement.classList.add("is-loaded");
-syncHeadlineReveals();
-window.addEventListener("load", () => syncHeadlineReveals());
+syncHeadlineReveals({ refresh: false });
+bindScrollLayoutSettle();

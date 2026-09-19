@@ -107,6 +107,7 @@ export function initAgency() {
     start: "top top",
     end: "bottom bottom",
     scrub: true,
+    invalidateOnRefresh: true,
     onUpdate: ({ progress }) => {
       const introT = gsap.utils.clamp(0, 1, progress / LOGO_END);
       const flyT = flyEase(introT);

@@ -48,6 +48,7 @@ export function initHeroIntro() {
   const noMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
   if (noMotion || !bgImg || !logo || !markJ || !markE) {
     intro.remove();
+    document.dispatchEvent(new CustomEvent("jen:intro-done"));
     return;
   }
 
