@@ -123,15 +123,41 @@
         <a class="palette-lab__color-preset" role="button" data-color-preset="black-sun" href="?palette-lab=1&preset=black-sun" style="--preset-bg:#111111;--preset-accent:#f3e83d;--preset-text:#f9f4e8" aria-pressed="false"><strong>Czerń + słońce</strong><small>mocny night mode</small></a>
       </div>
       <div class="palette-lab__color-controls" role="group" aria-label="Własne kolory">
-        <label class="palette-lab__color-control"><span>Główne tło</span><input class="palette-lab__color-input" type="color" data-color-input="bg" value="#f4f2ec" aria-label="Główne tło" /></label>
-        <label class="palette-lab__color-control"><span>Kafelki</span><input class="palette-lab__color-input" type="color" data-color-input="surface" value="#ffffff" aria-label="Kolor kafelków" /></label>
-        <label class="palette-lab__color-control"><span>Tekst</span><input class="palette-lab__color-input" type="color" data-color-input="text" value="#17130f" aria-label="Kolor tekstu" /></label>
-        <label class="palette-lab__color-control"><span>Akcent</span><input class="palette-lab__color-input" type="color" data-color-input="accent" value="#f4511e" aria-label="Kolor akcentu" /></label>
-        <label class="palette-lab__color-control"><span>Dół / stopka</span><input class="palette-lab__color-input" type="color" data-color-input="bottom" value="#e33a1b" aria-label="Kolor dołu i stopki" /></label>
+        <label class="palette-lab__color-control"><span>Tło strony</span><button class="palette-lab__color-input" type="button" data-color-input="bg" data-value="#f4f2ec" aria-label="Tło strony" ></button></label>
+        <label class="palette-lab__color-control"><span>Jasne powierzchnie</span><button class="palette-lab__color-input" type="button" data-color-input="surface" data-value="#ffffff" aria-label="Jasne powierzchnie" ></button></label>
+        <label class="palette-lab__color-control"><span>Drugie tło</span><button class="palette-lab__color-input" type="button" data-color-input="surfaceAlt" data-value="#f4f2ec" aria-label="Drugie tło sekcji i kart" ></button></label>
+        <label class="palette-lab__color-control"><span>Karty białe</span><button class="palette-lab__color-input" type="button" data-color-input="white" data-value="#ffffff" aria-label="Tło białych kart" ></button></label>
+        <label class="palette-lab__color-control"><span>Tekst główny</span><button class="palette-lab__color-input" type="button" data-color-input="text" data-value="#17130f" aria-label="Główny kolor tekstu" ></button></label>
+        <label class="palette-lab__color-control"><span>Tekst pomocniczy</span><button class="palette-lab__color-input" type="button" data-color-input="muted" data-value="#817b72" aria-label="Tekst pomocniczy" ></button></label>
+        <label class="palette-lab__color-control"><span>Tekst na ciemnym</span><button class="palette-lab__color-input" type="button" data-color-input="inverseText" data-value="#ffffff" aria-label="Tekst na ciemnych sekcjach" ></button></label>
+        <label class="palette-lab__color-control"><span>Ciemne sekcje</span><button class="palette-lab__color-input" type="button" data-color-input="dark" data-value="#17130f" aria-label="Tło ciemnych sekcji" ></button></label>
+        <label class="palette-lab__color-control"><span>Ciemne karty</span><button class="palette-lab__color-input" type="button" data-color-input="darkSoft" data-value="#29231f" aria-label="Tło ciemnych kart" ></button></label>
+        <label class="palette-lab__color-control"><span>Akcent / przyciski</span><button class="palette-lab__color-input" type="button" data-color-input="accent" data-value="#f4511e" aria-label="Kolor akcentu i przycisków" ></button></label>
+        <label class="palette-lab__color-control"><span>Akcent tekstowy</span><button class="palette-lab__color-input" type="button" data-color-input="accentText" data-value="#f4511e" aria-label="Akcentowy kolor tekstu" ></button></label>
+        <label class="palette-lab__color-control"><span>Ciemny akcent</span><button class="palette-lab__color-input" type="button" data-color-input="accentDeep" data-value="#e33a1b" aria-label="Ciemny wariant akcentu" ></button></label>
+        <label class="palette-lab__color-control"><span>Stopka</span><button class="palette-lab__color-input" type="button" data-color-input="footer" data-value="#e33a1b" aria-label="Kolor stopki" ></button></label>
+        <label class="palette-lab__color-control"><span>Cytrynowy akcent</span><button class="palette-lab__color-input" type="button" data-color-input="lemon" data-value="#f1ff66" aria-label="Cytrynowy akcent" ></button></label>
+        <label class="palette-lab__color-control"><span>Niebieski akcent</span><button class="palette-lab__color-input" type="button" data-color-input="blue" data-value="#3b5bff" aria-label="Niebieski akcent" ></button></label>
+        <label class="palette-lab__color-control"><span>Tekst na akcencie</span><button class="palette-lab__color-input" type="button" data-color-input="onAccent" data-value="#ffffff" aria-label="Tekst na tle akcentu" ></button></label>
+        <label class="palette-lab__color-control"><span>Obramowania</span><button class="palette-lab__color-input" type="button" data-color-input="line" data-value="#17130f" aria-label="Kolor obramowań" ></button></label>
       </div>
       <button class="palette-lab__button palette-lab__reset-colors" type="button" data-colors-reset>Wróć do presetu</button>
       </div>
-    </div>
+      <section class="palette-lab__object-editor" aria-label="Edycja kolorów elementu strony">
+        <button class="palette-lab__button palette-lab__pick-toggle" type="button" data-palette-pick-toggle aria-pressed="false">Wybierz element na stronie</button>
+        <p class="palette-lab__pick-status" data-palette-pick-status>Włącz wybór i kliknij element, którego kolory chcesz zmienić.</p>
+        <div class="palette-lab__object-controls" data-palette-object-controls hidden>
+          <strong class="palette-lab__selected-label" data-palette-selected-label>Wybrany element</strong>
+          <div class="palette-lab__color-controls" role="group" aria-label="Kolory wybranego elementu">
+            <label class="palette-lab__color-control"><span>Tło elementu</span><button class="palette-lab__color-input" type="button" data-object-color="backgroundColor" data-value="#ffffff" aria-label="Tło wybranego elementu" ></button></label>
+            <label class="palette-lab__color-control"><span>Tekst elementu</span><button class="palette-lab__color-input" type="button" data-object-color="color" data-value="#17130f" aria-label="Tekst wybranego elementu" ></button></label>
+            <label class="palette-lab__color-control"><span>Obramowanie elementu</span><button class="palette-lab__color-input" type="button" data-object-color="borderColor" data-value="#17130f" aria-label="Obramowanie wybranego elementu" ></button></label>
+          </div>
+          <button class="palette-lab__button" type="button" data-object-reset>Resetuj element</button>
+        </div>
+        <button class="palette-lab__button palette-lab__object-reset-all" type="button" data-object-reset-all>Usuń wszystkie zmiany elementów</button>
+      </section>
+      </div>
 
     <div class="hero-intro" data-hero-intro role="presentation" aria-hidden="true">
       <img class="hero-intro__bg" src="" alt="" data-hero-intro-img decoding="async" />
@@ -316,10 +342,10 @@
               <video
                 class="work__video"
                 data-work-video
-                data-work-preview="/media/work-preview.mov"
+                data-work-preview="/media/work-preview.mp4"
                 data-work-showreel="/media/work-showreel.mp4"
                 preload="auto"
-                src="/media/work-preview.mov"
+                src="/media/work-preview.mp4"
                 poster="/media/work-preview-poster.jpg"
                 muted
                 loop

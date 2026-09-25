@@ -63,20 +63,12 @@ export function initWorkVideo() {
     if (!showreelSrc) {
       video.currentTime = 0;
       video.loop = false;
-      return Promise.resolve();
+      return;
     }
     mode = "showreel";
     video.loop = false;
     video.src = showreelSrc;
     video.load();
-    return new Promise((resolve) => {
-      const done = () => {
-        video.removeEventListener("canplay", done);
-        resolve();
-      };
-      if (video.readyState >= 2) resolve();
-      else video.addEventListener("canplay", done, { once: true });
-    });
   };
 
   loadPreview();
@@ -95,21 +87,26 @@ export function initWorkVideo() {
     observer.observe(group);
   }
 
-  const expand = async () => {
+  const expand = () => {
     group.classList.add("is-expanded");
     triggers.forEach((trigger) => trigger.setAttribute("aria-expanded", "true"));
     playBtn?.classList.add("is-exit");
     claimAudio(video);
+    loadShowreel();
     video.muted = false;
-    await loadShowreel();
     video.currentTime = 0;
-    video.play().catch(() => {});
+    // play() musi zostać wywołane bezpośrednio w zdarzeniu kliknięcia.
+    // Czekanie na canplay gubi uprawnienie przeglądarki do startu z dźwiękiem.
+    video.play().catch(() => {
+      video.controls = true;
+    });
   };
 
   const collapse = () => {
     group.classList.remove("is-expanded");
     triggers.forEach((trigger) => trigger.setAttribute("aria-expanded", "false"));
     playBtn?.classList.remove("is-exit");
+    video.controls = false;
     releaseAudio(video);
     loadPreview();
   };
