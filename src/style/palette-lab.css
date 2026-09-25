@@ -738,16 +738,18 @@ html[data-palette-lab][data-palette] .clients__item {
   flex-wrap: wrap;
   align-items: center;
   gap: 0.35rem;
-  max-width: min(46rem, calc(100vw - 2 * var(--pad)));
-  max-height: min(24rem, 55vh);
+  width: min(64rem, calc(100vw - 2 * var(--pad)));
+  max-width: min(64rem, calc(100vw - 2 * var(--pad)));
+  max-height: min(76vh, 48rem);
   overflow-y: auto;
   padding: 0.45rem;
   border: 1px solid rgba(255, 255, 255, 0.22);
-  border-radius: 999px;
-  background: rgba(18, 18, 18, 0.84);
+  border-radius: 1.25rem;
+  background: rgba(18, 18, 18, 0.94);
   color: var(--cream);
   box-shadow: 0 16px 36px -20px rgba(0, 0, 0, 0.6);
   backdrop-filter: blur(14px);
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
 }
 
 html[data-palette-lab] .palette-lab {
@@ -755,7 +757,8 @@ html[data-palette-lab] .palette-lab {
 }
 
 .palette-lab__label {
-  padding: 0 0.55rem;
+  flex-basis: 100%;
+  padding: 0.15rem 0.55rem 0.25rem;
   font-family: var(--font-label);
   font-size: 0.64rem;
   letter-spacing: 0.08em;
@@ -777,6 +780,107 @@ html[data-palette-lab] .palette-lab {
   text-transform: uppercase;
   cursor: pointer;
   transition: background 0.25s var(--ease), color 0.25s var(--ease), border-color 0.25s var(--ease);
+}
+
+.palette-lab__choice-grid,
+.palette-lab__font-grid {
+  flex-basis: 100%;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(7rem, 1fr));
+  gap: 0.38rem;
+  padding: 0.15rem 0.2rem 0.45rem;
+}
+
+.palette-lab__choice-grid--effects {
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+}
+
+.palette-lab__choice-grid .palette-lab__button,
+.palette-lab__choice-grid .palette-lab__button--effect {
+  width: 100%;
+}
+
+.palette-lab__choice-grid .palette-lab__divider {
+  display: none;
+}
+
+.palette-lab__font-grid {
+  grid-template-columns: repeat(auto-fit, minmax(9rem, 1fr));
+  gap: 0.45rem;
+}
+
+.palette-lab__font-button {
+  min-height: 3.45rem;
+  display: grid;
+  align-content: center;
+  gap: 0.18rem;
+  padding: 0.5rem 0.62rem;
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  border-radius: 0.75rem;
+  background: rgba(255, 255, 255, 0.045);
+  color: inherit;
+  text-align: left;
+  text-decoration: none;
+  cursor: pointer;
+  transition: border-color 0.2s var(--ease), background 0.2s var(--ease), color 0.2s var(--ease), transform 0.2s var(--ease);
+}
+
+.palette-lab__font-button strong {
+  overflow: hidden;
+  font-size: 0.88rem;
+  font-weight: 600;
+  letter-spacing: -0.02em;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.palette-lab__font-button small {
+  font-family: var(--font-label);
+  font-size: 0.56rem;
+  letter-spacing: 0.08em;
+  line-height: 1;
+  opacity: 0.58;
+  text-transform: uppercase;
+}
+
+html[data-palette-lab] .palette-lab__font-button small,
+html[data-palette-lab] .palette-lab__license {
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+}
+
+html[data-palette-lab] .palette-lab__label,
+html[data-palette-lab] .palette-lab__section-label,
+html[data-palette-lab] .palette-lab__button {
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+}
+
+.palette-lab__font-button:hover,
+.palette-lab__font-button:focus-visible,
+.palette-lab__font-button[aria-pressed="true"] {
+  border-color: var(--lemon);
+  background: var(--lemon);
+  color: var(--ink);
+  transform: translateY(-1px);
+}
+
+.palette-lab__font-button[aria-pressed="true"] small {
+  opacity: 0.7;
+}
+
+.palette-lab__license {
+  flex-basis: 100%;
+  margin: 0.05rem 0.55rem 0.25rem;
+  color: rgba(255, 255, 255, 0.58);
+  font-family: var(--font-label);
+  font-size: 0.58rem;
+  letter-spacing: 0.04em;
+  line-height: 1.45;
+}
+
+.palette-lab__license a {
+  color: var(--lemon);
+  text-decoration: underline;
+  text-underline-offset: 0.16em;
 }
 
 .palette-lab__divider {
@@ -801,6 +905,9 @@ html[data-palette-lab] .palette-lab {
     bottom: max(5.25rem, calc(env(safe-area-inset-bottom, 0px) + 4.5rem));
     left: max(var(--pad), env(safe-area-inset-left, 0px));
     justify-content: center;
+    width: auto;
+    max-width: none;
+    max-height: min(70vh, 42rem);
     border-radius: 1.25rem;
   }
 
@@ -811,6 +918,14 @@ html[data-palette-lab] .palette-lab {
 
   .palette-lab__divider {
     display: none;
+  }
+
+  .palette-lab__choice-grid--effects {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .palette-lab__font-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 }
 
@@ -987,4 +1102,26 @@ html[data-palette-lab] .palette-lab__button--effect[aria-pressed="true"] {
   html[data-palette-lab] .palette-lab__section-label {
     text-align: center;
   }
+}
+
+/* W testowym laboratorium logotypy marek są planszą referencyjną: stoją
+   nieruchomo, żeby porównanie typografii i kolorów było czytelne. */
+html[data-palette-lab] .clients__track,
+html[data-palette-lab] .clients__item,
+html[data-palette-lab] .clients__item img {
+  animation: none !important;
+  transform: none !important;
+  transition: none !important;
+  will-change: auto !important;
+}
+
+/* Dolny wordmark zostaje na miejscu i pokazuje samo „JUICY EVENTS”, bez
+   dodatkowego znaku JE obok tekstu w tej wersji testowej. */
+html[data-palette-lab] .site-footer__wordmark-track {
+  transform: none !important;
+  will-change: auto !important;
+}
+
+html[data-palette-lab] .site-footer__wordmark span::after {
+  display: none;
 }

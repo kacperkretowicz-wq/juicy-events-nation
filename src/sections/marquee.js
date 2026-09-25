@@ -71,7 +71,9 @@ function createLoop(marquee) {
 }
 
 export function initMarquees(scope = document) {
-  if (softMotion) return;
+  // W laboratorium porównawczym logotypy i wordmark są nieruchome, aby nie
+  // mieszać oceny fontów z ruchem marquee. Oryginalna wersja zachowuje pętle.
+  if (softMotion || document.documentElement.hasAttribute("data-palette-lab")) return;
   const loops = [...scope.querySelectorAll("[data-marquee]")].map(createLoop).filter(Boolean);
   if (!loops.length) return;
 
