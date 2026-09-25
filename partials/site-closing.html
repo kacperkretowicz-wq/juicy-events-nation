@@ -1,89 +1,37 @@
-      <section class="contact" id="kontakt" data-tone="dark">
-        <div class="contact__pin">
-          <div
-            class="contact__bg"
-            aria-hidden="true"
-            data-parallax-media="18"
-            data-parallax-trigger=".contact"
-          >
-            <img
-              src="/media/contact-closing.jpg"
-              alt=""
-              width="1920"
-              height="1280"
-              loading="lazy"
-              decoding="async"
-            />
+      <!-- KONTAKT — duży slogan i bezpośrednie kanały. Bez zdjęcia i bez panelu z formularzem
+           (feedback właściciela: „baba z AI do wyrzucenia”, „to po prawej OUT”). -->
+      <section class="contact" id="kontakt" data-surface="lemon">
+        <div class="contact__inner">
+          <p class="eyebrow contact__eyebrow">Kontakt</p>
+          <h2 class="contact__title" data-headline-reveal>
+            Porozmawiajmy, jak zrealizować Twoje <span class="bracket">ambicje.</span>
+          </h2>
+
+          <div class="contact__actions" data-fade>
+            <a class="contact__mail" href="mailto:kontakt@juicyevents.pl">kontakt@juicyevents.pl</a>
+            <a class="contact__phone" href="tel:+48735298884">+48 735 298 884</a>
+            <p class="contact__note">Na brief odpowiadamy w&nbsp;24&nbsp;h.</p>
           </div>
 
-          <div class="contact__inner">
-            <div class="contact__layout">
-              <div class="contact__lead">
-                <h2 class="contact__title" data-headline-reveal>
-                  Porozmawiajmy, jak zrealizować Twoje
-                  <span class="contact__bracket">[ambicje]</span>
-                </h2>
-                <p class="contact__kicker" data-fade>Gotowy zrobić z nami ten krok?</p>
-              </div>
-
-              <div class="contact__actions" data-fade>
-                <a class="contact__cta" href="mailto:kontakt@juicyevents.pl">[Napisz do nas]</a>
-                <a class="contact__phone" href="tel:+48735298884">+48 735 298 884</a>
-              </div>
-
-              <div class="contact__panel" data-fade>
-                <div class="contact__card">
-                  <span class="contact__avatar" aria-hidden="true">KN</span>
-                  <div class="contact__card-text">
-                    <p class="contact__card-name">
-                      Kajetan Vincent Nawrocki,
-                      <span class="contact__card-role">Owner · Head of Creative &amp; Production</span>
-                    </p>
-                    <p class="contact__card-copy">
-                      Cześć! Na brief odpowiadamy w 24&nbsp;h. Koncepcję z kosztorysem dostajesz w
-                      <span class="slot" data-slot="dni-kosztorys">X</span> dni roboczych.
-                    </p>
-                  </div>
-                </div>
-
-                <form class="contact-form" id="contact-form" data-contact-form>
-                  <label class="field field--glass">
-                    <span class="visually-hidden">Kto pisze</span>
-                    <input name="name" type="text" required placeholder="Imię i firma" autocomplete="name" />
-                  </label>
-                  <label class="field field--glass">
-                    <span class="visually-hidden">E-mail</span>
-                    <input name="email" type="email" required placeholder="adres@firma.pl" autocomplete="email" />
-                  </label>
-                  <label class="field field--glass field--glass-action">
-                    <span class="visually-hidden">Co planujesz</span>
-                    <input name="message" type="text" required placeholder="Rodzaj wydarzenia, termin, goście…" />
-                    <button class="contact-form__submit" type="submit" aria-label="Wyślij brief">
-                      <span aria-hidden="true">→</span>
-                    </button>
-                  </label>
-                </form>
-              </div>
-            </div>
-          </div>
+          <span class="contact__sign" aria-hidden="true"></span>
         </div>
       </section>
     </main>
 
     <footer class="site-footer" data-tone="dark">
-      <div class="site-footer__void" aria-hidden="true"></div>
       <div class="site-footer__inner">
         <div class="site-footer__row">
           <div class="site-footer__firm">
             <p class="site-footer__name">Juicy Events Nation</p>
-            <p><span class="slot" data-slot="adres">ul. Przykładowa 12</span>, <span class="slot" data-slot="kod-pocztowy">61-000</span> Poznań · <span class="slot" data-slot="nip">NIP 000-000-00-00</span></p>
-            <p class="site-footer__muted">Biuro: pn–pt <span class="slot" data-slot="godziny">9–17</span> · realizacje w całej Polsce</p>
+            <!-- Adres, NIP i godziny biura: dopisać tutaj, gdy klient poda dane
+                 (wcześniej były tu widoczne placeholdery „ul. Przykładowa 12”, „NIP 000…”). -->
+            <p class="site-footer__muted">Poznań · realizacje w całej Polsce</p>
             <p><a href="mailto:kontakt@juicyevents.pl">kontakt@juicyevents.pl</a> · <a href="tel:+48735298884">+48 735 298 884</a></p>
           </div>
           <nav class="site-footer__nav" aria-label="Nawigacja">
+            <a href="/#realizacje">Realizacje</a>
             <a href="/#agencja">Agencja</a>
             <a href="/#kompetencje">Kompetencje</a>
-            <a href="/#realizacje">Realizacje</a>
             <a href="/#zespol">Zespół</a>
             <a href="#kontakt">Kontakt</a>
           </nav>
@@ -102,7 +50,9 @@
         </div>
       </div>
 
-      <div class="site-footer__wordmark" aria-hidden="true">
-        <span>Juicy Events</span>
+      <div class="site-footer__wordmark" aria-hidden="true" data-marquee data-marquee-speed="55">
+        <div class="site-footer__wordmark-track" data-marquee-track>
+          <span>Juicy Events</span>
+        </div>
       </div>
     </footer>

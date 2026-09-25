@@ -49,6 +49,26 @@ gsap.ticker.lagSmoothing(mobileScrollProfile && !softMotion ? 800 : 0);
 
 export { onScrollFrame, isScrollActive } from "./scroll-frame.js";
 
+/**
+ * Nagłówki są dzielone na linie, a słowa misji mierzone — to musi się dziać na
+ * docelowym kroju, nie na zastępczym (inaczej łamanie linii rozjeżdża się po
+ * doczytaniu fontu). Czekamy na kroje strony, ale najwyżej `timeout` ms.
+ */
+export function whenFontsReady(timeout = 1200) {
+  if (!document.fonts?.load) return Promise.resolve();
+  const sample = "Aa ąęłśżźćńó";
+  const faces = [
+    `650 64px "Bricolage Grotesque"`,
+    `400 18px "Bricolage Grotesque"`,
+    `italic 460 64px "Fraunces"`,
+    `400 14px "Fragment Mono"`,
+  ];
+  return Promise.race([
+    Promise.all(faces.map((face) => document.fonts.load(face, sample))),
+    new Promise((resolve) => setTimeout(resolve, timeout)),
+  ]).catch(() => {});
+}
+
 window.__jen = { gsap, ScrollTrigger, lenis };
 
 const yearEl = document.querySelector("[data-year]");

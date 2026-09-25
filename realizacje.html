@@ -28,8 +28,9 @@
     <meta name="twitter:title" content="Realizacje — Juicy Events" />
     <meta name="twitter:description" content="Galeria realizacji Juicy Events: gale, konferencje, premiery produktowe, wydarzenia prywatne oraz produkcje techniczne." />
     <meta name="twitter:image" content="https://juicyevents.pl/media/og-cover.jpg" />
-    <link rel="preload" href="/fonts/DenimINK-Regular.woff2" as="font" type="font/woff2" crossorigin />
-    <link rel="preload" href="/fonts/DenimINKWD-SemiBold.woff2" as="font" type="font/woff2" crossorigin />
+    <link rel="preload" href="/fonts/bricolage-grotesque-latin.woff2" as="font" type="font/woff2" crossorigin />
+    <link rel="preload" href="/fonts/bricolage-grotesque-latin-ext.woff2" as="font" type="font/woff2" crossorigin />
+    <link rel="preload" href="/fonts/fraunces-italic-latin.woff2" as="font" type="font/woff2" crossorigin />
     <link rel="icon" href="/media/favicon-32.png?v=je" type="image/png" sizes="32x32" />
     <link rel="icon" href="/media/favicon-16.png?v=je" type="image/png" sizes="16x16" />
     <link rel="apple-touch-icon" href="/media/apple-touch-icon.png?v=je" />
@@ -64,10 +65,9 @@
       <div class="mega-menu__grid">
         <ul class="mega-menu__list">
           <li><a href="/">Strona główna</a></li>
+          <li><a href="/realizacje.html">Realizacje</a></li>
           <li><a href="/#agencja">Agencja</a></li>
           <li><a href="/#kompetencje">Kompetencje</a></li>
-          <li><a href="/#metoda">Metoda</a></li>
-          <li><a href="/#zakresy">Zakresy</a></li>
           <li><a href="/#zespol">Zespół</a></li>
           <li><a href="#kontakt">Kontakt</a></li>
         </ul>
@@ -96,73 +96,104 @@
 
       <section class="projects" id="case-studies" aria-label="Wybrane realizacje">
         <div class="projects__head">
-          <h2 class="projects__title">Wybrane realizacje <span class="bracket">z bliska</span></h2>
+          <h2 class="projects__title">Case studies <span class="bracket">z bliska</span></h2>
+          <p class="projects__count" aria-hidden="true">(06)</p>
         </div>
 
-        <div class="projects__grid" data-projects>
-          <article class="project-card" data-project>
+        <div class="projects__grid projects__grid--editorial" data-projects>
+          <article class="project-card project-card--has-video" data-project data-tile="juice">
             <a class="project-card__link" href="realizacje-active-fashion.html">
               <span class="project-card__media">
-                <img width="608" height="1080" src="/media/realizacje/active-fashion/cover-poster.jpg" alt="Active Fashion — pokaz mody z pełną oprawą sceniczną" loading="lazy" decoding="async" />
+                <img class="project-card__cover" decoding="async" width="1800" height="1200" src="/media/realizacje/active-fashion/01.jpg" alt="Active Fashion — pokaz mody z pełną oprawą sceniczną" loading="lazy" />
+                <span class="project-card__peek" data-project-peek data-peek-video>
+                  <video muted loop playsinline preload="none" poster="/media/realizacje/active-fashion/cover-poster.jpg" src="/media/realizacje/active-fashion/cover.mp4"></video>
+                </span>
+                <span class="project-card__cursor" aria-hidden="true">Zobacz case</span>
               </span>
-              <span class="project-card__meta"><span>Fashion</span><span>Pokaz</span><span>Produkcja</span></span>
-              <h3 class="project-card__title">Active Fashion — pokaz mody z pełną oprawą sceniczną</h3>
-              <p class="project-card__stat">Casting · scenografia · storytelling marki</p>
+              <span class="project-card__client">Active Fashion</span>
+              <h3 class="project-card__title">Pokaz mody z pełną oprawą sceniczną</h3>
             </a>
           </article>
 
-          <article class="project-card" data-project>
+          <article class="project-card" data-project data-tile="lemon">
             <a class="project-card__link" href="realizacje-john-deere.html">
               <span class="project-card__media">
-                <img width="1800" height="1200" src="/media/realizacje/john-deere/01.jpg" alt="John Deere — jubileusz 25 lat marki w Polsce" loading="lazy" decoding="async" />
+                <img class="project-card__cover" decoding="async" width="1200" height="1800" src="/media/realizacje/john-deere/08.jpg" alt="John Deere — jubileusz 25 lat marki w Polsce" loading="lazy" />
+                <span class="project-card__peek" data-project-peek data-peek-slideshow>
+                  <span class="peek-slide is-active" data-peek-slide><img decoding="async" width="1800" height="1200" src="/media/realizacje/john-deere/02.jpg" alt="" loading="lazy" /></span>
+                  <span class="peek-slide" data-peek-slide><img decoding="async" width="1800" height="1200" src="/media/realizacje/john-deere/07.jpg" alt="" loading="lazy" /></span>
+                  <span class="peek-slide" data-peek-slide><img decoding="async" width="1200" height="1800" src="/media/realizacje/john-deere/06.jpg" alt="" loading="lazy" /></span>
+                  <span class="peek-slide" data-peek-slide><img decoding="async" width="1800" height="1200" src="/media/realizacje/john-deere/01.jpg" alt="" loading="lazy" /></span>
+                </span>
+                <span class="project-card__cursor" aria-hidden="true">Zobacz case</span>
               </span>
-              <span class="project-card__meta"><span>B2B</span><span>Jubileusz</span><span>Produkcja</span></span>
-              <h3 class="project-card__title">John Deere — jubileusz 25 lat marki w Polsce</h3>
-              <p class="project-card__stat">Scenariusz · produkcja · hospitality VIP</p>
+              <span class="project-card__client">John Deere</span>
+              <h3 class="project-card__title">Jubileusz 25 lat marki w Polsce</h3>
             </a>
           </article>
 
-          <article class="project-card" data-project>
+          <article class="project-card" data-project data-tile="blue">
             <a class="project-card__link" href="realizacje-multichem.html">
               <span class="project-card__media">
-                <img width="1200" height="1800" src="/media/realizacje/multichem/01.jpg" alt="Multichem — konferencja z pełną produkcją techniczną" loading="lazy" decoding="async" />
+                <img class="project-card__cover" decoding="async" width="1200" height="1800" src="/media/realizacje/multichem/01.jpg" alt="Multichem — konferencja z pełną produkcją techniczną" loading="lazy" />
+                <span class="project-card__peek" data-project-peek data-peek-slideshow>
+                  <span class="peek-slide is-active" data-peek-slide><img decoding="async" width="1800" height="1200" src="/media/realizacje/multichem/03.jpg" alt="" loading="lazy" /></span>
+                  <span class="peek-slide" data-peek-slide><img decoding="async" width="1800" height="1200" src="/media/realizacje/multichem/05.jpg" alt="" loading="lazy" /></span>
+                  <span class="peek-slide" data-peek-slide><img decoding="async" width="1800" height="1440" src="/media/realizacje/multichem/02.jpg" alt="" loading="lazy" /></span>
+                  <span class="peek-slide" data-peek-slide><img decoding="async" width="1800" height="1200" src="/media/realizacje/multichem/06.jpg" alt="" loading="lazy" /></span>
+                </span>
+                <span class="project-card__cursor" aria-hidden="true">Zobacz case</span>
               </span>
-              <span class="project-card__meta"><span>B2B</span><span>Konferencja</span><span>AV</span></span>
-              <h3 class="project-card__title">Multichem — konferencja z pełną produkcją techniczną</h3>
-              <p class="project-card__stat">AV · scenografia · przebieg wydarzenia</p>
+              <span class="project-card__client">Multichem</span>
+              <h3 class="project-card__title">Konferencja z pełną produkcją techniczną</h3>
             </a>
           </article>
 
-          <article class="project-card" data-project>
+          <article class="project-card project-card--has-video" data-project data-tile="juice">
             <a class="project-card__link" href="realizacje-retro-rush.html">
               <span class="project-card__media">
-                <img width="1080" height="786" src="/media/realizacje/retro-rush/cover-poster.jpg" alt="Retro Rush — imprezowa podróż w czasie z pełną oprawą" loading="lazy" decoding="async" />
+                <img class="project-card__cover" decoding="async" width="1800" height="1200" src="/media/realizacje/retro-rush/02.jpg" alt="Retro Rush — imprezowa podróż w czasie z pełną oprawą" loading="lazy" />
+                <span class="project-card__peek" data-project-peek data-peek-video>
+                  <video muted loop playsinline preload="none" poster="/media/realizacje/retro-rush/cover-poster.jpg" src="/media/realizacje/retro-rush/cover.mp4"></video>
+                </span>
+                <span class="project-card__cursor" aria-hidden="true">Zobacz case</span>
               </span>
-              <span class="project-card__meta"><span>Private</span><span>Muzyka</span><span>Oprawa artystyczna</span></span>
-              <h3 class="project-card__title">Retro Rush — imprezowa podróż w czasie z pełną oprawą</h3>
-              <p class="project-card__stat">Scenografia · DJ set · storytelling</p>
+              <span class="project-card__client">Retro Rush</span>
+              <h3 class="project-card__title">Imprezowa podróż w czasie</h3>
             </a>
           </article>
 
-          <article class="project-card" data-project>
+          <article class="project-card" data-project data-tile="lemon">
             <a class="project-card__link" href="realizacje-rainbow.html">
               <span class="project-card__media">
-                <img width="1200" height="1800" src="/media/realizacje/rainbow/01.jpg" alt="Rainbow — wydarzenie z autorską oprawą artystyczną" loading="lazy" decoding="async" />
+                <img class="project-card__cover" decoding="async" width="1200" height="1800" src="/media/realizacje/rainbow/01.jpg" alt="Rainbow — wydarzenie z autorską oprawą artystyczną" loading="lazy" />
+                <span class="project-card__peek" data-project-peek data-peek-slideshow>
+                  <span class="peek-slide is-active" data-peek-slide><img decoding="async" width="1800" height="1200" src="/media/realizacje/rainbow/03.jpg" alt="" loading="lazy" /></span>
+                  <span class="peek-slide" data-peek-slide><img decoding="async" width="1800" height="1200" src="/media/realizacje/rainbow/02.jpg" alt="" loading="lazy" /></span>
+                  <span class="peek-slide" data-peek-slide><img decoding="async" width="1800" height="1200" src="/media/realizacje/rainbow/05.jpg" alt="" loading="lazy" /></span>
+                  <span class="peek-slide" data-peek-slide><img decoding="async" width="1200" height="1800" src="/media/realizacje/rainbow/01.jpg" alt="" loading="lazy" /></span>
+                </span>
+                <span class="project-card__cursor" aria-hidden="true">Zobacz case</span>
               </span>
-              <span class="project-card__meta"><span>Private</span><span>Atmosfera</span><span>Kreacja</span></span>
-              <h3 class="project-card__title">Rainbow — wydarzenie z autorską oprawą artystyczną</h3>
-              <p class="project-card__stat">Koncepcja · kolor · doświadczenie gościa</p>
+              <span class="project-card__client">Rainbow</span>
+              <h3 class="project-card__title">Wieczór z autorską oprawą artystyczną</h3>
             </a>
           </article>
 
-          <article class="project-card" data-project>
+          <article class="project-card" data-project data-tile="blue">
             <a class="project-card__link" href="realizacje-volvo.html">
               <span class="project-card__media">
-                <img width="1500" height="1000" src="/media/realizacje/volvo/01.jpg" alt="Volvo — networking i premiera z klasą marki premium" loading="lazy" decoding="async" />
+                <img class="project-card__cover" decoding="async" width="1500" height="1000" src="/media/realizacje/volvo/03.jpg" alt="Volvo — networking i premiera z klasą marki premium" loading="lazy" />
+                <span class="project-card__peek" data-project-peek data-peek-slideshow>
+                  <span class="peek-slide is-active" data-peek-slide><img decoding="async" width="1500" height="1000" src="/media/realizacje/volvo/02.jpg" alt="" loading="lazy" /></span>
+                  <span class="peek-slide" data-peek-slide><img decoding="async" width="1500" height="1000" src="/media/realizacje/volvo/04.jpg" alt="" loading="lazy" /></span>
+                  <span class="peek-slide" data-peek-slide><img decoding="async" width="1500" height="1000" src="/media/realizacje/volvo/05.jpg" alt="" loading="lazy" /></span>
+                  <span class="peek-slide" data-peek-slide><img decoding="async" width="1500" height="1000" src="/media/realizacje/volvo/01.jpg" alt="" loading="lazy" /></span>
+                </span>
+                <span class="project-card__cursor" aria-hidden="true">Zobacz case</span>
               </span>
-              <span class="project-card__meta"><span>B2B</span><span>Networking</span><span>Premiera</span></span>
-              <h3 class="project-card__title">Volvo — networking i premiera z klasą marki premium</h3>
-              <p class="project-card__stat">Strategia · hospitality · detal wykonania</p>
+              <span class="project-card__client">Volvo</span>
+              <h3 class="project-card__title">Networking i premiera w standardzie premium</h3>
             </a>
           </article>
         </div>

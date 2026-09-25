@@ -183,6 +183,11 @@ export function kickVisibleHeadlines(roots = null) {
 export function repairHeadlineLines() {
   collectHeadlineRevealRoots().forEach((root) => {
     root.querySelectorAll(".split-line__inner").forEach((line) => {
+      // Linia w trakcie (albo tuż przed) wjazdu nie jest „zawieszona” — naprawa
+      // w tym momencie czyściła transform w połowie animacji i zostawiała linię
+      // przesuniętą o kilkadziesiąt px (widoczne na realizacje.html).
+      if (gsap.getTweensOf(line).some((tween) => tween.progress() < 1)) return;
+
       const x = gsap.getProperty(line, "x");
       const xPercent = gsap.getProperty(line, "xPercent");
       const broken =
@@ -197,7 +202,7 @@ export function repairHeadlineLines() {
 
       if (!broken && !stuckAfterPlay) return;
 
-      gsap.set(line, { yPercent: 0, clearProps: "transform" });
+      gsap.set(line, { x: 0, y: 0, xPercent: 0, yPercent: 0, clearProps: "transform" });
       line.classList.add("is-text-glow-done");
       line.dataset.glowPlayed = "1";
     });

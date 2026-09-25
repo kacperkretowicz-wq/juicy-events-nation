@@ -28,8 +28,9 @@
     <meta name="twitter:title" content="Juicy Events — agencja eventowa dla marek, które chcą więcej" />
     <meta name="twitter:description" content="Event design, produkcja i strategia. Tworzymy wydarzenia, które mówią językiem Twojej marki — od briefu po mierzalny wynik." />
     <meta name="twitter:image" content="https://juicyevents.pl/media/og-cover.jpg" />
-    <link rel="preload" href="/fonts/DenimINK-Regular.woff2" as="font" type="font/woff2" crossorigin />
-    <link rel="preload" href="/fonts/DenimINKWD-SemiBold.woff2" as="font" type="font/woff2" crossorigin />
+    <link rel="preload" href="/fonts/bricolage-grotesque-latin.woff2" as="font" type="font/woff2" crossorigin />
+    <link rel="preload" href="/fonts/bricolage-grotesque-latin-ext.woff2" as="font" type="font/woff2" crossorigin />
+    <link rel="preload" href="/fonts/fraunces-italic-latin.woff2" as="font" type="font/woff2" crossorigin />
     <link rel="icon" href="/media/favicon-32.png?v=je" type="image/png" sizes="32x32" />
     <link rel="icon" href="/media/favicon-16.png?v=je" type="image/png" sizes="16x16" />
     <link rel="apple-touch-icon" href="/media/apple-touch-icon.png?v=je" />
@@ -182,11 +183,11 @@
               </div>
 
               <div class="agency__layer agency__layer--dark" data-agency-layer="dark" aria-hidden="true">
-                <h1 class="agency__title">
+                <p class="agency__title">
                   <span class="line"><span>Po co Ci agencja,</span></span>
                   <span class="line"><span>która widzi świat</span></span>
                   <span class="line"><span>tak samo <span class="bracket">jak inne?</span></span></span>
-                </h1>
+                </p>
                 <p class="agency__kicker">Po nic. Ale to nie o nas.</p>
               </div>
             </div>
@@ -194,72 +195,175 @@
         </div>
       </section>
 
-      <!-- 3. NASZA PRACA (slajd 5) -->
+      <!-- KLIENCI — tuż po showreelu: logotypy marek budują zaufanie (feedback właściciela).
+           Nazwy są tymczasowo składane krojem strony; po otrzymaniu plików SVG wystarczy
+           podmienić zawartość <li> na <img src="/media/klienci/…svg" alt="Nazwa marki">. -->
+      <section class="clients" id="klienci" aria-labelledby="clients-label">
+        <div class="clients__head">
+          <p class="eyebrow" id="clients-label">Zaufały nam marki</p>
+        </div>
+        <div class="clients__marquee" data-marquee data-marquee-speed="70">
+          <ul class="clients__track" data-marquee-track>
+            <li class="clients__item">John Deere</li>
+            <li class="clients__item">Volvo</li>
+            <li class="clients__item">Multichem</li>
+            <li class="clients__item">Active Fashion</li>
+          </ul>
+        </div>
+      </section>
+
+      <!-- OPIS — asymetrycznie: tytuł przesunięty w lewo, znak Je! z wideo w środku po prawej -->
       <section class="work" id="praca">
-        <div class="work__media" data-work-video-group>
-          <button
-            class="work__card"
-            type="button"
-            data-work-video-trigger
-            aria-expanded="false"
-            aria-label="Odtwórz showreel"
-          >
-            <span class="work__card-inner" data-parallax="0.2" aria-hidden="true">
+        <div class="work__copy">
+          <h2 class="work__title" data-headline-reveal>
+            Od wizji do mierzalnych rezultatów — z&nbsp;precyzją, estetyką i <span class="bracket">emocją.</span>
+          </h2>
+          <div class="work__text" data-fade-group>
+            <p>
+              Projektujemy wydarzenia, które przyciągają uwagę, budują relacje i zostają w głowie.
+              Od strategii i kreacji po produkcję i analizę efektów — działamy na emocje i na liczby.
+            </p>
+            <a class="btn" href="#realizacje">Zobacz realizacje</a>
+          </div>
+        </div>
+
+        <div class="work__mark" data-je-mark aria-hidden="true">
+          <div class="je-mark" data-je-mark-stage>
+            <span class="je-mark__layer je-mark__layer--lemon"></span>
+            <span class="je-mark__layer je-mark__layer--juice"></span>
+            <span class="je-mark__layer je-mark__layer--video">
               <video
-                class="work__video"
-                data-work-video
-                data-work-preview="/media/work-preview.mov"
-                data-work-showreel="/media/work-showreel.mp4"
-                preload="auto"
-                src="/media/work-preview.mov"
-                poster="/media/work-preview-poster.jpg"
                 muted
                 loop
                 playsinline
-                autoplay
+                preload="none"
+                poster="/media/je-loop-poster.jpg"
+                data-je-video
+                data-src="/media/je-loop.mp4"
               ></video>
             </span>
-          </button>
-          <button class="work__play" type="button" data-work-video-trigger aria-label="Odtwórz showreel">
-            <span class="work__play-ui work__play-ui--idle" aria-hidden="true">
-              <span class="work__play-icon"></span>
-              <span class="work__play-copy">
-                <span>Odtwórz</span>
-                <span>showreel</span>
-              </span>
-            </span>
-            <span class="work__play-ui work__play-ui--exit" aria-hidden="true">
-              <span class="work__play-icon work__play-icon--exit"></span>
-              <span>Zamknij</span>
-            </span>
-          </button>
-        </div>
-
-        <div class="work__copy">
-          <p class="eyebrow">Nasza praca</p>
-          <h2 data-headline-reveal>Od wizji do mierzalnych rezultatów — z precyzją, estetyką i emocją.</h2>
-          <div data-fade-group>
-            <p>
-              Wspieramy marki w budowaniu relacji, które przekładają się na lojalność i sprzedaż.
-              Nasze projekty przyciągają uwagę, budują zaangażowanie i wzmacniają wizerunek.
-            </p>
-            <p>
-              Działamy kompleksowo: od strategii i kreacji po realizację i analizę efektów.
-              Wynik? Wydarzenia, które działają na emocje — i na liczby.
-            </p>
-            <a class="btn btn--bar" href="#realizacje">Zobacz realizacje</a>
           </div>
         </div>
       </section>
 
-      <!-- 4. CELE I MISJA (slajd 2) — pinned band -->
+      <!-- REALIZACJE — portfolio zaraz po opisie (układ „od razu portfolio” jak u Leveled).
+           Kafle w nieregularnej siatce; hover = kolorowe tło (pomarańcz / cytryna / niebieski)
+           i film albo pokaz zdjęć w kadrze 9:16. Pod kaflem tylko marka + tytuł. -->
+      <section class="projects" id="realizacje">
+        <div class="projects__head">
+          <h2 class="projects__title" data-headline-reveal>
+            Wybrane <span class="bracket">realizacje</span>
+          </h2>
+          <p class="projects__count" aria-hidden="true">(06)</p>
+          <a class="link-arrow projects__all" href="realizacje.html">Wszystkie realizacje</a>
+        </div>
+
+        <div class="projects__grid projects__grid--editorial" data-projects>
+          <article class="project-card project-card--has-video" data-project data-tile="juice">
+            <a class="project-card__link" href="realizacje-active-fashion.html">
+              <span class="project-card__media">
+                <img class="project-card__cover" decoding="async" width="1800" height="1200" src="/media/realizacje/active-fashion/01.jpg" alt="Active Fashion — pokaz mody z pełną oprawą sceniczną" loading="lazy" />
+                <span class="project-card__peek" data-project-peek data-peek-video>
+                  <video muted loop playsinline preload="none" poster="/media/realizacje/active-fashion/cover-poster.jpg" src="/media/realizacje/active-fashion/cover.mp4"></video>
+                </span>
+                <span class="project-card__cursor" aria-hidden="true">Zobacz case</span>
+              </span>
+              <span class="project-card__client">Active Fashion</span>
+              <h3 class="project-card__title">Pokaz mody z pełną oprawą sceniczną</h3>
+            </a>
+          </article>
+
+          <article class="project-card" data-project data-tile="lemon">
+            <a class="project-card__link" href="realizacje-john-deere.html">
+              <span class="project-card__media">
+                <img class="project-card__cover" decoding="async" width="1200" height="1800" src="/media/realizacje/john-deere/08.jpg" alt="John Deere — jubileusz 25 lat marki w Polsce" loading="lazy" />
+                <span class="project-card__peek" data-project-peek data-peek-slideshow>
+                  <span class="peek-slide is-active" data-peek-slide><img decoding="async" width="1800" height="1200" src="/media/realizacje/john-deere/02.jpg" alt="" loading="lazy" /></span>
+                  <span class="peek-slide" data-peek-slide><img decoding="async" width="1800" height="1200" src="/media/realizacje/john-deere/07.jpg" alt="" loading="lazy" /></span>
+                  <span class="peek-slide" data-peek-slide><img decoding="async" width="1200" height="1800" src="/media/realizacje/john-deere/06.jpg" alt="" loading="lazy" /></span>
+                  <span class="peek-slide" data-peek-slide><img decoding="async" width="1800" height="1200" src="/media/realizacje/john-deere/01.jpg" alt="" loading="lazy" /></span>
+                </span>
+                <span class="project-card__cursor" aria-hidden="true">Zobacz case</span>
+              </span>
+              <span class="project-card__client">John Deere</span>
+              <h3 class="project-card__title">Jubileusz 25 lat marki w Polsce</h3>
+            </a>
+          </article>
+
+          <article class="project-card" data-project data-tile="blue">
+            <a class="project-card__link" href="realizacje-multichem.html">
+              <span class="project-card__media">
+                <img class="project-card__cover" decoding="async" width="1200" height="1800" src="/media/realizacje/multichem/01.jpg" alt="Multichem — konferencja z pełną produkcją techniczną" loading="lazy" />
+                <span class="project-card__peek" data-project-peek data-peek-slideshow>
+                  <span class="peek-slide is-active" data-peek-slide><img decoding="async" width="1800" height="1200" src="/media/realizacje/multichem/03.jpg" alt="" loading="lazy" /></span>
+                  <span class="peek-slide" data-peek-slide><img decoding="async" width="1800" height="1200" src="/media/realizacje/multichem/05.jpg" alt="" loading="lazy" /></span>
+                  <span class="peek-slide" data-peek-slide><img decoding="async" width="1800" height="1440" src="/media/realizacje/multichem/02.jpg" alt="" loading="lazy" /></span>
+                  <span class="peek-slide" data-peek-slide><img decoding="async" width="1800" height="1200" src="/media/realizacje/multichem/06.jpg" alt="" loading="lazy" /></span>
+                </span>
+                <span class="project-card__cursor" aria-hidden="true">Zobacz case</span>
+              </span>
+              <span class="project-card__client">Multichem</span>
+              <h3 class="project-card__title">Konferencja z pełną produkcją techniczną</h3>
+            </a>
+          </article>
+
+          <article class="project-card project-card--has-video" data-project data-tile="juice">
+            <a class="project-card__link" href="realizacje-retro-rush.html">
+              <span class="project-card__media">
+                <img class="project-card__cover" decoding="async" width="1800" height="1200" src="/media/realizacje/retro-rush/02.jpg" alt="Retro Rush — imprezowa podróż w czasie z pełną oprawą" loading="lazy" />
+                <span class="project-card__peek" data-project-peek data-peek-video>
+                  <video muted loop playsinline preload="none" poster="/media/realizacje/retro-rush/cover-poster.jpg" src="/media/realizacje/retro-rush/cover.mp4"></video>
+                </span>
+                <span class="project-card__cursor" aria-hidden="true">Zobacz case</span>
+              </span>
+              <span class="project-card__client">Retro Rush</span>
+              <h3 class="project-card__title">Imprezowa podróż w czasie</h3>
+            </a>
+          </article>
+
+          <article class="project-card" data-project data-tile="lemon">
+            <a class="project-card__link" href="realizacje-rainbow.html">
+              <span class="project-card__media">
+                <img class="project-card__cover" decoding="async" width="1200" height="1800" src="/media/realizacje/rainbow/01.jpg" alt="Rainbow — wydarzenie z autorską oprawą artystyczną" loading="lazy" />
+                <span class="project-card__peek" data-project-peek data-peek-slideshow>
+                  <span class="peek-slide is-active" data-peek-slide><img decoding="async" width="1800" height="1200" src="/media/realizacje/rainbow/03.jpg" alt="" loading="lazy" /></span>
+                  <span class="peek-slide" data-peek-slide><img decoding="async" width="1800" height="1200" src="/media/realizacje/rainbow/02.jpg" alt="" loading="lazy" /></span>
+                  <span class="peek-slide" data-peek-slide><img decoding="async" width="1800" height="1200" src="/media/realizacje/rainbow/05.jpg" alt="" loading="lazy" /></span>
+                  <span class="peek-slide" data-peek-slide><img decoding="async" width="1200" height="1800" src="/media/realizacje/rainbow/01.jpg" alt="" loading="lazy" /></span>
+                </span>
+                <span class="project-card__cursor" aria-hidden="true">Zobacz case</span>
+              </span>
+              <span class="project-card__client">Rainbow</span>
+              <h3 class="project-card__title">Wieczór z autorską oprawą artystyczną</h3>
+            </a>
+          </article>
+
+          <article class="project-card" data-project data-tile="blue">
+            <a class="project-card__link" href="realizacje-volvo.html">
+              <span class="project-card__media">
+                <img class="project-card__cover" decoding="async" width="1500" height="1000" src="/media/realizacje/volvo/03.jpg" alt="Volvo — networking i premiera z klasą marki premium" loading="lazy" />
+                <span class="project-card__peek" data-project-peek data-peek-slideshow>
+                  <span class="peek-slide is-active" data-peek-slide><img decoding="async" width="1500" height="1000" src="/media/realizacje/volvo/02.jpg" alt="" loading="lazy" /></span>
+                  <span class="peek-slide" data-peek-slide><img decoding="async" width="1500" height="1000" src="/media/realizacje/volvo/04.jpg" alt="" loading="lazy" /></span>
+                  <span class="peek-slide" data-peek-slide><img decoding="async" width="1500" height="1000" src="/media/realizacje/volvo/05.jpg" alt="" loading="lazy" /></span>
+                  <span class="peek-slide" data-peek-slide><img decoding="async" width="1500" height="1000" src="/media/realizacje/volvo/01.jpg" alt="" loading="lazy" /></span>
+                </span>
+                <span class="project-card__cursor" aria-hidden="true">Zobacz case</span>
+              </span>
+              <span class="project-card__client">Volvo</span>
+              <h3 class="project-card__title">Networking i premiera w standardzie premium</h3>
+            </a>
+          </article>
+        </div>
+      </section>
+
+      <!-- CELE I MISJA — pinned band -->
       <section class="mission" data-mission data-tone="dark">
         <div class="mission__pin">
           <div class="mission__bg" aria-hidden="true" data-parallax-media="10" data-parallax-trigger=".mission">
             <img decoding="async" loading="lazy" width="1024" height="682" src="/media/mission-crowd.jpg" alt="" />
           </div>
           <div class="mission__content">
-            <p class="eyebrow eyebrow--light">Cele i misja</p>
             <div
               class="mission__headline"
               data-mission-headline
@@ -275,20 +379,19 @@
               </p>
             </div>
             <p class="mission__note" data-mission-note>
-              Wartość to nie kopiowanie luksusowych wzorców, lecz tworzenie własnego języka — tak,
-              by odbiorcy mogli dotknąć emocji.
+              Nie kopiujemy cudzych wzorców — budujemy własny język, tak by goście mogli dotknąć emocji.
             </p>
           </div>
         </div>
       </section>
 
-      <!-- 5. KOMPETENCJE — sticky tytuł + scroll listy (Sweetpunk), desktop i mobile -->
+      <!-- KOMPETENCJE — sticky tytuł + lista; bez nawiasów, większe litery, mniej tekstu -->
       <section class="expertise" id="kompetencje" data-expertise data-tone="dark">
         <div class="expertise__inner">
           <div class="expertise__aside">
             <p class="eyebrow eyebrow--light">Kompetencje</p>
             <h2 class="expertise__title" data-headline-reveal>
-              Jedna agencja. Wszystkie kompetencje produkcji eventowej.
+              Jedna agencja. Wszystkie kompetencje <span class="bracket">eventowe.</span>
             </h2>
             <p class="expertise__count">
               <span data-expertise-current>01</span><span class="expertise__count-sep">/</span><span>05</span>
@@ -303,12 +406,9 @@
               </button>
               <div class="expertise-item__body" data-pinned-body>
                 <p>
-                  Dla Klientów B2B oraz B2C organizujemy imprezy integracyjne i firmowe, gale
-                  i jubileusze, konferencje i kongresy, premiery produktowe marek, Pre Opening
-                  Events, Business Networking Events, Sport Events, Fashion &amp; Art Events,
-                  private events, otwarcia sezonów oraz wydarzenia dedykowane.
+                  Gale i jubileusze, konferencje, premiery produktowe, eventy firmowe, sportowe
+                  i prywatne. Prowadzimy projekt od koncepcji po ostatniego gościa.
                 </p>
-                <a class="link-arrow link-arrow--light" href="#kontakt">Omówmy zakres</a>
               </div>
             </article>
 
@@ -319,266 +419,114 @@
               </button>
               <div class="expertise-item__body" data-pinned-body>
                 <p>
-                  Event marketing w naszym wykonaniu to połączenie strategii komunikacji,
-                  doświadczenia marki i emocji odbiorcy.
+                  Każde wydarzenie projektujemy jak kampanię — z celem, KPI i kontrolą efektów.
+                  Emocja staje się narzędziem, a event inwestycją, nie kosztem.
                 </p>
-                <p>
-                  Każde wydarzenie projektujemy jak kampanię: z KPI, precyzyjną koncepcją
-                  i kontrolą efektów. Emocja staje się narzędziem marketingowym, a doświadczenie
-                  — inwestycją, nie kosztem.
-                </p>
-                <a class="link-arrow link-arrow--light" href="#kontakt">Omówmy zakres</a>
               </div>
             </article>
 
             <article class="expertise-item" data-expertise-item>
               <button class="expertise-item__head" type="button" data-pinned-select aria-expanded="false">
                 <span class="expertise-item__index">03</span>
-                <h3>Scenariusz artystyczny, oprawa muzyczna</h3>
+                <h3>Scenariusz i oprawa artystyczna</h3>
               </button>
               <div class="expertise-item__body" data-pinned-body>
                 <p>
-                  Projektujemy i realizujemy warstwę artystyczną wydarzeń — od koncepcji
-                  scenariusza po dobór i kontraktację artystów.
+                  Reżyseria wieczoru, DJ-e, zespoły, wokaliści i performerzy dobrani do charakteru
+                  marki i celu wydarzenia.
                 </p>
-                <p>
-                  Współpracujemy z DJ-ami, zespołami, wokalistami, muzykami instrumentalnymi
-                  oraz performerami scenicznymi, zapewniając spójność artystyczną z charakterem
-                  wydarzenia i jego celem biznesowym.
-                </p>
-                <a class="link-arrow link-arrow--light" href="#kontakt">Omówmy zakres</a>
               </div>
             </article>
 
             <article class="expertise-item" data-expertise-item>
               <button class="expertise-item__head" type="button" data-pinned-select aria-expanded="false">
                 <span class="expertise-item__index">04</span>
-                <h3>Technika eventowa, mapping, lasery, AV</h3>
+                <h3>Technika, mapping, lasery, AV</h3>
               </button>
               <div class="expertise-item__body" data-pinned-body>
                 <p>
-                  Zapewniamy pełną obsługę techniczną wydarzeń — od koncepcji, przez projekt,
-                  po realizację w najdrobniejszych detalach.
+                  Światło, dźwięk, mapping i efekty specjalne, które nie są dodatkiem —
+                  prowadzą narrację marki.
                 </p>
-                <p>
-                  Projektujemy światło, dźwięk, mapping i efekty specjalne tak, by nie tylko
-                  uzupełniały scenografię, ale prowadziły narrację marki. Nasze realizacje nie
-                  są dodatkiem — są oprawą, która definiuje charakter wydarzenia.
-                </p>
-                <a class="link-arrow link-arrow--light" href="#kontakt">Omówmy zakres</a>
               </div>
             </article>
 
             <article class="expertise-item" data-expertise-item>
               <button class="expertise-item__head" type="button" data-pinned-select aria-expanded="false">
                 <span class="expertise-item__index">05</span>
-                <h3>Katalog usług</h3>
+                <h3>Scenografia, hospitality, foto &amp; video</h3>
               </button>
               <div class="expertise-item__body" data-pinned-body>
                 <p>
-                  Każdy szczegół ma znaczenie. Oprócz kreacji i produkcji oferujemy pełne
-                  wsparcie w realizacji wydarzeń — od designu przestrzeni po dokumentację emocji.
+                  Design przestrzeni, branding, recepcja VIP, multimedia i dokumentacja —
+                  żeby całe wydarzenie było spójne i zapamiętane.
                 </p>
-                <p>
-                  Projektujemy scenografię, branding i identyfikację wizualną, zapewniamy obsługę
-                  gości i recepcję VIP, realizujemy multimedia, mapping i interaktywne instalacje.
-                  Dbamy o fotografię i video — tak, by całe wydarzenie było spójne i zapamiętane.
-                </p>
-                <a class="link-arrow link-arrow--light" href="#kontakt">Omówmy zakres</a>
               </div>
             </article>
           </div>
         </div>
       </section>
 
-      <!-- 6. REALIZACJE — 2 kolumny -->
-      <section class="projects" id="realizacje">
-        <div class="projects__head">
-          <h2 class="projects__title">
-            Marki, które wybrały <span class="bracket">własną</span> drogę razem z nami
+      <!-- ZESPÓŁ — karty w rytmie strony (biała / pomarańczowa / czarna / cytrynowa) -->
+      <section class="team" id="zespol">
+        <div class="team__head">
+          <p class="eyebrow">Zespół</p>
+          <h2 class="team__title" data-headline-reveal>
+            Kto odbierze Twój <span class="bracket">brief?</span>
           </h2>
         </div>
 
-        <div class="projects__grid" data-projects>
-          <article class="project-card project-card--has-video" data-project>
-            <a class="project-card__link" href="realizacje-active-fashion.html">
-              <span class="project-card__media">
-                <img class="project-card__cover" decoding="async" width="1800" height="1200" src="/media/realizacje/active-fashion/cover-poster.jpg" alt="Active Fashion — pokaz mody z pełną oprawą sceniczną" loading="lazy" />
-                <span class="project-card__peek" data-project-peek data-peek-video>
-                  <video muted loop playsinline preload="metadata" src="/media/realizacje/active-fashion/cover.mp4"></video>
-                </span>
-              </span>
-              <span class="project-card__meta">
-                <span>Fashion</span><span>Pokaz</span><span>Produkcja</span>
-              </span>
-              <h3 class="project-card__title">Active Fashion — pokaz mody z pełną oprawą sceniczną</h3>
-              <p class="project-card__stat">Casting · scenografia · storytelling marki</p>
-            </a>
-          </article>
-
-          <article class="project-card" data-project>
-            <a class="project-card__link" href="realizacje-john-deere.html">
-              <span class="project-card__media">
-                <img class="project-card__cover" decoding="async" width="1800" height="1200" src="/media/realizacje/john-deere/01.jpg" alt="John Deere — jubileusz 25 lat marki w Polsce" loading="lazy" />
-                <span class="project-card__peek" data-project-peek data-peek-slideshow>
-                  <span class="peek-slide is-active" data-peek-slide><img decoding="async" width="1800" height="1200" src="/media/realizacje/john-deere/01.jpg" alt="" loading="lazy" /></span>
-                  <span class="peek-slide" data-peek-slide><img decoding="async" width="1800" height="1200" src="/media/realizacje/john-deere/04.jpg" alt="" loading="lazy" /></span>
-                  <span class="peek-slide" data-peek-slide><img decoding="async" width="1800" height="1200" src="/media/realizacje/john-deere/07.jpg" alt="" loading="lazy" /></span>
-                  <span class="peek-slide" data-peek-slide><img decoding="async" width="1800" height="1200" src="/media/realizacje/john-deere/10.jpg" alt="" loading="lazy" /></span>
-                </span>
-              </span>
-              <span class="project-card__meta">
-                <span>B2B</span><span>Jubileusz</span><span>Produkcja</span>
-              </span>
-              <h3 class="project-card__title">John Deere — jubileusz 25 lat marki w Polsce</h3>
-              <p class="project-card__stat">Scenariusz · produkcja · hospitality VIP</p>
-            </a>
-          </article>
-
-          <article class="project-card" data-project>
-            <a class="project-card__link" href="realizacje-multichem.html">
-              <span class="project-card__media">
-                <img class="project-card__cover" decoding="async" width="1200" height="1800" src="/media/realizacje/multichem/01.jpg" alt="Multichem — konferencja z pełną produkcją techniczną" loading="lazy" />
-                <span class="project-card__peek" data-project-peek data-peek-slideshow>
-                  <span class="peek-slide is-active" data-peek-slide><img decoding="async" width="1200" height="1800" src="/media/realizacje/multichem/01.jpg" alt="" loading="lazy" /></span>
-                  <span class="peek-slide" data-peek-slide><img decoding="async" width="1800" height="1200" src="/media/realizacje/multichem/03.jpg" alt="" loading="lazy" /></span>
-                  <span class="peek-slide" data-peek-slide><img decoding="async" width="1800" height="1200" src="/media/realizacje/multichem/05.jpg" alt="" loading="lazy" /></span>
-                  <span class="peek-slide" data-peek-slide><img decoding="async" width="1800" height="1200" src="/media/realizacje/multichem/06.jpg" alt="" loading="lazy" /></span>
-                </span>
-              </span>
-              <span class="project-card__meta">
-                <span>B2B</span><span>Konferencja</span><span>AV</span>
-              </span>
-              <h3 class="project-card__title">Multichem — konferencja z pełną produkcją techniczną</h3>
-              <p class="project-card__stat">AV · scenografia · przebieg wydarzenia</p>
-            </a>
-          </article>
-
-          <article class="project-card project-card--has-video" data-project>
-            <a class="project-card__link" href="realizacje-retro-rush.html">
-              <span class="project-card__media">
-                <img class="project-card__cover" decoding="async" width="1800" height="1200" src="/media/realizacje/retro-rush/cover-poster.jpg" alt="Retro Rush — imprezowa podróż w czasie z pełną oprawą" loading="lazy" />
-                <span class="project-card__peek" data-project-peek data-peek-video>
-                  <video muted loop playsinline preload="metadata" src="/media/realizacje/retro-rush/cover.mp4"></video>
-                </span>
-              </span>
-              <span class="project-card__meta">
-                <span>Private</span><span>Muzyka</span><span>Oprawa artystyczna</span>
-              </span>
-              <h3 class="project-card__title">Retro Rush — imprezowa podróż w czasie z pełną oprawą</h3>
-              <p class="project-card__stat">Scenografia · DJ set · storytelling</p>
-            </a>
-          </article>
-
-          <article class="project-card" data-project>
-            <a class="project-card__link" href="realizacje-rainbow.html">
-              <span class="project-card__media">
-                <img class="project-card__cover" decoding="async" width="1200" height="1800" src="/media/realizacje/rainbow/01.jpg" alt="Rainbow — wydarzenie z autorską oprawą artystyczną" loading="lazy" />
-                <span class="project-card__peek" data-project-peek data-peek-slideshow>
-                  <span class="peek-slide is-active" data-peek-slide><img decoding="async" width="1200" height="1800" src="/media/realizacje/rainbow/01.jpg" alt="" loading="lazy" /></span>
-                  <span class="peek-slide" data-peek-slide><img decoding="async" width="1800" height="1200" src="/media/realizacje/rainbow/02.jpg" alt="" loading="lazy" /></span>
-                  <span class="peek-slide" data-peek-slide><img decoding="async" width="1200" height="1800" src="/media/realizacje/rainbow/04.jpg" alt="" loading="lazy" /></span>
-                  <span class="peek-slide" data-peek-slide><img decoding="async" width="1800" height="1200" src="/media/realizacje/rainbow/05.jpg" alt="" loading="lazy" /></span>
-                </span>
-              </span>
-              <span class="project-card__meta">
-                <span>Private</span><span>Atmosfera</span><span>Kreacja</span>
-              </span>
-              <h3 class="project-card__title">Rainbow — wydarzenie z autorską oprawą artystyczną</h3>
-              <p class="project-card__stat">Koncepcja · kolor · doświadczenie gościa</p>
-            </a>
-          </article>
-
-          <article class="project-card" data-project>
-            <a class="project-card__link" href="realizacje-volvo.html">
-              <span class="project-card__media">
-                <img class="project-card__cover" decoding="async" width="1500" height="1000" src="/media/realizacje/volvo/01.jpg" alt="Volvo — networking i premiera z klasą marki premium" loading="lazy" />
-                <span class="project-card__peek" data-project-peek data-peek-slideshow>
-                  <span class="peek-slide is-active" data-peek-slide><img decoding="async" width="1500" height="1000" src="/media/realizacje/volvo/01.jpg" alt="" loading="lazy" /></span>
-                  <span class="peek-slide" data-peek-slide><img decoding="async" width="1500" height="1000" src="/media/realizacje/volvo/02.jpg" alt="" loading="lazy" /></span>
-                  <span class="peek-slide" data-peek-slide><img decoding="async" width="1500" height="1000" src="/media/realizacje/volvo/04.jpg" alt="" loading="lazy" /></span>
-                  <span class="peek-slide" data-peek-slide><img decoding="async" width="1500" height="1000" src="/media/realizacje/volvo/05.jpg" alt="" loading="lazy" /></span>
-                </span>
-              </span>
-              <span class="project-card__meta">
-                <span>B2B</span><span>Networking</span><span>Premiera</span>
-              </span>
-              <h3 class="project-card__title">Volvo — networking i premiera z klasą marki premium</h3>
-              <p class="project-card__stat">Strategia · hospitality · detal wykonania</p>
-            </a>
-          </article>
-        </div>
-
-        <div class="projects__cta" data-fade>
-          <a class="btn btn--bar" href="realizacje.html">Zobacz więcej realizacji</a>
-        </div>
-      </section>
-
-      <!-- 5. ZESPÓŁ — identyfikatory crew („backstage pass"): motyw z branży zamiast listy. -->
-      <section class="team" id="zespol">
-        <div class="team__band" data-tone="dark">
-          <div class="team__head">
-            <p class="eyebrow eyebrow--light">06 / Zespół</p>
-            <h2
-              class="team__title"
-              data-headline-reveal
-              data-reveal-trigger=".team__head"
-              data-reveal-start="top 85%"
-            >
-              Kto odbierze Twój <span class="team__accent">[brief]</span>?
-            </h2>
-          </div>
-        </div>
-
-        <div class="team__inner">
-        <ul class="passes">
-          <li class="pass" data-team-card style="--tilt: -2.5deg">
-            <span class="pass__hole" aria-hidden="true"></span>
-            <span class="pass__band"><span>Juicy Events · Crew</span><span>All access</span></span>
-            <span class="pass__initials" aria-hidden="true">KN</span>
-            <h3 class="pass__name">Kajetan Vincent Nawrocki</h3>
-            <p class="pass__role">Owner · Head of Creative &amp; Production</p>
-            <div class="pass__contact">
-              <a href="mailto:knawrocki@juicyevents.pl">knawrocki@juicyevents.pl</a>
-              <a href="tel:+48735298884">+48 735 298 884</a>
+        <ul class="crew">
+          <li class="crew-card crew-card--paper" data-team-card>
+            <div class="crew-card__top">
+              <h3 class="crew-card__name">Kajetan Vincent Nawrocki</h3>
+              <p class="crew-card__role">Owner · Head of Creative &amp; Production</p>
             </div>
-            <span class="pass__barcode" aria-hidden="true"></span>
+            <div class="crew-card__bottom">
+              <div class="crew-card__contact">
+                <a href="mailto:knawrocki@juicyevents.pl">knawrocki@juicyevents.pl</a>
+                <a href="tel:+48735298884">+48 735 298 884</a>
+              </div>
+              <span class="crew-card__sign" aria-hidden="true"></span>
+            </div>
           </li>
-          <li class="pass" data-team-card style="--tilt: 2deg">
-            <span class="pass__hole" aria-hidden="true"></span>
-            <span class="pass__band"><span>Juicy Events · Crew</span><span>All access</span></span>
-            <span class="pass__initials" aria-hidden="true">MK</span>
-            <h3 class="pass__name">Marta Knasiak</h3>
-            <p class="pass__role">Assistant &amp; Junior Event Manager</p>
-            <div class="pass__contact">
-              <a href="mailto:kontakt@juicyevents.pl">kontakt@juicyevents.pl</a>
+          <li class="crew-card crew-card--juice" data-team-card>
+            <div class="crew-card__top">
+              <h3 class="crew-card__name">Marta Knasiak</h3>
+              <p class="crew-card__role">Assistant &amp; Junior Event Manager</p>
             </div>
-            <span class="pass__barcode" aria-hidden="true"></span>
+            <div class="crew-card__bottom">
+              <div class="crew-card__contact">
+                <a href="mailto:kontakt@juicyevents.pl">kontakt@juicyevents.pl</a>
+              </div>
+              <span class="crew-card__sign" aria-hidden="true"></span>
+            </div>
           </li>
-          <li class="pass" data-team-card style="--tilt: 1.5deg">
-            <span class="pass__hole" aria-hidden="true"></span>
-            <span class="pass__band"><span>Juicy Events · Crew</span><span>All access</span></span>
-            <span class="pass__initials" aria-hidden="true">WK</span>
-            <h3 class="pass__name">Weronika Okoniewska-Kulpińska</h3>
-            <p class="pass__role">Helpdesk</p>
-            <div class="pass__contact">
-              <a href="mailto:wokoniewska@juicyevents.pl">wokoniewska@juicyevents.pl</a>
+          <li class="crew-card crew-card--ink" data-team-card>
+            <div class="crew-card__top">
+              <h3 class="crew-card__name">Weronika Okoniewska-Kulpińska</h3>
+              <p class="crew-card__role">Helpdesk</p>
             </div>
-            <span class="pass__barcode" aria-hidden="true"></span>
+            <div class="crew-card__bottom">
+              <div class="crew-card__contact">
+                <a href="mailto:wokoniewska@juicyevents.pl">wokoniewska@juicyevents.pl</a>
+              </div>
+              <span class="crew-card__sign" aria-hidden="true"></span>
+            </div>
           </li>
-          <li class="pass" data-team-card style="--tilt: -1deg">
-            <span class="pass__hole" aria-hidden="true"></span>
-            <span class="pass__band"><span>Juicy Events · Crew</span><span>All access</span></span>
-            <span class="pass__initials" aria-hidden="true">JG</span>
-            <h3 class="pass__name">Jakub Gral</h3>
-            <p class="pass__role">Marketing</p>
-            <div class="pass__contact">
-              <a href="mailto:marketing@juicyevents.pl">marketing@juicyevents.pl</a>
+          <li class="crew-card crew-card--lemon" data-team-card>
+            <div class="crew-card__top">
+              <h3 class="crew-card__name">Jakub Gral</h3>
+              <p class="crew-card__role">Marketing</p>
             </div>
-            <span class="pass__barcode" aria-hidden="true"></span>
+            <div class="crew-card__bottom">
+              <div class="crew-card__contact">
+                <a href="mailto:marketing@juicyevents.pl">marketing@juicyevents.pl</a>
+              </div>
+              <span class="crew-card__sign" aria-hidden="true"></span>
+            </div>
           </li>
         </ul>
-        </div>
       </section>
 
       <!-- @site-closing -->

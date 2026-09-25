@@ -56,7 +56,7 @@
   opacity: 1;
   overflow: visible;
   padding-top: clamp(1rem, 2.5vh, 1.5rem);
-  padding-left: clamp(2.5rem, 5vw, 4.5rem);
+  padding-left: var(--index-w);
 }
 
 .expertise.is-scroll .expertise-item__head {
@@ -69,24 +69,26 @@
   gap: 2rem;
 }
 
+/* „Napis na dole zdecydowanie powinien być większy” — z display-3 na display-2. */
 .expertise__title {
-  max-width: 18ch;
-  font-size: var(--display-3);
+  max-width: 11ch;
+  font-size: var(--display-2);
+  letter-spacing: -0.026em;
 }
 
 .expertise__count {
   display: flex;
   align-items: baseline;
   gap: 0.25rem;
-  margin: 0.75rem 0 0;
-  font-size: var(--micro);
-  font-weight: 600;
-  letter-spacing: 0.18em;
+  margin: 1.1rem 0 0;
+  font-family: var(--font-mono);
+  font-size: var(--label);
+  letter-spacing: 0.02em;
   color: var(--muted-light);
 }
 
 .expertise__count [data-expertise-current] {
-  color: var(--accent);
+  color: var(--lemon);
 }
 
 .expertise__count-sep {
@@ -100,6 +102,7 @@
 }
 
 .expertise-item {
+  --index-w: clamp(2.75rem, 4.5vw, 4.25rem);
   border-top: 1px solid var(--line-light);
   padding: clamp(1rem, 1.8vw, 1.6rem) 0;
   transition: opacity 0.45s var(--ease);
@@ -116,8 +119,8 @@
 
 .expertise-item__head {
   display: grid;
-  grid-template-columns: auto minmax(0, 1fr);
-  gap: clamp(1rem, 2vw, 2rem);
+  grid-template-columns: var(--index-w) minmax(0, 1fr);
+  gap: 0;
   align-items: baseline;
   width: 100%;
   min-height: 3rem;
@@ -130,75 +133,39 @@
 }
 
 .expertise-item__index {
-  font-size: var(--micro);
-  font-weight: 600;
-  letter-spacing: 0.18em;
+  font-family: var(--font-mono);
+  font-size: var(--label);
+  letter-spacing: 0.02em;
   color: var(--muted-light);
   transition: color 0.4s var(--ease);
 }
 
 .expertise-item.is-active .expertise-item__index {
-  color: var(--accent);
+  color: var(--lemon);
 }
 
+/* Bez nawiasów i bez zmiany koloru — aktywny punkt po prostu „zapala się” (opacity). */
 .expertise-item__head h3 {
   display: inline;
-  font-size: var(--display-4);
+  font-size: var(--display-3);
+  letter-spacing: -0.022em;
+  line-height: 1.02;
   transition: color 0.55s var(--ease);
-}
-
-/* [ tytuł ] — wolny fade nawiasów (bez sweep poświaty). */
-.expertise-item__head h3::before,
-.expertise-item__head h3::after {
-  display: inline-block;
-  overflow: hidden;
-  color: var(--accent);
-  opacity: 0;
-  max-width: 0;
-  vertical-align: baseline;
-  transition:
-    opacity 1.25s var(--ease),
-    max-width 1.25s var(--ease),
-    margin 1.25s var(--ease);
-}
-
-.expertise-item__head h3::before {
-  content: "[";
-  margin-right: 0;
-}
-
-.expertise-item__head h3::after {
-  content: "]";
-  margin-left: 0;
-}
-
-.expertise-item.is-active .expertise-item__head h3::before {
-  opacity: 1;
-  max-width: 0.65em;
-  margin-right: 0.1em;
-}
-
-.expertise-item.is-active .expertise-item__head h3::after {
-  opacity: 1;
-  max-width: 0.65em;
-  margin-left: 0.1em;
 }
 
 .expertise.is-scroll .expertise-item__head h3 {
-  color: rgba(245, 245, 240, 0.52);
-  transition: color 0.55s var(--ease);
+  color: var(--cream);
 }
 
-.expertise-item.is-active .expertise-item__head h3,
 .expertise-item__head:hover h3 {
-  color: var(--accent);
+  color: var(--lemon);
 }
 
 .expertise-item__body {
   max-height: 0;
   opacity: 0;
   overflow: hidden;
-  padding-left: clamp(2.5rem, 5vw, 4.5rem);
+  padding-left: var(--index-w);
   transition: max-height 0.65s var(--ease-expo), opacity 0.4s var(--ease),
     padding-top 0.65s var(--ease-expo);
 }
@@ -210,10 +177,11 @@
 }
 
 .expertise-item__body p {
-  margin: 0 0 1rem;
-  max-width: 52ch;
-  font-size: clamp(0.95rem, 1.05vw, 1.05rem);
-  line-height: 1.7;
+  margin: 0;
+  max-width: 36ch;
+  font-size: var(--body-lg);
+  line-height: 1.45;
+  letter-spacing: -0.01em;
   color: var(--on-dark-muted);
 }
 
@@ -249,7 +217,7 @@
   align-self: center;
   width: 0.9rem;
   height: 2px;
-  background: var(--accent);
+  background: var(--lemon);
   transition: transform 0.45s var(--ease);
 }
 
@@ -278,15 +246,15 @@
   }
 
   .expertise.is-scroll .expertise__title {
-    max-width: 11ch;
-    font-size: clamp(0.98rem, 4.1vw, 1.22rem);
-    line-height: 1.1;
+    max-width: 9ch;
+    font-size: clamp(1.25rem, 5.6vw, 1.7rem);
+    line-height: 1.02;
   }
 
   .expertise.is-scroll .expertise__count {
     display: flex;
     margin-top: 0.5rem;
-    font-size: 0.58rem;
+    font-size: 0.7rem;
   }
 
   .expertise.is-scroll .expertise__list {
@@ -309,16 +277,16 @@
   }
 
   .expertise.is-scroll .expertise-item__index {
-    font-size: 0.58rem;
+    font-size: 0.7rem;
   }
 
   .expertise.is-scroll .expertise-item__head h3 {
-    font-size: clamp(0.88rem, 3.6vw, 1.05rem);
-    line-height: 1.18;
+    font-size: clamp(1.05rem, 4.6vw, 1.4rem);
+    line-height: 1.08;
   }
 
   .expertise.is-scroll .expertise-item__body p {
-    font-size: clamp(0.82rem, 3.2vw, 0.92rem);
-    line-height: 1.55;
+    font-size: clamp(0.92rem, 3.8vw, 1.05rem);
+    line-height: 1.45;
   }
 }

@@ -1,0 +1,98 @@
+/* ——— KLIENCI — pas z markami zaraz po showreelu ———
+   Tor przewija marquee.js (pętla + przyspieszenie od scrolla). Bez JS nazwy stoją
+   w jednej linii i po prostu się zawijają. */
+
+.clients {
+  position: relative;
+  padding: clamp(3.5rem, 7vw, 6.5rem) 0 clamp(3rem, 6vw, 5.5rem);
+  background: var(--cream);
+  overflow: hidden;
+}
+
+.clients__head {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 1rem;
+  max-width: var(--max);
+  margin: 0 auto clamp(1.5rem, 3vw, 2.5rem);
+  padding: 0 var(--pad);
+}
+
+.clients__head .eyebrow {
+  margin: 0;
+  color: var(--ink);
+}
+
+.clients__marquee {
+  position: relative;
+  border-top: 1px solid var(--line);
+  border-bottom: 1px solid var(--line);
+  padding: clamp(1.1rem, 2.2vw, 2rem) 0;
+  -webkit-mask-image: linear-gradient(90deg, transparent, #000 6%, #000 94%, transparent);
+  mask-image: linear-gradient(90deg, transparent, #000 6%, #000 94%, transparent);
+}
+
+.clients__track {
+  display: flex;
+  flex-wrap: nowrap;
+  align-items: center;
+  width: max-content;
+  will-change: transform;
+}
+
+.js .clients__track {
+  flex-wrap: nowrap;
+}
+
+.clients__item {
+  display: inline-flex;
+  align-items: center;
+  flex-shrink: 0;
+  font-family: var(--font-display);
+  font-size: clamp(2.4rem, 6.2vw, 6.2rem);
+  font-weight: 650;
+  line-height: 1.1;
+  letter-spacing: -0.028em;
+  white-space: nowrap;
+  color: var(--ink);
+  transition: color 0.35s var(--ease);
+}
+
+/* Separator: gwiazdka marki w pomarańczu, między nazwami. */
+.clients__item::after {
+  content: "";
+  display: inline-block;
+  width: 0.42em;
+  height: 0.42em;
+  margin: 0 0.5em;
+  background: var(--accent);
+  -webkit-mask: var(--icon-star) center / contain no-repeat;
+  mask: var(--icon-star) center / contain no-repeat;
+  transition: transform 0.6s var(--ease-expo);
+}
+
+.clients__item:hover {
+  color: var(--accent-text);
+}
+
+.clients__item:hover::after {
+  transform: rotate(90deg);
+}
+
+/* Logo w pliku zamiast nazwy — ta sama wysokość optyczna co tekst. */
+.clients__item img {
+  display: block;
+  height: 0.72em;
+  width: auto;
+}
+
+@media (max-width: 620px) {
+  .clients {
+    padding-top: clamp(2.75rem, 12vw, 3.5rem);
+  }
+
+  .clients__item {
+    font-size: clamp(2.1rem, 11vw, 2.9rem);
+  }
+}

@@ -48,22 +48,36 @@
   display: inline-flex;
   align-items: center;
   gap: 0.6rem;
-  padding: 0.68rem 1.4rem;
+  padding: 0.72rem 1.35rem;
   border: 0;
+  border-radius: 999px;
   background: var(--ink);
   color: var(--white);
-  font-size: var(--micro);
-  font-weight: 700;
-  letter-spacing: 0.16em;
+  font-family: var(--font-mono);
+  font-size: var(--label);
+  font-weight: 400;
+  letter-spacing: 0.04em;
   text-transform: uppercase;
   cursor: pointer;
-  transition: background 0.35s var(--ease), gap 0.35s var(--ease);
+  transition: background 0.35s var(--ease), color 0.35s var(--ease), gap 0.35s var(--ease);
 }
 
 .site-header__menu:hover,
 .site-header__menu:focus-visible {
-  background: var(--dark-soft);
+  background: var(--lemon);
+  color: var(--ink);
   gap: 0.85rem;
+}
+
+/* Nad ciemnym (wideo, kompetencje, stopka) czarna pigułka by znikała — jasna wersja. */
+.site-header:not(.site-header--solid) .site-header__menu {
+  background: var(--cream);
+  color: var(--ink);
+}
+
+.site-header:not(.site-header--solid) .site-header__menu:hover,
+.site-header:not(.site-header--solid) .site-header__menu:focus-visible {
+  background: var(--lemon);
 }
 
 .site-header__menu-bars {
@@ -82,20 +96,23 @@
   justify-self: end;
   display: inline-flex;
   align-items: center;
-  padding: 0.6rem 1.15rem;
+  padding: 0.66rem 1.25rem;
   border: 1px solid currentColor;
-  font-size: var(--micro);
-  font-weight: 600;
-  letter-spacing: 0.14em;
+  border-radius: 999px;
+  font-family: var(--font-mono);
+  font-size: var(--label);
+  font-weight: 400;
+  letter-spacing: 0.04em;
   text-transform: uppercase;
   transition: background 0.35s var(--ease), color 0.35s var(--ease),
     border-color 0.35s var(--ease);
 }
 
-.site-header__cta:hover {
-  background: var(--accent);
-  border-color: var(--accent);
-  color: var(--white);
+.site-header__cta:hover,
+.site-header__cta:focus-visible {
+  background: var(--lemon);
+  border-color: var(--lemon);
+  color: var(--ink);
 }
 
 /* ——— MEGA MENU ——— */
@@ -125,21 +142,23 @@
   position: absolute;
   top: var(--pad);
   right: var(--pad);
-  padding: 0.6rem 1.15rem;
+  padding: 0.66rem 1.25rem;
   background: transparent;
-  border: 1px solid var(--line-light);
+  border: 1px solid currentColor;
+  border-radius: 999px;
   color: inherit;
-  font-size: var(--micro);
-  font-weight: 600;
-  letter-spacing: 0.14em;
+  font-family: var(--font-mono);
+  font-size: var(--label);
+  letter-spacing: 0.04em;
   text-transform: uppercase;
   cursor: pointer;
+  transition: background 0.3s var(--ease), color 0.3s var(--ease), border-color 0.3s var(--ease);
 }
 
 .mega-menu__close:hover {
-  background: var(--cream);
-  border-color: var(--cream);
-  color: var(--accent);
+  background: var(--lemon);
+  border-color: var(--lemon);
+  color: var(--ink);
 }
 
 .mega-menu__grid {
@@ -154,12 +173,12 @@
 
 .mega-menu__list a {
   display: block;
-  padding: 0.15em 0;
+  padding: 0.12em 0;
+  font-family: var(--font-display);
   font-size: var(--display-2);
-  font-weight: 700;
-  line-height: 1;
-  letter-spacing: -0.03em;
-  text-transform: uppercase;
+  font-weight: 650;
+  line-height: 1.02;
+  letter-spacing: -0.026em;
   transition: color 0.3s var(--ease), transform 0.4s var(--ease);
 }
 
@@ -247,18 +266,24 @@
 
 .site-footer__name {
   margin-bottom: 0.5rem !important;
+  font-family: var(--font-display);
   font-size: var(--display-4);
-  font-weight: 800;
-  letter-spacing: -0.02em;
-  text-transform: uppercase;
+  font-weight: 650;
+  letter-spacing: -0.018em;
 }
 
 .site-footer__muted {
   color: var(--muted-light);
 }
 
+.site-footer__firm a {
+  border-bottom: 1px solid transparent;
+  transition: color 0.3s var(--ease), border-color 0.3s var(--ease);
+}
+
 .site-footer__firm a:hover {
-  color: var(--accent-soft);
+  color: var(--lemon);
+  border-color: currentColor;
 }
 
 .site-footer .slot {
@@ -272,7 +297,9 @@
   align-content: start;
   justify-content: end;
   gap: 0.5rem 1.75rem;
-  font-size: var(--body);
+  font-size: var(--body-lg);
+  font-weight: 500;
+  letter-spacing: -0.01em;
 }
 
 .site-footer__nav a {
@@ -280,7 +307,7 @@
 }
 
 .site-footer__nav a:hover {
-  color: var(--accent-soft);
+  color: var(--lemon);
 }
 
 .site-footer__row--bottom {
@@ -307,29 +334,62 @@
 }
 
 .site-footer__link:hover {
-  color: var(--accent-soft);
-  border-color: var(--accent-soft);
+  color: var(--lemon);
+  border-color: var(--lemon);
 }
 
-/* Gigantyczny wordmark — sygnatura Sweetpunk */
+/* Gigantyczny wordmark — teraz jedzie w pętli (marquee.js), a scroll go
+   przyspiesza. Bez JS stoi w miejscu i wygląda jak wcześniej. */
 .site-footer__wordmark {
+  --wordmark-size: clamp(3.75rem, 13.5vw, 13rem);
+  position: relative;
   background: var(--accent);
   color: var(--cream);
   overflow: hidden;
+  padding-top: 0.04em;
+  transition: background 0.5s var(--ease), color 0.5s var(--ease);
+}
+
+.site-footer__wordmark:hover {
+  background: var(--lemon);
+  color: var(--ink);
+}
+
+.site-footer__wordmark-track {
+  display: flex;
+  width: max-content;
+  will-change: transform;
 }
 
 .site-footer__wordmark span {
   display: block;
-  padding: 0 var(--pad);
+  flex-shrink: 0;
+  padding-right: 0.28em;
   font-family: var(--font-display);
-  font-size: clamp(3.5rem, 12.8vw, 11.5rem);
-  font-weight: 700;
-  line-height: 0.82;
-  letter-spacing: -0.035em;
+  font-size: var(--wordmark-size);
+  font-weight: 750;
+  line-height: 0.84;
+  letter-spacing: -0.03em;
   text-transform: uppercase;
   white-space: nowrap;
-  transform: translateY(0.06em);
-  will-change: transform;
+  transform: translateY(0.07em);
+}
+
+.site-footer__wordmark span::after {
+  content: "";
+  display: inline-block;
+  width: 0.46em;
+  height: 0.46em;
+  margin-left: 0.24em;
+  vertical-align: 0.2em;
+  background: var(--ink);
+  -webkit-mask: var(--icon-star) center / contain no-repeat;
+  mask: var(--icon-star) center / contain no-repeat;
+  transition: background-color 0.5s var(--ease);
+}
+
+.site-footer__wordmark:hover span::after {
+  background: var(--accent);
 }
 
 /* ——— SHOWREEL ——— */
@@ -431,6 +491,8 @@
 
 /* ——— PŁYWAJĄCE CTA „KONTAKT" ——— */
 
+/* Obracający się przycisk: pomarańcz marki, na hover cytryna (feedback właściciela:
+   „przycisk kręcący się czerwony, a jak najedziesz — żółty”). */
 .float-cta {
   position: fixed;
   right: clamp(1rem, 2.4vw, 2.5rem);
@@ -441,9 +503,9 @@
   width: clamp(6.5rem, 10.5vw, 10rem);
   height: clamp(6.5rem, 10.5vw, 10rem);
   border-radius: 50%;
-  background: var(--ink);
+  background: var(--accent);
   color: var(--white);
-  box-shadow: 0 22px 48px -18px rgba(15, 15, 15, 0.42);
+  box-shadow: 0 22px 48px -18px rgba(224, 62, 10, 0.55);
   transform: scale(0);
   animation: float-cta-in 0.9s cubic-bezier(0.34, 1.56, 0.64, 1) 0.9s forwards;
   transition: background 0.35s var(--ease), color 0.35s var(--ease), opacity 0.35s var(--ease),
@@ -465,10 +527,10 @@
   width: 100%;
   height: 100%;
   fill: currentColor;
-  font-family: var(--font);
-  font-size: 8.4px;
-  font-weight: 700;
-  letter-spacing: 0.14em;
+  font-family: var(--font-mono);
+  font-size: 8.2px;
+  font-weight: 400;
+  letter-spacing: 0.06em;
   text-transform: uppercase;
   animation: float-cta-spin 16s linear infinite;
 }
@@ -485,8 +547,9 @@
   width: 2.6rem;
   height: 2.6rem;
   border-radius: 50%;
-  background: color-mix(in srgb, var(--white) 14%, transparent);
-  transition: transform 0.5s var(--ease-expo), background 0.35s var(--ease);
+  background: var(--ink);
+  color: var(--white);
+  transition: transform 0.5s var(--ease-expo), background 0.35s var(--ease), color 0.35s var(--ease);
 }
 
 .float-cta__arrow svg {
@@ -496,33 +559,38 @@
 
 .float-cta:hover,
 .float-cta:focus-visible {
-  background: var(--dark-soft);
-  box-shadow: 0 26px 56px -18px rgba(15, 15, 15, 0.5);
+  background: var(--lemon);
+  color: var(--ink);
+  box-shadow: 0 26px 56px -18px rgba(120, 130, 0, 0.45);
 }
 
-.float-cta:hover .float-cta__ring {
+.float-cta:hover .float-cta__ring,
+.float-cta:focus-visible .float-cta__ring {
   animation-duration: 6s;
 }
 
-.float-cta:hover .float-cta__arrow {
-  transform: rotate(-45deg);
-  background: color-mix(in srgb, var(--white) 22%, transparent);
+.float-cta:hover .float-cta__arrow,
+.float-cta:focus-visible .float-cta__arrow {
+  transform: rotate(-45deg) scale(1.08);
+  background: var(--ink);
+  color: var(--lemon);
 }
 
-/* Na ciemnych / pomarańczowych sekcjach — odwrócenie dla kontrastu */
+/* Nad pomarańczowymi powierzchniami — odwrócenie, żeby kółko nie zlało się z tłem */
 .float-cta.is-inverted {
-  background: var(--white);
-  color: var(--ink);
-  box-shadow: 0 22px 48px -18px rgba(15, 15, 15, 0.28);
+  background: var(--ink);
+  color: var(--white);
+  box-shadow: 0 22px 48px -18px rgba(15, 15, 15, 0.4);
+}
+
+.float-cta.is-inverted .float-cta__arrow {
+  background: var(--accent);
 }
 
 .float-cta.is-inverted:hover,
 .float-cta.is-inverted:focus-visible {
-  background: var(--cream);
-}
-
-.float-cta.is-inverted .float-cta__arrow {
-  background: color-mix(in srgb, var(--ink) 12%, transparent);
+  background: var(--lemon);
+  color: var(--ink);
 }
 
 .float-cta.is-hidden {

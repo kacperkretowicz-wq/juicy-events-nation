@@ -32,6 +32,9 @@ body {
   overflow-x: hidden;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
+  font-optical-sizing: auto;
+  font-kerning: normal;
+  font-variant-ligatures: common-ligatures;
 }
 
 img,
@@ -53,15 +56,24 @@ textarea {
   color: inherit;
 }
 
+/* Nagłówki zdaniowe (nie wersaliki) — kierunek z Leveled/Pentagram. Tracking
+   ujemny rośnie razem ze stopniem: przy dużych pismach Bricolage potrzebuje
+   ciaśniejszego światła, przy małych — prawie zerowego. Interlinia 1.0 zostawia
+   miejsce na polskie znaki (Ś, Ó, Ż) nad linią. */
 h1,
 h2,
 h3 {
   margin: 0;
   font-family: var(--font-display);
-  font-weight: 600;
-  line-height: 0.94;
-  letter-spacing: -0.02em;
-  text-transform: uppercase;
+  font-weight: 650;
+  line-height: 1;
+  letter-spacing: -0.024em;
+  text-transform: none;
+  text-wrap: balance;
+}
+
+h3 {
+  letter-spacing: -0.016em;
 }
 
 p {
@@ -87,11 +99,14 @@ ul {
 
 /* ——— Elementy współdzielone ——— */
 
+/* Etykiety w kroju mono — jedyne „drobne pismo” na stronie, używane oszczędnie:
+   numer sekcji + nazwa, liczniki, podpisy klientów. */
 .eyebrow {
   margin: 0 0 1rem;
-  font-size: var(--micro);
-  font-weight: 600;
-  letter-spacing: 0.16em;
+  font-family: var(--font-mono);
+  font-size: var(--label);
+  font-weight: 400;
+  letter-spacing: 0.02em;
   text-transform: uppercase;
   color: var(--muted);
 }
@@ -100,79 +115,81 @@ ul {
   color: var(--muted-light);
 }
 
-/* Nawiasy kwadratowe jako akcent marki */
+/* Sygnatura Juicy: wyróżnione słowo w nagłówku = miękka kursywa Fraunces w kolorze.
+   Zastępuje sweetpunkowe [nawiasy] — klasa zostaje ta sama, żeby nie ruszać treści.
+   padding-right chroni nawis kursywy przed ucięciem w liniach z overflow: hidden. */
 .bracket {
   position: relative;
-  color: var(--accent);
+  padding-right: 0.07em;
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-weight: 460;
+  letter-spacing: -0.012em;
+  color: var(--accent-text);
 }
 
-.bracket::before {
-  content: "[";
-  margin-right: 0.06em;
+[data-tone="dark"] .bracket,
+.bracket--lemon {
+  color: var(--lemon);
 }
 
-.bracket::after {
-  content: "]";
-  margin-left: 0.06em;
-}
-
+/* Przycisk marki: czarna pigułka + pomarańczowe kółko ze strzałką.
+   Hover = cytryna (żółty akcent „po najechaniu”, o który prosił właściciel). */
 .btn {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  gap: 0.6rem;
-  min-height: 3.25rem;
-  padding: 0.85rem 1.5rem;
+  gap: 0.85rem;
+  min-height: 3.4rem;
+  padding: 0.55rem 0.6rem 0.55rem 1.6rem;
   border: 0;
-  background: var(--white);
-  color: var(--ink);
-  font-size: var(--micro);
+  border-radius: 999px;
+  background: var(--ink);
+  color: var(--cream);
+  font-size: clamp(0.98rem, 1.05vw, 1.08rem);
   font-weight: 600;
-  letter-spacing: 0.14em;
-  text-transform: uppercase;
+  letter-spacing: -0.01em;
+  line-height: 1;
+  text-transform: none;
   cursor: pointer;
   transition: background 0.35s var(--ease), color 0.35s var(--ease);
 }
 
-/* Sweetpunk: czerwony pasek na prawej krawędzi przycisku.
-   isolation: isolate daje przyciskowi własny kontekst nakładania — dzięki temu
-   ::after z-index:-1 ląduje NAD tłem przycisku, ale POD jego napisem (inaczej
-   rozlany na hover pasek zakrywał tekst). */
-.btn--bar {
-  position: relative;
-  isolation: isolate;
-  padding-right: 2.5rem;
-  border: 1px solid var(--line);
-}
-
-.btn--bar::after {
+.btn::after {
   content: "";
-  position: absolute;
-  inset: 0 0 0 auto;
-  z-index: -1;
-  width: 0.6rem;
-  background: var(--accent);
-  transition: width 0.7s var(--ease);
+  display: grid;
+  flex-shrink: 0;
+  width: 2.35rem;
+  height: 2.35rem;
+  border-radius: 50%;
+  background:
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M5 12h14M13 5l7 7-7 7' fill='none' stroke='%23121212' stroke-width='2.2' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E")
+      center / 1.05rem no-repeat,
+    var(--accent);
+  transition: transform 0.5s var(--ease-expo), background-color 0.35s var(--ease);
 }
 
-.btn--bar:hover::after,
-.btn--bar:focus-visible::after {
-  width: 100%;
+.btn:hover,
+.btn:focus-visible {
+  background: var(--lemon);
+  color: var(--ink);
 }
 
-.btn--bar:hover,
-.btn--bar:focus-visible {
-  color: var(--white);
+.btn:hover::after,
+.btn:focus-visible::after {
+  transform: rotate(-45deg);
 }
 
+/* Starsze warianty — zachowane nazwy klas, nowy wygląd. */
+.btn--bar,
 .btn--dark {
   background: var(--ink);
   color: var(--cream);
 }
 
-.btn--dark:hover {
-  background: var(--accent);
-  color: var(--white);
+.btn--light {
+  background: var(--white);
+  color: var(--ink);
 }
 
 .btn--ghost-dark {
@@ -191,35 +208,43 @@ ul {
   align-items: center;
   gap: 0.5rem;
   width: fit-content;
-  padding-bottom: 0.35rem;
+  padding-bottom: 0.3rem;
   border-bottom: 1px solid currentColor;
-  font-size: var(--micro);
+  font-size: clamp(0.95rem, 1vw, 1.05rem);
   font-weight: 600;
-  letter-spacing: 0.14em;
-  text-transform: uppercase;
+  letter-spacing: -0.01em;
   transition: gap 0.3s var(--ease), color 0.3s var(--ease);
 }
 
 .link-arrow::after {
-  content: "→";
-  border: 0;
+  content: "";
+  width: 1em;
+  height: 1em;
+  background: currentColor;
+  -webkit-mask: var(--icon-arrow) center / contain no-repeat;
+  mask: var(--icon-arrow) center / contain no-repeat;
 }
 
 .link-arrow:hover {
   gap: 0.85rem;
-  color: var(--accent);
+  color: var(--accent-text);
 }
 
 .link-arrow--light {
   color: var(--cream);
 }
 
-/* Etykieta sekcji: „01 / Co robimy" — mała, wersaliki, przed tytułem. */
+.link-arrow--light:hover {
+  color: var(--lemon);
+}
+
+/* Etykieta sekcji — ten sam styl co .eyebrow (mono). */
 .section-label {
   margin: 0 0 1.1rem;
-  font-size: 0.72rem;
-  font-weight: 600;
-  letter-spacing: 0.16em;
+  font-family: var(--font-mono);
+  font-size: var(--label);
+  font-weight: 400;
+  letter-spacing: 0.02em;
   text-transform: uppercase;
   color: var(--muted);
 }
@@ -267,11 +292,22 @@ ul {
   border-color: var(--accent);
 }
 
-/* Split headline — nośnik animacji linii */
+/* Split headline — nośnik animacji linii.
+   Maska (overflow: hidden) jest powiększona paddingiem i cofnięta ujemnym
+   marginesem: layout się nie zmienia, a nie ucina ogonków (y, j, ą, ę), akcentów
+   nad wersalikami (Ś, Ż) ani nawisu kursywy na końcu linii. Kontener jest flexem,
+   bo w zwykłym bloku ujemne marginesy sąsiednich linii by się „zapadały”
+   i interlinia rosłaby o różnicę. */
+.is-split[data-split-done="1"] {
+  display: flex;
+  flex-direction: column;
+}
+
 .is-split .split-line {
   display: block;
   overflow: hidden;
-  padding-bottom: 0.06em;
+  padding: 0.14em 0.12em 0.3em 0;
+  margin: -0.14em -0.12em -0.3em 0;
 }
 
 .is-split .split-line__inner {
@@ -287,7 +323,8 @@ ul {
 .line {
   display: block;
   overflow: hidden;
-  padding-bottom: 0.06em;
+  padding: 0.14em 0.12em 0.3em 0;
+  margin: -0.14em -0.12em -0.3em 0;
 }
 
 .line > span {
@@ -333,10 +370,8 @@ ul {
   padding: 0.85rem 1.35rem;
   background: var(--ink);
   color: var(--cream);
-  font-size: var(--micro);
+  font-size: 0.95rem;
   font-weight: 600;
-  letter-spacing: 0.14em;
-  text-transform: uppercase;
 }
 
 .skip-link:focus {

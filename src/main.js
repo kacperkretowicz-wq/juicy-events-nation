@@ -1,4 +1,4 @@
-import { initHeader, initSplitHeadlines, initSplitResize } from "./shared.js";
+import { initHeader, initSplitHeadlines, initSplitResize, whenFontsReady } from "./shared.js";
 import { initParallax, initSectionReveals, initMarks, syncHeadlineReveals } from "./effects.js";
 import { initParallaxMedia } from "./sections/parallax-media.js";
 import { bindScrollLayoutSettle } from "./scroll-layout.js";
@@ -9,36 +9,45 @@ import { initExpertise } from "./sections/expertise.js";
 import { initProjects, initProjectCoverDrift } from "./sections/projects.js";
 import { initProjectVideo } from "./sections/project-video.js";
 import { initProjectSlideshow } from "./sections/project-slideshow.js";
-import { initWorkVideo } from "./sections/work-video.js";
+import { initProjectHover } from "./sections/project-hover.js";
+import { initJeMark } from "./sections/je-mark.js";
+import { initMarquees } from "./sections/marquee.js";
 import { initMission } from "./sections/mission.js";
 import { bootSiteClosing } from "./site-closing-boot.js";
 import { initMicroFx } from "./sections/micro-fx.js";
 import { initFloatCta } from "./sections/float-cta.js";
 
 initHeader();
-initSplitHeadlines();
-initSplitResize();
-initMarks();
-initParallax();
-
+// Intro (czarny ekran z Je!) startuje od razu — przykrywa stronę, zanim reszta
+// wystartuje na docelowych krojach.
 initHeroIntro();
-initAgency();
-initHeroReel();
-initExpertise();
-initProjects();
-initProjectCoverDrift();
-initProjectVideo();
-initProjectSlideshow();
-initWorkVideo();
-initMission();
-initSectionReveals();
-initMicroFx();
-initFloatCta();
 
-bootSiteClosing();
+whenFontsReady().then(() => {
+  initSplitHeadlines();
+  initSplitResize();
+  initMarks();
+  initParallax();
 
-document.documentElement.classList.add("is-loaded");
+  initAgency();
+  initHeroReel();
+  initJeMark();
+  initMarquees();
+  initExpertise();
+  initProjects();
+  initProjectCoverDrift();
+  initProjectVideo();
+  initProjectSlideshow();
+  initProjectHover();
+  initMission();
+  initSectionReveals();
+  initMicroFx();
+  initFloatCta();
 
-initParallaxMedia();
-syncHeadlineReveals({ refresh: false });
-bindScrollLayoutSettle();
+  bootSiteClosing();
+
+  document.documentElement.classList.add("is-loaded");
+
+  initParallaxMedia();
+  syncHeadlineReveals({ refresh: false });
+  bindScrollLayoutSettle();
+});

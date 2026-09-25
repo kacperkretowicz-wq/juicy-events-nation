@@ -36,10 +36,10 @@
   background: linear-gradient(
     180deg,
     var(--cream) 0%,
-    rgba(245, 245, 240, 0.94) 11%,
-    rgba(210, 210, 205, 0.72) 26%,
-    rgba(145, 145, 142, 0.58) 46%,
-    rgba(55, 55, 55, 0.78) 72%,
+    rgba(244, 242, 236, 0.94) 11%,
+    rgba(210, 207, 199, 0.72) 26%,
+    rgba(145, 143, 138, 0.58) 46%,
+    rgba(40, 38, 36, 0.8) 72%,
     var(--dark) 100%
   );
 }
@@ -71,42 +71,51 @@
   column-gap: 0.32em;
   font-family: var(--font-display);
   font-size: var(--display-1);
-  font-weight: 600;
-  line-height: 0.94;
-  letter-spacing: -0.03em;
-  text-transform: uppercase;
+  font-weight: 650;
+  line-height: 1;
+  letter-spacing: -0.028em;
 }
 
 .mission__lead {
   white-space: nowrap;
-  line-height: 0.94;
+  line-height: 1;
 }
 
 .mission__rotator {
   position: relative;
   min-width: 0;
   width: 100%;
-  /* Ten sam pionowy pas co „Nie boimy się” — kolejka w środku, wyblakłe słowa w clipie. */
-  height: 1em;
-  line-height: 0.94;
+  /* Ten sam pionowy pas co „Nie boimy się” — kolejka w środku, wyblakłe słowa w clipie.
+     Wyższy o zapas na ogonki kursywy (ę, ć). */
+  height: 1.14em;
+  margin-bottom: -0.14em;
+  line-height: 1;
   overflow: hidden;
   align-self: end;
 }
 
+/* Rotujące słowa = akcent marki (kursywa Fraunces, cytryna na ciemnym). */
 .mission__word {
   position: absolute;
   left: 0;
-  bottom: 0;
+  bottom: 0.14em;
   top: auto;
+  padding-right: 0.08em;
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-weight: 460;
+  letter-spacing: -0.02em;
   white-space: nowrap;
+  color: var(--lemon);
   transform-origin: left bottom;
 }
 
 .mission__note {
   margin: 0;
-  max-width: 44ch;
-  font-size: clamp(1rem, 1.2vw, 1.15rem);
-  line-height: 1.68;
+  max-width: 38ch;
+  font-size: var(--body-lg);
+  line-height: 1.5;
+  letter-spacing: -0.01em;
   color: var(--on-dark-muted);
 }
 

@@ -1,8 +1,8 @@
-// ——— Mikro-efekty: reveal galerii, hover kart, dryf wordmarku, magnetyczne CTA ———
+// ——— Mikro-efekty: reveal galerii i magnetyczne CTA (wordmark stopki: marquee.js) ———
 // Amplitudy trzymane nisko — mają być wyczuwalne, nie krzykliwe.
 // (`softMotion` = tylko opt-in `?reduced` w URL — patrz shared.js.)
 
-import { onScrollFrame, softMotion } from "../shared.js";
+import { softMotion } from "../shared.js";
 
 /* Delikatne wejście kadrów — galeria i hero podstron realizacji.
    Karty na stronie głównej mają osobny reveal (projects.js). */
@@ -63,27 +63,11 @@ export function initMediaReveal() {
   });
 }
 
-/* Dryf gigantycznego wordmarku w stopce (±60 px). */
-export function initWordmarkDrift() {
-  const word = document.querySelector(".site-footer__wordmark span");
-  if (!word || softMotion) return;
-
-  const update = () => {
-    const rect = word.getBoundingClientRect();
-    const p = 1 - (rect.top + rect.height) / (window.innerHeight + rect.height);
-    const shift = (Math.min(1, Math.max(0, p)) - 0.5) * 36;
-    word.style.transform = `translate(${shift}px, 0.06em)`;
-  };
-  update();
-  onScrollFrame(update);
-  window.addEventListener("resize", update);
-}
-
 /* Magnetyczne główne CTA (±8 px). */
 export function initMagneticButtons() {
   if (softMotion || !window.matchMedia("(hover: hover)").matches) return;
 
-  document.querySelectorAll(".btn--bar, .btn--dark").forEach((btn) => {
+  document.querySelectorAll(".btn").forEach((btn) => {
     let x = 0;
     let y = 0;
     let tx = 0;
@@ -119,6 +103,5 @@ export function initMagneticButtons() {
 
 export function initMicroFx() {
   initMediaReveal();
-  initWordmarkDrift();
   initMagneticButtons();
 }
