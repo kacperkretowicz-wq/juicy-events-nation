@@ -1,7 +1,6 @@
 /* ——— OPIS („Od wizji do mierzalnych rezultatów”) ———
-   Świadomie niesymetrycznie (feedback: „za dużo symetrii, tytuł delikatnie w lewo”):
-   tytuł na 8 kolumnach od lewej krawędzi, tekst wcięty o kolumnę, a po prawej
-   znak Je! z wideo w środku — zamiast ciemnej animacji. */
+   Prosty układ z czerwonym kafelkiem i krótkim filmem w kwadracie.
+   Zastępuje ciężki znak Je! rozciągnięty obok tekstu. */
 
 .work {
   position: relative;
@@ -15,13 +14,12 @@
 }
 
 .work__copy {
-  grid-column: 1 / span 9;
+  grid-column: 1 / span 8;
   grid-row: 1;
   position: relative;
   z-index: 2;
 }
 
-/* Dłuższy wiersz zapobiega samotnemu słowu-akcentowi ze screena. */
 .work__title {
   max-width: 13.2em;
   line-height: 1.08;
@@ -45,66 +43,158 @@
   color: var(--ink);
 }
 
-/* ——— Znak Je! ——— */
-
-.work__mark {
+/* Czerwony kafelek z krótkim filmem w kwadratowym kadrze. */
+.work__media {
   grid-column: 8 / span 5;
   grid-row: 1;
   align-self: end;
   position: relative;
   z-index: 1;
-  margin-bottom: clamp(-2rem, -2vw, -0.5rem);
+  display: grid;
+  justify-items: end;
+  gap: 0.8rem;
+  margin: clamp(3rem, 8vw, 7rem) 0 0;
 }
 
-.je-mark {
-  --je-off: 0%;
-  --jx: 0%;
-  --jy: 0%;
-  --ex: 0%;
-  --ey: 0%;
+.work__card {
   position: relative;
-  width: 100%;
-  aspect-ratio: 1288 / 872;
-}
-
-.je-mark__layer {
-  position: absolute;
-  inset: 0;
+  display: block;
+  width: min(100%, 28rem);
+  aspect-ratio: 1;
+  padding: clamp(0.7rem, 1.4vw, 1.25rem);
+  border: 0;
+  background: var(--footer-accent, var(--accent-deep));
   overflow: hidden;
-  -webkit-mask-image: url("/media/mark-j.svg"), url("/media/mark-e.svg");
-  mask-image: url("/media/mark-j.svg"), url("/media/mark-e.svg");
-  -webkit-mask-size: contain;
-  mask-size: contain;
-  -webkit-mask-repeat: no-repeat;
-  mask-repeat: no-repeat;
-  -webkit-mask-position:
-    calc(50% + var(--jx)) calc(50% + var(--jy)),
-    calc(50% + var(--ex)) calc(50% + var(--ey));
-  mask-position:
-    calc(50% + var(--jx)) calc(50% + var(--jy)),
-    calc(50% + var(--ex)) calc(50% + var(--ey));
+  cursor: pointer;
+  transition: transform 0.6s var(--ease-expo), background-color 0.35s var(--ease);
 }
 
-/* „Przesunięcie druku” — dwie kolorowe kopie znaku pod wideo. */
-.je-mark__layer--lemon {
-  background: var(--lemon);
-  transform: translate3d(calc(var(--je-off) * -1), calc(var(--je-off) * 0.6), 0);
-}
-
-.je-mark__layer--juice {
+.work__card:hover,
+.work__card:focus-visible {
+  transform: translateY(-0.35rem);
   background: var(--accent);
-  transform: translate3d(var(--je-off), var(--je-off), 0);
 }
 
-.je-mark__layer--video {
+.work__card-inner {
+  position: absolute;
+  inset: clamp(0.7rem, 1.4vw, 1.25rem);
+  display: block;
+  overflow: hidden;
   background: var(--ink);
 }
 
-.je-mark__layer--video video {
+.work__video {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  transform: scale(1.12);
+  transition: transform 1s var(--ease);
+}
+
+.work__card:hover .work__video,
+.work__card:focus-visible .work__video {
+  transform: scale(1.04);
+}
+
+.work__media.is-expanded .work__card {
+  background: var(--footer-accent, var(--accent-deep));
+}
+
+.work__play {
+  position: absolute;
+  right: clamp(1.35rem, 2.5vw, 2.25rem);
+  bottom: clamp(1.35rem, 2.5vw, 2.25rem);
+  z-index: 2;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: clamp(5.4rem, 8vw, 7rem);
+  height: clamp(5.4rem, 8vw, 7rem);
+  padding: 0.7rem;
+  border: 1px solid rgba(255, 255, 255, 0.78);
+  border-radius: 50%;
+  background: rgba(18, 18, 18, 0.54);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  color: var(--white);
+  cursor: pointer;
+  transition: transform 0.35s var(--ease-expo), background 0.3s var(--ease), opacity 0.3s var(--ease);
+}
+
+.work__play:hover,
+.work__play:focus-visible {
+  transform: scale(1.05);
+  background: var(--footer-accent, var(--accent-deep));
+}
+
+.work__play-ui {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+}
+
+.work__play-ui--exit {
+  display: none;
+}
+
+.work__play-copy {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0.05em;
+  font-size: clamp(0.48rem, 0.8vw, 0.62rem);
+  font-weight: 700;
+  line-height: 1.02;
+  letter-spacing: 0.08em;
+  text-align: left;
+  text-transform: uppercase;
+}
+
+.work__play-icon {
+  display: grid;
+  place-items: center;
+  flex-shrink: 0;
+  width: 1rem;
+  height: 1rem;
+}
+
+.work__play-icon::after {
+  content: "";
+  width: 0;
+  height: 0;
+  border-left: 0.38rem solid currentColor;
+  border-top: 0.25rem solid transparent;
+  border-bottom: 0.25rem solid transparent;
+  margin-left: 0.1rem;
+}
+
+.work__play-icon--exit {
+  width: 0.52rem;
+  height: 0.52rem;
+  background: currentColor;
+}
+
+.work__play-icon--exit::after {
+  content: none;
+}
+
+.work__play.is-exit {
+  width: auto;
+  height: auto;
+  padding: 0;
+  border: 0;
+  border-radius: 0;
+  background: transparent;
+  backdrop-filter: none;
+  -webkit-backdrop-filter: none;
+  color: var(--white);
+}
+
+.work__play.is-exit .work__play-ui--idle {
+  display: none;
+}
+
+.work__play.is-exit .work__play-ui--exit {
+  display: inline-flex;
 }
 
 @media (max-width: 980px) {
@@ -114,17 +204,27 @@
   }
 
   .work__copy,
-  .work__mark {
+  .work__media {
     grid-column: 1;
   }
 
-  .work__mark {
+  .work__media {
     grid-row: 2;
-    width: min(100%, 34rem);
+    width: min(100%, 32rem);
     margin: 0 0 0 auto;
   }
 
   .work__text {
     margin-left: 0;
+  }
+}
+
+@media (max-width: 620px) {
+  .work__card {
+    width: min(100%, 25rem);
+  }
+
+  .work__media {
+    width: 100%;
   }
 }

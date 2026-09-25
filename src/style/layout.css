@@ -347,7 +347,7 @@
 .site-footer__wordmark {
   --wordmark-size: clamp(3.75rem, 13.5vw, 13rem);
   position: relative;
-  background: var(--accent);
+  background: var(--footer-accent, var(--accent));
   color: var(--cream);
   overflow: hidden;
   padding-top: 0.04em;

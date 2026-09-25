@@ -41,18 +41,18 @@ const FONTS = [
 ];
 
 const COLOR_PRESETS = {
-  "paper-orange": { bg: "#f4f2ec", surface: "#ffffff", text: "#17130f", accent: "#f4511e", bottom: "#e33a1b" },
-  "paper-tomato": { bg: "#f7f0e7", surface: "#ffffff", text: "#17130f", accent: "#f13a1b", bottom: "#d72612" },
-  sunshine: { bg: "#fff15a", surface: "#fff8d9", text: "#17130a", accent: "#f45b1a", bottom: "#d92316" },
-  "cream-carrot": { bg: "#f4ead1", surface: "#fff8e8", text: "#182016", accent: "#ff5a1a", bottom: "#d93a14" },
-  "forest-kiwi": { bg: "#185b2d", surface: "#e9f2d0", text: "#f7f2d8", accent: "#a8cc00", bottom: "#e83a1a" },
-  "red-cream": { bg: "#e6291d", surface: "#fff4e4", text: "#fff4e4", accent: "#f8e94e", bottom: "#b81c15" },
-  "cobalt-paper": { bg: "#2748d8", surface: "#f7f5ee", text: "#f7f5ee", accent: "#f05a22", bottom: "#d92d20" },
-  "cobalt-cream": { bg: "#3145ce", surface: "#fff8e8", text: "#fff8e8", accent: "#ff6a20", bottom: "#c92525" },
-  "violet-cream": { bg: "#6426b8", surface: "#fff4e4", text: "#fff4e4", accent: "#ff5a1a", bottom: "#e3291d" },
-  "aqua-tomato": { bg: "#21b9b6", surface: "#f7f2e8", text: "#0c2830", accent: "#ee4726", bottom: "#bf2718" },
-  "pink-orange": { bg: "#e84488", surface: "#fff1e8", text: "#fff1e8", accent: "#ff6a18", bottom: "#c8264f" },
-  "black-sun": { bg: "#111111", surface: "#f9f4e8", text: "#f9f4e8", accent: "#f3e83d", bottom: "#ef4a1f" },
+  "paper-orange": { bg: "#f4f2ec", surface: "#ffffff", text: "#17130f", accent: "#f4511e", bottom: "#e33a1b", lemon: "#f1ff66", blue: "#3b5bff" },
+  "paper-tomato": { bg: "#f7f0e7", surface: "#ffffff", text: "#17130f", accent: "#f13a1b", bottom: "#d72612", lemon: "#f1ff66", blue: "#3455e8" },
+  sunshine: { bg: "#fff15a", surface: "#fff8d9", text: "#17130a", accent: "#f45b1a", bottom: "#d92316", lemon: "#f8e94e", blue: "#2846d8" },
+  "cream-carrot": { bg: "#f4ead1", surface: "#fff8e8", text: "#182016", accent: "#ff5a1a", bottom: "#d93a14", lemon: "#f0eb43", blue: "#3156d8" },
+  "forest-kiwi": { bg: "#185b2d", surface: "#e9f2d0", text: "#f7f2d8", accent: "#a8cc00", bottom: "#e83a1a", lemon: "#c8e52a", blue: "#5f8cff" },
+  "red-cream": { bg: "#e6291d", surface: "#fff4e4", text: "#fff4e4", accent: "#f8e94e", bottom: "#b81c15", lemon: "#f8e94e", blue: "#3156d8" },
+  "cobalt-paper": { bg: "#2748d8", surface: "#f7f5ee", text: "#f7f5ee", accent: "#f05a22", bottom: "#d92d20", lemon: "#f3e83d", blue: "#2748d8" },
+  "cobalt-cream": { bg: "#3145ce", surface: "#fff8e8", text: "#fff8e8", accent: "#ff6a20", bottom: "#c92525", lemon: "#f3e83d", blue: "#3145ce" },
+  "violet-cream": { bg: "#6426b8", surface: "#fff4e4", text: "#fff4e4", accent: "#ff5a1a", bottom: "#e3291d", lemon: "#f3e83d", blue: "#6b5bff" },
+  "aqua-tomato": { bg: "#21b9b6", surface: "#f7f2e8", text: "#0c2830", accent: "#ee4726", bottom: "#bf2718", lemon: "#f7e945", blue: "#1266d8" },
+  "pink-orange": { bg: "#e84488", surface: "#fff1e8", text: "#fff1e8", accent: "#ff6a18", bottom: "#c8264f", lemon: "#f3e83d", blue: "#5144d8" },
+  "black-sun": { bg: "#111111", surface: "#f9f4e8", text: "#f9f4e8", accent: "#f3e83d", bottom: "#ef4a1f", lemon: "#f3e83d", blue: "#3b5bff" },
 };
 
 const COLOR_KEYS = ["bg", "surface", "text", "accent", "bottom"];
@@ -128,8 +128,8 @@ export function initPaletteLab() {
     root.style.setProperty("--accent-text", colors.accent);
     root.style.setProperty("--accent-soft", colors.accent);
     root.style.setProperty("--accent-warm", colors.accent);
-    root.style.setProperty("--lemon", colors.accent);
-    root.style.setProperty("--blue", colors.accent);
+    root.style.setProperty("--lemon", colors.lemon || colors.accent);
+    root.style.setProperty("--blue", colors.blue || colors.accent);
   };
 
   const syncPressed = (value) => document.querySelectorAll("[data-font-choice]").forEach((item) => {

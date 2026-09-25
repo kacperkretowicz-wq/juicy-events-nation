@@ -284,7 +284,7 @@
         </div>
       </section>
 
-      <!-- OPIS — asymetrycznie: tytuł przesunięty w lewo, znak Je! z wideo w środku po prawej -->
+      <!-- OPIS — tytuł po lewej, czerwony kwadrat z krótkim filmem po prawej -->
       <section class="work" id="praca">
         <div class="work__copy">
           <h2 class="work__title" data-headline-reveal>
@@ -299,22 +299,43 @@
           </div>
         </div>
 
-        <div class="work__mark" data-je-mark aria-hidden="true">
-          <div class="je-mark" data-je-mark-stage>
-            <span class="je-mark__layer je-mark__layer--lemon"></span>
-            <span class="je-mark__layer je-mark__layer--juice"></span>
-            <span class="je-mark__layer je-mark__layer--video">
+        <div class="work__media" data-work-video-group>
+          <button
+            class="work__card"
+            type="button"
+            data-work-video-trigger
+            aria-expanded="false"
+            aria-label="Odtwórz showreel"
+          >
+            <span class="work__card-inner" aria-hidden="true">
               <video
+                class="work__video"
+                data-work-video
+                data-work-preview="/media/work-reel.mp4"
+                data-work-showreel="/media/work-showreel.mp4"
+                preload="auto"
+                src="/media/work-reel.mp4"
+                poster="/media/work-reel-poster.jpg"
                 muted
                 loop
                 playsinline
-                preload="none"
-                poster="/media/je-showreel-poster.jpg"
-                data-je-video
-                data-src="/media/je-showreel.mp4"
+                autoplay
               ></video>
             </span>
-          </div>
+          </button>
+          <button class="work__play" type="button" data-work-video-trigger aria-label="Odtwórz showreel">
+            <span class="work__play-ui work__play-ui--idle" aria-hidden="true">
+              <span class="work__play-icon"></span>
+              <span class="work__play-copy">
+                <span>Odtwórz</span>
+                <span>showreel</span>
+              </span>
+            </span>
+            <span class="work__play-ui work__play-ui--exit" aria-hidden="true">
+              <span class="work__play-icon work__play-icon--exit"></span>
+              <span>Zamknij</span>
+            </span>
+          </button>
         </div>
       </section>
 
@@ -451,7 +472,7 @@
               </p>
             </div>
             <p class="mission__note" data-mission-note>
-              Nie kopiujemy cudzych wzorców — budujemy własny język, tak by goście mogli dotknąć emocji.
+              Nie kopiujemy cudzych wzorców - budujemy własny język, tak by goście mogli dotknąć emocji.
             </p>
           </div>
         </div>
@@ -586,7 +607,7 @@
               <span class="crew-card__sign" aria-hidden="true"></span>
             </div>
           </li>
-          <li class="crew-card crew-card--lemon" data-team-card>
+          <li class="crew-card crew-card--blue" data-team-card>
             <div class="crew-card__top">
               <h3 class="crew-card__name">Jakub Gral</h3>
               <p class="crew-card__role">Marketing</p>

@@ -82,6 +82,13 @@
   --card-muted: rgba(18, 18, 18, 0.7);
 }
 
+.crew-card--blue {
+  --card-bg: var(--blue);
+  --card-fg: var(--white);
+  --card-muted: rgba(255, 255, 255, 0.78);
+  --card-line: rgba(255, 255, 255, 0.36);
+}
+
 .crew-card__name {
   font-size: clamp(1.65rem, 2.35vw, 2.45rem);
   font-weight: var(--display-weight);

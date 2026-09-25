@@ -1,7 +1,7 @@
 .mission {
   height: 240svh;
   background: var(--cream);
-  color: var(--cream);
+  color: var(--white);
 }
 
 .mission__pin {
@@ -104,7 +104,7 @@
   font-weight: var(--accent-weight);
   letter-spacing: -0.025em;
   white-space: nowrap;
-  color: var(--lemon);
+  color: var(--white);
   transform-origin: left bottom;
 }
 
@@ -114,7 +114,7 @@
   font-size: var(--body-lg);
   line-height: 1.5;
   letter-spacing: -0.01em;
-  color: var(--on-dark-muted);
+  color: rgba(255, 255, 255, 0.82);
 }
 
 @media (max-width: 980px) {

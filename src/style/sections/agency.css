@@ -272,7 +272,7 @@
 }
 
 .agency__intro-title .bracket {
-  color: var(--lemon);
+  color: var(--white);
 }
 
 /* Stan startowy zanim agency.js przejmie animację (JS rusza po doczytaniu fontów,
