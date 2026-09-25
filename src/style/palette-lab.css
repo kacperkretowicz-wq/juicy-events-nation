@@ -161,6 +161,159 @@ html[data-palette="violet"] {
   --blue: #314fbe;
 }
 
+/* Pięć nowych propozycji zmienia całe płótno strony, nie tylko kafelki. */
+html[data-palette="navy"] {
+  --page-bg: #18304b;
+  --page-fg: #f8f5ec;
+  --cream: #f8f5ec;
+  --cream-deep: #dbe3e7;
+  --ink: #101c2c;
+  --dark: #101c2c;
+  --dark-soft: #243c59;
+  --muted: #c1ccd2;
+  --muted-light: rgba(248, 245, 236, 0.68);
+  --on-dark-muted: rgba(248, 245, 236, 0.8);
+  --line: rgba(248, 245, 236, 0.23);
+  --line-light: rgba(248, 245, 236, 0.22);
+  --accent: #f06a48;
+  --accent-deep: #d84a2c;
+  --accent-text: #ff7753;
+  --accent-soft: #f49a7c;
+  --accent-warm: #f06a48;
+  --lemon: #e9ef62;
+  --blue: #5b9fe0;
+}
+
+html[data-palette="terracotta"] {
+  --page-bg: #a34432;
+  --page-fg: #fff4e8;
+  --cream: #fff4e8;
+  --cream-deep: #f1d4c5;
+  --ink: #2d1716;
+  --dark: #2d1716;
+  --dark-soft: #4b2621;
+  --muted: #f0c9b8;
+  --muted-light: rgba(255, 244, 232, 0.68);
+  --on-dark-muted: rgba(255, 244, 232, 0.8);
+  --line: rgba(255, 244, 232, 0.24);
+  --line-light: rgba(255, 244, 232, 0.22);
+  --accent: #ffb454;
+  --accent-deep: #e58a27;
+  --accent-text: #f5a43e;
+  --accent-soft: #ffd08a;
+  --accent-warm: #ffb454;
+  --lemon: #e7f26a;
+  --blue: #5296aa;
+}
+
+html[data-palette="plum-deep"] {
+  --page-bg: #4b234d;
+  --page-fg: #fff2ef;
+  --cream: #fff2ef;
+  --cream-deep: #ead0dd;
+  --ink: #241426;
+  --dark: #241426;
+  --dark-soft: #63345f;
+  --muted: #deb9cf;
+  --muted-light: rgba(255, 242, 239, 0.68);
+  --on-dark-muted: rgba(255, 242, 239, 0.8);
+  --line: rgba(255, 242, 239, 0.24);
+  --line-light: rgba(255, 242, 239, 0.22);
+  --accent: #ed6d8e;
+  --accent-deep: #c9486e;
+  --accent-text: #e95c82;
+  --accent-soft: #f3a2b7;
+  --accent-warm: #ed6d8e;
+  --lemon: #e7f16a;
+  --blue: #737bd4;
+}
+
+html[data-palette="petrol"] {
+  --page-bg: #0e5557;
+  --page-fg: #eff8ed;
+  --cream: #eff8ed;
+  --cream-deep: #c9e2da;
+  --ink: #102a2b;
+  --dark: #102a2b;
+  --dark-soft: #174447;
+  --muted: #b6d9d1;
+  --muted-light: rgba(239, 248, 237, 0.68);
+  --on-dark-muted: rgba(239, 248, 237, 0.8);
+  --line: rgba(239, 248, 237, 0.24);
+  --line-light: rgba(239, 248, 237, 0.22);
+  --accent: #ff795b;
+  --accent-deep: #df523c;
+  --accent-text: #ff8468;
+  --accent-soft: #ffb29f;
+  --accent-warm: #ff795b;
+  --lemon: #e7ef63;
+  --blue: #54a7bd;
+}
+
+html[data-palette="violet-deep"] {
+  --page-bg: #3a226d;
+  --page-fg: #fff5ff;
+  --cream: #fff5ff;
+  --cream-deep: #e3d5f2;
+  --ink: #201437;
+  --dark: #201437;
+  --dark-soft: #4d3384;
+  --muted: #d2bde8;
+  --muted-light: rgba(255, 245, 255, 0.68);
+  --on-dark-muted: rgba(255, 245, 255, 0.8);
+  --line: rgba(255, 245, 255, 0.24);
+  --line-light: rgba(255, 245, 255, 0.22);
+  --accent: #ff718c;
+  --accent-deep: #db4567;
+  --accent-text: #ff7e98;
+  --accent-soft: #ffafbd;
+  --accent-warm: #ff718c;
+  --lemon: #e7f267;
+  --blue: #79a6ed;
+}
+
+/* Główne jasne sekcje dostają ten sam mocny kolor co body. Karty i obrazy
+   zachowują własne powierzchnie, żeby kontrast był czytelny. */
+html[data-palette-lab] body,
+html[data-palette-lab] .agency,
+html[data-palette-lab] .agency__stage,
+html[data-palette-lab] .clients,
+html[data-palette-lab] .values,
+html[data-palette-lab] .standard {
+  background: var(--page-bg, var(--cream));
+  color: var(--page-fg, var(--ink));
+}
+
+html[data-palette-lab] .mission {
+  background: var(--page-bg, var(--cream));
+}
+
+html[data-palette="navy"] .agency__layer--dark,
+html[data-palette="terracotta"] .agency__layer--dark,
+html[data-palette="plum-deep"] .agency__layer--dark,
+html[data-palette="petrol"] .agency__layer--dark,
+html[data-palette="violet-deep"] .agency__layer--dark {
+  color: var(--page-fg);
+}
+
+html[data-palette="navy"] .clients__head .eyebrow,
+html[data-palette="terracotta"] .clients__head .eyebrow,
+html[data-palette="plum-deep"] .clients__head .eyebrow,
+html[data-palette="petrol"] .clients__head .eyebrow,
+html[data-palette="violet-deep"] .clients__head .eyebrow {
+  color: var(--page-fg);
+}
+
+html[data-palette="navy"] .clients__item,
+html[data-palette="terracotta"] .clients__item,
+html[data-palette="plum-deep"] .clients__item,
+html[data-palette="petrol"] .clients__item,
+html[data-palette="violet-deep"] .clients__item {
+  margin-inline: 0.25rem;
+  border-radius: 1rem;
+  background: var(--page-fg);
+  box-shadow: 0 1rem 2rem -1.5rem rgba(0, 0, 0, 0.7);
+}
 .palette-lab {
   position: fixed;
   top: max(5.25rem, calc(env(safe-area-inset-top, 0px) + 4.5rem));
@@ -170,7 +323,7 @@ html[data-palette="violet"] {
   flex-wrap: wrap;
   align-items: center;
   gap: 0.35rem;
-  max-width: min(34rem, calc(100vw - 2 * var(--pad)));
+  max-width: min(42rem, calc(100vw - 2 * var(--pad)));
   padding: 0.45rem;
   border: 1px solid rgba(255, 255, 255, 0.22);
   border-radius: 999px;

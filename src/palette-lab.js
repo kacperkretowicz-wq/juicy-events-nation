@@ -7,6 +7,11 @@ const PALETTES = [
   ["ultramarine", "Biel + ultramaryna"],
   ["aqua", "Biel + aqua"],
   ["violet", "Biel + fiolet"],
+  ["navy", "Granatowe płótno"],
+  ["terracotta", "Ceglane płótno"],
+  ["plum-deep", "Głęboka śliwka"],
+  ["petrol", "Petrolowe płótno"],
+  ["violet-deep", "Fioletowe płótno"],
 ];
 
 export function initPaletteLab() {
