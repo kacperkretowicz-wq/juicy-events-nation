@@ -12,6 +12,14 @@ const PALETTES = [
   ["plum-deep", "Głęboka śliwka"],
   ["petrol", "Petrolowe płótno"],
   ["violet-deep", "Fioletowe płótno"],
+  ["electric-blue", "Elektryczny błękit"],
+  ["tomato", "Pomidorowa czerwień"],
+  ["fuchsia", "Fuksja"],
+  ["ultraviolet", "Ultrafiolet"],
+  ["aqua-pop", "Aqua pop"],
+  ["orange-pop", "Pomarańczowy"],
+  ["acid-lime", "Acid limonka"],
+  ["black-neon", "Czerń + neon"],
 ];
 
 export function initPaletteLab() {
