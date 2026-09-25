@@ -22,10 +22,6 @@ export const mobileScrollProfile = touchCoarse || narrowViewport;
 
 ScrollTrigger.config({ ignoreMobileResize: true });
 
-if (!softMotion && touchCoarse) {
-  ScrollTrigger.normalizeScroll(true);
-}
-
 const lenisEasing = (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t));
 
 const lenisBase = {
@@ -44,6 +40,22 @@ lenis.on("scroll", () => {
   ScrollTrigger.update();
   flushScrollFrame();
 });
+
+// Na telefonach zostawiamy gest przewijania przeglądarce. Wcześniejsze
+// połączenie Lenis z normalizeScroll przejmowało ten sam dotyk dwa razy i po
+// sticky sekcjach potrafiło zatrzymać stronę. ScrollTrigger nadal dostaje
+// natywne zdarzenia, a listenery zależne od ramki zachowują aktualny stan.
+if (touchCoarse) {
+  window.addEventListener(
+    "scroll",
+    () => {
+      markScrollActivity();
+      ScrollTrigger.update();
+      flushScrollFrame();
+    },
+    { passive: true }
+  );
+}
 gsap.ticker.add((time) => lenis.raf(time * 1000));
 gsap.ticker.lagSmoothing(mobileScrollProfile && !softMotion ? 800 : 0);
 

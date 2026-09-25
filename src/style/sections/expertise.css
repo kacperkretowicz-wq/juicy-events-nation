@@ -236,6 +236,62 @@
     scroll-margin-top: 5rem;
   }
 
+  /* Telefon i tablet: normalny układ jednej kolumny. Akordeon nie zostawia
+     pustej kolumny ani nie blokuje gestu podczas przechodzenia przez sekcję. */
+  .expertise.is-accordion .expertise__inner {
+    grid-template-columns: minmax(0, 1fr);
+    gap: clamp(2rem, 6vw, 2.75rem);
+    padding-top: clamp(5rem, 16vw, 6.5rem);
+    padding-bottom: clamp(4rem, 12vw, 6rem);
+  }
+
+  .expertise.is-accordion .expertise__aside {
+    position: static;
+    height: auto;
+    min-height: 0;
+    padding: 0;
+  }
+
+  .expertise.is-accordion .expertise__aside .eyebrow {
+    margin-bottom: 1.25rem;
+  }
+
+  .expertise.is-accordion .expertise__title {
+    margin-top: 0;
+    max-width: 16ch;
+    font-size: clamp(1.65rem, 7vw, 2.1rem);
+    line-height: 1.05;
+  }
+
+  .expertise.is-accordion .expertise__count {
+    margin-top: 0.65rem;
+    font-size: 0.62rem;
+  }
+
+  .expertise.is-accordion .expertise__list {
+    padding: 0;
+  }
+
+  .expertise.is-accordion .expertise-item {
+    padding: clamp(1.1rem, 4vw, 1.6rem) 0;
+  }
+
+  .expertise.is-accordion .expertise-item__head {
+    grid-template-columns: auto minmax(0, 1fr) auto;
+    gap: 0.75rem;
+    min-height: 3.25rem;
+  }
+
+  .expertise.is-accordion .expertise-item__head h3 {
+    font-size: clamp(1.15rem, 5.6vw, 1.55rem);
+    line-height: 1.12;
+  }
+
+  .expertise.is-accordion .expertise-item__body p {
+    font-size: clamp(0.98rem, 4vw, 1.08rem);
+    line-height: 1.5;
+  }
+
   /* Sticky nagłówek + scroll listy (jak desktop). */
   .expertise.is-scroll .expertise__inner {
     grid-template-columns: minmax(0, 0.4fr) minmax(0, 0.6fr);

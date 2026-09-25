@@ -82,6 +82,7 @@ export function initExpertise() {
 
   let teardownScroll = null;
   let pinnedList = null;
+  const narrowMode = window.matchMedia("(max-width: 980px)");
 
   const applyMode = () => {
     teardownScroll?.();
@@ -89,7 +90,9 @@ export function initExpertise() {
     pinnedList?.destroy();
     pinnedList = null;
 
-    if (softMotion) {
+    // Na telefonie opis działa jak zwykły akordeon. Sticky, dwukolumnowy tor
+    // wymaga precyzyjnego scrolla i zostawiamy go dla szerokich ekranów.
+    if (softMotion || narrowMode.matches) {
       pinnedList = initPinnedList({ section, items, onChange });
       ScrollTrigger.refresh();
       return;
@@ -107,4 +110,5 @@ export function initExpertise() {
 
   applyMode();
   window.addEventListener("resize", onResize);
+  narrowMode.addEventListener("change", applyMode);
 }

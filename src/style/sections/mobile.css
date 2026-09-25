@@ -13,6 +13,14 @@
     align-content: start;
   }
 
+  .showreel {
+    overflow-y: auto;
+    overscroll-behavior: contain;
+    -webkit-overflow-scrolling: touch;
+    padding-top: max(var(--pad), calc(env(safe-area-inset-top, 0px) + 1rem));
+    padding-bottom: max(var(--pad), calc(env(safe-area-inset-bottom, 0px) + 1rem));
+  }
+
   .mega-menu__list {
     gap: 0.35rem;
   }

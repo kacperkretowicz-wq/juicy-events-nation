@@ -123,6 +123,9 @@
   z-index: 1000;
   display: grid;
   align-content: center;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  -webkit-overflow-scrolling: touch;
   padding: calc(var(--pad) * 2) var(--pad);
   background: var(--accent);
   color: var(--cream);
