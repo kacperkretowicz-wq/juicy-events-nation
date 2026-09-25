@@ -58,7 +58,7 @@
   <body>
     <a class="skip-link" href="#top">Przejdź do treści</a>
     <div class="grain" aria-hidden="true"></div>
-    <div class="palette-lab" aria-label="Laboratorium typografii">
+    <div class="palette-lab" aria-label="Laboratorium typografii i kolorów">
       <span class="palette-lab__section-label palette-lab__section-label--first">Typografia</span>
       <p class="palette-lab__intro">Kliknij krój, żeby zobaczyć go na całej stronie. Zostawiam bazowe papierowe tło bez ruchu.</p>
       <div class="palette-lab__font-grid" role="group" aria-label="Kroje pisma">
@@ -102,6 +102,30 @@
         <a class="palette-lab__font-button" role="button" data-font-choice="young-serif" href="?palette-lab=1&font=young-serif" aria-pressed="false"><strong>Young Serif</strong><small>nowy serif</small></a>
         <a class="palette-lab__font-button" role="button" data-font-choice="zilla-slab" href="?palette-lab=1&font=zilla-slab" aria-pressed="false"><strong>Zilla Slab</strong><small>slab serif</small></a>
       </div>
+      <span class="palette-lab__section-label">Kolorystyka</span>
+      <p class="palette-lab__intro">Presety są inspirowane feedbackiem: papier, pomidorowa czerwień, marchewkowy oranż, kiwi, granat i fiolety. Każdy kolor możesz potem zmienić ręcznie.</p>
+      <div class="palette-lab__color-grid" role="group" aria-label="Presety kolorystyczne">
+        <a class="palette-lab__color-preset" role="button" data-color-preset="paper-orange" href="?palette-lab=1&preset=paper-orange" style="--preset-bg:#f4f2ec;--preset-accent:#f4511e;--preset-text:#17130f" aria-pressed="false"><strong>Papier + oranż</strong><small>bazowy kierunek</small></a>
+        <a class="palette-lab__color-preset" role="button" data-color-preset="paper-tomato" href="?palette-lab=1&preset=paper-tomato" style="--preset-bg:#f7f0e7;--preset-accent:#f13a1b;--preset-text:#17130f" aria-pressed="false"><strong>Papier + pomidor</strong><small>mocny kontrast</small></a>
+        <a class="palette-lab__color-preset" role="button" data-color-preset="sunshine" href="?palette-lab=1&preset=sunshine" style="--preset-bg:#fff15a;--preset-accent:#f45b1a;--preset-text:#17130a" aria-pressed="false"><strong>Sunshine</strong><small>żółty plakat</small></a>
+        <a class="palette-lab__color-preset" role="button" data-color-preset="cream-carrot" href="?palette-lab=1&preset=cream-carrot" style="--preset-bg:#f4ead1;--preset-accent:#ff5a1a;--preset-text:#182016" aria-pressed="false"><strong>Śmietanka + marchew</strong><small>ciepły editorial</small></a>
+        <a class="palette-lab__color-preset" role="button" data-color-preset="forest-kiwi" href="?palette-lab=1&preset=forest-kiwi" style="--preset-bg:#185b2d;--preset-accent:#a8cc00;--preset-text:#f7f2d8" aria-pressed="false"><strong>Las + kiwi</strong><small>naturalny neon</small></a>
+        <a class="palette-lab__color-preset" role="button" data-color-preset="red-cream" href="?palette-lab=1&preset=red-cream" style="--preset-bg:#e6291d;--preset-accent:#f8e94e;--preset-text:#fff4e4" aria-pressed="false"><strong>Czerwień + krem</strong><small>pełna energia</small></a>
+        <a class="palette-lab__color-preset" role="button" data-color-preset="cobalt-paper" href="?palette-lab=1&preset=cobalt-paper" style="--preset-bg:#2748d8;--preset-accent:#f05a22;--preset-text:#f7f5ee" aria-pressed="false"><strong>Kobalt + papier</strong><small>agency blue</small></a>
+        <a class="palette-lab__color-preset" role="button" data-color-preset="cobalt-cream" href="?palette-lab=1&preset=cobalt-cream" style="--preset-bg:#3145ce;--preset-accent:#ff6a20;--preset-text:#fff8e8" aria-pressed="false"><strong>Kobalt + śmietanka</strong><small>głęboki rytm</small></a>
+        <a class="palette-lab__color-preset" role="button" data-color-preset="violet-cream" href="?palette-lab=1&preset=violet-cream" style="--preset-bg:#6426b8;--preset-accent:#ff5a1a;--preset-text:#fff4e4" aria-pressed="false"><strong>Fiolet + oranż</strong><small>nocne wydarzenie</small></a>
+        <a class="palette-lab__color-preset" role="button" data-color-preset="aqua-tomato" href="?palette-lab=1&preset=aqua-tomato" style="--preset-bg:#21b9b6;--preset-accent:#ee4726;--preset-text:#0c2830" aria-pressed="false"><strong>Aqua + pomidor</strong><small>świeży pop</small></a>
+        <a class="palette-lab__color-preset" role="button" data-color-preset="pink-orange" href="?palette-lab=1&preset=pink-orange" style="--preset-bg:#e84488;--preset-accent:#ff6a18;--preset-text:#fff1e8" aria-pressed="false"><strong>Róż + oranż</strong><small>fashion bright</small></a>
+        <a class="palette-lab__color-preset" role="button" data-color-preset="black-sun" href="?palette-lab=1&preset=black-sun" style="--preset-bg:#111111;--preset-accent:#f3e83d;--preset-text:#f9f4e8" aria-pressed="false"><strong>Czerń + słońce</strong><small>mocny night mode</small></a>
+      </div>
+      <div class="palette-lab__color-controls" role="group" aria-label="Własne kolory">
+        <label class="palette-lab__color-control"><span>Główne tło</span><input class="palette-lab__color-input" type="color" data-color-input="bg" value="#f4f2ec" aria-label="Główne tło" /></label>
+        <label class="palette-lab__color-control"><span>Kafelki</span><input class="palette-lab__color-input" type="color" data-color-input="surface" value="#ffffff" aria-label="Kolor kafelków" /></label>
+        <label class="palette-lab__color-control"><span>Tekst</span><input class="palette-lab__color-input" type="color" data-color-input="text" value="#17130f" aria-label="Kolor tekstu" /></label>
+        <label class="palette-lab__color-control"><span>Akcent</span><input class="palette-lab__color-input" type="color" data-color-input="accent" value="#f4511e" aria-label="Kolor akcentu" /></label>
+        <label class="palette-lab__color-control"><span>Dół / stopka</span><input class="palette-lab__color-input" type="color" data-color-input="bottom" value="#e33a1b" aria-label="Kolor dołu i stopki" /></label>
+      </div>
+      <button class="palette-lab__button palette-lab__reset-colors" type="button" data-colors-reset>Wróć do presetu</button>
       <p class="palette-lab__license">Kroje z katalogu Google Fonts są open source; większość korzysta z SIL Open Font License 1.1. <a href="https://openfontlicense.org/" target="_blank" rel="noopener noreferrer">Licencja OFL 1.1</a>. Podgląd ładuje je tylko lokalnie w tym laboratorium.</p>
     </div>
 
