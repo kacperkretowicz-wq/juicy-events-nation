@@ -21,8 +21,10 @@
   z-index: 2;
 }
 
+/* Limit w em (nie ch) — łamanie „Od wizji do mierzalnych / rezultatów — z precyzją, /
+   estetyką i emocją.” trzyma się na każdym ekranie, od laptopa po 1920 px. */
 .work__title {
-  max-width: 14.5ch;
+  max-width: 11.5em;
   font-size: var(--display-2);
   letter-spacing: -0.026em;
 }

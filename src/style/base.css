@@ -287,9 +287,9 @@ ul {
 .social__icon:hover,
 .social__icon:focus-visible {
   opacity: 1;
-  color: var(--white);
-  background: var(--accent);
-  border-color: var(--accent);
+  color: var(--ink);
+  background: var(--lemon);
+  border-color: var(--lemon);
 }
 
 /* Split headline — nośnik animacji linii.
@@ -347,8 +347,10 @@ ul {
 /* ——— Widoczny fokus klawiatury ———
    Wcześniej styl :focus-visible miała tylko podpowiedź „Powiększ".
    :where() ma zerową specyficzność, więc nie nadpisuje istniejących reguł. */
+/* Kolor obrysu = kolor tekstu elementu — widoczny na każdym tle
+   (pomarańczowy obrys znikał na pomarańczowym menu i karcie zespołu). */
 :where(a[href], button, input, select, textarea, [tabindex]):focus-visible {
-  outline: 2px solid var(--accent);
+  outline: 2px solid currentColor;
   outline-offset: 3px;
   border-radius: 1px;
 }
