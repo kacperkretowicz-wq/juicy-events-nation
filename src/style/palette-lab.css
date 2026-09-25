@@ -60,6 +60,107 @@ html[data-palette="sage"] {
   --blue: #567da1;
 }
 
+/* Pięć nowych kierunków: jasny, niemal biały papier i jeden nasycony kolor kart. */
+html[data-palette="cobalt"] {
+  --cream: #fbfaf7;
+  --cream-deep: #edf0f3;
+  --ink: #111827;
+  --dark: #111827;
+  --dark-soft: #1d2a43;
+  --muted: #59616f;
+  --muted-light: rgba(251, 250, 247, 0.64);
+  --on-dark-muted: rgba(251, 250, 247, 0.78);
+  --line: rgba(17, 24, 39, 0.15);
+  --line-light: rgba(251, 250, 247, 0.18);
+  --accent: #2257d6;
+  --accent-deep: #113aa8;
+  --accent-text: #1646bb;
+  --accent-soft: #5d83e8;
+  --accent-warm: #2257d6;
+  --lemon: #f4d84a;
+  --blue: #153a9e;
+}
+
+html[data-palette="coral"] {
+  --cream: #fffaf7;
+  --cream-deep: #f5e9e2;
+  --ink: #221a19;
+  --dark: #221a19;
+  --dark-soft: #3b2523;
+  --muted: #77645f;
+  --muted-light: rgba(255, 250, 247, 0.64);
+  --on-dark-muted: rgba(255, 250, 247, 0.78);
+  --line: rgba(34, 26, 25, 0.15);
+  --line-light: rgba(255, 250, 247, 0.18);
+  --accent: #ef5d48;
+  --accent-deep: #c93d31;
+  --accent-text: #d94a39;
+  --accent-soft: #f58c7e;
+  --accent-warm: #ef5d48;
+  --lemon: #f4d96b;
+  --blue: #193d65;
+}
+
+html[data-palette="ultramarine"] {
+  --cream: #fcfbff;
+  --cream-deep: #eceafa;
+  --ink: #18172b;
+  --dark: #18172b;
+  --dark-soft: #282548;
+  --muted: #6a667e;
+  --muted-light: rgba(252, 251, 255, 0.64);
+  --on-dark-muted: rgba(252, 251, 255, 0.78);
+  --line: rgba(24, 23, 43, 0.15);
+  --line-light: rgba(252, 251, 255, 0.18);
+  --accent: #4b40e8;
+  --accent-deep: #3025b6;
+  --accent-text: #4137cf;
+  --accent-soft: #827cf2;
+  --accent-warm: #4b40e8;
+  --lemon: #d8f04d;
+  --blue: #2520a4;
+}
+
+html[data-palette="aqua"] {
+  --cream: #f9fcfa;
+  --cream-deep: #e5f0ed;
+  --ink: #122522;
+  --dark: #122522;
+  --dark-soft: #1c3a35;
+  --muted: #5e736e;
+  --muted-light: rgba(249, 252, 250, 0.64);
+  --on-dark-muted: rgba(249, 252, 250, 0.78);
+  --line: rgba(18, 37, 34, 0.15);
+  --line-light: rgba(249, 252, 250, 0.18);
+  --accent: #0e8176;
+  --accent-deep: #075d55;
+  --accent-text: #086d63;
+  --accent-soft: #5aaea5;
+  --accent-warm: #0e8176;
+  --lemon: #f0d75a;
+  --blue: #1f6d8f;
+}
+
+html[data-palette="violet"] {
+  --cream: #fffaff;
+  --cream-deep: #f0e8f2;
+  --ink: #24152d;
+  --dark: #24152d;
+  --dark-soft: #392243;
+  --muted: #766477;
+  --muted-light: rgba(255, 250, 255, 0.64);
+  --on-dark-muted: rgba(255, 250, 255, 0.78);
+  --line: rgba(36, 21, 45, 0.15);
+  --line-light: rgba(255, 250, 255, 0.18);
+  --accent: #7539c9;
+  --accent-deep: #55259a;
+  --accent-text: #652bb0;
+  --accent-soft: #a071df;
+  --accent-warm: #7539c9;
+  --lemon: #d5ef5a;
+  --blue: #314fbe;
+}
+
 .palette-lab {
   position: fixed;
   top: max(5.25rem, calc(env(safe-area-inset-top, 0px) + 4.5rem));
@@ -69,7 +170,7 @@ html[data-palette="sage"] {
   flex-wrap: wrap;
   align-items: center;
   gap: 0.35rem;
-  max-width: min(22rem, calc(100vw - 2 * var(--pad)));
+  max-width: min(34rem, calc(100vw - 2 * var(--pad)));
   padding: 0.45rem;
   border: 1px solid rgba(255, 255, 255, 0.22);
   border-radius: 999px;
@@ -108,6 +209,13 @@ html[data-palette-lab] .palette-lab {
   transition: background 0.25s var(--ease), color 0.25s var(--ease), border-color 0.25s var(--ease);
 }
 
+.palette-lab__divider {
+  width: 1px;
+  height: 1.25rem;
+  margin: 0 0.15rem;
+  background: rgba(255, 255, 255, 0.24);
+}
+
 .palette-lab__button:hover,
 .palette-lab__button:focus-visible,
 .palette-lab__button[aria-pressed="true"] {
@@ -129,5 +237,9 @@ html[data-palette-lab] .palette-lab {
   .palette-lab__label {
     flex-basis: 100%;
     text-align: center;
+  }
+
+  .palette-lab__divider {
+    display: none;
   }
 }

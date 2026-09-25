@@ -2,6 +2,11 @@ const PALETTES = [
   ["warm", "Ciepły papier"],
   ["plum", "Kość + śliwka"],
   ["sage", "Szałwia + koral"],
+  ["cobalt", "Biel + kobalt"],
+  ["coral", "Biel + koral"],
+  ["ultramarine", "Biel + ultramaryna"],
+  ["aqua", "Biel + aqua"],
+  ["violet", "Biel + fiolet"],
 ];
 
 export function initPaletteLab() {
