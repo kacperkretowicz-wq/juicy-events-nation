@@ -35,7 +35,7 @@
   border: 1px solid var(--line);
   border-radius: 999px;
   font-family: var(--font-label);
-  font-weight: 600;
+  font-weight: 400;
   font-size: var(--label);
   letter-spacing: var(--label-tracking);
   text-transform: uppercase;

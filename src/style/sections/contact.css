@@ -167,7 +167,7 @@
   }
 
   .contact__title {
-    font-size: clamp(2.6rem, 12.5vw, 3.6rem);
+    font-size: clamp(2.6rem, 12vw, 3.6rem);
   }
 
   .contact__mail,

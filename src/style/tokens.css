@@ -34,16 +34,14 @@
   --gutter: clamp(0.75rem, 1.1vw, 1.15rem);
   --block: clamp(5.5rem, 12vw, 10.5rem);
 
-  /* Typografia — patrz fonts.css (zestaw z guillaumezhu.com).
-     --font-accent: słowo-akcent w nagłówku = ten sam Cabinet, ale cienki (300)
-     i w kolorze — kontrast grubości zamiast drugiego kroju. */
-  --font: "Satoshi", "Helvetica Neue", Arial, sans-serif;
-  --font-display: "Cabinet Grotesk", "Helvetica Neue", Arial, sans-serif;
-  --font-accent: "Cabinet Grotesk", "Helvetica Neue", Arial, sans-serif;
-  --font-label: "Satoshi", "Helvetica Neue", Arial, sans-serif;
-  --display-weight: 800;
-  --accent-weight: 300;
-  --label-tracking: 0.08em;
+  /* Typografia: Mori Regular w dużych nagłówkach, Diatype Mono w etykietach. */
+  --font: "PP Mori", "Helvetica Neue", Arial, sans-serif;
+  --font-display: "PP Mori", "Helvetica Neue", Arial, sans-serif;
+  --font-accent: "PP Mori", "Helvetica Neue", Arial, sans-serif;
+  --font-label: "ABC Diatype", monospace;
+  --display-weight: 400;
+  --accent-weight: 400;
+  --label-tracking: 0.02em;
   --display-1: clamp(2.75rem, 7.4vw, 7.75rem);
   --display-2: clamp(2.25rem, 5.4vw, 5.6rem);
   --display-3: clamp(1.75rem, 3.5vw, 3.5rem);
@@ -53,7 +51,7 @@
   --micro: clamp(0.72rem, 0.8vw, 0.8rem);
   --label: clamp(0.74rem, 0.82vw, 0.84rem);
 
-  /* Ikona strzałki jako maska (kolor = background) — Cabinet nie ma glifu →. */
+  /* Ikona strzałki jako maska (kolor = background). */
   --icon-arrow: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M4 12h15M13 5.5 19.5 12 13 18.5' fill='none' stroke='%23000' stroke-width='2.3' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
 
   /* Ruch */

@@ -1,32 +1,30 @@
-/* Kroje Juicy Events — ten sam zestaw co guillaumezhu.com (wskazany przez klienta):
-   Cabinet Grotesk — nagłówki, duże napisy, akcenty (grubość 100–900 w jednym pliku),
-   Satoshi         — tekst, etykiety, przyciski.
-
-   Oba z Fontshare (Indian Type Foundry), licencja ITF Free Font License
-   (public/fonts/licenses/) — darmowe także komercyjnie, self-hosting dozwolony.
-   Licencja zabrania modyfikowania plików (w tym przycinania), dlatego to są
-   oficjalne pliki woff2 bez zmian — nie przepuszczać ich przez subsetting. */
-
+/* PP Mori + ABC Diatype: webfont licenses confirmed by the site owner on 2026-09-25. */
 @font-face {
-  font-family: "Cabinet Grotesk";
-  src: url("/fonts/CabinetGrotesk-Variable.woff2") format("woff2");
-  font-weight: 100 900;
+  font-family: "PP Mori";
+  src: url("/fonts/leveled/PPMori-Book.woff2") format("woff2");
+  font-weight: 300;
   font-style: normal;
   font-display: swap;
 }
-
 @font-face {
-  font-family: "Satoshi";
-  src: url("/fonts/Satoshi-Variable.woff2") format("woff2");
-  font-weight: 300 900;
+  font-family: "PP Mori";
+  src: url("/fonts/leveled/PPMori-Regular.woff2") format("woff2");
+  font-weight: 400;
   font-style: normal;
   font-display: swap;
 }
-
 @font-face {
-  font-family: "Satoshi";
-  src: url("/fonts/Satoshi-VariableItalic.woff2") format("woff2");
-  font-weight: 300 900;
-  font-style: italic;
+  font-family: "PP Mori";
+  src: url("/fonts/leveled/PPMori-SemiBold.woff2") format("woff2");
+  font-weight: 600;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "ABC Diatype";
+  src: url("/fonts/leveled/ABCDiatypePlusVariable.woff2") format("woff2");
+  font-weight: 400;
+  font-style: normal;
+  font-variation-settings: "MONO" 1;
   font-display: swap;
 }

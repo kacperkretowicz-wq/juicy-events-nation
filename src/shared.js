@@ -58,8 +58,8 @@ export function whenFontsReady(timeout = 1200) {
   if (!document.fonts?.load) return Promise.resolve();
   const sample = "Aa ąęłśżźćńó";
   const faces = [
-    `800 64px "Cabinet Grotesk"`,
-    `400 18px "Satoshi"`,
+    `400 64px "PP Mori"`,
+    `400 12px "ABC Diatype"`,
   ];
   return Promise.race([
     Promise.all(faces.map((face) => document.fonts.load(face, sample))),

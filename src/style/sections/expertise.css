@@ -82,7 +82,7 @@
   gap: 0.25rem;
   margin: 1.1rem 0 0;
   font-family: var(--font-label);
-  font-weight: 600;
+  font-weight: 400;
   font-size: var(--label);
   letter-spacing: var(--label-tracking);
   color: var(--muted-light);
@@ -135,7 +135,7 @@
 
 .expertise-item__index {
   font-family: var(--font-label);
-  font-weight: 600;
+  font-weight: 400;
   font-size: var(--label);
   letter-spacing: var(--label-tracking);
   color: var(--muted-light);
@@ -248,8 +248,8 @@
   }
 
   .expertise.is-scroll .expertise__title {
-    max-width: 9ch;
-    font-size: clamp(1.25rem, 5.6vw, 1.7rem);
+    max-width: 100%;
+    font-size: clamp(1.25rem, 5.3vw, 1.7rem);
     line-height: 1.02;
   }
 

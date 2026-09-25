@@ -4,6 +4,7 @@
 @import "./layout.css";
 @import "./effects.css";
 
+@import "./sections/hero-intro.css";
 @import "./sections/agency.css";
 @import "./sections/clients.css";
 @import "./sections/work.css";

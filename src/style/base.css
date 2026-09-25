@@ -34,6 +34,7 @@ body {
   -webkit-font-smoothing: antialiased;
   font-optical-sizing: auto;
   font-kerning: normal;
+  font-synthesis: none;
   font-variant-ligatures: common-ligatures;
 }
 
@@ -56,8 +57,7 @@ textarea {
   color: inherit;
 }
 
-/* Nagłówki zdaniowe (nie wersaliki) w Cabinet Grotesk 800. Tracking ujemny rośnie
-   razem ze stopniem. Interlinia 1.0 zostawia miejsce na polskie znaki (Ś, Ó, Ż). */
+/* Mori Regular: spokojniejsza waga i miejsce na polskie znaki. */
 h1,
 h2,
 h3 {
@@ -104,7 +104,7 @@ ul {
   margin: 0 0 1rem;
   font-family: var(--font-label);
   font-size: var(--label);
-  font-weight: 600;
+  font-weight: 400;
   letter-spacing: var(--label-tracking);
   text-transform: uppercase;
   color: var(--muted);
@@ -114,9 +114,7 @@ ul {
   color: var(--muted-light);
 }
 
-/* Sygnatura Juicy: wyróżnione słowo w nagłówku = ten sam Cabinet, ale cienki (300)
-   i w kolorze — kontrast 800/300. Zastępuje sweetpunkowe [nawiasy]; klasa zostaje
-   ta sama, żeby nie ruszać treści. */
+/* Akcent pozostaje w Mori Regular; wyróżnia go kolor. */
 .bracket {
   position: relative;
   font-family: var(--font-accent);
@@ -241,7 +239,7 @@ ul {
   margin: 0 0 1.1rem;
   font-family: var(--font-label);
   font-size: var(--label);
-  font-weight: 600;
+  font-weight: 400;
   letter-spacing: var(--label-tracking);
   text-transform: uppercase;
   color: var(--muted);

@@ -28,8 +28,8 @@
     <meta name="twitter:title" content="Juicy Events — agencja eventowa dla marek, które chcą więcej" />
     <meta name="twitter:description" content="Event design, produkcja i strategia. Tworzymy wydarzenia, które mówią językiem Twojej marki — od briefu po mierzalny wynik." />
     <meta name="twitter:image" content="https://juicyevents.pl/media/og-cover.jpg" />
-    <link rel="preload" href="/fonts/CabinetGrotesk-Variable.woff2" as="font" type="font/woff2" crossorigin />
-    <link rel="preload" href="/fonts/Satoshi-Variable.woff2" as="font" type="font/woff2" crossorigin />
+    <link rel="preload" href="/fonts/leveled/PPMori-Regular.woff2" as="font" type="font/woff2" crossorigin />
+    <link rel="preload" href="/fonts/leveled/ABCDiatypePlusVariable.woff2" as="font" type="font/woff2" crossorigin />
     <link rel="icon" href="/media/favicon-32.png?v=je" type="image/png" sizes="32x32" />
     <link rel="icon" href="/media/favicon-16.png?v=je" type="image/png" sizes="16x16" />
     <link rel="apple-touch-icon" href="/media/apple-touch-icon.png?v=je" />
@@ -58,6 +58,14 @@
   <body>
     <a class="skip-link" href="#top">Przejdź do treści</a>
     <div class="grain" aria-hidden="true"></div>
+
+    <div class="hero-intro" data-hero-intro role="presentation" aria-hidden="true">
+      <img class="hero-intro__bg" src="" alt="" data-hero-intro-img decoding="async" />
+      <div class="hero-intro__logo" data-hero-intro-logo>
+        <img class="hero-intro__mark" src="/media/mark-j.svg" alt="" data-hero-intro-j />
+        <img class="hero-intro__mark" src="/media/mark-e.svg" alt="" data-hero-intro-e />
+      </div>
+    </div>
 
     <header class="site-header" data-site-header>
       <a class="site-header__logo" href="#top" aria-label="Juicy Events — strona główna">
@@ -117,12 +125,13 @@
             <div class="agency__media" data-agency-media data-tone="dark">
               <div class="agency__media-inner" data-agency-media-inner>
                 <video
-                  src="/media/hero.mp4"
+                  src="/media/hero.mp4#t=31"
                   poster="/media/hero-poster.jpg"
                   muted
                   playsinline
                   loop
-                  preload="metadata"
+                  preload="auto"
+                  autoplay
                   data-agency-video
                 ></video>
                 <div class="agency__veil" aria-hidden="true"></div>
@@ -193,7 +202,7 @@
       <section class="work" id="praca">
         <div class="work__copy">
           <h2 class="work__title" data-headline-reveal>
-            Od wizji do mierzalnych rezultatów — z&nbsp;precyzją, estetyką i <span class="bracket">emocją.</span>
+            Od wizji do mierzalnych rezultatów — z&nbsp;precyzją, estetyką <span class="bracket">i&nbsp;emocją.</span>
           </h2>
           <div class="work__text" data-fade-group>
             <p>
@@ -214,9 +223,9 @@
                 loop
                 playsinline
                 preload="none"
-                poster="/media/je-showreel-poster.jpg"
+                poster="/media/je-loop-poster.jpg"
                 data-je-video
-                data-src="/media/je-showreel.mp4"
+                data-src="/media/je-loop.mp4"
               ></video>
             </span>
           </div>

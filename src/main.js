@@ -2,6 +2,7 @@ import { initHeader, initSplitHeadlines, initSplitResize, whenFontsReady } from 
 import { initParallax, initSectionReveals, initMarks, syncHeadlineReveals } from "./effects.js";
 import { initParallaxMedia } from "./sections/parallax-media.js";
 import { bindScrollLayoutSettle } from "./scroll-layout.js";
+import { initHeroIntro } from "./sections/hero-intro.js";
 import { initAgency } from "./sections/agency.js";
 import { initHeroReel } from "./sections/hero-reel.js";
 import { initExpertise } from "./sections/expertise.js";
@@ -17,6 +18,8 @@ import { initMicroFx } from "./sections/micro-fx.js";
 import { initFloatCta } from "./sections/float-cta.js";
 
 initHeader();
+initHeroIntro();
+initHeroReel();
 
 whenFontsReady().then(() => {
   initSplitHeadlines();
@@ -25,7 +28,6 @@ whenFontsReady().then(() => {
   initParallax();
 
   initAgency();
-  initHeroReel();
   initJeMark();
   initMarquees();
   initExpertise();
