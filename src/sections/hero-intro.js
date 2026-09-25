@@ -45,7 +45,9 @@ export function initHeroIntro() {
   const markE = intro.querySelector("[data-hero-intro-e]");
   const video = document.querySelector("[data-agency-video]");
 
-  const noMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  // Intro is part of the brand opening and must run on the normal page.
+  // Keep an explicit query opt-out for users who need a still first frame.
+  const noMotion = new URLSearchParams(window.location.search).has("reduced");
   if (noMotion || !bgImg || !logo || !markJ || !markE) {
     intro.remove();
     document.dispatchEvent(new CustomEvent("jen:intro-done"));

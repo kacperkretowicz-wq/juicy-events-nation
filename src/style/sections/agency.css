@@ -111,6 +111,14 @@
   color: var(--cream);
 }
 
+.agency__intro-title > span {
+  display: block;
+}
+
+.agency__intro-lead {
+  margin-bottom: 0.08em;
+}
+
 .agency__intro-title .bracket {
   color: var(--lemon);
 }
