@@ -16,7 +16,9 @@ import { initMission } from "./sections/mission.js";
 import { bootSiteClosing } from "./site-closing-boot.js";
 import { initMicroFx } from "./sections/micro-fx.js";
 import { initFloatCta } from "./sections/float-cta.js";
+import { initPaletteLab } from "./palette-lab.js";
 
+initPaletteLab();
 initHeader();
 initHeroIntro();
 initHeroReel();
