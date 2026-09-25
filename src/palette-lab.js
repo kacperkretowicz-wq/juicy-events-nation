@@ -63,6 +63,18 @@ export function initPaletteLab() {
     });
   };
 
+  const syncEffectLinks = (palette) => {
+    document.querySelectorAll("[data-bg-effect]").forEach((item) => {
+      const next = new URL(window.location.href);
+      next.searchParams.set("palette-lab", "1");
+      next.searchParams.set("palette", palette);
+      next.searchParams.set("bg-effect", item.dataset.bgEffect);
+      item.setAttribute("href", next.pathname + next.search + next.hash);
+    });
+  };
+
+  syncEffectLinks(initial);
+
   document.querySelectorAll("[data-palette-choice]").forEach((button) => {
     const key = button.dataset.paletteChoice;
     button.setAttribute("aria-pressed", String(key === initial));
@@ -70,6 +82,7 @@ export function initPaletteLab() {
       if (!valid.has(key)) return;
       root.dataset.palette = key;
       syncPressed("[data-palette-choice]", "paletteChoice", key);
+      syncEffectLinks(key);
       const next = new URL(window.location.href);
       next.searchParams.set("palette-lab", "1");
       next.searchParams.set("palette", key);
