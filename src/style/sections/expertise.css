@@ -81,9 +81,10 @@
   align-items: baseline;
   gap: 0.25rem;
   margin: 1.1rem 0 0;
-  font-family: var(--font-mono);
+  font-family: var(--font-label);
+  font-weight: 600;
   font-size: var(--label);
-  letter-spacing: 0.02em;
+  letter-spacing: var(--label-tracking);
   color: var(--muted-light);
 }
 
@@ -133,9 +134,10 @@
 }
 
 .expertise-item__index {
-  font-family: var(--font-mono);
+  font-family: var(--font-label);
+  font-weight: 600;
   font-size: var(--label);
-  letter-spacing: 0.02em;
+  letter-spacing: var(--label-tracking);
   color: var(--muted-light);
   transition: color 0.4s var(--ease);
 }

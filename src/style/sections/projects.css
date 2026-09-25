@@ -31,7 +31,9 @@
 .projects__count {
   align-self: flex-start;
   margin: 0.35em 0 0;
-  font-family: var(--font-mono);
+  font-family: var(--font-label);
+  font-weight: 600;
+  letter-spacing: var(--label-tracking);
   font-size: var(--label);
   color: var(--muted);
 }
@@ -188,9 +190,10 @@
   border-radius: 999px;
   background: var(--ink);
   color: var(--lemon);
-  font-family: var(--font-mono);
+  font-family: var(--font-label);
+  font-weight: 600;
   font-size: var(--label);
-  letter-spacing: 0.04em;
+  letter-spacing: var(--label-tracking);
   text-transform: uppercase;
   white-space: nowrap;
   pointer-events: none;
@@ -228,7 +231,7 @@
   margin-top: clamp(1rem, 1.6vw, 1.35rem);
   font-family: var(--font-display);
   font-size: var(--display-4);
-  font-weight: 650;
+  font-weight: var(--display-weight);
   line-height: 1.05;
   letter-spacing: -0.018em;
   transition: color 0.35s var(--ease);

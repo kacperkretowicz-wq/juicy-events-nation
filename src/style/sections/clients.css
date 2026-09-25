@@ -45,46 +45,39 @@
   flex-wrap: nowrap;
 }
 
+/* Prawdziwe logotypy w oryginalnych kolorach marek, bez separatorów — sam rytm
+   odstępów. --logo-h to wysokość „kwadratowego” znaku; szerokie znaki są niższe,
+   żeby wszystkie ważyły optycznie tyle samo. */
 .clients__item {
+  --logo-h: clamp(3.4rem, 5.6vw, 5.75rem);
   display: inline-flex;
   align-items: center;
   flex-shrink: 0;
-  font-family: var(--font-display);
-  font-size: clamp(2.4rem, 6.2vw, 6.2rem);
-  font-weight: 650;
-  line-height: 1.1;
-  letter-spacing: -0.028em;
-  white-space: nowrap;
-  color: var(--ink);
-  transition: color 0.35s var(--ease);
+  height: calc(var(--logo-h) * 1.1);
+  padding: 0 clamp(2.25rem, 4.2vw, 4.5rem);
 }
 
-/* Separator: gwiazdka marki w pomarańczu, między nazwami. */
-.clients__item::after {
-  content: "";
-  display: inline-block;
-  width: 0.42em;
-  height: 0.42em;
-  margin: 0 0.5em;
-  background: var(--accent);
-  -webkit-mask: var(--icon-star) center / contain no-repeat;
-  mask: var(--icon-star) center / contain no-repeat;
-  transition: transform 0.6s var(--ease-expo);
-}
-
-.clients__item:hover {
-  color: var(--accent-text);
-}
-
-.clients__item:hover::after {
-  transform: rotate(90deg);
-}
-
-/* Logo w pliku zamiast nazwy — ta sama wysokość optyczna co tekst. */
 .clients__item img {
   display: block;
-  height: 0.72em;
   width: auto;
+  height: var(--logo-h);
+  transition: transform 0.5s var(--ease-expo);
+}
+
+.clients__item--wide img {
+  height: calc(var(--logo-h) * 0.58);
+}
+
+.clients__item--badge img {
+  height: calc(var(--logo-h) * 1.15);
+}
+
+.clients__item--tall img {
+  height: calc(var(--logo-h) * 1.08);
+}
+
+.clients__item:hover img {
+  transform: scale(1.06);
 }
 
 @media (max-width: 620px) {
@@ -93,6 +86,6 @@
   }
 
   .clients__item {
-    font-size: clamp(2.1rem, 11vw, 2.9rem);
+    --logo-h: clamp(2.6rem, 13vw, 3.4rem);
   }
 }

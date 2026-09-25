@@ -71,7 +71,7 @@
   column-gap: 0.32em;
   font-family: var(--font-display);
   font-size: var(--display-1);
-  font-weight: 650;
+  font-weight: var(--display-weight);
   line-height: 1;
   letter-spacing: -0.028em;
 }
@@ -94,17 +94,15 @@
   align-self: end;
 }
 
-/* Rotujące słowa = akcent marki (kursywa Fraunces, cytryna na ciemnym). */
+/* Rotujące słowa = akcent marki (cienki Cabinet, cytryna na ciemnym). */
 .mission__word {
   position: absolute;
   left: 0;
   bottom: 0.14em;
   top: auto;
-  padding-right: 0.08em;
-  font-family: var(--font-serif);
-  font-style: italic;
-  font-weight: 460;
-  letter-spacing: -0.02em;
+  font-family: var(--font-accent);
+  font-weight: var(--accent-weight);
+  letter-spacing: -0.025em;
   white-space: nowrap;
   color: var(--lemon);
   transform-origin: left bottom;

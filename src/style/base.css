@@ -56,16 +56,14 @@ textarea {
   color: inherit;
 }
 
-/* Nagłówki zdaniowe (nie wersaliki) — kierunek z Leveled/Pentagram. Tracking
-   ujemny rośnie razem ze stopniem: przy dużych pismach Bricolage potrzebuje
-   ciaśniejszego światła, przy małych — prawie zerowego. Interlinia 1.0 zostawia
-   miejsce na polskie znaki (Ś, Ó, Ż) nad linią. */
+/* Nagłówki zdaniowe (nie wersaliki) w Cabinet Grotesk 800. Tracking ujemny rośnie
+   razem ze stopniem. Interlinia 1.0 zostawia miejsce na polskie znaki (Ś, Ó, Ż). */
 h1,
 h2,
 h3 {
   margin: 0;
   font-family: var(--font-display);
-  font-weight: 650;
+  font-weight: var(--display-weight);
   line-height: 1;
   letter-spacing: -0.024em;
   text-transform: none;
@@ -78,6 +76,7 @@ h3 {
 
 p {
   margin: 0 0 1rem;
+  text-wrap: pretty;
 }
 
 ol,
@@ -103,10 +102,10 @@ ul {
    numer sekcji + nazwa, liczniki, podpisy klientów. */
 .eyebrow {
   margin: 0 0 1rem;
-  font-family: var(--font-mono);
+  font-family: var(--font-label);
   font-size: var(--label);
-  font-weight: 400;
-  letter-spacing: 0.02em;
+  font-weight: 600;
+  letter-spacing: var(--label-tracking);
   text-transform: uppercase;
   color: var(--muted);
 }
@@ -115,16 +114,15 @@ ul {
   color: var(--muted-light);
 }
 
-/* Sygnatura Juicy: wyróżnione słowo w nagłówku = miękka kursywa Fraunces w kolorze.
-   Zastępuje sweetpunkowe [nawiasy] — klasa zostaje ta sama, żeby nie ruszać treści.
-   padding-right chroni nawis kursywy przed ucięciem w liniach z overflow: hidden. */
+/* Sygnatura Juicy: wyróżnione słowo w nagłówku = ten sam Cabinet, ale cienki (300)
+   i w kolorze — kontrast 800/300. Zastępuje sweetpunkowe [nawiasy]; klasa zostaje
+   ta sama, żeby nie ruszać treści. */
 .bracket {
   position: relative;
-  padding-right: 0.07em;
-  font-family: var(--font-serif);
-  font-style: italic;
-  font-weight: 460;
-  letter-spacing: -0.012em;
+  font-family: var(--font-accent);
+  font-style: normal;
+  font-weight: var(--accent-weight);
+  letter-spacing: -0.02em;
   color: var(--accent-text);
 }
 
@@ -241,10 +239,10 @@ ul {
 /* Etykieta sekcji — ten sam styl co .eyebrow (mono). */
 .section-label {
   margin: 0 0 1.1rem;
-  font-family: var(--font-mono);
+  font-family: var(--font-label);
   font-size: var(--label);
-  font-weight: 400;
-  letter-spacing: 0.02em;
+  font-weight: 600;
+  letter-spacing: var(--label-tracking);
   text-transform: uppercase;
   color: var(--muted);
 }

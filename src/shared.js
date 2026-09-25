@@ -58,10 +58,8 @@ export function whenFontsReady(timeout = 1200) {
   if (!document.fonts?.load) return Promise.resolve();
   const sample = "Aa ąęłśżźćńó";
   const faces = [
-    `650 64px "Bricolage Grotesque"`,
-    `400 18px "Bricolage Grotesque"`,
-    `italic 460 64px "Fraunces"`,
-    `400 14px "Fragment Mono"`,
+    `800 64px "Cabinet Grotesk"`,
+    `400 18px "Satoshi"`,
   ];
   return Promise.race([
     Promise.all(faces.map((face) => document.fonts.load(face, sample))),
@@ -115,7 +113,10 @@ export function initHeader() {
     const probe = header.offsetHeight * 0.5;
     const overDark = darkZones.some((zone) => {
       const rect = zone.getBoundingClientRect();
-      return rect.top <= probe && rect.bottom >= probe;
+      // Strefa przycięta clip-pathem (wideo w hero) podaje, ile z niej naprawdę widać.
+      const visible = zone.dataset.toneVisible;
+      const bottom = visible != null ? rect.top + parseFloat(visible) : rect.bottom;
+      return rect.top <= probe && bottom >= probe;
     });
     header.classList.toggle("site-header--solid", !overDark);
   };
@@ -336,22 +337,40 @@ function splitIntoLines(el) {
   // nagłówka od nowa po zmianie szerokości okna (patrz initSplitResize).
   if (!el.dataset.splitSource) el.dataset.splitSource = el.innerHTML;
 
-  const words = [...el.childNodes].flatMap((node) => {
-    if (node.nodeType === Node.TEXT_NODE) {
-      return node.textContent.split(/\s+/).filter(Boolean).map((text) => {
-        const span = document.createElement("span");
-        span.className = "split-word";
-        span.textContent = text;
-        return span;
-      });
-    }
-    if (node.nodeType === Node.ELEMENT_NODE) {
+  // Dzielimy tylko po zwykłych spacjach — twarda spacja (NBSP, patrz
+  // fixPolishOrphans) zostaje w środku „słowa”, a słowo zakończone NBSP skleja się
+  // z następnym (także z elementem, np. <span class="bracket">), więc „i emocją”
+  // nigdy nie rozjedzie się na dwie linie.
+  const SPACE = /[ \t\n\r\f]+/;
+  const words = [];
+  let glue = false;
+  const push = (content) => {
+    if (glue && words.length) {
+      words[words.length - 1].append(content);
+    } else {
       const span = document.createElement("span");
       span.className = "split-word";
-      span.appendChild(node.cloneNode(true));
-      return [span];
+      span.append(content);
+      words.push(span);
     }
-    return [];
+  };
+  [...el.childNodes].forEach((node) => {
+    if (node.nodeType === Node.TEXT_NODE) {
+      const text = node.textContent;
+      // Spacja na początku węzła tekstowego przerywa sklejanie z poprzednim elementem.
+      if (/^[ \t\n\r\f]/.test(text)) glue = false;
+      const tokens = text.split(SPACE).filter(Boolean);
+      tokens.forEach((token) => {
+        push(document.createTextNode(token));
+        glue = token.endsWith("\u00A0");
+      });
+      if (/[ \t\n\r\f]$/.test(text)) glue = false;
+      return;
+    }
+    if (node.nodeType === Node.ELEMENT_NODE) {
+      push(node.cloneNode(true));
+      glue = false;
+    }
   });
 
   if (!words.length) return;
@@ -421,7 +440,26 @@ export function collectHeadlineRevealRoots(scope = document) {
 /** @deprecated tylko dla starych odwołań — używaj collectHeadlineRevealRoots() */
 export const HEADLINE_SPLIT_SELECTOR = "[data-headline-reveal], [data-split]";
 
+/**
+ * Polska typografia: jednoliterowe słowa (a, i, o, u, w, z) nie mogą zostać na
+ * końcu linii, a myślnik nie może zaczynać nowej — wstawiamy twarde spacje.
+ * Działa na węzłach tekstowych, więc nie rusza znaczników ani atrybutów.
+ */
+export function fixPolishOrphans(scope = document) {
+  const roots = scope.querySelectorAll("h1, h2, h3, p, li, blockquote, figcaption, .btn, .link-arrow");
+  const single = /(^|[\s\u00A0(„"])([aiouwzAIOUWZ]) +/g;
+  const dash = / +([—–])/g;
+  roots.forEach((root) => {
+    const walker = document.createTreeWalker(root, NodeFilter.SHOW_TEXT);
+    for (let node = walker.nextNode(); node; node = walker.nextNode()) {
+      const fixed = node.textContent.replace(single, "$1$2\u00A0").replace(dash, "\u00A0$1");
+      if (fixed !== node.textContent) node.textContent = fixed;
+    }
+  });
+}
+
 export function initSplitHeadlines() {
+  fixPolishOrphans();
   collectHeadlineRevealRoots().forEach(splitIntoLines);
 }
 

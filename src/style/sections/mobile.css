@@ -30,8 +30,28 @@
     font-size: clamp(2rem, 9.5vw, 2.75rem);
   }
 
+  /* Telefon: logo zostaje na środku, zdanie schodzi pod nie, do lewej —
+     obok siebie było ciasno. */
   .agency__intro {
-    padding-top: clamp(5.5rem, 20vw, 7rem);
+    align-items: flex-end;
+    justify-content: flex-start;
+    padding-top: 0;
+    padding-bottom: clamp(5.5rem, 18svh, 9rem);
+  }
+
+  .agency__intro-title {
+    max-width: 13ch;
+    font-size: clamp(1.6rem, 7.6vw, 2.1rem);
+    text-align: left;
+  }
+
+  .agency__logo-slot {
+    align-items: center;
+    padding-bottom: 10svh;
+  }
+
+  .agency__logo {
+    width: min(66vw, 17rem);
   }
 
   .work {

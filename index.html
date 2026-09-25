@@ -28,9 +28,8 @@
     <meta name="twitter:title" content="Juicy Events — agencja eventowa dla marek, które chcą więcej" />
     <meta name="twitter:description" content="Event design, produkcja i strategia. Tworzymy wydarzenia, które mówią językiem Twojej marki — od briefu po mierzalny wynik." />
     <meta name="twitter:image" content="https://juicyevents.pl/media/og-cover.jpg" />
-    <link rel="preload" href="/fonts/bricolage-grotesque-latin.woff2" as="font" type="font/woff2" crossorigin />
-    <link rel="preload" href="/fonts/bricolage-grotesque-latin-ext.woff2" as="font" type="font/woff2" crossorigin />
-    <link rel="preload" href="/fonts/fraunces-italic-latin.woff2" as="font" type="font/woff2" crossorigin />
+    <link rel="preload" href="/fonts/CabinetGrotesk-Variable.woff2" as="font" type="font/woff2" crossorigin />
+    <link rel="preload" href="/fonts/Satoshi-Variable.woff2" as="font" type="font/woff2" crossorigin />
     <link rel="icon" href="/media/favicon-32.png?v=je" type="image/png" sizes="32x32" />
     <link rel="icon" href="/media/favicon-16.png?v=je" type="image/png" sizes="16x16" />
     <link rel="apple-touch-icon" href="/media/apple-touch-icon.png?v=je" />
@@ -59,14 +58,6 @@
   <body>
     <a class="skip-link" href="#top">Przejdź do treści</a>
     <div class="grain" aria-hidden="true"></div>
-
-    <div class="hero-intro" data-hero-intro role="presentation" aria-hidden="true">
-      <img class="hero-intro__bg" src="" alt="" data-hero-intro-img decoding="async" />
-      <div class="hero-intro__logo" data-hero-intro-logo>
-        <img class="hero-intro__mark" src="/media/mark-j.svg" alt="" data-hero-intro-j />
-        <img class="hero-intro__mark" src="/media/mark-e.svg" alt="" data-hero-intro-e />
-      </div>
-    </div>
 
     <header class="site-header" data-site-header>
       <a class="site-header__logo" href="#top" aria-label="Juicy Events — strona główna">
@@ -137,22 +128,7 @@
                 <div class="agency__veil" aria-hidden="true"></div>
               </div>
               <div class="agency__edge" data-agency-edge aria-hidden="true"></div>
-
-              <div class="agency__reel-cta" data-agency-reel-cta aria-hidden="true">
-                <span class="agency__reel-cta-icon" aria-hidden="true"></span>
-                <span class="agency__reel-cta-copy" data-agency-reel-label>
-                  <span class="agency__reel-cta-idle">
-                    <span class="agency__reel-cta-line">Odtwórz</span>
-                    <span class="agency__reel-cta-line">showreel</span>
-                  </span>
-                  <span class="agency__reel-cta-exit">Zamknij</span>
-                </span>
-              </div>
             </div>
-
-            <button class="agency__reel-key" type="button" data-agency-reel-key>
-              Odtwórz showreel z dźwiękiem
-            </button>
 
             <!-- Faza A: logo (lewo-środek) + intro (prawo-środek), oba na wideo -->
             <div class="agency__logo-slot" aria-hidden="true">
@@ -195,19 +171,20 @@
         </div>
       </section>
 
-      <!-- KLIENCI — tuż po showreelu: logotypy marek budują zaufanie (feedback właściciela).
-           Nazwy są tymczasowo składane krojem strony; po otrzymaniu plików SVG wystarczy
-           podmienić zawartość <li> na <img src="/media/klienci/…svg" alt="Nazwa marki">. -->
+      <!-- KLIENCI — tuż po showreelu: prawdziwe logotypy marek (feedback właściciela).
+           Źródła: John Deere i Volvo — Wikimedia; Multichem — multichem.pl;
+           Active & Fashion.Art — znak z projekcji na ich evencie (nagranie Juicy).
+           Nowe logo = kolejne <li> z <img>; modyfikator --wide/--tall wyrównuje wysokość. -->
       <section class="clients" id="klienci" aria-labelledby="clients-label">
         <div class="clients__head">
           <p class="eyebrow" id="clients-label">Zaufały nam marki</p>
         </div>
         <div class="clients__marquee" data-marquee data-marquee-speed="70">
           <ul class="clients__track" data-marquee-track>
-            <li class="clients__item">John Deere</li>
-            <li class="clients__item">Volvo</li>
-            <li class="clients__item">Multichem</li>
-            <li class="clients__item">Active Fashion</li>
+            <li class="clients__item clients__item--badge"><img src="/media/klienci/john-deere.svg" alt="John Deere" width="806" height="588" decoding="async" /></li>
+            <li class="clients__item"><img src="/media/klienci/volvo.svg" alt="Volvo" width="255" height="255" decoding="async" /></li>
+            <li class="clients__item clients__item--wide"><img src="/media/klienci/multichem.svg" alt="Multichem" width="597" height="194" decoding="async" /></li>
+            <li class="clients__item clients__item--tall"><img src="/media/klienci/active-fashion.png" alt="Active &amp; Fashion.Art" width="640" height="633" decoding="async" /></li>
           </ul>
         </div>
       </section>
@@ -237,9 +214,9 @@
                 loop
                 playsinline
                 preload="none"
-                poster="/media/je-loop-poster.jpg"
+                poster="/media/je-showreel-poster.jpg"
                 data-je-video
-                data-src="/media/je-loop.mp4"
+                data-src="/media/je-showreel.mp4"
               ></video>
             </span>
           </div>
@@ -358,7 +335,7 @@
       </section>
 
       <!-- CELE I MISJA — pinned band -->
-      <section class="mission" data-mission data-tone="dark">
+      <section class="mission" data-mission>
         <div class="mission__pin">
           <div class="mission__bg" aria-hidden="true" data-parallax-media="10" data-parallax-trigger=".mission">
             <img decoding="async" loading="lazy" width="1024" height="682" src="/media/mission-crowd.jpg" alt="" />

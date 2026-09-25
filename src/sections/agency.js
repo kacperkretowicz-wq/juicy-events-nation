@@ -55,6 +55,8 @@ export function initAgency() {
   if (softMotion || !act) {
     if (logo) logo.style.display = "none";
     if (intro) intro.style.display = "none";
+    // CSS chowa te elementy do startu animacji — w trybie spokojnym pokazujemy je od razu.
+    gsap.set([headline, headerLogo].filter(Boolean), { autoAlpha: 1 });
     return;
   }
 
@@ -128,6 +130,9 @@ export function initAgency() {
       const wipeT = gsap.utils.clamp(0, 1, (progress - LOGO_END) / (1 - LOGO_END));
       const visible = (1 - wipeT) * 100;
       media.style.clipPath = `inset(0 0 ${100 - visible}% 0)`;
+      // Nagłówek (initHeader) liczy ton tylko z widocznej części wideo — inaczej po
+      // zwinięciu filmu logo w pasku zostawało białe na jasnym tle.
+      media.dataset.toneVisible = String((visible / 100) * stage.clientHeight);
       if (edge) edge.style.top = `${visible}%`;
       if (darkLayer) {
         const edgePx = (visible / 100) * stage.clientHeight;

@@ -82,9 +82,10 @@
 
 .gallery-item p {
   margin: 0;
-  font-family: var(--font-mono);
+  font-family: var(--font-label);
+  font-weight: 600;
   font-size: var(--label);
-  letter-spacing: 0.02em;
+  letter-spacing: var(--label-tracking);
   text-transform: uppercase;
   color: var(--muted);
 }

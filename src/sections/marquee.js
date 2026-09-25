@@ -78,6 +78,8 @@ export function initMarquees(scope = document) {
   // Szerokość zestawu zależy od kroju — po doczytaniu fontów i po zmianie
   // szerokości okna przeliczamy klony.
   document.fonts?.ready.then(() => loops.forEach((loop) => loop.fill()));
+  // …i po doczytaniu logotypów (pas klientów).
+  window.addEventListener("load", () => loops.forEach((loop) => loop.fill()), { once: true });
 
   let lastWidth = window.innerWidth;
   let timer = null;

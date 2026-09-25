@@ -33,7 +33,6 @@
   z-index: 1;
   overflow: hidden;
   will-change: clip-path;
-  cursor: none;
 }
 
 .agency__edge {
@@ -68,172 +67,6 @@
   position: absolute;
   inset: 0;
   background: linear-gradient(to top, rgba(6, 6, 6, 0.78) 0%, rgba(6, 6, 6, 0.18) 45%, rgba(6, 6, 6, 0.18) 100%);
-}
-
-/* ——— Przycisk-kursor showreelu (hero-reel.js) ——— */
-.agency__reel-cta {
-  position: absolute;
-  top: 0;
-  left: 0;
-  z-index: 4;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  gap: 0.55rem;
-  width: clamp(7.25rem, 16vw, 9.25rem);
-  height: clamp(7.25rem, 16vw, 9.25rem);
-  padding: 0.85rem 0.75rem;
-  border-radius: 50%;
-  border: 0;
-  background: var(--lemon);
-  color: var(--ink);
-  font-family: var(--font-mono);
-  font-weight: 400;
-  letter-spacing: 0.04em;
-  text-transform: uppercase;
-  box-shadow: 0 14px 40px -18px rgba(0, 0, 0, 0.5);
-  opacity: 0;
-  pointer-events: none;
-  isolation: isolate;
-  transform: translate3d(-50%, -50%, 0) scale(0.88);
-  transition: opacity 0.25s var(--ease), transform 0.25s var(--ease),
-    width 0.35s var(--ease-expo), height 0.35s var(--ease-expo),
-    border-radius 0.35s var(--ease-expo), padding 0.35s var(--ease-expo),
-    background-color 0.3s var(--ease), border-color 0.3s var(--ease);
-  will-change: transform, opacity;
-}
-
-.agency__media.is-cursor-active .agency__reel-cta {
-  opacity: 1;
-  transform: translate3d(-50%, -50%, 0) scale(1);
-}
-
-.agency__reel-cta.is-playing {
-  width: auto;
-  height: auto;
-  padding: 0;
-  gap: 0.55rem;
-  border: 0;
-  border-radius: 0;
-  background: transparent;
-  backdrop-filter: none;
-  -webkit-backdrop-filter: none;
-  box-shadow: none;
-}
-
-.agency__reel-cta-copy {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  gap: 0.1em;
-  line-height: 1.05;
-  font-size: clamp(0.62rem, 1vw, 0.74rem);
-}
-
-.agency__reel-cta-exit {
-  display: none;
-  font-size: var(--label);
-  letter-spacing: 0.04em;
-  white-space: nowrap;
-}
-
-/* W trybie „gra z dźwiękiem” pigułka zostaje czytelna na jasnych kadrach. */
-.agency__reel-cta.is-playing {
-  padding: 0.55rem 0.9rem;
-  border-radius: 999px;
-  background: var(--lemon);
-  color: var(--ink);
-}
-
-.agency__reel-cta.is-playing .agency__reel-cta-idle {
-  display: none;
-}
-
-.agency__reel-cta.is-playing .agency__reel-cta-exit {
-  display: block;
-}
-
-.agency__reel-cta::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  z-index: -1;
-  border-radius: inherit;
-  background: color-mix(in srgb, var(--white) 42%, transparent);
-  opacity: 0;
-  transition: opacity 0.45s var(--ease);
-}
-
-.agency__reel-cta.is-flash::before {
-  opacity: 1;
-  transition: opacity 0.05s linear;
-}
-
-.agency__reel-cta-icon {
-  position: relative;
-  display: grid;
-  place-items: center;
-  flex-shrink: 0;
-  width: 1.35rem;
-  height: 1.35rem;
-  transition: border-color 0.3s var(--ease), width 0.3s var(--ease), height 0.3s var(--ease);
-}
-
-.agency__reel-cta-icon::after {
-  content: "";
-  width: 0;
-  height: 0;
-  border-left: 0.46rem solid currentColor;
-  border-top: 0.3rem solid transparent;
-  border-bottom: 0.3rem solid transparent;
-  margin-left: 0.16rem;
-  transition: border-color 0.3s var(--ease), background-color 0.3s var(--ease),
-    width 0.3s var(--ease), height 0.3s var(--ease), margin 0.3s var(--ease);
-}
-
-.agency__reel-cta.is-playing .agency__reel-cta-icon {
-  width: 0.58rem;
-  height: 0.58rem;
-  border: 0;
-  border-radius: 0;
-  background: currentColor;
-}
-
-.agency__reel-cta.is-playing .agency__reel-cta-icon::after {
-  content: none;
-}
-
-@media (hover: none), (pointer: coarse) {
-  .agency__reel-cta {
-    display: none;
-  }
-
-  .agency__media {
-    cursor: pointer;
-  }
-}
-
-.agency__reel-key {
-  position: absolute;
-  left: var(--pad);
-  bottom: var(--pad);
-  z-index: 4;
-  padding: 0.68rem 1.4rem;
-  border: 0;
-  background: var(--accent);
-  color: var(--on-accent);
-  font-size: var(--micro);
-  font-weight: 700;
-  letter-spacing: 0.16em;
-  text-transform: uppercase;
-  cursor: pointer;
-  opacity: 0;
-  pointer-events: none;
-}
-
-.agency__reel-key:focus-visible {
-  opacity: 1;
-  pointer-events: auto;
 }
 
 /* Faza A — logo lewo-środek, znika w trakcie "ucieczki" do nagłówka strony */
@@ -282,6 +115,18 @@
   color: var(--lemon);
 }
 
+/* Stan startowy zanim agency.js przejmie animację (JS rusza po doczytaniu fontów,
+   a intro już nie przykrywa strony): nagłówek „Po co Ci agencja…” i logo w pasku
+   są ukryte — logo najpierw stoi duże na wideo, potem „wlatuje” do paska. */
+html.js .agency__headline {
+  opacity: 0;
+  visibility: hidden;
+}
+
+html.js body:has([data-agency]) .site-header__logo img {
+  opacity: 0;
+}
+
 /* Nagłówek — dwie kopie dzielone clip-path, zsynchronizowane z linią wideo */
 .agency__headline {
   position: relative;
@@ -323,7 +168,7 @@
   margin: 0;
   font-family: var(--font-display);
   font-size: var(--display-1);
-  font-weight: 650;
+  font-weight: var(--display-weight);
   line-height: 0.98;
   letter-spacing: -0.028em;
 }

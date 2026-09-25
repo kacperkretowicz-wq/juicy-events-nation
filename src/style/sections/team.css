@@ -84,7 +84,7 @@
 
 .crew-card__name {
   font-size: clamp(1.65rem, 2.35vw, 2.45rem);
-  font-weight: 650;
+  font-weight: var(--display-weight);
   line-height: 1;
   letter-spacing: -0.02em;
   overflow-wrap: break-word;
