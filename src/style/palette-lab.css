@@ -1125,3 +1125,70 @@ html[data-palette-lab] .site-footer__wordmark-track {
 html[data-palette-lab] .site-footer__wordmark span::after {
   display: none;
 }
+
+/* W tej wersji laboratorium wracamy do jednego spokojnego płótna: papier jest
+   bazowym tłem, a wybór dotyczy wyłącznie kroju pisma. */
+html[data-palette-lab] body,
+html[data-palette-lab] .agency,
+html[data-palette-lab] .agency__stage,
+html[data-palette-lab] .clients,
+html[data-palette-lab] .values,
+html[data-palette-lab] .standard,
+html[data-palette-lab] .mission {
+  background: var(--cream);
+  color: var(--ink);
+}
+
+html[data-palette-lab] .palette-bg-motion {
+  display: none !important;
+}
+
+html[data-palette-lab] .palette-lab__section-label--first {
+  padding-top: 0.05rem;
+  border-top: 0;
+}
+
+html[data-palette-lab] .palette-lab__intro {
+  flex-basis: 100%;
+  margin: 0 0.55rem 0.3rem;
+  color: rgba(255, 255, 255, 0.64);
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  font-size: 0.72rem;
+  line-height: 1.35;
+}
+
+/* Stały rząd logotypów dostaje pełną szerokość i równy oddech między markami. */
+html[data-palette-lab] .clients__marquee {
+  -webkit-mask-image: none;
+  mask-image: none;
+  padding-inline: var(--pad);
+}
+
+html[data-palette-lab] .clients__track {
+  width: 100%;
+  justify-content: space-evenly;
+  gap: clamp(1.5rem, 5vw, 5rem);
+}
+
+html[data-palette-lab] .clients__item {
+  flex: 1 1 0;
+  justify-content: center;
+  min-width: 0;
+  padding-inline: 0;
+}
+
+html[data-palette-lab] .clients__item img {
+  max-width: min(100%, 11rem);
+}
+
+@media (max-width: 620px) {
+  html[data-palette-lab] .clients__track {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 1.5rem 1rem;
+  }
+
+  html[data-palette-lab] .clients__item {
+    width: auto;
+  }
+}
