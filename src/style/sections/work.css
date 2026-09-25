@@ -1,6 +1,4 @@
-/* ——— OPIS („Od wizji do mierzalnych rezultatów”) ———
-   Prosty układ z czerwonym kafelkiem i krótkim filmem w kwadracie.
-   Zastępuje ciężki znak Je! rozciągnięty obok tekstu. */
+/* ——— OPIS („Od wizji do mierzalnych rezultatów”) ——— */
 
 .work {
   position: relative;
@@ -14,10 +12,16 @@
 }
 
 .work__copy {
-  grid-column: 1 / span 8;
+  grid-column: 7 / span 6;
   grid-row: 1;
+  min-width: 0;
   position: relative;
   z-index: 2;
+  padding-top: clamp(3rem, 7vw, 7rem);
+}
+
+.work__eyebrow {
+  margin: 0 0 clamp(1.5rem, 3vw, 2.7rem);
 }
 
 .work__title {
@@ -31,8 +35,8 @@
   display: grid;
   gap: clamp(1.5rem, 2.5vw, 2.25rem);
   justify-items: start;
-  max-width: 34ch;
-  margin: clamp(2rem, 4vw, 3.5rem) 0 0 calc(100% / 8);
+  max-width: 40ch;
+  margin: clamp(2rem, 4vw, 3.5rem) 0 0;
 }
 
 .work__text p {
@@ -43,27 +47,27 @@
   color: var(--ink);
 }
 
-/* Czerwony kafelek z krótkim filmem w kwadratowym kadrze. */
+/* Pionowy kadr letterboxuje migający znak JE, tak jak w pierwszej wersji. */
 .work__media {
-  grid-column: 8 / span 5;
+  grid-column: 1 / span 5;
   grid-row: 1;
-  align-self: end;
+  align-self: start;
   position: relative;
   z-index: 1;
   display: grid;
-  justify-items: end;
-  gap: 0.8rem;
-  margin: clamp(3rem, 8vw, 7rem) 0 0;
+  justify-items: start;
+  gap: clamp(1rem, 2vw, 1.35rem);
+  margin: 0;
 }
 
 .work__card {
   position: relative;
   display: block;
   width: min(100%, 28rem);
-  aspect-ratio: 1;
-  padding: clamp(0.7rem, 1.4vw, 1.25rem);
+  aspect-ratio: 4 / 5;
+  padding: 0;
   border: 0;
-  background: var(--footer-accent, var(--accent-deep));
+  background: var(--ink);
   overflow: hidden;
   cursor: pointer;
   transition: transform 0.6s var(--ease-expo), background-color 0.35s var(--ease);
@@ -77,22 +81,24 @@
 
 .work__card-inner {
   position: absolute;
-  inset: clamp(0.7rem, 1.4vw, 1.25rem);
-  display: block;
+  inset: 0;
+  display: grid;
+  place-items: center;
   overflow: hidden;
-  background: var(--ink);
+  background: #050505;
 }
 
 .work__video {
   width: 100%;
   height: 100%;
-  object-fit: cover;
+  object-fit: contain;
+  background: #050505;
   transition: transform 1s var(--ease);
 }
 
 .work__card:hover .work__video,
 .work__card:focus-visible .work__video {
-  transform: scale(1.04);
+  transform: scale(1.02);
 }
 
 .work__media.is-expanded .work__card {
@@ -100,22 +106,20 @@
 }
 
 .work__play {
-  position: absolute;
-  right: clamp(1.35rem, 2.5vw, 2.25rem);
-  bottom: clamp(1.35rem, 2.5vw, 2.25rem);
+  position: relative;
+  right: auto;
+  bottom: auto;
   z-index: 2;
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  width: clamp(5.4rem, 8vw, 7rem);
-  height: clamp(5.4rem, 8vw, 7rem);
+  width: clamp(7rem, 10vw, 9rem);
+  height: clamp(7rem, 10vw, 9rem);
   padding: 0.7rem;
-  border: 1px solid rgba(255, 255, 255, 0.78);
+  border: 1px solid color-mix(in srgb, var(--ink) 30%, transparent);
   border-radius: 50%;
-  background: rgba(18, 18, 18, 0.54);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
-  color: var(--white);
+  background: transparent;
+  color: var(--ink);
   cursor: pointer;
   transition: transform 0.35s var(--ease-expo), background 0.3s var(--ease), opacity 0.3s var(--ease);
 }
@@ -123,7 +127,9 @@
 .work__play:hover,
 .work__play:focus-visible {
   transform: scale(1.05);
-  background: var(--footer-accent, var(--accent-deep));
+  border-color: var(--accent);
+  background: var(--accent);
+  color: var(--accent-contrast, var(--white));
 }
 
 .work__play-ui {
@@ -184,9 +190,7 @@
   border: 0;
   border-radius: 0;
   background: transparent;
-  backdrop-filter: none;
-  -webkit-backdrop-filter: none;
-  color: var(--white);
+  color: var(--ink);
 }
 
 .work__play.is-exit .work__play-ui--idle {
@@ -203,19 +207,16 @@
     row-gap: clamp(2.5rem, 8vw, 3.5rem);
   }
 
-  .work__copy,
   .work__media {
     grid-column: 1;
-  }
-
-  .work__media {
-    grid-row: 2;
+    grid-row: 1;
     width: min(100%, 32rem);
-    margin: 0 0 0 auto;
   }
 
-  .work__text {
-    margin-left: 0;
+  .work__copy {
+    grid-column: 1;
+    grid-row: 2;
+    padding-top: 0;
   }
 }
 

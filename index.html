@@ -59,8 +59,12 @@
     <a class="skip-link" href="#top">Przejdź do treści</a>
     <div class="grain" aria-hidden="true"></div>
     <div class="palette-lab" aria-label="Laboratorium typografii i kolorów">
-      <span class="palette-lab__section-label palette-lab__section-label--first">Typografia</span>
-      <p class="palette-lab__intro">Kliknij krój, żeby zobaczyć go na całej stronie. Zostawiam bazowe papierowe tło bez ruchu.</p>
+      <button class="palette-lab__toggle" type="button" data-palette-toggle aria-expanded="true" aria-controls="palette-lab-body">
+        <span data-palette-toggle-label>Zwiń panel</span>
+        <span class="palette-lab__toggle-icon" data-palette-toggle-icon aria-hidden="true">−</span>
+      </button>
+      <div class="palette-lab__body" id="palette-lab-body">
+        <span class="palette-lab__section-label palette-lab__section-label--first">Typografia</span>
       <div class="palette-lab__font-grid" role="group" aria-label="Kroje pisma">
         <a class="palette-lab__font-button" role="button" data-font-choice="pp-mori" href="?palette-lab=1&font=pp-mori" aria-pressed="false"><strong>PP Mori</strong><small>obecny</small></a>
         <a class="palette-lab__font-button" role="button" data-font-choice="space-grotesk" href="?palette-lab=1&font=space-grotesk" aria-pressed="false"><strong>Space Grotesk</strong><small>neo grotesk</small></a>
@@ -103,7 +107,6 @@
         <a class="palette-lab__font-button" role="button" data-font-choice="zilla-slab" href="?palette-lab=1&font=zilla-slab" aria-pressed="false"><strong>Zilla Slab</strong><small>slab serif</small></a>
       </div>
       <span class="palette-lab__section-label">Kolorystyka</span>
-      <p class="palette-lab__intro">Presety są inspirowane feedbackiem: papier, pomidorowa czerwień, marchewkowy oranż, kiwi, granat i fiolety. Każdy kolor możesz potem zmienić ręcznie.</p>
       <div class="palette-lab__color-grid" role="group" aria-label="Presety kolorystyczne">
         <a class="palette-lab__color-preset" role="button" data-color-preset="paper-orange" href="?palette-lab=1&preset=paper-orange" style="--preset-bg:#f4f2ec;--preset-accent:#f4511e;--preset-text:#17130f" aria-pressed="false"><strong>Papier + oranż</strong><small>bazowy kierunek</small></a>
         <a class="palette-lab__color-preset" role="button" data-color-preset="paper-tomato" href="?palette-lab=1&preset=paper-tomato" style="--preset-bg:#f7f0e7;--preset-accent:#f13a1b;--preset-text:#17130f" aria-pressed="false"><strong>Papier + pomidor</strong><small>mocny kontrast</small></a>
@@ -126,7 +129,7 @@
         <label class="palette-lab__color-control"><span>Dół / stopka</span><input class="palette-lab__color-input" type="color" data-color-input="bottom" value="#e33a1b" aria-label="Kolor dołu i stopki" /></label>
       </div>
       <button class="palette-lab__button palette-lab__reset-colors" type="button" data-colors-reset>Wróć do presetu</button>
-      <p class="palette-lab__license">Kroje z katalogu Google Fonts są open source; większość korzysta z SIL Open Font License 1.1. <a href="https://openfontlicense.org/" target="_blank" rel="noopener noreferrer">Licencja OFL 1.1</a>. Podgląd ładuje je tylko lokalnie w tym laboratorium.</p>
+      </div>
     </div>
 
     <div class="hero-intro" data-hero-intro role="presentation" aria-hidden="true">
@@ -284,16 +287,17 @@
         </div>
       </section>
 
-      <!-- OPIS — tytuł po lewej, czerwony kwadrat z krótkim filmem po prawej -->
+      <!-- OPIS — pionowy kadr z migającym znakiem po lewej i opis po prawej -->
       <section class="work" id="praca">
         <div class="work__copy">
+          <p class="eyebrow work__eyebrow">Nasza praca</p>
           <h2 class="work__title" data-headline-reveal>
-            Od wizji do mierzalnych rezultatów – z&nbsp;precyzją, estetyką <span class="bracket">i&nbsp;emocją.</span>
+            Od wizji do mierzalnych rezultatów - z&nbsp;precyzją, estetyką <span class="bracket">i&nbsp;emocją.</span>
           </h2>
           <div class="work__text" data-fade-group>
             <p>
               Projektujemy wydarzenia, które przyciągają uwagę, budują relacje i zostają w głowie.
-              Od strategii i kreacji po produkcję i analizę efektów – działamy na emocje i na liczby.
+              Od strategii i kreacji po produkcję i analizę efektów - działamy na emocje i na liczby.
             </p>
             <a class="btn" href="#realizacje">Zobacz realizacje</a>
           </div>
@@ -311,11 +315,11 @@
               <video
                 class="work__video"
                 data-work-video
-                data-work-preview="/media/work-reel.mp4"
+                data-work-preview="/media/work-preview.mov"
                 data-work-showreel="/media/work-showreel.mp4"
                 preload="auto"
-                src="/media/work-reel.mp4"
-                poster="/media/work-reel-poster.jpg"
+                src="/media/work-preview.mov"
+                poster="/media/work-preview-poster.jpg"
                 muted
                 loop
                 playsinline

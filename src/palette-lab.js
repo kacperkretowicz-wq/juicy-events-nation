@@ -90,6 +90,16 @@ export function initPaletteLab() {
     if (isHex(value)) colors[key] = value.toLowerCase();
   });
   let activePreset = initialPreset;
+  const panel = document.querySelector(".palette-lab");
+  const panelToggle = panel?.querySelector("[data-palette-toggle]") ?? null;
+  let panelCollapsed = params.get("panel") === "closed";
+  if (!params.has("panel")) {
+    try {
+      panelCollapsed = window.localStorage.getItem("juicy-palette-panel") === "closed";
+    } catch {
+      panelCollapsed = false;
+    }
+  }
 
   root.dataset.paletteLab = "";
   root.dataset.fontChoice = initialFont;
@@ -144,10 +154,21 @@ export function initPaletteLab() {
     item.setAttribute("aria-pressed", String(item.dataset.colorPreset === activePreset));
   });
 
+  const syncPanelToggle = () => {
+    if (!panel) return;
+    panel.classList.toggle("is-collapsed", panelCollapsed);
+    panelToggle?.setAttribute("aria-expanded", String(!panelCollapsed));
+    const label = panelToggle?.querySelector("[data-palette-toggle-label]");
+    const icon = panelToggle?.querySelector("[data-palette-toggle-icon]");
+    if (label) label.textContent = panelCollapsed ? "Pokaż panel" : "Zwiń panel";
+    if (icon) icon.textContent = panelCollapsed ? "+" : "−";
+  };
+
   const syncLinks = () => {
     document.querySelectorAll("[data-font-choice], [data-color-preset]").forEach((item) => {
       const next = new URL(window.location.href);
       next.searchParams.set("palette-lab", "1");
+      next.searchParams.set("panel", panelCollapsed ? "closed" : "open");
       next.searchParams.delete("palette");
       next.searchParams.delete("bg-effect");
       if (item.dataset.fontChoice) next.searchParams.set("font", item.dataset.fontChoice);
@@ -211,6 +232,7 @@ export function initPaletteLab() {
 
   applyFont(initialFont);
   applyColors();
+  syncPanelToggle();
   syncColorInputs();
   syncPressed(initialFont);
   syncPresetPressed();
@@ -219,6 +241,21 @@ export function initPaletteLab() {
   document.querySelectorAll("[data-font-choice]").forEach((button) => {
     const font = FONTS.find(([fontKey]) => fontKey === button.dataset.fontChoice);
     if (font) button.style.fontFamily = font[2];
+  });
+
+  panelToggle?.addEventListener("click", () => {
+    panelCollapsed = !panelCollapsed;
+    syncPanelToggle();
+    try {
+      window.localStorage.setItem("juicy-palette-panel", panelCollapsed ? "closed" : "open");
+    } catch {
+      // Private browsing may disable localStorage; the current state still works.
+    }
+    const next = new URL(window.location.href);
+    next.searchParams.set("palette-lab", "1");
+    next.searchParams.set("panel", panelCollapsed ? "closed" : "open");
+    window.history.replaceState(null, "", next);
+    syncLinks();
   });
 
   document.addEventListener("click", (event) => {
