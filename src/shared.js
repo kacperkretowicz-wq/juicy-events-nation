@@ -414,6 +414,7 @@ export function isHeadlineRevealExcluded(el) {
   if (el.closest("[data-mission-headline]")) return true;
   if (el.closest("[data-agency-headline]")) return true;
   if (el.closest(".agency__layer--dark")) return true;
+  if (el.closest(".agency__intro")) return true;
   if (el.closest(".hero-intro")) return true;
   if (el.closest("[aria-hidden='true']")) return true;
   if (el.closest(".project-card")) return true;
