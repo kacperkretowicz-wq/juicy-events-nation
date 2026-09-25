@@ -24,7 +24,8 @@ const PALETTES = [
 
 export function initPaletteLab() {
   const params = new URLSearchParams(window.location.search);
-  if (!params.has("palette-lab")) return;
+  const isLocalPreview = window.location.hostname === "localhost" || window.location.hostname === "127.0.0.1";
+  if (!params.has("palette-lab") && !isLocalPreview) return;
 
   const root = document.documentElement;
   const valid = new Set(PALETTES.map(([key]) => key));
