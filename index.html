@@ -28,8 +28,8 @@
     <meta name="twitter:title" content="Juicy Events — agencja eventowa dla marek, które chcą więcej" />
     <meta name="twitter:description" content="Event design, produkcja i strategia. Tworzymy wydarzenia, które mówią językiem Twojej marki — od briefu po mierzalny wynik." />
     <meta name="twitter:image" content="https://juicyevents.pl/media/og-cover.jpg" />
-    <link rel="preload" href="/fonts/leveled/PPMori-Regular.woff2" as="font" type="font/woff2" crossorigin />
-    <link rel="preload" href="/fonts/leveled/ABCDiatypePlusVariable.woff2" as="font" type="font/woff2" crossorigin />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link rel="icon" href="/media/favicon-32.png?v=je" type="image/png" sizes="32x32" />
     <link rel="icon" href="/media/favicon-16.png?v=je" type="image/png" sizes="16x16" />
     <link rel="apple-touch-icon" href="/media/apple-touch-icon.png?v=je" />
@@ -108,6 +108,7 @@
       </div>
       <span class="palette-lab__section-label">Kolorystyka</span>
       <div class="palette-lab__color-grid" role="group" aria-label="Presety kolorystyczne">
+        <a class="palette-lab__color-preset" role="button" data-color-preset="paper-red" href="?palette-lab=1&preset=paper-red" style="--preset-bg:#f4f2ec;--preset-accent:#d7262e;--preset-text:#17130f" aria-pressed="false"><strong>Papier + czerwień</strong><small>kierunek po feedbacku</small></a>
         <a class="palette-lab__color-preset" role="button" data-color-preset="paper-orange" href="?palette-lab=1&preset=paper-orange" style="--preset-bg:#f4f2ec;--preset-accent:#f4511e;--preset-text:#17130f" aria-pressed="false"><strong>Papier + oranż</strong><small>bazowy kierunek</small></a>
         <a class="palette-lab__color-preset" role="button" data-color-preset="paper-tomato" href="?palette-lab=1&preset=paper-tomato" style="--preset-bg:#f7f0e7;--preset-accent:#f13a1b;--preset-text:#17130f" aria-pressed="false"><strong>Papier + pomidor</strong><small>mocny kontrast</small></a>
         <a class="palette-lab__color-preset" role="button" data-color-preset="sunshine" href="?palette-lab=1&preset=sunshine" style="--preset-bg:#fff15a;--preset-accent:#f45b1a;--preset-text:#17130a" aria-pressed="false"><strong>Sunshine</strong><small>żółty plakat</small></a>
@@ -129,14 +130,6 @@
         <label class="palette-lab__color-control"><span>Dół / stopka</span><input class="palette-lab__color-input" type="color" data-color-input="bottom" value="#e33a1b" aria-label="Kolor dołu i stopki" /></label>
       </div>
       <button class="palette-lab__button palette-lab__reset-colors" type="button" data-colors-reset>Wróć do presetu</button>
-      </div>
-    </div>
-
-    <div class="hero-intro" data-hero-intro role="presentation" aria-hidden="true">
-      <img class="hero-intro__bg" src="" alt="" data-hero-intro-img decoding="async" />
-      <div class="hero-intro__logo" data-hero-intro-logo>
-        <img class="hero-intro__mark" src="/media/mark-j.svg" alt="" data-hero-intro-j />
-        <img class="hero-intro__mark" src="/media/mark-e.svg" alt="" data-hero-intro-e />
       </div>
     </div>
 
@@ -277,7 +270,7 @@
         <div class="clients__head">
           <p class="eyebrow" id="clients-label">Zaufały nam marki</p>
         </div>
-        <div class="clients__marquee" data-marquee data-marquee-speed="70">
+        <div class="clients__marquee">
           <ul class="clients__track" data-marquee-track>
             <li class="clients__item clients__item--badge"><img src="/media/klienci/john-deere.svg" alt="John Deere" width="806" height="588" decoding="async" /></li>
             <li class="clients__item"><img src="/media/klienci/volvo.svg" alt="Volvo" width="255" height="255" decoding="async" /></li>
@@ -292,12 +285,12 @@
         <div class="work__copy">
           <p class="eyebrow work__eyebrow">Nasza praca</p>
           <h2 class="work__title" data-headline-reveal>
-            Od wizji do mierzalnych rezultatów - z&nbsp;precyzją, estetyką <span class="bracket">i&nbsp;emocją.</span>
+            Wydarzenia, które angażują ludzi i&nbsp;wspierają <span class="bracket">markę.</span>
           </h2>
           <div class="work__text" data-fade-group>
             <p>
-              Projektujemy wydarzenia, które przyciągają uwagę, budują relacje i zostają w głowie.
-              Od strategii i kreacji po produkcję i analizę efektów - działamy na emocje i na liczby.
+              Od pomysłu po realizację prowadzimy cały projekt. Dbamy o koncepcję,
+              produkcję i doświadczenie gości.
             </p>
             <a class="btn" href="#realizacje">Zobacz realizacje</a>
           </div>
@@ -312,18 +305,15 @@
             aria-label="Odtwórz showreel"
           >
             <span class="work__card-inner" aria-hidden="true">
+              <img class="work__still" src="/media/work-reel-poster.jpg" alt="" loading="lazy" width="810" height="1440" />
               <video
                 class="work__video"
                 data-work-video
-                data-work-preview="/media/work-preview.mov"
                 data-work-showreel="/media/work-showreel.mp4"
-                preload="auto"
-                src="/media/work-preview.mov"
-                poster="/media/work-preview-poster.jpg"
+                preload="none"
+                poster="/media/work-reel-poster.jpg"
                 muted
-                loop
                 playsinline
-                autoplay
               ></video>
             </span>
           </button>
@@ -454,29 +444,18 @@
         </div>
       </section>
 
-      <!-- CELE I MISJA — pinned band -->
+      <!-- Krótka przerwa między realizacjami a ofertą. -->
       <section class="mission" data-mission>
         <div class="mission__pin">
           <div class="mission__bg" aria-hidden="true" data-parallax-media="10" data-parallax-trigger=".mission">
             <img decoding="async" loading="lazy" width="1024" height="682" src="/media/mission-crowd.jpg" alt="" />
           </div>
           <div class="mission__content">
-            <div
-              class="mission__headline"
-              data-mission-headline
-              aria-label="Nie boimy się reinterpretować, eksperymentować, tworzyć."
-            >
-              <p class="mission__line">
-                <span class="mission__lead">Nie boimy się</span>
-                <span class="mission__rotator" data-mission-rotator>
-                  <span class="mission__word" data-mission-word>reinterpretować,</span>
-                  <span class="mission__word" data-mission-word>eksperymentować,</span>
-                  <span class="mission__word" data-mission-word>tworzyć.</span>
-                </span>
-              </p>
+            <div class="mission__headline">
+              <p class="mission__line">Pomysł ma znaczenie. Realizacja też.</p>
             </div>
             <p class="mission__note" data-mission-note>
-              Nie kopiujemy cudzych wzorców - budujemy własny język, tak by goście mogli dotknąć emocji.
+              Projektujemy wydarzenia dopasowane do ludzi i celu marki.
             </p>
           </div>
         </div>
@@ -488,7 +467,7 @@
           <div class="expertise__aside">
             <p class="eyebrow eyebrow--light">Kompetencje</p>
             <h2 class="expertise__title" data-headline-reveal>
-              Jedna agencja. Wszystkie kompetencje <span class="bracket">eventowe.</span>
+              Wszystko, czego potrzebuje <span class="bracket">wydarzenie.</span>
             </h2>
             <p class="expertise__count">
               <span data-expertise-current>01</span><span class="expertise__count-sep">/</span><span>05</span>

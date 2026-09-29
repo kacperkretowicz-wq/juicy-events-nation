@@ -41,6 +41,7 @@ const FONTS = [
 ];
 
 const COLOR_PRESETS = {
+  "paper-red": { bg: "#f4f2ec", surface: "#ffffff", text: "#17130f", accent: "#d7262e", bottom: "#b91e29", lemon: "#eee9e1", blue: "#e8e3db" },
   "paper-orange": { bg: "#f4f2ec", surface: "#ffffff", text: "#17130f", accent: "#f4511e", bottom: "#e33a1b", lemon: "#f1ff66", blue: "#3b5bff" },
   "paper-tomato": { bg: "#f7f0e7", surface: "#ffffff", text: "#17130f", accent: "#f13a1b", bottom: "#d72612", lemon: "#f1ff66", blue: "#3455e8" },
   sunshine: { bg: "#fff15a", surface: "#fff8d9", text: "#17130a", accent: "#f45b1a", bottom: "#d92316", lemon: "#f8e94e", blue: "#2846d8" },
@@ -77,13 +78,12 @@ const isHex = (value) => /^#[0-9a-f]{6}$/i.test(value ?? "");
 
 export function initPaletteLab() {
   const params = new URLSearchParams(window.location.search);
-  const isLocalPreview = window.location.hostname === "localhost" || window.location.hostname === "127.0.0.1";
-  if (!params.has("palette-lab") && !isLocalPreview) return;
+  if (!params.has("palette-lab")) return;
 
   const root = document.documentElement;
   const validFonts = new Set(FONTS.map(([key]) => key));
-  const initialFont = validFonts.has(params.get("font")) ? params.get("font") : FONTS[0][0];
-  const initialPreset = COLOR_PRESETS[params.get("preset")] ? params.get("preset") : "paper-orange";
+  const initialFont = validFonts.has(params.get("font")) ? params.get("font") : "figtree";
+  const initialPreset = COLOR_PRESETS[params.get("preset")] ? params.get("preset") : "paper-red";
   const colors = { ...COLOR_PRESETS[initialPreset] };
   COLOR_KEYS.forEach((key) => {
     const value = params.get(COLOR_PARAM[key]);

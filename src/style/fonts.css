@@ -1,4 +1,6 @@
-/* PP Mori + ABC Diatype: webfont licenses confirmed by the site owner on 2026-09-25. */
+@import url("https://fonts.googleapis.com/css2?family=Figtree:wght@400;500;600;700&display=swap");
+
+/* Pozostają dostępne dla wcześniejszych wariantów projektu. */
 @font-face {
   font-family: "PP Mori";
   src: url("/fonts/leveled/PPMori-Book.woff2") format("woff2");

@@ -1,4 +1,4 @@
-// Karta "Nasza praca": wyciszony podgląd (krótki klip); po kliknięciu — pełny showreel z dźwiękiem.
+// Karta "Nasza praca": spokojny kadr; film uruchamia się dopiero po kliknięciu.
 import { claimAudio, releaseAudio } from "../audio-bus.js";
 
 export function initWorkVideo() {
@@ -8,36 +8,13 @@ export function initWorkVideo() {
   const playBtn = group?.querySelector(".work__play");
   if (!group || !video || !triggers.length) return;
 
-  const previewSrc = video.dataset.workPreview || video.getAttribute("src") || "";
   const showreelSrc = video.dataset.workShowreel || "";
   let mode = "preview";
 
-  video.preload = "auto";
+  video.preload = "none";
   video.muted = true;
   video.playsInline = true;
 
-  const showreelPreload = document.createElement("video");
-  if (showreelSrc) {
-    showreelPreload.muted = true;
-    showreelPreload.playsInline = true;
-    showreelPreload.preload = "auto";
-    showreelPreload.src = showreelSrc;
-    showreelPreload.load();
-  }
-
-  const tryPlayPreview = () => {
-    if (mode !== "preview" || group.classList.contains("is-expanded")) return;
-    video.play().catch(() => {});
-  };
-
-  const onPreviewReady = () => {
-    video.removeEventListener("loadeddata", onPreviewReady);
-    video.removeEventListener("canplay", onPreviewReady);
-    tryPlayPreview();
-  };
-
-  video.addEventListener("loadeddata", onPreviewReady);
-  video.addEventListener("canplay", onPreviewReady);
   video.addEventListener(
     "playing",
     () => {
@@ -47,15 +24,12 @@ export function initWorkVideo() {
   );
 
   const loadPreview = () => {
-    if (!previewSrc) return;
     mode = "preview";
-    video.loop = true;
+    video.pause();
+    video.loop = false;
     video.muted = true;
-    if (video.getAttribute("src") !== previewSrc) {
-      video.src = previewSrc;
-      video.load();
-    }
-    tryPlayPreview();
+    video.poster = "/media/work-reel-poster.jpg";
+    video.removeAttribute("src");
     playBtn?.classList.remove("is-exit");
   };
 
@@ -80,20 +54,6 @@ export function initWorkVideo() {
   };
 
   loadPreview();
-  document.addEventListener("jen:intro-done", tryPlayPreview, { once: true });
-
-  if ("IntersectionObserver" in window) {
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting && mode === "preview") tryPlayPreview();
-          else if (!group.classList.contains("is-expanded") && mode === "preview") video.pause();
-        });
-      },
-      { threshold: 0.08, rootMargin: "120px 0px" }
-    );
-    observer.observe(group);
-  }
 
   const expand = async () => {
     group.classList.add("is-expanded");
