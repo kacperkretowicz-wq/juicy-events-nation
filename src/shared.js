@@ -70,8 +70,8 @@ export function whenFontsReady(timeout = 1200) {
   if (!document.fonts?.load) return Promise.resolve();
   const sample = "Aa ąęłśżźćńó";
   const faces = [
-    `400 64px "PP Mori"`,
-    `400 12px "ABC Diatype"`,
+    `500 64px "Figtree"`,
+    `400 16px "Figtree"`,
   ];
   return Promise.race([
     Promise.all(faces.map((face) => document.fonts.load(face, sample))),
@@ -123,14 +123,17 @@ export function initHeader() {
 
   const updateTone = () => {
     const probe = header.offsetHeight * 0.5;
-    const overDark = darkZones.some((zone) => {
+    const darkZone = darkZones.find((zone) => {
       const rect = zone.getBoundingClientRect();
       // Strefa przycięta clip-pathem (wideo w hero) podaje, ile z niej naprawdę widać.
       const visible = zone.dataset.toneVisible;
       const bottom = visible != null ? rect.top + parseFloat(visible) : rect.bottom;
       return rect.top <= probe && bottom >= probe;
     });
-    header.classList.toggle("site-header--solid", !overDark);
+    header.classList.toggle("site-header--solid", !darkZone);
+    // Nad wideo pasek zostaje przezroczysty; nad ciemnymi sekcjami z tekstem
+    // (kontakt, stopka) dostaje ciemne tło, żeby nagłówki nie wchodziły pod logo.
+    header.classList.toggle("site-header--ink", Boolean(darkZone) && !darkZone.hasAttribute("data-agency-media"));
   };
 
   updateTone();

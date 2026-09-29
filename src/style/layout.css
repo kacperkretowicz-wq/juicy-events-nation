@@ -25,6 +25,12 @@
   border-bottom: 1px solid var(--line);
 }
 
+.site-header--ink {
+  background: color-mix(in srgb, var(--dark) 86%, transparent);
+  backdrop-filter: blur(14px);
+  border-bottom: 1px solid var(--line-light);
+}
+
 .site-header__logo {
   justify-self: start;
   display: flex;
@@ -55,18 +61,17 @@
   color: var(--white);
   font-family: var(--font-label);
   font-size: var(--label);
-  font-weight: 400;
+  font-weight: 600;
   letter-spacing: var(--label-tracking);
   text-transform: uppercase;
   cursor: pointer;
-  transition: background 0.35s var(--ease), color 0.35s var(--ease), gap 0.35s var(--ease);
+  transition: background 0.35s var(--ease), color 0.35s var(--ease);
 }
 
 .site-header__menu:hover,
 .site-header__menu:focus-visible {
-  background: var(--lemon);
-  color: var(--ink);
-  gap: 0.85rem;
+  background: var(--accent);
+  color: var(--on-accent);
 }
 
 /* Nad ciemnym (wideo, kompetencje, stopka) czarna pigułka by znikała — jasna wersja. */
@@ -77,7 +82,8 @@
 
 .site-header:not(.site-header--solid) .site-header__menu:hover,
 .site-header:not(.site-header--solid) .site-header__menu:focus-visible {
-  background: var(--lemon);
+  background: var(--accent);
+  color: var(--on-accent);
 }
 
 .site-header__menu-bars {
@@ -101,7 +107,7 @@
   border-radius: 999px;
   font-family: var(--font-label);
   font-size: var(--label);
-  font-weight: 400;
+  font-weight: 600;
   letter-spacing: var(--label-tracking);
   text-transform: uppercase;
   transition: background 0.35s var(--ease), color 0.35s var(--ease),
@@ -110,9 +116,9 @@
 
 .site-header__cta:hover,
 .site-header__cta:focus-visible {
-  background: var(--lemon);
-  border-color: var(--lemon);
-  color: var(--ink);
+  background: var(--accent);
+  border-color: var(--accent);
+  color: var(--on-accent);
 }
 
 /* ——— MEGA MENU ——— */
@@ -127,7 +133,7 @@
   overscroll-behavior: contain;
   -webkit-overflow-scrolling: touch;
   padding: calc(var(--pad) * 2) var(--pad);
-  background: var(--accent);
+  background: var(--dark);
   color: var(--cream);
   opacity: 0;
   pointer-events: none;
@@ -151,7 +157,7 @@
   border-radius: 999px;
   color: inherit;
   font-family: var(--font-label);
-  font-weight: 400;
+  font-weight: 600;
   font-size: var(--label);
   letter-spacing: var(--label-tracking);
   text-transform: uppercase;
@@ -160,9 +166,9 @@
 }
 
 .mega-menu__close:hover {
-  background: var(--lemon);
-  border-color: var(--lemon);
-  color: var(--ink);
+  background: var(--accent);
+  border-color: var(--accent);
+  color: var(--on-accent);
 }
 
 .mega-menu__grid {
@@ -181,14 +187,13 @@
   font-family: var(--font-display);
   font-size: var(--display-2);
   font-weight: var(--display-weight);
-  line-height: 1.02;
-  letter-spacing: -0.026em;
-  transition: color 0.3s var(--ease), transform 0.4s var(--ease);
+  line-height: 1.04;
+  letter-spacing: -0.032em;
+  transition: color 0.3s var(--ease);
 }
 
 .mega-menu__list a:hover {
-  color: var(--ink);
-  transform: translateX(0.6rem);
+  color: var(--accent);
 }
 
 .mega-menu__aside {
@@ -205,7 +210,7 @@
 }
 
 .mega-menu__aside a:hover {
-  color: var(--ink);
+  color: var(--cream);
 }
 
 .mega-menu__links {
@@ -286,13 +291,8 @@
 }
 
 .site-footer__firm a:hover {
-  color: var(--lemon);
+  color: var(--accent);
   border-color: currentColor;
-}
-
-.site-footer .slot {
-  color: var(--accent-soft);
-  border-color: var(--accent-soft);
 }
 
 .site-footer__nav {
@@ -311,7 +311,7 @@
 }
 
 .site-footer__nav a:hover {
-  color: var(--lemon);
+  color: var(--accent);
 }
 
 .site-footer__row--bottom {
@@ -338,68 +338,36 @@
 }
 
 .site-footer__link:hover {
-  color: var(--lemon);
-  border-color: var(--lemon);
+  color: var(--accent);
+  border-color: var(--accent);
 }
 
-/* Gigantyczny wordmark — teraz jedzie w pętli (marquee.js), a scroll go
-   przyspiesza. Bez JS stoi w miejscu i wygląda jak wcześniej. */
+/* Wordmark na dole stopki — statyczny (bez pętli), czerwony na czerni:
+   jedyny duży akcent koloru na końcu strony. */
 .site-footer__wordmark {
-  --wordmark-size: clamp(3.75rem, 13.5vw, 13rem);
+  --wordmark-size: clamp(2.5rem, 14vw, 13rem);
   position: relative;
-  background: var(--footer-accent, var(--accent));
-  color: var(--cream);
+  max-width: var(--max);
+  margin: 0 auto;
+  padding: 0 var(--pad);
+  color: var(--accent);
   overflow: hidden;
-  padding-top: 0.04em;
-  transition: background 0.5s var(--ease), color 0.5s var(--ease);
-}
-
-.site-footer__wordmark:hover {
-  background: var(--lemon);
-  color: var(--ink);
 }
 
 .site-footer__wordmark-track {
   display: flex;
-  width: max-content;
-  will-change: transform;
 }
 
 .site-footer__wordmark span {
   display: block;
-  flex-shrink: 0;
-  padding-right: 0.28em;
   font-family: var(--font-display);
   font-size: var(--wordmark-size);
-  font-weight: var(--display-weight);
-  line-height: 0.84;
-  letter-spacing: -0.03em;
+  font-weight: 600;
+  line-height: 0.8;
+  letter-spacing: -0.045em;
   text-transform: uppercase;
   white-space: nowrap;
-  transform: translateY(0.07em);
-}
-
-.site-footer__wordmark span::after {
-  content: "";
-  display: inline-block;
-  width: 0.62em;
-  aspect-ratio: 1288 / 872;
-  margin-left: 0.24em;
-  vertical-align: 0.12em;
-  background: var(--ink);
-  -webkit-mask-image: url("/media/mark-j.svg"), url("/media/mark-e.svg");
-  mask-image: url("/media/mark-j.svg"), url("/media/mark-e.svg");
-  -webkit-mask-size: contain;
-  mask-size: contain;
-  -webkit-mask-repeat: no-repeat;
-  mask-repeat: no-repeat;
-  -webkit-mask-position: center;
-  mask-position: center;
-  transition: background-color 0.5s var(--ease);
-}
-
-.site-footer__wordmark:hover span::after {
-  background: var(--accent);
+  transform: translateY(0.1em);
 }
 
 /* ——— SHOWREEL ——— */
@@ -497,37 +465,32 @@
 .showreel__controls button:hover {
   background: var(--accent);
   border-color: var(--accent);
+  color: var(--on-accent);
 }
 
-/* ——— PŁYWAJĄCE CTA „KONTAKT" ——— */
-
-/* Obracający się przycisk: pomarańcz marki, na hover cytryna (feedback właściciela:
-   „przycisk kręcący się czerwony, a jak najedziesz — żółty”). */
+/* ——— PŁYWAJĄCE CTA „KONTAKT" ———
+   Obracający się przycisk (prośba właściciela) — teraz mniejszy, wolniejszy
+   i w czerwieni marki. Hover = czerń zamiast cytryny. */
 .float-cta {
   position: fixed;
-  right: clamp(1rem, 2.4vw, 2.5rem);
-  bottom: clamp(1rem, 2.4vw, 2.5rem);
+  right: clamp(1rem, 2.2vw, 2.25rem);
+  bottom: clamp(1rem, 2.2vw, 2.25rem);
   z-index: 850;
   display: grid;
   place-items: center;
-  width: clamp(6.5rem, 10.5vw, 10rem);
-  height: clamp(6.5rem, 10.5vw, 10rem);
+  width: clamp(5.5rem, 7.5vw, 7.25rem);
+  height: clamp(5.5rem, 7.5vw, 7.25rem);
   border-radius: 50%;
   background: var(--accent);
   color: var(--white);
-  box-shadow: 0 22px 48px -18px rgba(224, 62, 10, 0.55);
-  transform: scale(0);
-  animation: float-cta-in 0.9s cubic-bezier(0.34, 1.56, 0.64, 1) 0.9s forwards;
-  transition: background 0.35s var(--ease), color 0.35s var(--ease), opacity 0.35s var(--ease),
-    box-shadow 0.35s var(--ease);
+  opacity: 0;
+  animation: float-cta-in 0.6s var(--ease) 1.2s forwards;
+  transition: background 0.35s var(--ease), color 0.35s var(--ease), opacity 0.35s var(--ease);
 }
 
 @keyframes float-cta-in {
-  from {
-    transform: scale(0) rotate(-40deg);
-  }
   to {
-    transform: scale(1) rotate(0deg);
+    opacity: 1;
   }
 }
 
@@ -538,11 +501,11 @@
   height: 100%;
   fill: currentColor;
   font-family: var(--font-label);
-  font-size: 8.2px;
-  font-weight: 400;
+  font-size: 8.4px;
+  font-weight: 600;
   letter-spacing: var(--label-tracking);
   text-transform: uppercase;
-  animation: float-cta-spin 16s linear infinite;
+  animation: float-cta-spin 28s linear infinite;
 }
 
 @keyframes float-cta-spin {
@@ -554,73 +517,58 @@
 .float-cta__arrow {
   display: grid;
   place-items: center;
-  width: 2.6rem;
-  height: 2.6rem;
+  width: 2.1rem;
+  height: 2.1rem;
   border-radius: 50%;
-  background: var(--ink);
-  color: var(--white);
+  background: var(--white);
+  color: var(--ink);
   transition: transform 0.5s var(--ease-expo), background 0.35s var(--ease), color 0.35s var(--ease);
 }
 
 .float-cta__arrow svg {
-  width: 1.15rem;
-  height: 1.15rem;
+  width: 1rem;
+  height: 1rem;
 }
 
 .float-cta:hover,
 .float-cta:focus-visible {
-  background: var(--lemon);
-  color: var(--ink);
-  box-shadow: 0 26px 56px -18px rgba(120, 130, 0, 0.45);
-}
-
-.float-cta:hover .float-cta__ring,
-.float-cta:focus-visible .float-cta__ring {
-  animation-duration: 6s;
+  background: var(--ink);
+  color: var(--white);
 }
 
 .float-cta:hover .float-cta__arrow,
 .float-cta:focus-visible .float-cta__arrow {
-  transform: rotate(-45deg) scale(1.08);
-  background: var(--ink);
-  color: var(--lemon);
-}
-
-/* Nad pomarańczowymi powierzchniami — odwrócenie, żeby kółko nie zlało się z tłem */
-.float-cta.is-inverted {
-  background: var(--ink);
-  color: var(--white);
-  box-shadow: 0 22px 48px -18px rgba(15, 15, 15, 0.4);
-}
-
-.float-cta.is-inverted .float-cta__arrow {
+  transform: rotate(-45deg);
   background: var(--accent);
+  color: var(--white);
 }
 
+/* Nad ciemnymi powierzchniami czerwień zostaje — czarne kółko by znikało. */
 .float-cta.is-inverted:hover,
 .float-cta.is-inverted:focus-visible {
-  background: var(--lemon);
+  background: var(--white);
   color: var(--ink);
 }
 
+/* !important — wygrywa z wartością z animacji wejścia (fill-mode: forwards). */
 .float-cta.is-hidden {
-  opacity: 0;
+  opacity: 0 !important;
   pointer-events: none;
 }
 
 @media (max-width: 720px) {
   .float-cta {
-    width: 5.25rem;
-    height: 5.25rem;
+    width: 4.75rem;
+    height: 4.75rem;
   }
 
   .float-cta__ring {
-    font-size: 7.2px;
+    font-size: 7.4px;
   }
 
   .float-cta__arrow {
-    width: 2rem;
-    height: 2rem;
+    width: 1.8rem;
+    height: 1.8rem;
   }
 }
 

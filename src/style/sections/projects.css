@@ -1,23 +1,21 @@
 /* ——— REALIZACJE ———
-   Nieregularna siatka (12 kolumn, przesunięcia w pionie) zamiast symetrycznego 2×3.
-   Pod kaflem tylko marka + tytuł. Hover (jak Leveled): zdjęcie zwija się do kadru
-   9:16, tło kafla przejmuje kolor (pomarańcz / cytryna / niebieski), w kadrze gra
-   film albo szybki pokaz zdjęć, a za kursorem jedzie etykieta „Zobacz case”. */
+   Spokojna siatka 2 kolumn, jedna proporcja kadrów; prawa kolumna lekko
+   przesunięta w dół dla rytmu. Pod kaflem tylko marka + tytuł. Hover: zdjęcie
+   gaśnie, a w kadrze 9:16 na czarnym tle gra film albo pokaz zdjęć. */
 
 .projects {
   max-width: var(--max);
   margin: 0 auto;
-  padding: clamp(3rem, 6vw, 6rem) var(--pad) calc(var(--block) * 1.1);
+  padding: var(--block) var(--pad) calc(var(--block) * 1.2);
 }
 
 .projects__head {
   display: flex;
   flex-wrap: wrap;
   align-items: flex-end;
-  gap: 0.75rem clamp(1rem, 2vw, 1.75rem);
-  margin-bottom: clamp(2.5rem, 5vw, 4.5rem);
-  padding-bottom: clamp(1.25rem, 2vw, 1.75rem);
-  border-bottom: 1px solid var(--line);
+  justify-content: space-between;
+  gap: 1rem clamp(1rem, 2vw, 1.75rem);
+  margin-bottom: clamp(3rem, 6vw, 5.5rem);
 }
 
 .projects__title {
@@ -29,88 +27,32 @@
 }
 
 .projects__count {
-  align-self: flex-start;
-  margin: 0.35em 0 0;
-  font-family: var(--font-label);
-  font-weight: 400;
-  letter-spacing: var(--label-tracking);
-  font-size: var(--label);
-  color: var(--muted);
+  display: none;
 }
 
 .projects__all {
-  margin: 0 0 0.35rem auto;
+  margin: 0 0 0.35rem;
 }
 
 .projects__grid {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: clamp(2.5rem, 5vw, 5rem) clamp(1.5rem, 3vw, 3rem);
-}
-
-/* Układ redakcyjny — każdy kafel ma własną szerokość, proporcję i przesunięcie. */
-.projects__grid--editorial {
-  grid-template-columns: repeat(12, minmax(0, 1fr));
-  column-gap: clamp(1rem, 2vw, 2rem);
-  row-gap: clamp(3.5rem, 7vw, 7rem);
+  gap: clamp(4rem, 7vw, 7rem) clamp(1.5rem, 3.5vw, 4rem);
   align-items: start;
 }
 
-.projects__grid--editorial .project-card:nth-child(1) {
-  grid-column: 1 / span 7;
-  --ratio: 4 / 3;
-  --peek-x: 32.7%;
-}
-
-.projects__grid--editorial .project-card:nth-child(2) {
-  grid-column: 9 / span 4;
-  margin-top: clamp(5rem, 14vw, 13rem);
-  --ratio: 4 / 5;
-  --peek-x: 21.2%;
-}
-
-.projects__grid--editorial .project-card:nth-child(3) {
-  grid-column: 2 / span 4;
-  --ratio: 4 / 5;
-  --peek-x: 21.2%;
-}
-
-.projects__grid--editorial .project-card:nth-child(4) {
-  grid-column: 7 / span 6;
-  margin-top: clamp(3rem, 9vw, 8.5rem);
-  --ratio: 3 / 2;
-  --peek-x: 34.6%;
-}
-
-.projects__grid--editorial .project-card:nth-child(5) {
-  grid-column: 1 / span 5;
-  margin-top: clamp(1rem, 3vw, 3rem);
-  --ratio: 1 / 1;
-  --peek-x: 26.9%;
-}
-
-.projects__grid--editorial .project-card:nth-child(6) {
-  grid-column: 7 / span 6;
-  margin-top: clamp(5rem, 13vw, 12rem);
-  --ratio: 16 / 10;
-  --peek-x: 35.6%;
+@media (min-width: 981px) {
+  .projects__grid .project-card:nth-child(even) {
+    transform: translateY(clamp(3rem, 8vw, 8rem));
+  }
 }
 
 /* ——— Kafel ——— */
 
 .project-card {
-  --tile: var(--accent);
-  --ratio: 3 / 2;
-  --peek-x: 34.6%;
+  --ratio: 4 / 3;
+  --peek-x: 32.7%;
   position: relative;
-}
-
-.project-card[data-tile="lemon"] {
-  --tile: var(--lemon);
-}
-
-.project-card[data-tile="blue"] {
-  --tile: var(--blue);
 }
 
 .project-card__link {
@@ -124,7 +66,7 @@
   aspect-ratio: var(--ratio);
   overflow: hidden;
   isolation: isolate;
-  background: var(--tile);
+  background: var(--ink);
 }
 
 .project-card__cover {
@@ -151,7 +93,6 @@
   aspect-ratio: 9 / 16;
   overflow: hidden;
   background: var(--ink);
-  box-shadow: 0 30px 60px -28px rgba(18, 18, 18, 0.55);
   opacity: 0;
   transform: translate(-50%, -50%) scale(0.94);
   transition:
@@ -172,7 +113,7 @@
   position: absolute;
   inset: 0;
   opacity: 0;
-  transition: opacity 0.12s linear;
+  transition: opacity 0.45s var(--ease);
 }
 
 .peek-slide.is-active {
@@ -180,34 +121,11 @@
   z-index: 1;
 }
 
-/* Etykieta za kursorem (project-hover.js ustawia --cx/--cy). */
-.project-card__cursor {
-  position: absolute;
-  left: 0;
-  top: 0;
-  z-index: 3;
-  padding: 0.45rem 0.7rem;
-  border-radius: 999px;
-  background: var(--ink);
-  color: var(--lemon);
-  font-family: var(--font-label);
-  font-weight: 400;
-  font-size: var(--label);
-  letter-spacing: var(--label-tracking);
-  text-transform: uppercase;
-  white-space: nowrap;
-  pointer-events: none;
-  opacity: 0;
-  transform: translate3d(var(--cx, 50%), var(--cy, 50%), 0) translate(-50%, -50%) rotate(-4deg) scale(0.8);
-  transition: opacity 0.25s var(--ease), transform 0.35s var(--ease-juicy);
-}
-
 @media (hover: hover) and (min-width: 981px) {
   .project-card:hover .project-card__cover,
   .project-card:focus-within .project-card__cover {
     clip-path: inset(9% var(--peek-x) 9% var(--peek-x));
     opacity: 0;
-    transform: scale(1.04);
   }
 
   .project-card:hover .project-card__peek,
@@ -216,32 +134,24 @@
     transform: translate(-50%, -50%) scale(1);
   }
 
-  .project-card:hover .project-card__cursor {
-    opacity: 1;
-    transform: translate3d(var(--cx, 50%), var(--cy, 50%), 0) translate(-50%, -50%) rotate(-4deg) scale(1);
-  }
-
-  .project-card__media {
-    cursor: none;
-  }
 }
 
 .project-card__client {
   display: block;
-  margin-top: clamp(1rem, 1.6vw, 1.35rem);
+  margin-top: clamp(1.1rem, 1.6vw, 1.4rem);
   font-family: var(--font-display);
   font-size: var(--display-4);
   font-weight: var(--display-weight);
-  line-height: 1.05;
-  letter-spacing: -0.018em;
+  line-height: 1.1;
+  letter-spacing: -0.02em;
   transition: color 0.35s var(--ease);
 }
 
 .project-card__title {
   max-width: 34ch;
-  margin-top: 0.45rem;
+  margin-top: 0.35rem;
   font-family: var(--font);
-  font-size: var(--body-lg);
+  font-size: var(--body);
   font-weight: 400;
   line-height: 1.3;
   letter-spacing: -0.01em;
@@ -256,30 +166,13 @@
 
 /* ——— Mobile / tablet: jedna kolumna, bez przesunięć i bez hover ——— */
 @media (max-width: 980px) {
-  .projects__grid,
-  .projects__grid--editorial {
+  .projects__grid {
     grid-template-columns: minmax(0, 1fr);
-    row-gap: clamp(2.5rem, 8vw, 3.5rem);
+    row-gap: clamp(3rem, 10vw, 4rem);
   }
 
-  .projects__grid--editorial .project-card:nth-child(n) {
-    grid-column: 1;
-    margin-top: 0;
-    --ratio: 4 / 3;
-  }
-
-  .project-card__peek,
-  .project-card__cursor {
+  .project-card__peek {
     display: none !important;
   }
 
-  .project-card__cover {
-    height: 118%;
-    top: -9%;
-    object-position: center;
-  }
-
-  .projects__all {
-    margin-left: 0;
-  }
 }

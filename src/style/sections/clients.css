@@ -1,67 +1,50 @@
-/* ——— KLIENCI — pas z markami zaraz po showreelu ———
-   Tor przewija marquee.js (pętla + przyspieszenie od scrolla). Bez JS nazwy stoją
-   w jednej linii i po prostu się zawijają. */
+/* ——— KLIENCI — nieruchomy rząd logotypów ———
+   Logotypy w jednym kolorze (czerń, lekko przygaszone), żeby nie dokładały
+   kolejnych barw do strony. Pełny kolor marki dopiero na hover. */
 
 .clients {
-  position: relative;
-  padding: clamp(3.5rem, 7vw, 6.5rem) 0 clamp(3rem, 6vw, 5.5rem);
   background: var(--cream);
-  overflow: hidden;
 }
 
-.clients__head {
-  display: flex;
-  align-items: baseline;
-  justify-content: space-between;
-  gap: 1rem;
+.clients__inner {
   max-width: var(--max);
-  margin: 0 auto clamp(1.5rem, 3vw, 2.5rem);
-  padding: 0 var(--pad);
+  margin: 0 auto;
+  padding: clamp(4.5rem, 9vw, 8rem) var(--pad) clamp(3rem, 6vw, 5rem);
 }
 
-.clients__head .eyebrow {
-  margin: 0;
-  color: var(--ink);
+.clients__inner .eyebrow {
+  margin: 0 0 clamp(1.75rem, 3.5vw, 3rem);
 }
 
-.clients__marquee {
-  position: relative;
+.clients__list {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  align-items: center;
   border-top: 1px solid var(--line);
   border-bottom: 1px solid var(--line);
-  padding: clamp(1.1rem, 2.2vw, 2rem) 0;
-  -webkit-mask-image: linear-gradient(90deg, transparent, #000 6%, #000 94%, transparent);
-  mask-image: linear-gradient(90deg, transparent, #000 6%, #000 94%, transparent);
 }
 
-.clients__track {
-  display: flex;
-  flex-wrap: nowrap;
-  align-items: center;
-  width: max-content;
-  will-change: transform;
-}
-
-.js .clients__track {
-  flex-wrap: nowrap;
-}
-
-/* Prawdziwe logotypy w oryginalnych kolorach marek, bez separatorów — sam rytm
-   odstępów. --logo-h to wysokość „kwadratowego” znaku; szerokie znaki są niższe,
+/* --logo-h to wysokość „kwadratowego” znaku; szerokie znaki są niższe,
    żeby wszystkie ważyły optycznie tyle samo. */
 .clients__item {
-  --logo-h: clamp(3.4rem, 5.6vw, 5.75rem);
-  display: inline-flex;
+  --logo-h: clamp(2.9rem, 4.6vw, 4.75rem);
+  display: flex;
   align-items: center;
-  flex-shrink: 0;
-  height: calc(var(--logo-h) * 1.1);
-  padding: 0 clamp(2.25rem, 4.2vw, 4.5rem);
+  justify-content: center;
+  height: calc(var(--logo-h) * 2.2);
+}
+
+.clients__item + .clients__item {
+  border-left: 1px solid var(--line);
 }
 
 .clients__item img {
   display: block;
   width: auto;
   height: var(--logo-h);
-  transition: transform 0.5s var(--ease-expo);
+  filter: grayscale(1) contrast(1.1) brightness(0.6);
+  opacity: 0.8;
+  transition: filter 0.45s var(--ease), opacity 0.45s var(--ease);
 }
 
 .clients__item--wide img {
@@ -69,23 +52,34 @@
 }
 
 .clients__item--badge img {
-  height: calc(var(--logo-h) * 1.15);
+  height: calc(var(--logo-h) * 1.25);
 }
 
 .clients__item--tall img {
-  height: calc(var(--logo-h) * 1.08);
+  height: calc(var(--logo-h) * 1.05);
 }
 
-.clients__item:hover img {
-  transform: scale(1.06);
+@media (hover: hover) {
+  .clients__item:hover img {
+    filter: none;
+    opacity: 1;
+  }
 }
 
 @media (max-width: 620px) {
-  .clients {
-    padding-top: clamp(2.75rem, 12vw, 3.5rem);
+  .clients__list {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 
   .clients__item {
-    --logo-h: clamp(2.6rem, 13vw, 3.4rem);
+    --logo-h: clamp(2.2rem, 11vw, 2.9rem);
+  }
+
+  .clients__item:nth-child(3) {
+    border-left: 0;
+  }
+
+  .clients__item:nth-child(n + 3) {
+    border-top: 1px solid var(--line);
   }
 }

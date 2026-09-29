@@ -6,7 +6,6 @@ import { bootSiteClosing } from "./site-closing-boot.js";
 import { bindScrollLayoutSettle } from "./scroll-layout.js";
 import { initMicroFx } from "./sections/micro-fx.js";
 import { initFloatCta } from "./sections/float-cta.js";
-import { initMarquees } from "./sections/marquee.js";
 
 initHeader();
 
@@ -17,7 +16,6 @@ whenFontsReady().then(() => {
   initProjects();
   initLightbox();
   initMicroFx();
-  initMarquees();
 
   const video = document.querySelector("[data-realizacje-video]");
 

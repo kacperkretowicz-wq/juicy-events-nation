@@ -1,130 +1,18 @@
+/* ——— MISJA — jedno zdanie, dużo powietrza ——— */
+
 .mission {
-  height: 240svh;
-  background: var(--cream);
-  color: var(--white);
-}
-
-.mission__pin {
-  position: sticky;
-  top: 0;
-  display: grid;
-  align-items: center;
-  height: 100svh;
-  min-height: 30rem;
-  overflow: hidden;
-}
-
-.mission__bg {
-  position: absolute;
-  inset: 0;
-  overflow: hidden;
-}
-
-.mission__bg img {
-  object-fit: cover;
-  object-position: center 42%;
-  filter: brightness(1.03) contrast(1.05) saturate(0.72);
-}
-
-/* Monochrom: góra jak jasne tło strony, dół w ciemny — zdjęcie w środku. */
-.mission__bg::after {
-  content: "";
-  position: absolute;
-  inset: 0;
-  z-index: 1;
-  pointer-events: none;
-  background: linear-gradient(
-    180deg,
-    var(--cream) 0%,
-    rgba(244, 242, 236, 0.94) 11%,
-    rgba(210, 207, 199, 0.72) 26%,
-    rgba(145, 143, 138, 0.58) 46%,
-    rgba(40, 38, 36, 0.8) 72%,
-    var(--dark) 100%
-  );
-}
-
-.mission__content {
-  position: relative;
-  z-index: 1;
-  display: grid;
-  gap: clamp(1.5rem, 3vw, 2.5rem);
-  width: 100%;
   max-width: var(--max);
   margin: 0 auto;
-  padding: 0 var(--pad);
-  text-align: left;
-}
-
-/* Sweetpunk: lead + slot rotatora w jednej linii. */
-.mission__headline {
-  width: 100%;
-  max-width: 100%;
-  overflow: visible;
+  padding: calc(var(--block) * 0.9) var(--pad);
 }
 
 .mission__line {
+  max-width: 17ch;
   margin: 0;
-  display: grid;
-  grid-template-columns: auto minmax(0, 1fr);
-  align-items: end;
-  column-gap: 0.32em;
   font-family: var(--font-display);
   font-size: var(--display-1);
   font-weight: var(--display-weight);
-  line-height: 1;
-  letter-spacing: -0.028em;
-}
-
-.mission__lead {
-  white-space: nowrap;
-  line-height: 1;
-}
-
-.mission__rotator {
-  position: relative;
-  min-width: 0;
-  width: 100%;
-  /* Ten sam pionowy pas co „Nie boimy się” — kolejka w środku, wyblakłe słowa w clipie.
-     Wyższy o zapas na ogonki kursywy (ę, ć). */
-  height: 1.14em;
-  margin-bottom: -0.14em;
-  line-height: 1;
-  overflow: hidden;
-  align-self: end;
-}
-
-/* Rotujące słowa = akcent marki (Mori Regular, cytryna na ciemnym). */
-.mission__word {
-  position: absolute;
-  left: 0;
-  bottom: 0.14em;
-  top: auto;
-  font-family: var(--font-accent);
-  font-weight: var(--accent-weight);
-  letter-spacing: -0.025em;
-  white-space: nowrap;
-  color: var(--white);
-  transform-origin: left bottom;
-}
-
-.mission__note {
-  margin: 0;
-  max-width: 38ch;
-  font-size: var(--body-lg);
-  line-height: 1.5;
-  letter-spacing: -0.01em;
-  color: rgba(255, 255, 255, 0.82);
-}
-
-@media (max-width: 980px) {
-  .mission__line {
-    font-size: clamp(2.1rem, 7.5vw, 3.5rem);
-  }
-}
-
-@media (max-width: 620px) {
-  .mission__line {
-    font-size: clamp(1.75rem, 8.5vw, 2.35rem);
-  }
+  line-height: 1.02;
+  letter-spacing: -0.035em;
+  text-wrap: balance;
 }

@@ -1,13 +1,11 @@
 /* ——— ZESPÓŁ ———
-   Karty w rytmie ze slajdu Sweetpunk, który wskazał właściciel (4 równe kafle,
-   każdy na innej powierzchni, duży tytuł u góry, detal na dole) — ale w palecie
-   Juicy: papier / pomarańcz / czerń / cytryna. Zastępują „passy”, które wyglądały
-   na wklejone z innej strony. */
+   Cztery jednakowe, białe karty: imię i nazwisko u góry, kontakt na dole.
+   (Wcześniej każda karta miała inny kolor — wypadło po feedbacku „za dużo kolorów”.) */
 
 .team {
   max-width: var(--max);
   margin: 0 auto;
-  padding: var(--block) var(--pad) calc(var(--block) * 1.05);
+  padding: var(--block) var(--pad);
 }
 
 .team__head {
@@ -16,15 +14,12 @@
   align-items: flex-end;
   justify-content: space-between;
   gap: 1rem 2rem;
-  margin-bottom: clamp(1.75rem, 3.5vw, 3rem);
-  padding-bottom: clamp(1.25rem, 2vw, 1.75rem);
-  border-bottom: 1px solid var(--line);
+  margin-bottom: clamp(2.5rem, 5vw, 4.5rem);
 }
 
 .team__head .eyebrow {
   order: 2;
   margin: 0 0 0.5rem;
-  color: var(--ink);
 }
 
 .team__title {
@@ -44,55 +39,21 @@
 }
 
 .crew-card {
-  --card-bg: var(--white);
-  --card-fg: var(--ink);
-  --card-muted: var(--muted);
-  --card-line: rgba(18, 18, 18, 0.28);
   position: relative;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  gap: 2rem;
-  min-height: clamp(22rem, 30vw, 28rem);
-  padding: clamp(1.5rem, 2.5vw, 2.4rem);
-  overflow: hidden;
-  background: var(--card-bg);
-  color: var(--card-fg);
-  transition: transform 0.7s var(--ease-expo);
-}
-
-.crew-card--paper {
-  --card-bg: var(--white);
-}
-
-.crew-card--juice {
-  --card-bg: var(--accent);
-  --card-muted: rgba(18, 18, 18, 0.74);
-}
-
-.crew-card--ink {
-  --card-bg: var(--ink);
-  --card-fg: var(--cream);
-  --card-muted: var(--on-dark-muted);
-  --card-line: rgba(244, 242, 236, 0.35);
-}
-
-.crew-card--lemon {
-  --card-bg: var(--lemon);
-  --card-muted: rgba(18, 18, 18, 0.7);
-}
-
-.crew-card--blue {
-  --card-bg: var(--blue);
-  --card-fg: var(--white);
-  --card-muted: rgba(255, 255, 255, 0.78);
-  --card-line: rgba(255, 255, 255, 0.36);
+  gap: 2.5rem;
+  min-height: clamp(17rem, 22vw, 21rem);
+  padding: clamp(1.5rem, 2.2vw, 2.1rem);
+  background: var(--white);
+  color: var(--ink);
 }
 
 .crew-card__name {
-  font-size: clamp(1.65rem, 2.35vw, 2.45rem);
+  font-size: var(--display-4);
   font-weight: var(--display-weight);
-  line-height: 1;
+  line-height: 1.1;
   letter-spacing: -0.02em;
   overflow-wrap: break-word;
 }
@@ -101,23 +62,21 @@
   margin: 0.85rem 0 0;
   max-width: 22ch;
   font-size: var(--body);
-  line-height: 1.35;
-  color: var(--card-muted);
+  line-height: 1.4;
+  color: var(--muted);
 }
 
-/* Kontakt na całą szerokość karty (długie maile nie łamią się w pół słowa),
-   sygnet Je! nad nim, przy prawej krawędzi. */
+/* Kontakt na całą szerokość karty (długie maile nie łamią się w pół słowa). */
 .crew-card__bottom {
   display: flex;
-  flex-direction: column-reverse;
-  gap: 1.1rem;
+  flex-direction: column;
 }
 
 .crew-card__contact {
   display: grid;
   gap: 0.3rem;
   min-width: 0;
-  font-size: clamp(0.95rem, 1vw, 1.05rem);
+  font-size: clamp(0.92rem, 0.95vw, 1rem);
   font-weight: 500;
   letter-spacing: -0.01em;
 }
@@ -126,41 +85,14 @@
   width: fit-content;
   max-width: 100%;
   overflow-wrap: anywhere;
-  border-bottom: 1px solid var(--card-line);
-  transition: border-color 0.3s var(--ease);
+  border-bottom: 1px solid var(--line);
+  transition: border-color 0.3s var(--ease), color 0.3s var(--ease);
 }
 
 .crew-card__contact a:hover,
 .crew-card__contact a:focus-visible {
+  color: var(--accent-text);
   border-color: currentColor;
-}
-
-/* Sygnet Je! (te same pliki co intro) w kolorze tekstu karty. */
-.crew-card__sign {
-  align-self: flex-end;
-  flex-shrink: 0;
-  width: clamp(2.6rem, 3.4vw, 3.4rem);
-  aspect-ratio: 1288 / 872;
-  background: currentColor;
-  -webkit-mask-image: url("/media/mark-j.svg"), url("/media/mark-e.svg");
-  mask-image: url("/media/mark-j.svg"), url("/media/mark-e.svg");
-  -webkit-mask-size: contain;
-  mask-size: contain;
-  -webkit-mask-repeat: no-repeat;
-  mask-repeat: no-repeat;
-  -webkit-mask-position: center;
-  mask-position: center;
-  transition: transform 0.7s var(--ease-juicy);
-}
-
-@media (hover: hover) {
-  .crew-card:hover {
-    transform: translateY(-0.5rem);
-  }
-
-  .crew-card:hover .crew-card__sign {
-    transform: rotate(-12deg) scale(1.12);
-  }
 }
 
 @media (max-width: 1180px) {
@@ -190,8 +122,8 @@
   }
 
   .crew-card {
-    flex: 0 0 min(21rem, calc(100% - 2.5rem));
-    min-height: 21rem;
+    flex: 0 0 min(20rem, calc(100% - 2.5rem));
+    min-height: 16rem;
     scroll-snap-align: start;
   }
 }

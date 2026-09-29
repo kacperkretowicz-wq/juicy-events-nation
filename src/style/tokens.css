@@ -1,62 +1,54 @@
 :root {
-  /* Powierzchnie — ciepły papier zamiast sweetpunkowego #f5f5f0 */
-  --cream: #f4f2ec;
-  --cream-deep: #e9e6dd;
+  /* Paleta po feedbacku 2026-09-28 („za dużo kolorów, festyn”): jedno jasne tło,
+     czerń i JEDEN akcent — czerwień z poprzedniej wersji strony (#ff281e).
+     Cytryna, niebieski i pomarańcz wypadły. Kolor na stronie niosą zdjęcia i wideo. */
+  --cream: #f5f4f0;
+  --cream-deep: #ebe9e3;
   --white: #ffffff;
-  --ink: #121212;
-  --dark: #121212;
-  --dark-soft: #1e1e1e;
-  --muted: #64625c;
-  --muted-light: rgba(244, 242, 236, 0.62);
-  --on-dark-muted: rgba(244, 242, 236, 0.76);
-  --on-dark-line: rgba(244, 242, 236, 0.32);
-  --line: rgba(18, 18, 18, 0.14);
-  --line-light: rgba(255, 255, 255, 0.16);
+  --ink: #111111;
+  --dark: #111111;
+  --dark-soft: #1c1c1c;
+  --muted: #62615c;
+  --muted-light: rgba(245, 244, 240, 0.6);
+  --on-dark-muted: rgba(245, 244, 240, 0.72);
+  --on-dark-line: rgba(245, 244, 240, 0.28);
+  --line: rgba(17, 17, 17, 0.12);
+  --line-light: rgba(255, 255, 255, 0.14);
 
-  /* Paleta „juicy” — pomarańcz jako kolor marki, cytryna jako akcent hover,
-     niebieski jako trzeci kolor kafli (jak rytm kolorów u Leveled).
-     --accent       — tła, przyciski, duże plamy koloru
-     --accent-text  — pomarańcz do TEKSTU na jasnym tle (kontrast ≥ 3:1)
-     --lemon        — stan hover / wyróżnienia na ciemnym
-     --blue         — trzeci kolor kafli i kart */
-  --accent: #ff4f18;
-  --accent-deep: #e03e0a;
-  --accent-text: #e9440f;
-  --accent-soft: #ff7a4d;
-  --accent-warm: #ff4f18;
-  --footer-accent: #e33a1b;
+  /* --accent       — przyciski, drobne akcenty, słowo-klucz w nagłówku
+     --accent-text  — czerwień do mniejszego tekstu na jasnym tle (kontrast ≥ 4.5:1) */
+  --accent: #ff281e;
+  --accent-deep: #e01f16;
+  --accent-text: #d81b12;
   --on-accent: #ffffff;
-  --lemon: #f1ff66;
-  --blue: #3b5bff;
 
-  /* Rytm */
-  --pad: clamp(1.25rem, 3.2vw, 3.25rem);
-  --max: 1560px;
+  /* Rytm — więcej powietrza między sekcjami niż wcześniej. */
+  --pad: clamp(1.25rem, 3.6vw, 3.75rem);
+  --max: 1480px;
   --gutter: clamp(0.75rem, 1.1vw, 1.15rem);
-  --block: clamp(5.5rem, 12vw, 10.5rem);
+  --block: clamp(6.5rem, 14vw, 12.5rem);
 
-  /* Typografia: Mori Regular w dużych nagłówkach, Diatype Mono w etykietach. */
-  --font: "PP Mori", "Helvetica Neue", Arial, sans-serif;
-  --font-display: "PP Mori", "Helvetica Neue", Arial, sans-serif;
-  --font-accent: "PP Mori", "Helvetica Neue", Arial, sans-serif;
-  --font-label: "ABC Diatype", monospace;
-  --display-weight: 400;
-  --accent-weight: 400;
-  --label-tracking: 0.02em;
-  --display-1: clamp(2.75rem, 7.4vw, 7.75rem);
-  --display-2: clamp(2.25rem, 5.4vw, 5.6rem);
-  --display-3: clamp(1.75rem, 3.5vw, 3.5rem);
-  --display-4: clamp(1.3rem, 2.1vw, 2.1rem);
-  --body-lg: clamp(1.1rem, 1.35vw, 1.35rem);
-  --body: clamp(1rem, 1.08vw, 1.12rem);
-  --micro: clamp(0.72rem, 0.8vw, 0.8rem);
-  --label: clamp(0.74rem, 0.82vw, 0.84rem);
+  /* Typografia: Figtree w całym serwisie. Mniej rozmiarów, spokojniejsze nagłówki. */
+  --font: "Figtree", "Helvetica Neue", Arial, sans-serif;
+  --font-display: var(--font);
+  --font-accent: var(--font);
+  --font-label: var(--font);
+  --display-weight: 500;
+  --accent-weight: 500;
+  --label-tracking: 0.08em;
+  --display-1: clamp(2.6rem, 6.2vw, 6.5rem);
+  --display-2: clamp(2.1rem, 4.4vw, 4.5rem);
+  --display-3: clamp(1.55rem, 2.6vw, 2.6rem);
+  --display-4: clamp(1.25rem, 1.7vw, 1.7rem);
+  --body-lg: clamp(1.08rem, 1.2vw, 1.22rem);
+  --body: clamp(1rem, 1.02vw, 1.06rem);
+  --micro: clamp(0.72rem, 0.78vw, 0.78rem);
+  --label: clamp(0.72rem, 0.76vw, 0.78rem);
 
   /* Ikona strzałki jako maska (kolor = background). */
   --icon-arrow: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M4 12h15M13 5.5 19.5 12 13 18.5' fill='none' stroke='%23000' stroke-width='2.3' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
 
-  /* Ruch */
+  /* Ruch — krótszy i łagodniejszy. */
   --ease: cubic-bezier(0.22, 1, 0.36, 1);
   --ease-expo: cubic-bezier(0.16, 1, 0.3, 1);
-  --ease-juicy: cubic-bezier(0.34, 1.56, 0.64, 1);
 }

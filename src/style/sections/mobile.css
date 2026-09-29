@@ -38,36 +38,16 @@
     font-size: clamp(2rem, 9.5vw, 2.75rem);
   }
 
-  /* Telefon: logo zostaje na środku, zdanie schodzi pod nie, do lewej —
-     obok siebie było ciasno. */
-  .agency__intro {
-    align-items: flex-end;
-    justify-content: flex-start;
-    padding-top: 0;
-    padding-bottom: clamp(5.5rem, 18svh, 9rem);
-  }
-
-  .agency__intro-title {
-    max-width: 13ch;
-    font-size: clamp(1.6rem, 7.6vw, 2.1rem);
-    text-align: left;
-  }
-
   .agency__logo-slot {
     align-items: center;
-    padding-bottom: 10svh;
   }
 
   .agency__logo {
     width: min(66vw, 17rem);
   }
 
-  .work {
-    padding-bottom: clamp(3.5rem, 12vw, 5rem);
-  }
-
   .work__title {
-    font-size: clamp(2.1rem, 9.5vw, 2.8rem);
+    font-size: clamp(2rem, 9vw, 2.6rem);
   }
 
   .site-header--solid .site-header__panel {
@@ -75,63 +55,14 @@
     -webkit-backdrop-filter: none;
   }
 
-  .mission {
-    height: 200svh;
-  }
-
-  .mission__pin {
-    align-items: center;
-    padding-bottom: 0;
-  }
-
-  .mission__content {
-    text-align: center;
-    justify-items: center;
-  }
-
-  .mission__headline {
-    display: flex;
-    justify-content: center;
-    width: 100%;
-  }
-
   .mission__line {
-    grid-template-columns: minmax(0, 1fr);
-    justify-items: center;
-    row-gap: 0.2em;
-    align-items: center;
-    font-size: clamp(2.15rem, 10.5vw, 3rem);
-    text-align: center;
-  }
-
-  .mission__lead {
-    white-space: normal;
-  }
-
-  .mission__rotator {
-    align-self: center;
-    margin-inline: auto;
-  }
-
-  .mission__note {
-    font-size: clamp(1.02rem, 4.2vw, 1.12rem);
-    max-width: 34ch;
-    margin-inline: auto;
-    text-align: center;
-  }
-
-  .mission .eyebrow {
-    text-align: center;
-    width: 100%;
-  }
-
-  .projects {
-    padding-top: clamp(3.5rem, 12vw, 5rem);
+    font-size: clamp(2.1rem, 9.5vw, 2.8rem);
   }
 
   .projects__title,
-  .team__title {
-    font-size: clamp(2.1rem, 9.5vw, 2.8rem);
+  .team__title,
+  .expertise__title {
+    font-size: clamp(2rem, 9vw, 2.6rem);
   }
 
   .project-card__client {
@@ -142,12 +73,8 @@
     font-size: clamp(1rem, 4.3vw, 1.12rem);
   }
 
-  .team {
-    padding-top: clamp(4rem, 14vw, 5.5rem);
-  }
-
   .site-footer__wordmark {
-    --wordmark-size: clamp(3.25rem, 19vw, 5rem);
+    --wordmark-size: clamp(2.5rem, 13.4vw, 5rem);
   }
 
   .realizacje-hero {

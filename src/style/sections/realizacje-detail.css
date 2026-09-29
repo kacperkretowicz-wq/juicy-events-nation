@@ -42,9 +42,9 @@
 }
 
 .realizacje-hero .project-card__meta span:first-child {
-  border-color: var(--accent);
-  background: var(--accent);
-  color: var(--ink);
+  border-color: var(--ink);
+  background: var(--ink);
+  color: var(--cream);
 }
 
 .realizacje-media {

@@ -57,21 +57,21 @@ textarea {
   color: inherit;
 }
 
-/* Mori Regular: spokojniejsza waga i miejsce na polskie znaki. */
+/* Figtree Medium w nagłówkach — ciasny tracking, spokojna waga. */
 h1,
 h2,
 h3 {
   margin: 0;
   font-family: var(--font-display);
   font-weight: var(--display-weight);
-  line-height: 1;
-  letter-spacing: -0.024em;
+  line-height: 1.02;
+  letter-spacing: -0.032em;
   text-transform: none;
   text-wrap: balance;
 }
 
 h3 {
-  letter-spacing: -0.016em;
+  letter-spacing: -0.02em;
 }
 
 p {
@@ -86,25 +86,14 @@ ul {
   list-style: none;
 }
 
-/* Ziarno — subtelna tekstura jak w prezentacji */
-.grain {
-  position: fixed;
-  inset: 0;
-  z-index: 9998;
-  pointer-events: none;
-  opacity: 0.05;
-  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
-}
-
 /* ——— Elementy współdzielone ——— */
 
-/* Etykiety w kroju mono — jedyne „drobne pismo” na stronie, używane oszczędnie:
-   numer sekcji + nazwa, liczniki, podpisy klientów. */
+/* Etykieta sekcji — małe wersaliki, używane oszczędnie. */
 .eyebrow {
   margin: 0 0 1rem;
   font-family: var(--font-label);
   font-size: var(--label);
-  font-weight: 400;
+  font-weight: 600;
   letter-spacing: var(--label-tracking);
   text-transform: uppercase;
   color: var(--muted);
@@ -114,23 +103,17 @@ ul {
   color: var(--muted-light);
 }
 
-/* Akcent pozostaje w Mori Regular; wyróżnia go kolor. */
+/* Słowo-klucz w nagłówku — jedyne miejsce, gdzie czerwień pojawia się w tekście.
+   Używane w 3 nagłówkach na stronie głównej, nie w każdym. */
 .bracket {
   position: relative;
   font-family: var(--font-accent);
   font-style: normal;
   font-weight: var(--accent-weight);
-  letter-spacing: -0.02em;
-  color: var(--accent-text);
+  color: var(--accent);
 }
 
-[data-tone="dark"] .bracket,
-.bracket--lemon {
-  color: var(--lemon);
-}
-
-/* Przycisk marki: czarna pigułka + pomarańczowe kółko ze strzałką.
-   Hover = cytryna (żółty akcent „po najechaniu”, o który prosił właściciel). */
+/* Przycisk marki: czarna pigułka + czerwone kółko ze strzałką. Hover = czerwień. */
 .btn {
   display: inline-flex;
   align-items: center;
@@ -142,9 +125,9 @@ ul {
   border-radius: 999px;
   background: var(--ink);
   color: var(--cream);
-  font-size: clamp(0.98rem, 1.05vw, 1.08rem);
+  font-size: clamp(0.98rem, 1.02vw, 1.05rem);
   font-weight: 600;
-  letter-spacing: -0.01em;
+  letter-spacing: -0.005em;
   line-height: 1;
   text-transform: none;
   cursor: pointer;
@@ -159,7 +142,7 @@ ul {
   height: 2.35rem;
   border-radius: 50%;
   background:
-    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M5 12h14M13 5l7 7-7 7' fill='none' stroke='%23121212' stroke-width='2.2' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E")
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M5 12h14M13 5l7 7-7 7' fill='none' stroke='%23ffffff' stroke-width='2.2' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E")
       center / 1.05rem no-repeat,
     var(--accent);
   transition: transform 0.5s var(--ease-expo), background-color 0.35s var(--ease);
@@ -167,8 +150,13 @@ ul {
 
 .btn:hover,
 .btn:focus-visible {
-  background: var(--lemon);
-  color: var(--ink);
+  background: var(--accent);
+  color: var(--on-accent);
+}
+
+.btn:hover::after,
+.btn:focus-visible::after {
+  background-color: var(--ink);
 }
 
 .btn:hover::after,
@@ -231,15 +219,15 @@ ul {
 }
 
 .link-arrow--light:hover {
-  color: var(--lemon);
+  color: var(--accent);
 }
 
-/* Etykieta sekcji — ten sam styl co .eyebrow (mono). */
+/* Etykieta sekcji — ten sam styl co .eyebrow. */
 .section-label {
   margin: 0 0 1.1rem;
   font-family: var(--font-label);
   font-size: var(--label);
-  font-weight: 400;
+  font-weight: 600;
   letter-spacing: var(--label-tracking);
   text-transform: uppercase;
   color: var(--muted);
@@ -283,9 +271,9 @@ ul {
 .social__icon:hover,
 .social__icon:focus-visible {
   opacity: 1;
-  color: var(--ink);
-  background: var(--lemon);
-  border-color: var(--lemon);
+  color: var(--on-accent);
+  background: var(--accent);
+  border-color: var(--accent);
 }
 
 /* Split headline — nośnik animacji linii.
@@ -343,8 +331,7 @@ ul {
 /* ——— Widoczny fokus klawiatury ———
    Wcześniej styl :focus-visible miała tylko podpowiedź „Powiększ".
    :where() ma zerową specyficzność, więc nie nadpisuje istniejących reguł. */
-/* Kolor obrysu = kolor tekstu elementu — widoczny na każdym tle
-   (pomarańczowy obrys znikał na pomarańczowym menu i karcie zespołu). */
+/* Kolor obrysu = kolor tekstu elementu — widoczny na każdym tle. */
 :where(a[href], button, input, select, textarea, [tabindex]):focus-visible {
   outline: 2px solid currentColor;
   outline-offset: 3px;
