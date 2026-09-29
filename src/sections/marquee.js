@@ -1,11 +1,12 @@
-// Pętle „marquee” — pas klientów i wordmark JUICY EVENTS w stopce.
-// Tor jedzie w lewo; scroll go przyspiesza, a scroll w górę odwraca kierunek
-// (feedback właściciela: „JUICY EVENTS zrobiłbym ruszające się”).
+// Pętla „marquee” — wordmark JUICY EVENTS w stopce (logotypy klientów stoją).
+// Tor jedzie w lewo; scroll lekko go przyspiesza, a scroll w górę odwraca kierunek
+// (feedback właściciela: „JUICY EVENTS zrobiłbym ruszające się”). Po 28.09 spokojniej:
+// wolniejsze tempo i najwyżej 2× przyspieszenie zamiast 7×.
 // Bez JS / z `?reduced` tor stoi — treść jest normalnie czytelna.
 import gsap from "gsap";
 import { lenis, softMotion } from "../shared.js";
 
-const MAX_BOOST = 6;
+const MAX_BOOST = 1;
 
 function createLoop(marquee) {
   const track = marquee.querySelector("[data-marquee-track]");
@@ -44,7 +45,7 @@ function createLoop(marquee) {
   const tick = (_, deltaMs) => {
     if (!visible || !setWidth) return;
     const velocity = lenis.velocity || 0;
-    const target = Math.min(MAX_BOOST, Math.abs(velocity) * 0.18);
+    const target = Math.min(MAX_BOOST, Math.abs(velocity) * 0.06);
     boost += (target - boost) * 0.08;
     if (Math.abs(velocity) > 0.8) dir = velocity > 0 ? -1 : 1;
 

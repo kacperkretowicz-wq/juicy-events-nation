@@ -1,5 +1,5 @@
 const FONTS = [
-  ["pp-mori", "PP Mori", '"PP Mori", "Helvetica Neue", Arial, sans-serif'],
+  ["figtree", "Figtree", '"Figtree", "Helvetica Neue", Arial, sans-serif'],
   ["space-grotesk", "Space Grotesk", '"Space Grotesk", sans-serif'],
   ["instrument-sans", "Instrument Sans", '"Instrument Sans", sans-serif'],
   ["dm-sans", "DM Sans", '"DM Sans", sans-serif'],
@@ -9,7 +9,6 @@ const FONTS = [
   ["sora", "Sora", '"Sora", sans-serif'],
   ["bricolage", "Bricolage Grotesque", '"Bricolage Grotesque", sans-serif'],
   ["archivo", "Archivo", '"Archivo", sans-serif'],
-  ["figtree", "Figtree", '"Figtree", sans-serif'],
   ["urbanist", "Urbanist", '"Urbanist", sans-serif'],
   ["epilogue", "Epilogue", '"Epilogue", sans-serif'],
   ["syne", "Syne", '"Syne", sans-serif'],
@@ -41,6 +40,18 @@ const FONTS = [
 ];
 
 const COLOR_PRESETS = {
+  // Obecna paleta strony (Tolia: krem, pomidor, słońce) — domyślna po otwarciu panelu.
+  tolia: {
+    bg: "#f6efdf", surface: "#f6efdf", white: "#fffdf8", text: "#1c1712", muted: "#6d6456",
+    accent: "#d52518", accentText: "#c81f14", accentDeep: "#b81d12", bottom: "#d52518", footer: "#d52518",
+    lemon: "#ffc926", blue: "#2f4fd1", dark: "#1c1712", darkSoft: "#2b241d", inverseText: "#f6efdf", onAccent: "#fffdf8",
+  },
+  // Ten sam układ, ale ciemne sekcje w butelkowej zieleni zamiast czerni.
+  "tolia-forest": {
+    bg: "#f6efdf", surface: "#f6efdf", white: "#fffdf8", text: "#1c1712", muted: "#6d6456",
+    accent: "#d52518", accentText: "#c81f14", accentDeep: "#b81d12", bottom: "#d52518", footer: "#d52518",
+    lemon: "#ffc926", blue: "#2f4fd1", dark: "#18542a", darkSoft: "#1f6333", inverseText: "#f6efdf", onAccent: "#fffdf8",
+  },
   "paper-orange": { bg: "#f4f2ec", surface: "#ffffff", text: "#17130f", accent: "#f4511e", bottom: "#e33a1b", lemon: "#f1ff66", blue: "#3b5bff" },
   "paper-tomato": { bg: "#f7f0e7", surface: "#ffffff", text: "#17130f", accent: "#f13a1b", bottom: "#d72612", lemon: "#f1ff66", blue: "#3455e8" },
   sunshine: { bg: "#fff15a", surface: "#fff8d9", text: "#17130a", accent: "#f45b1a", bottom: "#d92316", lemon: "#f8e94e", blue: "#2846d8" },
@@ -94,8 +105,8 @@ const withAlpha = (hex, alpha) => {
   return `rgba(${(value >> 16) & 255}, ${(value >> 8) & 255}, ${value & 255}, ${alpha})`;
 };
 
+// Klucze podane wprost w presecie wygrywają z wyliczonymi (np. ciemny kolor sekcji).
 const expandPreset = (preset) => ({
-  ...preset,
   surfaceAlt: blendHex(preset.surface, preset.bg, 0.12),
   white: preset.surface,
   muted: blendHex(preset.text, preset.bg, 0.28),
@@ -107,6 +118,7 @@ const expandPreset = (preset) => ({
   footer: preset.bottom,
   onAccent: preset.surface,
   line: preset.text,
+  ...preset,
 });
 
 const GOOGLE_FONT_CSS = "https://fonts.googleapis.com/css2?" + [
@@ -165,7 +177,7 @@ export function initPaletteLab() {
   const root = document.documentElement;
   const validFonts = new Set(FONTS.map(([key]) => key));
   const initialFont = validFonts.has(params.get("font")) ? params.get("font") : FONTS[0][0];
-  const initialPreset = COLOR_PRESETS[params.get("preset")] ? params.get("preset") : "paper-orange";
+  const initialPreset = COLOR_PRESETS[params.get("preset")] ? params.get("preset") : "tolia";
   const colors = expandPreset(COLOR_PRESETS[initialPreset]);
   COLOR_KEYS.forEach((key) => {
     const value = params.get(COLOR_PARAM[key]);

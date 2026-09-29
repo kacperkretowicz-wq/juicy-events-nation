@@ -28,8 +28,8 @@
     <meta name="twitter:title" content="Juicy Events — agencja eventowa dla marek, które chcą więcej" />
     <meta name="twitter:description" content="Event design, produkcja i strategia. Tworzymy wydarzenia, które mówią językiem Twojej marki — od briefu po mierzalny wynik." />
     <meta name="twitter:image" content="https://juicyevents.pl/media/og-cover.jpg" />
-    <link rel="preload" href="/fonts/leveled/PPMori-Regular.woff2" as="font" type="font/woff2" crossorigin />
-    <link rel="preload" href="/fonts/leveled/ABCDiatypePlusVariable.woff2" as="font" type="font/woff2" crossorigin />
+    <link rel="preload" href="/fonts/figtree/figtree-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin />
+    <link rel="preload" href="/fonts/figtree/figtree-latin-ext-wght-normal.woff2" as="font" type="font/woff2" crossorigin />
     <link rel="icon" href="/media/favicon-32.png?v=je" type="image/png" sizes="32x32" />
     <link rel="icon" href="/media/favicon-16.png?v=je" type="image/png" sizes="16x16" />
     <link rel="apple-touch-icon" href="/media/apple-touch-icon.png?v=je" />
@@ -57,8 +57,7 @@
 
   <body>
     <a class="skip-link" href="#top">Przejdź do treści</a>
-    <div class="grain" aria-hidden="true"></div>
-    <a class="palette-lab-launch" href="/?palette-lab=1" aria-label="Otwórz panel wyboru czcionek i kolorów">Czcionki i kolory <span aria-hidden="true">↗</span></a>
+    <!-- Panel „Czcionki i kolory” jest ukryty — otwiera go adres /?palette-lab=1 (np. do wspólnej sesji z klientem). -->
     <div class="palette-lab" aria-label="Laboratorium typografii i kolorów">
       <button class="palette-lab__toggle" type="button" data-palette-toggle aria-expanded="true" aria-controls="palette-lab-body">
         <span data-palette-toggle-label>Zwiń panel</span>
@@ -67,7 +66,7 @@
       <div class="palette-lab__body" id="palette-lab-body">
         <span class="palette-lab__section-label palette-lab__section-label--first">Typografia</span>
       <div class="palette-lab__font-grid" role="group" aria-label="Kroje pisma">
-        <a class="palette-lab__font-button" role="button" data-font-choice="pp-mori" href="?palette-lab=1&font=pp-mori" aria-pressed="false"><strong>PP Mori</strong><small>obecny</small></a>
+        <a class="palette-lab__font-button" role="button" data-font-choice="figtree" href="?palette-lab=1&font=figtree" aria-pressed="false"><strong>Figtree</strong><small>obecny</small></a>
         <a class="palette-lab__font-button" role="button" data-font-choice="space-grotesk" href="?palette-lab=1&font=space-grotesk" aria-pressed="false"><strong>Space Grotesk</strong><small>neo grotesk</small></a>
         <a class="palette-lab__font-button" role="button" data-font-choice="instrument-sans" href="?palette-lab=1&font=instrument-sans" aria-pressed="false"><strong>Instrument Sans</strong><small>neutralny</small></a>
         <a class="palette-lab__font-button" role="button" data-font-choice="dm-sans" href="?palette-lab=1&font=dm-sans" aria-pressed="false"><strong>DM Sans</strong><small>geometryczny</small></a>
@@ -77,7 +76,6 @@
         <a class="palette-lab__font-button" role="button" data-font-choice="sora" href="?palette-lab=1&font=sora" aria-pressed="false"><strong>Sora</strong><small>techno soft</small></a>
         <a class="palette-lab__font-button" role="button" data-font-choice="bricolage" href="?palette-lab=1&font=bricolage" aria-pressed="false"><strong>Bricolage Grotesque</strong><small>charakter</small></a>
         <a class="palette-lab__font-button" role="button" data-font-choice="archivo" href="?palette-lab=1&font=archivo" aria-pressed="false"><strong>Archivo</strong><small>plakatowy</small></a>
-        <a class="palette-lab__font-button" role="button" data-font-choice="figtree" href="?palette-lab=1&font=figtree" aria-pressed="false"><strong>Figtree</strong><small>humanistyczny</small></a>
         <a class="palette-lab__font-button" role="button" data-font-choice="urbanist" href="?palette-lab=1&font=urbanist" aria-pressed="false"><strong>Urbanist</strong><small>fashion</small></a>
         <a class="palette-lab__font-button" role="button" data-font-choice="epilogue" href="?palette-lab=1&font=epilogue" aria-pressed="false"><strong>Epilogue</strong><small>art direction</small></a>
         <a class="palette-lab__font-button" role="button" data-font-choice="syne" href="?palette-lab=1&font=syne" aria-pressed="false"><strong>Syne</strong><small>expressive</small></a>
@@ -109,6 +107,8 @@
       </div>
       <span class="palette-lab__section-label">Kolorystyka</span>
       <div class="palette-lab__color-grid" role="group" aria-label="Presety kolorystyczne">
+        <a class="palette-lab__color-preset" role="button" data-color-preset="tolia" href="?palette-lab=1&preset=tolia" style="--preset-bg:#f6efdf;--preset-accent:#d52518;--preset-text:#1c1712" aria-pressed="false"><strong>Tolia: krem + pomidor</strong><small>obecna</small></a>
+        <a class="palette-lab__color-preset" role="button" data-color-preset="tolia-forest" href="?palette-lab=1&preset=tolia-forest" style="--preset-bg:#f6efdf;--preset-accent:#d52518;--preset-text:#18542a" aria-pressed="false"><strong>Tolia + zieleń</strong><small>ciemne sekcje w zieleni</small></a>
         <a class="palette-lab__color-preset" role="button" data-color-preset="paper-orange" href="?palette-lab=1&preset=paper-orange" style="--preset-bg:#f4f2ec;--preset-accent:#f4511e;--preset-text:#17130f" aria-pressed="false"><strong>Papier + oranż</strong><small>bazowy kierunek</small></a>
         <a class="palette-lab__color-preset" role="button" data-color-preset="paper-tomato" href="?palette-lab=1&preset=paper-tomato" style="--preset-bg:#f7f0e7;--preset-accent:#f13a1b;--preset-text:#17130f" aria-pressed="false"><strong>Papier + pomidor</strong><small>mocny kontrast</small></a>
         <a class="palette-lab__color-preset" role="button" data-color-preset="sunshine" href="?palette-lab=1&preset=sunshine" style="--preset-bg:#fff15a;--preset-accent:#f45b1a;--preset-text:#17130a" aria-pressed="false"><strong>Sunshine</strong><small>żółty plakat</small></a>
@@ -296,7 +296,7 @@
         </div>
       </section>
 
-      <!-- KLIENCI — tuż po showreelu: prawdziwe logotypy marek (feedback właściciela).
+      <!-- KLIENCI — tuż po showreelu: prawdziwe logotypy marek (feedback właściciela), nieruchomo.
            Źródła: John Deere i Volvo — Wikimedia; Multichem — multichem.pl;
            Active & Fashion.Art — znak z projekcji na ich evencie (nagranie Juicy).
            Nowe logo = kolejne <li> z <img>; modyfikator --wide/--tall wyrównuje wysokość. -->
@@ -304,8 +304,8 @@
         <div class="clients__head">
           <p class="eyebrow" id="clients-label">Zaufały nam marki</p>
         </div>
-        <div class="clients__marquee" data-marquee data-marquee-speed="70">
-          <ul class="clients__track" data-marquee-track>
+        <div class="clients__marquee">
+          <ul class="clients__track">
             <li class="clients__item clients__item--badge"><img src="/media/klienci/john-deere.svg" alt="John Deere" width="806" height="588" decoding="async" /></li>
             <li class="clients__item"><img src="/media/klienci/volvo.svg" alt="Volvo" width="255" height="255" decoding="async" /></li>
             <li class="clients__item clients__item--wide"><img src="/media/klienci/multichem.svg" alt="Multichem" width="597" height="194" decoding="async" /></li>
@@ -314,7 +314,10 @@
         </div>
       </section>
 
-      <!-- OPIS — pionowy kadr z migającym znakiem po lewej i opis po prawej -->
+      <!-- OPIS — tytuł po lewej, po prawej zwykły czerwony kafelek z krótkim filmem w kwadracie
+           (feedback właściciela 25.09: „Za dużo. Wróciłbym do zwykłego kafelka czerwonego
+           z krótkim filmem w kwadracie”). Film: 8-sekundowa pętla z gali Active & Fashion.Art,
+           po kliknięciu — pełny showreel z dźwiękiem. -->
       <section class="work" id="praca">
         <div class="work__copy">
           <p class="eyebrow work__eyebrow">Nasza praca</p>
@@ -323,7 +326,6 @@
           </h2>
           <div class="work__text" data-fade-group>
             <p>
-              Projektujemy wydarzenia, które przyciągają uwagę, budują relacje i zostają w głowie.
               Od strategii i kreacji po produkcję i analizę efektów - działamy na emocje i na liczby.
             </p>
             <a class="btn" href="#realizacje">Zobacz realizacje</a>
@@ -342,11 +344,11 @@
               <video
                 class="work__video"
                 data-work-video
-                data-work-preview="/media/work-preview.mp4"
+                data-work-preview="/media/work-square.mp4"
                 data-work-showreel="/media/work-showreel.mp4"
                 preload="auto"
-                src="/media/work-preview.mp4"
-                poster="/media/work-preview-poster.jpg"
+                src="/media/work-square.mp4"
+                poster="/media/work-square-poster.jpg"
                 muted
                 loop
                 playsinline
@@ -371,19 +373,18 @@
       </section>
 
       <!-- REALIZACJE — portfolio zaraz po opisie (układ „od razu portfolio” jak u Leveled).
-           Kafle w nieregularnej siatce; hover = kolorowe tło (pomarańcz / cytryna / niebieski)
+           Kafle w nieregularnej siatce; hover = kolorowe tło (czerwień / słońce / niebieski)
            i film albo pokaz zdjęć w kadrze 9:16. Pod kaflem tylko marka + tytuł. -->
       <section class="projects" id="realizacje">
         <div class="projects__head">
           <h2 class="projects__title" data-headline-reveal>
-            Wybrane <span class="bracket">realizacje</span>
+            Wybrane realizacje
           </h2>
-          <p class="projects__count" aria-hidden="true">(06)</p>
           <a class="link-arrow projects__all" href="realizacje.html">Wszystkie realizacje</a>
         </div>
 
         <div class="projects__grid projects__grid--editorial" data-projects>
-          <article class="project-card project-card--has-video" data-project data-tile="juice">
+          <article class="project-card project-card--has-video" data-project data-tile="tomato">
             <a class="project-card__link" href="realizacje-active-fashion.html">
               <span class="project-card__media">
                 <img class="project-card__cover" decoding="async" width="1800" height="1200" src="/media/realizacje/active-fashion/01.jpg" alt="Active Fashion — pokaz mody z pełną oprawą sceniczną" loading="lazy" />
@@ -397,7 +398,7 @@
             </a>
           </article>
 
-          <article class="project-card" data-project data-tile="lemon">
+          <article class="project-card" data-project data-tile="sun">
             <a class="project-card__link" href="realizacje-john-deere.html">
               <span class="project-card__media">
                 <img class="project-card__cover" decoding="async" width="1200" height="1800" src="/media/realizacje/john-deere/08.jpg" alt="John Deere — jubileusz 25 lat marki w Polsce" loading="lazy" />
@@ -431,7 +432,7 @@
             </a>
           </article>
 
-          <article class="project-card project-card--has-video" data-project data-tile="juice">
+          <article class="project-card project-card--has-video" data-project data-tile="tomato">
             <a class="project-card__link" href="realizacje-retro-rush.html">
               <span class="project-card__media">
                 <img class="project-card__cover" decoding="async" width="1800" height="1200" src="/media/realizacje/retro-rush/02.jpg" alt="Retro Rush — imprezowa podróż w czasie z pełną oprawą" loading="lazy" />
@@ -445,7 +446,7 @@
             </a>
           </article>
 
-          <article class="project-card" data-project data-tile="lemon">
+          <article class="project-card" data-project data-tile="sun">
             <a class="project-card__link" href="realizacje-rainbow.html">
               <span class="project-card__media">
                 <img class="project-card__cover" decoding="async" width="1200" height="1800" src="/media/realizacje/rainbow/01.jpg" alt="Rainbow — wydarzenie z autorską oprawą artystyczną" loading="lazy" />
@@ -530,8 +531,7 @@
               </button>
               <div class="expertise-item__body" data-pinned-body>
                 <p>
-                  Gale i jubileusze, konferencje, premiery produktowe, eventy firmowe, sportowe
-                  i prywatne. Prowadzimy projekt od koncepcji po ostatniego gościa.
+                  Gale, konferencje, premiery i eventy firmowe — od koncepcji po ostatniego gościa.
                 </p>
               </div>
             </article>
@@ -544,7 +544,6 @@
               <div class="expertise-item__body" data-pinned-body>
                 <p>
                   Każde wydarzenie projektujemy jak kampanię — z celem, KPI i kontrolą efektów.
-                  Emocja staje się narzędziem, a event inwestycją, nie kosztem.
                 </p>
               </div>
             </article>
@@ -556,8 +555,7 @@
               </button>
               <div class="expertise-item__body" data-pinned-body>
                 <p>
-                  Reżyseria wieczoru, DJ-e, zespoły, wokaliści i performerzy dobrani do charakteru
-                  marki i celu wydarzenia.
+                  Reżyseria wieczoru, artyści i performerzy dobrani do charakteru marki.
                 </p>
               </div>
             </article>
@@ -569,8 +567,7 @@
               </button>
               <div class="expertise-item__body" data-pinned-body>
                 <p>
-                  Światło, dźwięk, mapping i efekty specjalne, które nie są dodatkiem —
-                  prowadzą narrację marki.
+                  Światło, dźwięk i efekty, które nie są dodatkiem — prowadzą narrację marki.
                 </p>
               </div>
             </article>
@@ -582,8 +579,7 @@
               </button>
               <div class="expertise-item__body" data-pinned-body>
                 <p>
-                  Design przestrzeni, branding, recepcja VIP, multimedia i dokumentacja —
-                  żeby całe wydarzenie było spójne i zapamiętane.
+                  Przestrzeń, recepcja VIP i dokumentacja — spójnie od wejścia po relację.
                 </p>
               </div>
             </article>
@@ -591,12 +587,12 @@
         </div>
       </section>
 
-      <!-- ZESPÓŁ — karty w rytmie strony (biała / pomarańczowa / czarna / cytrynowa) -->
+      <!-- ZESPÓŁ — karty w rytmie strony (biała / czerwona / czarna / niebieska — Jakub na niebiesko) -->
       <section class="team" id="zespol">
         <div class="team__head">
           <p class="eyebrow">Zespół</p>
           <h2 class="team__title" data-headline-reveal>
-            Kto odbierze Twój <span class="bracket">brief?</span>
+            Kto odbierze Twój brief?
           </h2>
         </div>
 

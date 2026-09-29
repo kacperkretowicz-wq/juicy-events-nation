@@ -1,8 +1,8 @@
 /* ——— REALIZACJE ———
    Nieregularna siatka (12 kolumn, przesunięcia w pionie) zamiast symetrycznego 2×3.
    Pod kaflem tylko marka + tytuł. Hover (jak Leveled): zdjęcie zwija się do kadru
-   9:16, tło kafla przejmuje kolor (pomarańcz / cytryna / niebieski), w kadrze gra
-   film albo szybki pokaz zdjęć, a za kursorem jedzie etykieta „Zobacz case”. */
+   9:16, tło kafla przejmuje kolor z palety zespołu (czerwień / słońce / niebieski),
+   w kadrze gra film albo spokojny pokaz zdjęć, a za kursorem jedzie etykieta „Zobacz case”. */
 
 .projects {
   max-width: var(--max);
@@ -32,7 +32,7 @@
   align-self: flex-start;
   margin: 0.35em 0 0;
   font-family: var(--font-label);
-  font-weight: 400;
+  font-weight: 600;
   letter-spacing: var(--label-tracking);
   font-size: var(--label);
   color: var(--muted);
@@ -105,8 +105,8 @@
   position: relative;
 }
 
-.project-card[data-tile="lemon"] {
-  --tile: var(--lemon);
+.project-card[data-tile="sun"] {
+  --tile: var(--sun);
 }
 
 .project-card[data-tile="blue"] {
@@ -172,7 +172,7 @@
   position: absolute;
   inset: 0;
   opacity: 0;
-  transition: opacity 0.12s linear;
+  transition: opacity 0.5s var(--ease);
 }
 
 .peek-slide.is-active {
@@ -189,17 +189,17 @@
   padding: 0.45rem 0.7rem;
   border-radius: 999px;
   background: var(--ink);
-  color: var(--lemon);
+  color: var(--white);
   font-family: var(--font-label);
-  font-weight: 400;
+  font-weight: 600;
   font-size: var(--label);
   letter-spacing: var(--label-tracking);
   text-transform: uppercase;
   white-space: nowrap;
   pointer-events: none;
   opacity: 0;
-  transform: translate3d(var(--cx, 50%), var(--cy, 50%), 0) translate(-50%, -50%) rotate(-4deg) scale(0.8);
-  transition: opacity 0.25s var(--ease), transform 0.35s var(--ease-juicy);
+  transform: translate3d(var(--cx, 50%), var(--cy, 50%), 0) translate(-50%, -50%) scale(0.9);
+  transition: opacity 0.25s var(--ease), transform 0.35s var(--ease);
 }
 
 @media (hover: hover) and (min-width: 981px) {
@@ -218,7 +218,7 @@
 
   .project-card:hover .project-card__cursor {
     opacity: 1;
-    transform: translate3d(var(--cx, 50%), var(--cy, 50%), 0) translate(-50%, -50%) rotate(-4deg) scale(1);
+    transform: translate3d(var(--cx, 50%), var(--cy, 50%), 0) translate(-50%, -50%) scale(1);
   }
 
   .project-card__media {

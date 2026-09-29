@@ -1,7 +1,7 @@
 import { isScrollActive, touchCoarse } from "../shared.js";
 
-// Szybki podgląd zdjęć w okienku peek — tylko na hover (0,4 s / slajd).
-const INTERVAL = 400;
+// Spokojny podgląd zdjęć w okienku peek — tylko na hover (0,9 s / slajd, przenikanie).
+const INTERVAL = 900;
 
 export function initProjectSlideshow() {
   const peeks = [...document.querySelectorAll("[data-peek-slideshow]")];

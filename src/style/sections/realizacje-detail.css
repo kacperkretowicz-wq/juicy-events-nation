@@ -35,7 +35,7 @@
   border: 1px solid var(--line);
   border-radius: 999px;
   font-family: var(--font-label);
-  font-weight: 400;
+  font-weight: 600;
   font-size: var(--label);
   letter-spacing: var(--label-tracking);
   text-transform: uppercase;
@@ -44,7 +44,7 @@
 .realizacje-hero .project-card__meta span:first-child {
   border-color: var(--accent);
   background: var(--accent);
-  color: var(--ink);
+  color: var(--on-accent);
 }
 
 .realizacje-media {

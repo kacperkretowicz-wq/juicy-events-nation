@@ -1,14 +1,17 @@
 import gsap from "gsap";
 import { lenis } from "../shared.js";
 
-// Intro: 1) logotyp Je! na czerni, 2) szybkie miganie logo, 3) pełny ekran —
-// zdjęcia co 300 ms; po 3. kadrze logo znika, montaż leci dalej.
+// Intro: 1) logotyp Je! na czerni, 2) dwa mrugnięcia logo, 3) pełny ekran —
+// zdjęcia co 420 ms; po 2. kadrze logo znika, montaż leci dalej.
+// Po feedbacku 28.09 („za dużo się dzieje”) spokojniej niż wcześniej (6 błysków
+// co 55 ms i 9 kadrów co 300 ms) — i w granicy WCAG 2.3.1 (maks. 3 błyski na sekundę).
 
-const CUT_MS = 300;
-const CUTS = 9;
-const LOGO_HOLD = 0.42;
-const LOGO_BLINKS = 6;
-const LOGO_HIDE_AFTER_SHOTS = 3;
+const CUT_MS = 420;
+const CUTS = 6;
+const LOGO_HOLD = 0.6;
+const LOGO_BLINKS = 2;
+const LOGO_BLINK_DURATION = 0.18;
+const LOGO_HIDE_AFTER_SHOTS = 2;
 
 const PROJECTS = [
   ["john-deere", 12],
@@ -114,7 +117,7 @@ export function initHeroIntro() {
     tl.to({}, { duration: LOGO_HOLD })
       .to([markJ, markE], {
         opacity: 0,
-        duration: 0.055,
+        duration: LOGO_BLINK_DURATION,
         repeat: LOGO_BLINKS,
         yoyo: true,
         ease: "steps(1)",

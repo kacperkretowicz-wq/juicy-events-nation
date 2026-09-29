@@ -2,57 +2,13 @@ import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { collectHeadlineRevealRoots, ease, softMotion } from "./shared.js";
 
-/** Owija linię w dwie warstwy: bazową i rozbłysk przesuwany maską. */
-function prepareGlow(node) {
-  if (node.dataset.glowReady === "1") return node;
+/** Oznacza linię jako gotową do wjazdu. (Wcześniej owijała ją też warstwą
+ *  kolorowej „poświaty” przechodzącej przez nagłówek — usunięte po feedbacku
+ *  28.09: „za dużo efektów”.) */
+function prepareLine(node) {
   if (!node.textContent.trim()) return null;
-
-  const markup = node.innerHTML;
   node.dataset.glowReady = "1";
-  node.classList.add("text-glow");
-  node.innerHTML = "";
-
-  const base = document.createElement("span");
-  base.className = "text-glow__base";
-  base.innerHTML = markup;
-
-  const fire = document.createElement("span");
-  fire.className = "text-glow__fire";
-  fire.setAttribute("aria-hidden", "true");
-  fire.innerHTML = markup;
-
-  node.append(base, fire);
   return node;
-}
-
-/** Przygotowanie poświaty bez wjazdu linii (np. nagłówki kompetencji przy scrollu). */
-export function ensureHeadlineGlow(node) {
-  if (!node) return null;
-  return prepareGlow(node);
-}
-
-/** Sam sweep czerwonej poświaty — można odtwarzać wielokrotnie. */
-export function playGlowSweep(node) {
-  if (!node) return;
-  ensureHeadlineGlow(node);
-
-  const glowSweepDur = 1.28;
-  const glowHoldDur = 0.45;
-  const glowFadeDur = 0.95;
-
-  gsap.killTweensOf(node);
-  node.classList.remove("is-text-glow-done");
-
-  gsap
-    .timeline()
-    .set(node, { "--glow-intensity": 1, "--glow-sweep": 0 })
-    .to(node, { "--glow-sweep": 1, duration: glowSweepDur, ease: "power2.inOut" })
-    .to(
-      node,
-      { "--glow-intensity": 0, duration: glowFadeDur, ease: "power2.out" },
-      glowSweepDur + glowHoldDur
-    )
-    .add(() => node.classList.add("is-text-glow-done"));
 }
 
 function playHeadlineReveal(lines, root) {
@@ -62,31 +18,20 @@ function playHeadlineReveal(lines, root) {
 }
 
 export function revealLines(nodes, delay = 0) {
-  const lineStagger = 0.12;
-  const riseDur = softMotion ? 1.55 : 2.15;
-  const glowSweepDelay = 0.14;
-  const glowSweepDur = 1.28;
-  const glowHoldDur = 0.45;
-  const glowFadeDur = 0.95;
+  const lineStagger = 0.1;
+  const riseDur = softMotion ? 1.1 : 1.35;
 
   nodes.forEach((node, i) => {
     if (node.dataset.glowPlayed === "1") return;
     node.dataset.glowPlayed = "1";
 
-    const tl = gsap.timeline({ delay: delay + i * lineStagger });
-    tl.to(node, { yPercent: 0, duration: riseDur, ease }, 0);
-
-    if (node.classList.contains("text-glow")) {
-      tl.set(node, { "--glow-intensity": 1 }, glowSweepDelay)
-        .fromTo(
-          node,
-          { "--glow-sweep": 0 },
-          { "--glow-sweep": 1, duration: glowSweepDur, ease: "power2.inOut" },
-          glowSweepDelay
-        )
-        .to(node, { "--glow-intensity": 0, duration: glowFadeDur, ease: "power2.out" }, glowSweepDelay + glowSweepDur + glowHoldDur)
-        .add(() => node.classList.add("is-text-glow-done"));
-    }
+    gsap.to(node, {
+      yPercent: 0,
+      duration: riseDur,
+      ease,
+      delay: delay + i * lineStagger,
+      onComplete: () => node.classList.add("is-text-glow-done"),
+    });
   });
 }
 
@@ -99,12 +44,12 @@ function headlineLines(root) {
 }
 
 export function prepareHeadline(root) {
-  const lines = headlineLines(root).map(prepareGlow).filter(Boolean);
+  const lines = headlineLines(root).map(prepareLine).filter(Boolean);
   gsap.set(lines, { yPercent: 110 });
   return lines;
 }
 
-/** Odsłona nagłówka + czerwona poświata (większe h1/h2 w main — patrz collectHeadlineRevealRoots). */
+/** Odsłona nagłówka linia po linii (większe h1/h2 w main — patrz collectHeadlineRevealRoots). */
 export function bindHeadlineReveal(root) {
   if (!root || root.dataset.revealBound === "1") return;
 

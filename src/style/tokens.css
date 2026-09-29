@@ -1,56 +1,63 @@
 :root {
-  /* Powierzchnie — ciepły papier zamiast sweetpunkowego #f5f5f0 */
-  --cream: #f4f2ec;
-  --cream-deep: #e9e6dd;
-  --white: #ffffff;
-  --ink: #121212;
-  --dark: #121212;
-  --dark-soft: #1e1e1e;
-  --muted: #64625c;
-  --muted-light: rgba(244, 242, 236, 0.62);
-  --on-dark-muted: rgba(244, 242, 236, 0.76);
-  --on-dark-line: rgba(244, 242, 236, 0.32);
-  --line: rgba(18, 18, 18, 0.14);
-  --line-light: rgba(255, 255, 255, 0.16);
+  /* Paleta po feedbacku 25.09 i 28.09 — w stylu Tolia Foods (paleta od właściciela):
+     krem, pomidorowa czerwień, słońce, butelkowa zieleń. Zamiast pomarańczu, neonowej
+     cytryny i niebieskiego naraz — trzy ciepłe kolory z jasnymi rolami:
+     --accent (czerwień)  — kolor marki: przyciski, słowo-klucz, kafelek, dół strony
+     --lemon  (słońce)    — tylko „po najechaniu” (hover), jak prosił właściciel
+     --dark   (czerń)     — kompetencje i stopka (wariant z zielenią: panel ?palette-lab=1)
+     Niebieski zostaje na karcie Jakuba (prośba właściciela) i w kaflach realizacji po najechaniu. */
+  --tomato: #d52518;
+  --sun: #ffc926;
+  --forest: #18542a;
+  --kiwi: #9abc05;
+  --carrot: #f96015;
 
-  /* Paleta „juicy” — pomarańcz jako kolor marki, cytryna jako akcent hover,
-     niebieski jako trzeci kolor kafli (jak rytm kolorów u Leveled).
-     --accent       — tła, przyciski, duże plamy koloru
-     --accent-text  — pomarańcz do TEKSTU na jasnym tle (kontrast ≥ 3:1)
-     --lemon        — stan hover / wyróżnienia na ciemnym
-     --blue         — trzeci kolor kafli i kart */
-  --accent: #ff4f18;
-  --accent-deep: #e03e0a;
-  --accent-text: #e9440f;
-  --accent-soft: #ff7a4d;
-  --accent-warm: #ff4f18;
-  --footer-accent: #e33a1b;
-  --on-accent: #ffffff;
-  --lemon: #f1ff66;
-  --blue: #3b5bff;
+  /* Powierzchnie — kremowe tło (jaśniejsza wersja Tolia Cream #f3e8cc). */
+  --cream: #f6efdf;
+  --cream-deep: #ece2c9;
+  --white: #fffdf8;
+  --ink: #1c1712;
+  --dark: #1c1712;
+  --dark-soft: #2b241d;
+  --muted: #6d6456;
+  --muted-light: rgba(246, 239, 223, 0.64);
+  --on-dark-muted: rgba(246, 239, 223, 0.8);
+  --on-dark-line: rgba(246, 239, 223, 0.3);
+  --line: rgba(28, 23, 18, 0.14);
+  --line-light: rgba(255, 253, 248, 0.16);
 
-  /* Rytm */
-  --pad: clamp(1.25rem, 3.2vw, 3.25rem);
-  --max: 1560px;
+  --accent: var(--tomato);
+  --accent-deep: #b81d12;
+  --accent-text: #c81f14;
+  --accent-soft: #e0493b;
+  --accent-warm: var(--tomato);
+  --footer-accent: var(--tomato);
+  --on-accent: #fffdf8;
+  --lemon: var(--sun);
+  --blue: #2f4fd1;
+
+  /* Rytm — trochę więcej powietrza między sekcjami. */
+  --pad: clamp(1.25rem, 3.4vw, 3.5rem);
+  --max: 1520px;
   --gutter: clamp(0.75rem, 1.1vw, 1.15rem);
-  --block: clamp(5.5rem, 12vw, 10.5rem);
+  --block: clamp(6.25rem, 13vw, 11.5rem);
 
-  /* Typografia: Mori Regular w dużych nagłówkach, Diatype Mono w etykietach. */
-  --font: "PP Mori", "Helvetica Neue", Arial, sans-serif;
-  --font-display: "PP Mori", "Helvetica Neue", Arial, sans-serif;
-  --font-accent: "PP Mori", "Helvetica Neue", Arial, sans-serif;
-  --font-label: "ABC Diatype", monospace;
-  --display-weight: 400;
-  --accent-weight: 400;
-  --label-tracking: 0.02em;
-  --display-1: clamp(2.75rem, 7.4vw, 7.75rem);
-  --display-2: clamp(2.25rem, 5.4vw, 5.6rem);
-  --display-3: clamp(1.75rem, 3.5vw, 3.5rem);
-  --display-4: clamp(1.3rem, 2.1vw, 2.1rem);
-  --body-lg: clamp(1.1rem, 1.35vw, 1.35rem);
-  --body: clamp(1rem, 1.08vw, 1.12rem);
-  --micro: clamp(0.72rem, 0.8vw, 0.8rem);
-  --label: clamp(0.74rem, 0.82vw, 0.84rem);
+  /* Typografia: Figtree w całym serwisie (wybór właściciela 28.09). */
+  --font: "Figtree", "Helvetica Neue", Arial, sans-serif;
+  --font-display: var(--font);
+  --font-accent: var(--font);
+  --font-label: var(--font);
+  --display-weight: 500;
+  --accent-weight: 500;
+  --label-tracking: 0.08em;
+  --display-1: clamp(2.7rem, 6.8vw, 7.1rem);
+  --display-2: clamp(2.2rem, 4.9vw, 5rem);
+  --display-3: clamp(1.7rem, 3.1vw, 3.1rem);
+  --display-4: clamp(1.3rem, 1.9vw, 1.9rem);
+  --body-lg: clamp(1.08rem, 1.25vw, 1.28rem);
+  --body: clamp(1rem, 1.05vw, 1.1rem);
+  --micro: clamp(0.72rem, 0.78vw, 0.8rem);
+  --label: clamp(0.72rem, 0.78vw, 0.8rem);
 
   /* Ikona strzałki jako maska (kolor = background). */
   --icon-arrow: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M4 12h15M13 5.5 19.5 12 13 18.5' fill='none' stroke='%23000' stroke-width='2.3' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");

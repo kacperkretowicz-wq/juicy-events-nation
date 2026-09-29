@@ -1,4 +1,4 @@
-// ——— Mikro-efekty: reveal galerii i magnetyczne CTA (wordmark stopki: marquee.js) ———
+// ——— Mikro-efekty: delikatne wejście kadrów galerii (wordmark stopki: marquee.js) ———
 // Amplitudy trzymane nisko — mają być wyczuwalne, nie krzykliwe.
 // (`softMotion` = tylko opt-in `?reduced` w URL — patrz shared.js.)
 
@@ -63,45 +63,6 @@ export function initMediaReveal() {
   });
 }
 
-/* Magnetyczne główne CTA (±8 px). */
-export function initMagneticButtons() {
-  if (softMotion || !window.matchMedia("(hover: hover)").matches) return;
-
-  document.querySelectorAll(".btn").forEach((btn) => {
-    let x = 0;
-    let y = 0;
-    let tx = 0;
-    let ty = 0;
-    let raf = null;
-
-    const loop = () => {
-      x += (tx - x) * 0.2;
-      y += (ty - y) * 0.2;
-      btn.style.transform = `translate(${x.toFixed(2)}px, ${y.toFixed(2)}px)`;
-      if (Math.abs(tx - x) > 0.1 || Math.abs(ty - y) > 0.1) {
-        raf = requestAnimationFrame(loop);
-      } else {
-        raf = null;
-        if (tx === 0 && ty === 0) btn.style.transform = "";
-      }
-    };
-
-    btn.addEventListener("pointermove", (e) => {
-      const r = btn.getBoundingClientRect();
-      tx = Math.max(-8, Math.min(8, (e.clientX - (r.left + r.width / 2)) * 0.18));
-      ty = Math.max(-6, Math.min(6, (e.clientY - (r.top + r.height / 2)) * 0.18));
-      if (!raf) raf = requestAnimationFrame(loop);
-    });
-
-    btn.addEventListener("pointerleave", () => {
-      tx = 0;
-      ty = 0;
-      if (!raf) raf = requestAnimationFrame(loop);
-    });
-  });
-}
-
 export function initMicroFx() {
   initMediaReveal();
-  initMagneticButtons();
 }

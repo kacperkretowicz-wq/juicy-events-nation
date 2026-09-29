@@ -1,5 +1,5 @@
 .mission {
-  height: 240svh;
+  height: 210svh;
   background: var(--cream);
   color: var(--white);
 }
@@ -36,10 +36,10 @@
   background: linear-gradient(
     180deg,
     var(--cream) 0%,
-    rgba(244, 242, 236, 0.94) 11%,
-    rgba(210, 207, 199, 0.72) 26%,
-    rgba(145, 143, 138, 0.58) 46%,
-    rgba(40, 38, 36, 0.8) 72%,
+    color-mix(in srgb, var(--cream) 94%, transparent) 11%,
+    color-mix(in srgb, var(--cream-deep) 70%, rgba(120, 112, 98, 0.6)) 26%,
+    rgba(140, 132, 118, 0.58) 46%,
+    color-mix(in srgb, var(--dark) 80%, transparent) 72%,
     var(--dark) 100%
   );
 }
@@ -73,7 +73,7 @@
   font-size: var(--display-1);
   font-weight: var(--display-weight);
   line-height: 1;
-  letter-spacing: -0.028em;
+  letter-spacing: -0.034em;
 }
 
 .mission__lead {
@@ -94,7 +94,7 @@
   align-self: end;
 }
 
-/* Rotujące słowa = akcent marki (Mori Regular, cytryna na ciemnym). */
+/* Rotujące słowa — białe na zdjęciu (feedback właściciela: „napisy na biało bym zrobił”). */
 .mission__word {
   position: absolute;
   left: 0;
@@ -102,7 +102,7 @@
   top: auto;
   font-family: var(--font-accent);
   font-weight: var(--accent-weight);
-  letter-spacing: -0.025em;
+  letter-spacing: -0.03em;
   white-space: nowrap;
   color: var(--white);
   transform-origin: left bottom;

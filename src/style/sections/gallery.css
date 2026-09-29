@@ -83,7 +83,7 @@
 .gallery-item p {
   margin: 0;
   font-family: var(--font-label);
-  font-weight: 400;
+  font-weight: 600;
   font-size: var(--label);
   letter-spacing: var(--label-tracking);
   text-transform: uppercase;

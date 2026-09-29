@@ -6,7 +6,7 @@
 /* Akt pierwszy — sticky scena z nagłówkiem i kurtyną.
    Więcej wysokości = więcej scrolla na lot logo, więc jest wolniejszy i finezyjny. */
 .agency__act {
-  height: 260svh;
+  height: 240svh;
 }
 
 .agency__stage {
@@ -208,8 +208,8 @@
   background: var(--accent);
   color: var(--on-accent);
   font-size: var(--micro);
-  font-weight: 700;
-  letter-spacing: 0.16em;
+  font-weight: 600;
+  letter-spacing: var(--label-tracking);
   text-transform: uppercase;
   cursor: pointer;
   opacity: 0;
@@ -312,13 +312,14 @@ html.js body:has([data-agency]) .site-header__logo img {
   color: var(--muted);
 }
 
-/* Warstwa jasna leży na wideo (akcent cytrynowy), ciemna na papierze (pomarańcz). */
+/* Warstwa jasna leży na wideo (słowo-klucz białe — feedback: „tutaj zostawiłbym
+   raczej białe”), ciemna na kremie (czerwień marki). */
 .agency__layer--light .bracket {
-  color: var(--lemon);
+  color: inherit;
 }
 
 .agency__layer--dark .bracket {
-  color: var(--accent-text);
+  color: var(--accent);
 }
 
 .agency__title {
@@ -329,8 +330,8 @@ html.js body:has([data-agency]) .site-header__logo img {
   font-family: var(--font-display);
   font-size: var(--display-1);
   font-weight: var(--display-weight);
-  line-height: 1.04;
-  letter-spacing: -0.028em;
+  line-height: 1.03;
+  letter-spacing: -0.036em;
 }
 
 .agency__kicker {

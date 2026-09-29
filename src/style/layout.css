@@ -25,6 +25,12 @@
   border-bottom: 1px solid var(--line);
 }
 
+.site-header--ink {
+  background: color-mix(in srgb, var(--dark) 86%, transparent);
+  backdrop-filter: blur(14px);
+  border-bottom: 1px solid var(--line-light);
+}
+
 .site-header__logo {
   justify-self: start;
   display: flex;
@@ -55,7 +61,7 @@
   color: var(--white);
   font-family: var(--font-label);
   font-size: var(--label);
-  font-weight: 400;
+  font-weight: 600;
   letter-spacing: var(--label-tracking);
   text-transform: uppercase;
   cursor: pointer;
@@ -101,7 +107,7 @@
   border-radius: 999px;
   font-family: var(--font-label);
   font-size: var(--label);
-  font-weight: 400;
+  font-weight: 600;
   letter-spacing: var(--label-tracking);
   text-transform: uppercase;
   transition: background 0.35s var(--ease), color 0.35s var(--ease),
@@ -151,7 +157,7 @@
   border-radius: 999px;
   color: inherit;
   font-family: var(--font-label);
-  font-weight: 400;
+  font-weight: 600;
   font-size: var(--label);
   letter-spacing: var(--label-tracking);
   text-transform: uppercase;
@@ -181,8 +187,8 @@
   font-family: var(--font-display);
   font-size: var(--display-2);
   font-weight: var(--display-weight);
-  line-height: 1.02;
-  letter-spacing: -0.026em;
+  line-height: 1.04;
+  letter-spacing: -0.03em;
   transition: color 0.3s var(--ease), transform 0.4s var(--ease);
 }
 
@@ -371,9 +377,9 @@
   padding-right: 0.28em;
   font-family: var(--font-display);
   font-size: var(--wordmark-size);
-  font-weight: var(--display-weight);
+  font-weight: 600;
   line-height: 0.84;
-  letter-spacing: -0.03em;
+  letter-spacing: -0.04em;
   text-transform: uppercase;
   white-space: nowrap;
   transform: translateY(0.07em);
@@ -501,8 +507,9 @@
 
 /* ——— PŁYWAJĄCE CTA „KONTAKT" ——— */
 
-/* Obracający się przycisk: pomarańcz marki, na hover cytryna (feedback właściciela:
-   „przycisk kręcący się czerwony, a jak najedziesz — żółty”). */
+/* Obracający się przycisk: czerwień marki, na hover słoneczny żółty (feedback właściciela:
+   „przycisk kręcący się czerwony, a jak najedziesz — żółty”). Mniejszy i wolniejszy
+   niż wcześniej, żeby nie dominował nad treścią. */
 .float-cta {
   position: fixed;
   right: clamp(1rem, 2.4vw, 2.5rem);
@@ -510,12 +517,12 @@
   z-index: 850;
   display: grid;
   place-items: center;
-  width: clamp(6.5rem, 10.5vw, 10rem);
-  height: clamp(6.5rem, 10.5vw, 10rem);
+  width: clamp(6rem, 8.4vw, 8.4rem);
+  height: clamp(6rem, 8.4vw, 8.4rem);
   border-radius: 50%;
   background: var(--accent);
   color: var(--white);
-  box-shadow: 0 22px 48px -18px rgba(224, 62, 10, 0.55);
+  box-shadow: 0 18px 40px -20px rgba(150, 26, 16, 0.5);
   transform: scale(0);
   animation: float-cta-in 0.9s cubic-bezier(0.34, 1.56, 0.64, 1) 0.9s forwards;
   transition: background 0.35s var(--ease), color 0.35s var(--ease), opacity 0.35s var(--ease),
@@ -539,10 +546,10 @@
   fill: currentColor;
   font-family: var(--font-label);
   font-size: 8.2px;
-  font-weight: 400;
+  font-weight: 600;
   letter-spacing: var(--label-tracking);
   text-transform: uppercase;
-  animation: float-cta-spin 16s linear infinite;
+  animation: float-cta-spin 22s linear infinite;
 }
 
 @keyframes float-cta-spin {
@@ -571,12 +578,12 @@
 .float-cta:focus-visible {
   background: var(--lemon);
   color: var(--ink);
-  box-shadow: 0 26px 56px -18px rgba(120, 130, 0, 0.45);
+  box-shadow: 0 20px 44px -20px rgba(150, 110, 0, 0.45);
 }
 
 .float-cta:hover .float-cta__ring,
 .float-cta:focus-visible .float-cta__ring {
-  animation-duration: 6s;
+  animation-duration: 9s;
 }
 
 .float-cta:hover .float-cta__arrow,
@@ -586,11 +593,11 @@
   color: var(--lemon);
 }
 
-/* Nad pomarańczowymi powierzchniami — odwrócenie, żeby kółko nie zlało się z tłem */
+/* Nad czerwonymi powierzchniami — odwrócenie, żeby kółko nie zlało się z tłem */
 .float-cta.is-inverted {
   background: var(--ink);
   color: var(--white);
-  box-shadow: 0 22px 48px -18px rgba(15, 15, 15, 0.4);
+  box-shadow: 0 18px 40px -20px rgba(15, 15, 15, 0.4);
 }
 
 .float-cta.is-inverted .float-cta__arrow {
@@ -610,8 +617,8 @@
 
 @media (max-width: 720px) {
   .float-cta {
-    width: 5.25rem;
-    height: 5.25rem;
+    width: 5rem;
+    height: 5rem;
   }
 
   .float-cta__ring {
