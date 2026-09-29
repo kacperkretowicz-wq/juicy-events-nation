@@ -107,7 +107,8 @@
       </div>
       <span class="palette-lab__section-label">Kolorystyka</span>
       <div class="palette-lab__color-grid" role="group" aria-label="Presety kolorystyczne">
-        <a class="palette-lab__color-preset" role="button" data-color-preset="tolia" href="?palette-lab=1&preset=tolia" style="--preset-bg:#f6efdf;--preset-accent:#d52518;--preset-text:#1c1712" aria-pressed="false"><strong>Tolia: krem + pomidor</strong><small>obecna</small></a>
+        <a class="palette-lab__color-preset" role="button" data-color-preset="mozaika" href="?palette-lab=1&preset=mozaika" style="--preset-bg:#f3e8cc;--preset-accent:#d52518;--preset-text:#18542a" aria-pressed="false"><strong>Mozaika Tolia</strong><small>ten koncept</small></a>
+        <a class="palette-lab__color-preset" role="button" data-color-preset="tolia" href="?palette-lab=1&preset=tolia" style="--preset-bg:#f6efdf;--preset-accent:#d52518;--preset-text:#1c1712" aria-pressed="false"><strong>Tolia: krem + pomidor</strong><small>wersja umiarkowana</small></a>
         <a class="palette-lab__color-preset" role="button" data-color-preset="tolia-forest" href="?palette-lab=1&preset=tolia-forest" style="--preset-bg:#f6efdf;--preset-accent:#d52518;--preset-text:#18542a" aria-pressed="false"><strong>Tolia + zieleń</strong><small>ciemne sekcje w zieleni</small></a>
         <a class="palette-lab__color-preset" role="button" data-color-preset="paper-orange" href="?palette-lab=1&preset=paper-orange" style="--preset-bg:#f4f2ec;--preset-accent:#f4511e;--preset-text:#17130f" aria-pressed="false"><strong>Papier + oranż</strong><small>bazowy kierunek</small></a>
         <a class="palette-lab__color-preset" role="button" data-color-preset="paper-tomato" href="?palette-lab=1&preset=paper-tomato" style="--preset-bg:#f7f0e7;--preset-accent:#f13a1b;--preset-text:#17130f" aria-pressed="false"><strong>Papier + pomidor</strong><small>mocny kontrast</small></a>
@@ -336,6 +337,7 @@
           <button
             class="work__card"
             type="button"
+            data-surface="accent"
             data-work-video-trigger
             aria-expanded="false"
             aria-label="Odtwórz showreel"
@@ -373,7 +375,7 @@
       </section>
 
       <!-- REALIZACJE — portfolio zaraz po opisie (układ „od razu portfolio” jak u Leveled).
-           Kafle w nieregularnej siatce; hover = kolorowe tło (czerwień / słońce / niebieski)
+           Kafle w nieregularnej siatce; hover = kolorowe tło (czerwień / słońce / zieleń)
            i film albo pokaz zdjęć w kadrze 9:16. Pod kaflem tylko marka + tytuł. -->
       <section class="projects" id="realizacje">
         <div class="projects__head">
@@ -415,7 +417,7 @@
             </a>
           </article>
 
-          <article class="project-card" data-project data-tile="blue">
+          <article class="project-card" data-project data-tile="forest">
             <a class="project-card__link" href="realizacje-multichem.html">
               <span class="project-card__media">
                 <img class="project-card__cover" decoding="async" width="1200" height="1800" src="/media/realizacje/multichem/01.jpg" alt="Multichem — konferencja z pełną produkcją techniczną" loading="lazy" />
@@ -463,7 +465,7 @@
             </a>
           </article>
 
-          <article class="project-card" data-project data-tile="blue">
+          <article class="project-card" data-project data-tile="forest">
             <a class="project-card__link" href="realizacje-volvo.html">
               <span class="project-card__media">
                 <img class="project-card__cover" decoding="async" width="1500" height="1000" src="/media/realizacje/volvo/03.jpg" alt="Volvo — networking i premiera z klasą marki premium" loading="lazy" />
@@ -510,80 +512,47 @@
         </div>
       </section>
 
-      <!-- KOMPETENCJE — sticky tytuł + lista; bez nawiasów, większe litery, mniej tekstu -->
-      <section class="expertise" id="kompetencje" data-expertise data-tone="dark">
-        <div class="expertise__inner">
-          <div class="expertise__aside">
-            <p class="eyebrow eyebrow--light">Kompetencje</p>
-            <h2 class="expertise__title" data-headline-reveal>
+      <!-- KOMPETENCJE — „mozaika Tolia”: układ i pary kolorów wprost z palety, którą przesłał
+           właściciel (Sunshine / Cream / Tomato Burst / Forest Green / Kiwi). Jedyne miejsce
+           z pełną paletą — reszta strony zostaje kremowa. -->
+      <section class="expertise expertise--mosaic" id="kompetencje">
+        <div class="mosaic">
+          <div class="mosaic__tile mosaic__tile--title">
+            <p class="eyebrow mosaic__eyebrow">Kompetencje</p>
+            <h2 class="mosaic__heading" data-headline-reveal>
               Jedna agencja. Wszystkie kompetencje <span class="bracket">eventowe.</span>
             </h2>
-            <p class="expertise__count">
-              <span data-expertise-current>01</span><span class="expertise__count-sep">/</span><span>05</span>
-            </p>
           </div>
 
-          <div class="expertise__list" data-expertise-list>
-            <article class="expertise-item is-active" data-expertise-item>
-              <button class="expertise-item__head" type="button" data-pinned-select aria-expanded="true">
-                <span class="expertise-item__index">01</span>
-                <h3>Kompleksowa organizacja wydarzeń</h3>
-              </button>
-              <div class="expertise-item__body" data-pinned-body>
-                <p>
-                  Gale, konferencje, premiery i eventy firmowe — od koncepcji po ostatniego gościa.
-                </p>
-              </div>
-            </article>
+          <article class="mosaic__tile mosaic__tile--cream" data-fade>
+            <span class="mosaic__index">01</span>
+            <h3 class="mosaic__name">Kompleksowa organizacja wydarzeń</h3>
+            <p class="mosaic__text">Gale, konferencje, premiery i eventy firmowe — od koncepcji po ostatniego gościa.</p>
+          </article>
 
-            <article class="expertise-item" data-expertise-item>
-              <button class="expertise-item__head" type="button" data-pinned-select aria-expanded="false">
-                <span class="expertise-item__index">02</span>
-                <h3>Event marketing</h3>
-              </button>
-              <div class="expertise-item__body" data-pinned-body>
-                <p>
-                  Każde wydarzenie projektujemy jak kampanię — z celem, KPI i kontrolą efektów.
-                </p>
-              </div>
-            </article>
+          <article class="mosaic__tile mosaic__tile--tomato" data-fade data-surface="accent">
+            <span class="mosaic__index">02</span>
+            <h3 class="mosaic__name">Event marketing</h3>
+            <p class="mosaic__text">Każde wydarzenie projektujemy jak kampanię — z celem, KPI i kontrolą efektów.</p>
+          </article>
 
-            <article class="expertise-item" data-expertise-item>
-              <button class="expertise-item__head" type="button" data-pinned-select aria-expanded="false">
-                <span class="expertise-item__index">03</span>
-                <h3>Scenariusz i oprawa artystyczna</h3>
-              </button>
-              <div class="expertise-item__body" data-pinned-body>
-                <p>
-                  Reżyseria wieczoru, artyści i performerzy dobrani do charakteru marki.
-                </p>
-              </div>
-            </article>
+          <article class="mosaic__tile mosaic__tile--forest" data-fade>
+            <span class="mosaic__index">03</span>
+            <h3 class="mosaic__name">Scenariusz i oprawa artystyczna</h3>
+            <p class="mosaic__text">Reżyseria wieczoru, artyści i performerzy dobrani do charakteru marki.</p>
+          </article>
 
-            <article class="expertise-item" data-expertise-item>
-              <button class="expertise-item__head" type="button" data-pinned-select aria-expanded="false">
-                <span class="expertise-item__index">04</span>
-                <h3>Technika, mapping, lasery, AV</h3>
-              </button>
-              <div class="expertise-item__body" data-pinned-body>
-                <p>
-                  Światło, dźwięk i efekty, które nie są dodatkiem — prowadzą narrację marki.
-                </p>
-              </div>
-            </article>
+          <article class="mosaic__tile mosaic__tile--ink" data-fade>
+            <span class="mosaic__index">04</span>
+            <h3 class="mosaic__name">Technika, mapping, lasery, AV</h3>
+            <p class="mosaic__text">Światło, dźwięk i efekty, które nie są dodatkiem — prowadzą narrację marki.</p>
+          </article>
 
-            <article class="expertise-item" data-expertise-item>
-              <button class="expertise-item__head" type="button" data-pinned-select aria-expanded="false">
-                <span class="expertise-item__index">05</span>
-                <h3>Scenografia, hospitality, foto &amp; video</h3>
-              </button>
-              <div class="expertise-item__body" data-pinned-body>
-                <p>
-                  Przestrzeń, recepcja VIP i dokumentacja — spójnie od wejścia po relację.
-                </p>
-              </div>
-            </article>
-          </div>
+          <article class="mosaic__tile mosaic__tile--kiwi" data-fade>
+            <span class="mosaic__index">05</span>
+            <h3 class="mosaic__name">Scenografia, hospitality, foto &amp; video</h3>
+            <p class="mosaic__text">Przestrzeń, recepcja VIP i dokumentacja — spójnie od wejścia po relację.</p>
+          </article>
         </div>
       </section>
 
@@ -610,7 +579,7 @@
               <span class="crew-card__sign" aria-hidden="true"></span>
             </div>
           </li>
-          <li class="crew-card crew-card--juice" data-team-card>
+          <li class="crew-card crew-card--juice" data-team-card data-surface="accent">
             <div class="crew-card__top">
               <h3 class="crew-card__name">Marta Knasiak</h3>
               <p class="crew-card__role">Assistant &amp; Junior Event Manager</p>

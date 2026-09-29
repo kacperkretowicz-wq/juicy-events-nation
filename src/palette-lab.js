@@ -40,7 +40,13 @@ const FONTS = [
 ];
 
 const COLOR_PRESETS = {
-  // Obecna paleta strony (Tolia: krem, pomidor, słońce) — domyślna po otwarciu panelu.
+  // Koncept „mozaika Tolia” — domyślny na tej gałęzi: pełny krem Tolia, zieleń zamiast czerni.
+  mozaika: {
+    bg: "#f3e8cc", surface: "#f3e8cc", white: "#fbf6ea", text: "#1c1712", muted: "#655c4c",
+    accent: "#d52518", accentText: "#c81f14", accentDeep: "#b81d12", bottom: "#d52518", footer: "#d52518",
+    lemon: "#ffc926", blue: "#2f4fd1", dark: "#18542a", darkSoft: "#1f6333", inverseText: "#f3e8cc", onAccent: "#fffdf8",
+  },
+  // Wersja umiarkowana (Tolia: krem, pomidor, słońce, ciemne sekcje w czerni).
   tolia: {
     bg: "#f6efdf", surface: "#f6efdf", white: "#fffdf8", text: "#1c1712", muted: "#6d6456",
     accent: "#d52518", accentText: "#c81f14", accentDeep: "#b81d12", bottom: "#d52518", footer: "#d52518",
@@ -177,7 +183,7 @@ export function initPaletteLab() {
   const root = document.documentElement;
   const validFonts = new Set(FONTS.map(([key]) => key));
   const initialFont = validFonts.has(params.get("font")) ? params.get("font") : FONTS[0][0];
-  const initialPreset = COLOR_PRESETS[params.get("preset")] ? params.get("preset") : "tolia";
+  const initialPreset = COLOR_PRESETS[params.get("preset")] ? params.get("preset") : "mozaika";
   const colors = expandPreset(COLOR_PRESETS[initialPreset]);
   COLOR_KEYS.forEach((key) => {
     const value = params.get(COLOR_PARAM[key]);

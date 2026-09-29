@@ -1,30 +1,32 @@
 :root {
-  /* Paleta po feedbacku 25.09 i 28.09 — w stylu Tolia Foods (paleta od właściciela):
-     krem, pomidorowa czerwień, słońce, butelkowa zieleń. Zamiast pomarańczu, neonowej
-     cytryny i niebieskiego naraz — trzy ciepłe kolory z jasnymi rolami:
-     --accent (czerwień)  — kolor marki: przyciski, słowo-klucz, kafelek, dół strony
-     --lemon  (słońce)    — tylko „po najechaniu” (hover), jak prosił właściciel
-     --dark   (czerń)     — kompetencje i stopka (wariant z zielenią: panel ?palette-lab=1)
-     Niebieski zostaje na karcie Jakuba (prośba właściciela) i w kaflach realizacji po najechaniu. */
+  /* KONCEPT „MOZAIKA TOLIA” — paleta z pinu od właściciela (Tolia Foods, Maevi Studio)
+     potraktowana jak system, a nie jak zbiór kolorów:
+     --cream  (Tolia Cream)   — tło całej strony
+     --accent (Tomato Burst)  — kolor marki: przyciski, słowo-klucz, kafelek, pasek stopki
+     --dark   (Forest Green)  — zamiast czerni: stopka, menu (czerń zostaje w tekście i w zespole)
+     --lemon  (Sunshine)      — hover i napisy na zieleni/czerwieni (jak na palecie)
+     --kiwi                   — tylko jeden kafel w mozaice kompetencji
+     Pełna paleta pojawia się raz — w mozaice kompetencji — reszta strony jest kremowa.
+     Niebieski zostaje na karcie Jakuba (prośba właściciela). */
   --tomato: #d52518;
   --sun: #ffc926;
   --forest: #18542a;
   --kiwi: #9abc05;
   --carrot: #f96015;
 
-  /* Powierzchnie — kremowe tło (jaśniejsza wersja Tolia Cream #f3e8cc). */
-  --cream: #f6efdf;
-  --cream-deep: #ece2c9;
-  --white: #fffdf8;
+  /* Powierzchnie — Tolia Cream jako tło, jaśniejszy krem na karty. */
+  --cream: #f3e8cc;
+  --cream-deep: #e8dab5;
+  --white: #fbf6ea;
   --ink: #1c1712;
-  --dark: #1c1712;
-  --dark-soft: #2b241d;
-  --muted: #6d6456;
-  --muted-light: rgba(246, 239, 223, 0.64);
-  --on-dark-muted: rgba(246, 239, 223, 0.8);
-  --on-dark-line: rgba(246, 239, 223, 0.3);
-  --line: rgba(28, 23, 18, 0.14);
-  --line-light: rgba(255, 253, 248, 0.16);
+  --dark: #18542a;
+  --dark-soft: #1f6333;
+  --muted: #655c4c;
+  --muted-light: rgba(243, 232, 204, 0.66);
+  --on-dark-muted: rgba(243, 232, 204, 0.82);
+  --on-dark-line: rgba(243, 232, 204, 0.3);
+  --line: rgba(28, 23, 18, 0.15);
+  --line-light: rgba(251, 246, 234, 0.18);
 
   --accent: var(--tomato);
   --accent-deep: #b81d12;

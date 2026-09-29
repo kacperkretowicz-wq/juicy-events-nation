@@ -11,7 +11,7 @@ html.js .hero-intro {
   z-index: 2000;
   display: block;
   overflow: hidden;
-  background: var(--dark);
+  background: var(--ink);
   opacity: 1;
   transition: opacity 0.22s linear;
 }

@@ -1,350 +1,170 @@
-.expertise {
-  background: var(--dark);
-  color: var(--cream);
-}
+/* ——— KOMPETENCJE: „MOZAIKA TOLIA” ———
+   Układ i pary kolorów wprost z palety od właściciela: trzy kolumny bloków o różnej
+   wysokości, bez odstępów, każdy blok w jednym kolorze z napisem w kolorze „do pary”
+   (słońce na zieleni i czerwieni, czerwień na kremie, zieleń na kiwi).
+   To jedyne miejsce z pełną paletą — reszta strony jest kremowa. */
 
-.expertise__inner {
-  display: grid;
-  grid-template-columns: minmax(0, 0.85fr) minmax(0, 1.15fr);
-  gap: clamp(2rem, 5vw, 5rem);
-  align-items: start;
+.expertise--mosaic {
   max-width: var(--max);
   margin: 0 auto;
-  padding: clamp(5.5rem, 10vw, 8.5rem) var(--pad) clamp(4.5rem, 8vw, 7rem);
+  padding: var(--block) var(--pad);
 }
 
-/* ——— Sweetpunk scroll: lewy nagłówek sticky, prawa lista jedzie ——— */
-.expertise.is-scroll .expertise__inner {
-  padding-top: 0;
-  padding-bottom: 0;
+.mosaic {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  grid-template-rows: minmax(15rem, auto) minmax(10rem, auto) minmax(16rem, auto);
+  grid-template-areas:
+    "title  cream  tomato"
+    "title  forest tomato"
+    "ink    forest kiwi";
 }
 
-.expertise.is-scroll .expertise__aside {
-  position: sticky;
-  top: 0;
-  z-index: 2;
+.mosaic__tile {
+  --tile-bg: var(--white);
+  --tile-name: var(--accent);
+  --tile-text: var(--ink);
+  --tile-index: var(--muted);
   display: flex;
   flex-direction: column;
-  height: 100svh;
-  min-height: 28rem;
-  padding: clamp(5.5rem, 10vw, 7rem) 0 clamp(2.5rem, 8vh, 5rem);
+  justify-content: space-between;
+  gap: 1.5rem;
+  min-width: 0;
+  padding: clamp(1.4rem, 2.4vw, 2.5rem);
+  background: var(--tile-bg);
+  color: var(--tile-text);
 }
 
-.expertise.is-scroll .expertise__aside .eyebrow {
-  margin-bottom: auto;
+.mosaic__tile--title {
+  grid-area: title;
+  --tile-bg: var(--sun);
+  --tile-text: var(--ink);
 }
 
-.expertise.is-scroll .expertise__title {
-  margin-top: auto;
+.mosaic__tile--cream {
+  grid-area: cream;
 }
 
-.expertise.is-scroll .expertise__list {
-  padding: clamp(7rem, 22vh, 12rem) 0 clamp(10rem, 32vh, 18rem);
+.mosaic__tile--tomato {
+  grid-area: tomato;
+  --tile-bg: var(--tomato);
+  --tile-name: var(--sun);
+  --tile-text: var(--white);
+  --tile-index: rgba(251, 246, 234, 0.75);
 }
 
-.expertise.is-scroll .expertise-item {
-  opacity: 0.38;
-  padding: clamp(2.25rem, 5.5vh, 3.75rem) 0;
+.mosaic__tile--forest {
+  grid-area: forest;
+  --tile-bg: var(--forest);
+  --tile-name: var(--sun);
+  --tile-text: var(--white);
+  --tile-index: rgba(251, 246, 234, 0.7);
 }
 
-.expertise.is-scroll .expertise-item.is-active {
-  opacity: 1;
+.mosaic__tile--ink {
+  grid-area: ink;
+  --tile-bg: var(--ink);
+  --tile-name: var(--sun);
+  --tile-text: var(--white);
+  --tile-index: rgba(251, 246, 234, 0.6);
 }
 
-.expertise.is-scroll .expertise-item__body {
-  max-height: none;
-  opacity: 1;
-  overflow: visible;
-  padding-top: clamp(1rem, 2.5vh, 1.5rem);
-  padding-left: var(--index-w);
+.mosaic__tile--kiwi {
+  grid-area: kiwi;
+  --tile-bg: var(--kiwi);
+  --tile-name: var(--forest);
+  --tile-text: var(--forest);
+  --tile-index: rgba(24, 84, 42, 0.75);
 }
 
-.expertise.is-scroll .expertise-item__head {
-  cursor: pointer;
-}
-
-.expertise__aside {
-  display: grid;
-  align-content: space-between;
-  gap: 2rem;
-}
-
-/* „Napis na dole zdecydowanie powinien być większy” — z display-3 na display-2. */
-.expertise__title {
-  max-width: 11ch;
-  font-size: var(--display-2);
-  letter-spacing: -0.026em;
-}
-
-.expertise__count {
-  display: flex;
-  align-items: baseline;
-  gap: 0.25rem;
-  margin: 1.1rem 0 0;
-  font-family: var(--font-label);
-  font-weight: 600;
-  font-size: var(--label);
-  letter-spacing: var(--label-tracking);
-  color: var(--muted-light);
-}
-
-.expertise__count [data-expertise-current] {
-  color: var(--lemon);
-}
-
-.expertise__count-sep {
-  opacity: 0.5;
-}
-
-.expertise__list {
-  display: grid;
-  align-content: start;
-  gap: 0;
-}
-
-.expertise-item {
-  --index-w: clamp(2.75rem, 4.5vw, 4.25rem);
-  border-top: 1px solid var(--line-light);
-  padding: clamp(1rem, 1.8vw, 1.6rem) 0;
-  transition: opacity 0.45s var(--ease);
-  opacity: 0.45;
-}
-
-.expertise-item:last-child {
-  border-bottom: 1px solid var(--line-light);
-}
-
-.expertise-item.is-active {
-  opacity: 1;
-}
-
-.expertise-item__head {
-  display: grid;
-  grid-template-columns: var(--index-w) minmax(0, 1fr);
-  gap: 0;
-  align-items: baseline;
-  width: 100%;
-  min-height: 3rem;
-  padding: 0.35rem 0;
-  border: 0;
-  background: transparent;
-  color: inherit;
-  text-align: left;
-  cursor: pointer;
-}
-
-.expertise-item__index {
-  font-family: var(--font-label);
-  font-weight: 600;
-  font-size: var(--label);
-  letter-spacing: var(--label-tracking);
-  color: var(--muted-light);
-  transition: color 0.4s var(--ease);
-}
-
-.expertise-item.is-active .expertise-item__index {
-  color: var(--lemon);
-}
-
-/* Bez nawiasów i bez zmiany koloru — aktywny punkt po prostu „zapala się” (opacity). */
-.expertise-item__head h3 {
-  display: inline;
-  font-size: var(--display-3);
-  letter-spacing: -0.022em;
-  line-height: 1.02;
-  transition: color 0.55s var(--ease);
-}
-
-.expertise.is-scroll .expertise-item__head h3 {
-  color: var(--cream);
-}
-
-.expertise-item__head:hover h3 {
-  color: var(--lemon);
-}
-
-.expertise-item__body {
-  max-height: 0;
-  opacity: 0;
-  overflow: hidden;
-  padding-left: var(--index-w);
-  transition: max-height 0.65s var(--ease-expo), opacity 0.4s var(--ease),
-    padding-top 0.65s var(--ease-expo);
-}
-
-.expertise-item.is-active .expertise-item__body {
-  max-height: 28rem;
-  padding-top: 1.25rem;
-  opacity: 1;
-}
-
-.expertise-item__body p {
+.mosaic__eyebrow {
   margin: 0;
-  max-width: 36ch;
-  font-size: var(--body-lg);
-  line-height: 1.45;
+  color: var(--ink);
+}
+
+.mosaic__heading {
+  max-width: 11ch;
+  font-size: clamp(2rem, 3.7vw, 3.8rem);
+  line-height: 1.02;
+  overflow-wrap: break-word;
+}
+
+.mosaic__heading .bracket {
+  color: var(--accent);
+}
+
+.mosaic__index {
+  font-size: var(--label);
+  font-weight: 600;
+  letter-spacing: var(--label-tracking);
+  color: var(--tile-index);
+}
+
+/* Nazwy kompetencji jak podpisy na palecie: duże, grube wersaliki. */
+.mosaic__name {
+  max-width: 14ch;
+  margin-top: auto;
+  font-size: clamp(1.45rem, 2.3vw, 2.45rem);
+  font-weight: 800;
+  line-height: 0.98;
   letter-spacing: -0.01em;
-  color: var(--on-dark-muted);
+  text-transform: uppercase;
+  text-wrap: balance;
+  color: var(--tile-name);
 }
 
-.expertise.is-accordion .expertise-item {
-  opacity: 1;
+.mosaic__text {
+  max-width: 34ch;
+  margin: 0;
+  font-size: var(--body);
+  line-height: 1.5;
+  color: var(--tile-text);
+  opacity: 0.9;
 }
 
-.expertise.is-accordion .expertise-item__body {
-  max-height: 0;
-  padding-top: 0;
-  padding-left: 0;
-  opacity: 0;
-}
-
-.expertise.is-accordion .expertise-item.is-active .expertise-item__body {
-  max-height: calc(var(--panel-h, 40rem) + 1.5rem);
-  padding-top: 1rem;
-  opacity: 1;
-}
-
-.expertise.is-accordion .expertise-item__head {
-  grid-template-columns: auto minmax(0, 1fr) auto;
-  align-items: center;
-  min-height: 3.25rem;
-}
-
-.expertise.is-accordion .expertise-item__head::before,
-.expertise.is-accordion .expertise-item__head::after {
-  content: "";
-  grid-column: 3;
-  grid-row: 1;
-  justify-self: end;
-  align-self: center;
-  width: 0.9rem;
-  height: 2px;
-  background: var(--lemon);
-  transition: transform 0.45s var(--ease);
-}
-
-.expertise.is-accordion .expertise-item__head::after {
-  transform: rotate(90deg);
-}
-
-.expertise.is-accordion .expertise-item.is-active .expertise-item__head::after {
-  transform: rotate(90deg) scaleX(0);
+.mosaic__tile .mosaic__name + .mosaic__text {
+  margin-top: -0.6rem;
 }
 
 @media (max-width: 980px) {
-  .expertise__inner {
-    scroll-margin-top: 5rem;
+  .mosaic {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    grid-template-rows: none;
+    grid-auto-rows: minmax(13rem, auto);
+    grid-template-areas:
+      "title  title"
+      "cream  tomato"
+      "forest ink"
+      "kiwi   kiwi";
   }
 
-  /* Telefon i tablet: normalny układ jednej kolumny. Akordeon nie zostawia
-     pustej kolumny ani nie blokuje gestu podczas przechodzenia przez sekcję. */
-  .expertise.is-accordion .expertise__inner {
+  .mosaic__heading {
+    max-width: 14ch;
+  }
+}
+
+@media (max-width: 620px) {
+  .mosaic {
     grid-template-columns: minmax(0, 1fr);
-    gap: clamp(2rem, 6vw, 2.75rem);
-    padding-top: clamp(5rem, 16vw, 6.5rem);
-    padding-bottom: clamp(4rem, 12vw, 6rem);
+    grid-auto-rows: auto;
+    grid-template-areas:
+      "title"
+      "cream"
+      "tomato"
+      "forest"
+      "ink"
+      "kiwi";
   }
 
-  .expertise.is-accordion .expertise__aside {
-    position: static;
-    height: auto;
-    min-height: 0;
-    padding: 0;
+  .mosaic__tile {
+    min-height: 12rem;
   }
 
-  .expertise.is-accordion .expertise__aside .eyebrow {
-    margin-bottom: 1.25rem;
+  .mosaic__heading {
+    font-size: clamp(2rem, 9vw, 2.6rem);
   }
 
-  .expertise.is-accordion .expertise__title {
-    margin-top: 0;
-    max-width: 16ch;
-    font-size: clamp(1.65rem, 7vw, 2.1rem);
-    line-height: 1.05;
-  }
-
-  .expertise.is-accordion .expertise__count {
-    margin-top: 0.65rem;
-    font-size: 0.62rem;
-  }
-
-  .expertise.is-accordion .expertise__list {
-    padding: 0;
-  }
-
-  .expertise.is-accordion .expertise-item {
-    padding: clamp(1.1rem, 4vw, 1.6rem) 0;
-  }
-
-  .expertise.is-accordion .expertise-item__head {
-    grid-template-columns: auto minmax(0, 1fr) auto;
-    gap: 0.75rem;
-    min-height: 3.25rem;
-  }
-
-  .expertise.is-accordion .expertise-item__head h3 {
-    font-size: clamp(1.15rem, 5.6vw, 1.55rem);
-    line-height: 1.12;
-  }
-
-  .expertise.is-accordion .expertise-item__body p {
-    font-size: clamp(0.98rem, 4vw, 1.08rem);
-    line-height: 1.5;
-  }
-
-  /* Sticky nagłówek + scroll listy (jak desktop). */
-  .expertise.is-scroll .expertise__inner {
-    grid-template-columns: minmax(0, 0.4fr) minmax(0, 0.6fr);
-    gap: clamp(0.65rem, 2.5vw, 1.1rem);
-  }
-
-  .expertise.is-scroll .expertise__aside {
-    min-height: 22rem;
-    padding: clamp(5rem, 16vw, 6.25rem) 0 clamp(1.25rem, 4vh, 2rem);
-  }
-
-  .expertise.is-scroll .expertise__title {
-    max-width: 100%;
-    font-size: clamp(1.25rem, 5.3vw, 1.7rem);
-    line-height: 1.02;
-  }
-
-  .expertise.is-scroll .expertise__count {
-    display: flex;
-    margin-top: 0.5rem;
-    font-size: 0.7rem;
-  }
-
-  .expertise.is-scroll .expertise__list {
-    padding: clamp(4.5rem, 16vh, 7rem) 0 clamp(7rem, 22vh, 11rem);
-  }
-
-  .expertise.is-scroll .expertise-item {
-    padding: clamp(1.75rem, 4.5vh, 2.5rem) 0;
-  }
-
-  .expertise.is-scroll .expertise-item__body {
-    padding-left: 0;
-    padding-top: 0.75rem;
-  }
-
-  .expertise.is-scroll .expertise-item__head {
-    grid-template-columns: minmax(0, 1fr);
-    gap: 0.3rem;
-    min-height: 0;
-  }
-
-  .expertise.is-scroll .expertise-item__index {
-    font-size: 0.7rem;
-  }
-
-  .expertise.is-scroll .expertise-item__head h3 {
-    font-size: clamp(1.05rem, 4.6vw, 1.4rem);
-    line-height: 1.08;
-  }
-
-  .expertise.is-scroll .expertise-item__body p {
-    font-size: clamp(0.92rem, 3.8vw, 1.05rem);
-    line-height: 1.45;
+  .mosaic__name {
+    font-size: clamp(1.4rem, 7vw, 1.8rem);
   }
 }

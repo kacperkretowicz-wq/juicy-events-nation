@@ -1,3 +1,23 @@
+# Koncept „Mozaika Tolia” — 2026-09-29 (gałąź `claude/koncept-tolia-mozaika`)
+
+Trzecia propozycja, zbudowana na wersji umiarkowanej (Figtree, czerwony kafelek z filmem, spokojniejsze
+efekty — opis niżej). Inspiracja: pin od właściciela „Portfolio – Tolia Foods” (identyfikacja Maevi Studio,
+tagi: paleta gastronomiczna / meksykańska / pomarańczowa). Pozostałych trzech pinów nie dało się otworzyć
+(Pinterest zablokowany w środowisku), więc koncept opiera się na palecie i kompozycji z tego pinu.
+
+- Paleta Tolia jako system: tło Tolia Cream `#f3e8cc`, czerwień Tomato Burst (marka), Forest Green `#18542a`
+  zamiast czerni w stopce i menu, Sunshine do napisów na zieleni/czerwieni i hover, Kiwi tylko w mozaice.
+- Kompetencje jako „mozaika Tolia”: trzy kolumny bloków bez odstępów, pary kolorów wprost z palety
+  (czarny tytuł na słońcu, czerwień na kremie, słońce na czerwieni, zieleni i czerni, zieleń na kiwi),
+  nazwy kompetencji dużymi wersalikami Figtree 800 — jak podpisy na palecie.
+- Pełna paleta pojawia się tylko w tej jednej sekcji; reszta strony jest kremowa. Zespół bez zmian
+  (biel / czerwień / czerń / niebieski).
+- Misja: zdjęcie jako pas, który z obu stron rozpływa się w krem; napisy białe.
+- Stopka i menu w butelkowej zieleni; napis JUICY EVENTS słonecznym żółtym na pomidorze.
+- Kafle realizacji po najechaniu: czerwień / słońce / zieleń. Panel `/?palette-lab=1` startuje z presetem „Mozaika Tolia”.
+
+---
+
 # Kierunek wizualny — 2026-09-29 (wersja umiarkowana)
 
 Baza: `experiment/colors-10-bg-motion` (wersja oceniona przez właściciela 28.09). Struktura i efekty,

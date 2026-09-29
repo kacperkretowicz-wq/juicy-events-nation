@@ -4,8 +4,8 @@ const DURATION = 0.15;
 const STAGGER_STEP = 0.075;
 const EASE = "power1.out";
 
-// Kolory przejścia menu — czerń albo czerwień marki (wcześniej także niebieski, pomarańcz i cytryna)
-const PALETTE = ["#1c1712", "#d52518"];
+// Kolory przejścia menu — butelkowa zieleń albo czerwień (koncept „mozaika Tolia”)
+const PALETTE = ["#18542a", "#d52518"];
 
 let overlayEl = null;
 let gridEl = null;

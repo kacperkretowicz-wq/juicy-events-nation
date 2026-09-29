@@ -1,7 +1,7 @@
 /* ——— REALIZACJE ———
    Nieregularna siatka (12 kolumn, przesunięcia w pionie) zamiast symetrycznego 2×3.
    Pod kaflem tylko marka + tytuł. Hover (jak Leveled): zdjęcie zwija się do kadru
-   9:16, tło kafla przejmuje kolor z palety zespołu (czerwień / słońce / niebieski),
+   9:16, tło kafla przejmuje kolor z palety Tolia (czerwień / słońce / zieleń),
    w kadrze gra film albo spokojny pokaz zdjęć, a za kursorem jedzie etykieta „Zobacz case”. */
 
 .projects {
@@ -109,8 +109,8 @@
   --tile: var(--sun);
 }
 
-.project-card[data-tile="blue"] {
-  --tile: var(--blue);
+.project-card[data-tile="forest"] {
+  --tile: var(--forest);
 }
 
 .project-card__link {

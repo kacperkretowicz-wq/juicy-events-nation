@@ -133,7 +133,7 @@
   overscroll-behavior: contain;
   -webkit-overflow-scrolling: touch;
   padding: calc(var(--pad) * 2) var(--pad);
-  background: var(--accent);
+  background: var(--forest);
   color: var(--cream);
   opacity: 0;
   pointer-events: none;
@@ -193,7 +193,7 @@
 }
 
 .mega-menu__list a:hover {
-  color: var(--ink);
+  color: var(--sun);
   transform: translateX(0.6rem);
 }
 
@@ -211,7 +211,7 @@
 }
 
 .mega-menu__aside a:hover {
-  color: var(--ink);
+  color: var(--sun);
 }
 
 .mega-menu__links {
@@ -354,7 +354,7 @@
   --wordmark-size: clamp(3.75rem, 13.5vw, 13rem);
   position: relative;
   background: var(--footer-accent, var(--accent));
-  color: var(--cream);
+  color: var(--sun);
   overflow: hidden;
   padding-top: 0.04em;
   transition: background 0.5s var(--ease), color 0.5s var(--ease);
@@ -653,7 +653,7 @@
   .site-header {
     grid-template-columns: minmax(0, 1fr) auto;
     /* Stałe tło — treść nie prześwituje pod paskiem na jasnych sekcjach. */
-    background: color-mix(in srgb, var(--dark) 78%, transparent);
+    background: color-mix(in srgb, var(--ink) 78%, transparent);
     backdrop-filter: blur(16px);
   }
 

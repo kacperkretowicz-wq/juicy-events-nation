@@ -33,14 +33,18 @@
   inset: 0;
   z-index: 1;
   pointer-events: none;
+  /* Koncept mozaiki: zdjęcie to pas, który z obu stron rozpływa się w krem
+     (niżej jest kremowa mozaika, a nie ciemna sekcja). Środek przyciemniony
+     pod białe napisy. */
   background: linear-gradient(
     180deg,
     var(--cream) 0%,
-    color-mix(in srgb, var(--cream) 94%, transparent) 11%,
-    color-mix(in srgb, var(--cream-deep) 70%, rgba(120, 112, 98, 0.6)) 26%,
-    rgba(140, 132, 118, 0.58) 46%,
-    color-mix(in srgb, var(--dark) 80%, transparent) 72%,
-    var(--dark) 100%
+    color-mix(in srgb, var(--cream) 88%, transparent) 12%,
+    rgba(28, 23, 18, 0.5) 32%,
+    rgba(28, 23, 18, 0.66) 50%,
+    rgba(28, 23, 18, 0.5) 68%,
+    color-mix(in srgb, var(--cream) 88%, transparent) 88%,
+    var(--cream) 100%
   );
 }
 
