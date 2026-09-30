@@ -1,10 +1,8 @@
-/* ——— KLIENCI — pas z markami zaraz po showreelu ———
-   Tor przewija marquee.js (pętla + przyspieszenie od scrolla). Bez JS nazwy stoją
-   w jednej linii i po prostu się zawijają. */
+/* ——— KLIENCI — zbalansowany, symetryczny pas z markami na pełną szerokość siatki ——— */
 
 .clients {
   position: relative;
-  padding: clamp(3.5rem, 7vw, 6.5rem) 0 clamp(3rem, 6vw, 5.5rem);
+  padding: clamp(3.5rem, 6vw, 5.5rem) 0;
   background: var(--cream);
   overflow: hidden;
 }
@@ -15,53 +13,52 @@
   justify-content: space-between;
   gap: 1rem;
   max-width: var(--max);
-  margin: 0 auto clamp(1.5rem, 3vw, 2.5rem);
+  margin: 0 auto clamp(1.5rem, 2.5vw, 2.2rem);
   padding: 0 var(--pad);
 }
 
 .clients__head .eyebrow {
   margin: 0;
-  color: var(--ink);
+  color: var(--muted);
 }
 
-.clients__marquee {
+.clients__wrap {
   position: relative;
   border-top: 1px solid var(--line);
   border-bottom: 1px solid var(--line);
-  padding: clamp(1.1rem, 2.2vw, 2rem) 0;
-  -webkit-mask-image: linear-gradient(90deg, transparent, #000 6%, #000 94%, transparent);
-  mask-image: linear-gradient(90deg, transparent, #000 6%, #000 94%, transparent);
+  padding: clamp(1.75rem, 3.5vw, 3rem) 0;
 }
 
 .clients__track {
-  display: flex;
-  flex-wrap: nowrap;
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
   align-items: center;
-  width: max-content;
-  will-change: transform;
+  justify-items: center;
+  gap: clamp(1.5rem, 3vw, 4rem);
+  max-width: var(--max);
+  margin: 0 auto;
+  padding: 0 var(--pad);
+  list-style: none;
 }
 
-.js .clients__track {
-  flex-wrap: nowrap;
-}
-
-/* Prawdziwe logotypy w oryginalnych kolorach marek, bez separatorów — sam rytm
-   odstępów. --logo-h to wysokość „kwadratowego” znaku; szerokie znaki są niższe,
-   żeby wszystkie ważyły optycznie tyle samo. */
+/* Prawdziwe logotypy marek, równomiernie rozłożone na szerokości, bez uciekania w lewo */
 .clients__item {
-  --logo-h: clamp(3.4rem, 5.6vw, 5.75rem);
-  display: inline-flex;
+  --logo-h: clamp(2.8rem, 4.4vw, 4.2rem);
+  display: flex;
   align-items: center;
-  flex-shrink: 0;
-  height: calc(var(--logo-h) * 1.1);
-  padding: 0 clamp(2.25rem, 4.2vw, 4.5rem);
+  justify-content: center;
+  width: 100%;
+  height: calc(var(--logo-h) * 1.25);
+  padding: 0 clamp(0.5rem, 1.5vw, 1.5rem);
 }
 
 .clients__item img {
   display: block;
+  max-width: 100%;
   width: auto;
   height: var(--logo-h);
-  transition: transform 0.5s var(--ease-expo);
+  object-fit: contain;
+  transition: transform 0.4s var(--ease-expo), opacity 0.3s var(--ease);
 }
 
 .clients__item--wide img {
@@ -80,12 +77,9 @@
   transform: scale(1.06);
 }
 
-@media (max-width: 620px) {
-  .clients {
-    padding-top: clamp(2.75rem, 12vw, 3.5rem);
-  }
-
-  .clients__item {
-    --logo-h: clamp(2.6rem, 13vw, 3.4rem);
+@media (max-width: 768px) {
+  .clients__track {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 2rem 1.5rem;
   }
 }
