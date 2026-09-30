@@ -78,7 +78,7 @@ server.listen(PORT, async () => {
     await page.screenshot({ path: path.join(outDir, '01-hero-intro.png') });
     console.log('Saved 01-hero-intro.png');
 
-    // 2. Second hero stage: Agency headline "Po co Ci agencja..."
+    // 2A. Agency headline on video background with showreel
     await page.evaluate(() => {
       const intro = document.querySelector('[data-agency-intro]');
       if (intro) intro.style.opacity = '0';
@@ -87,6 +87,19 @@ server.listen(PORT, async () => {
         headline.style.opacity = '1';
         headline.style.visibility = 'visible';
       }
+      const lightLayer = document.querySelector('[data-agency-layer="light"]');
+      if (lightLayer) lightLayer.style.opacity = '1';
+      const darkLayer = document.querySelector('[data-agency-layer="dark"]');
+      if (darkLayer) darkLayer.style.opacity = '0';
+    });
+    await page.waitForTimeout(400);
+    await page.screenshot({ path: path.join(outDir, 'v2-agency-video.png') });
+    console.log('Saved v2-agency-video.png');
+
+    // 2B. Agency headline on cream background (after video wipes) with showreel
+    await page.evaluate(() => {
+      const media = document.querySelector('[data-agency-media]');
+      if (media) media.style.clipPath = 'inset(0 0 100% 0)';
       const darkLayer = document.querySelector('[data-agency-layer="dark"]');
       if (darkLayer) {
         darkLayer.style.opacity = '1';
@@ -95,9 +108,9 @@ server.listen(PORT, async () => {
       const lightLayer = document.querySelector('[data-agency-layer="light"]');
       if (lightLayer) lightLayer.style.opacity = '0';
     });
-    await page.waitForTimeout(300);
-    await page.screenshot({ path: path.join(outDir, '02-agency-headline.png') });
-    console.log('Saved 02-agency-headline.png');
+    await page.waitForTimeout(400);
+    await page.screenshot({ path: path.join(outDir, 'v2-agency-cream.png') });
+    console.log('Saved v2-agency-cream.png');
 
     // Reset styles for normal scrolling
     await page.evaluate(() => {
@@ -113,24 +126,28 @@ server.listen(PORT, async () => {
         darkLayer.style.opacity = '';
         darkLayer.style.clipPath = '';
       }
+      const lightLayer = document.querySelector('[data-agency-layer="light"]');
+      if (lightLayer) lightLayer.style.opacity = '';
+      const media = document.querySelector('[data-agency-media]');
+      if (media) media.style.clipPath = '';
     });
 
-    // 3. Klienci marquee
+    // 3. Klienci
     const clientsSec = page.locator('#klienci');
     if (await clientsSec.count()) {
       await clientsSec.scrollIntoViewIfNeeded();
       await page.waitForTimeout(400);
-      await clientsSec.screenshot({ path: path.join(outDir, '03-clients.png') });
-      console.log('Saved 03-clients.png');
+      await clientsSec.screenshot({ path: path.join(outDir, 'v2-clients.png') });
+      console.log('Saved v2-clients.png');
     }
 
-    // 4. Nasza praca: red square video tile
+    // 4. Nasza praca: compact headline
     const workSec = page.locator('#praca');
     if (await workSec.count()) {
       await workSec.scrollIntoViewIfNeeded();
       await page.waitForTimeout(1200);
-      await workSec.screenshot({ path: path.join(outDir, '04-nasza-praca.png') });
-      console.log('Saved 04-nasza-praca.png');
+      await workSec.screenshot({ path: path.join(outDir, 'v2-nasza-praca.png') });
+      console.log('Saved v2-nasza-praca.png');
     }
 
     // 5. Wybrane realizacje

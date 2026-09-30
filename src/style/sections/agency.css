@@ -294,7 +294,38 @@ html.js body:has([data-agency]) .site-header__logo img {
   width: 100%;
   max-width: var(--max);
   margin: 0 auto;
-  padding: 0 var(--pad) clamp(3rem, 7vw, 6rem);
+  padding: 0 var(--pad) clamp(2.5rem, 5vw, 4.5rem);
+}
+
+.agency__headline-layout {
+  display: grid;
+  grid-template-columns: repeat(12, minmax(0, 1fr));
+  column-gap: clamp(1.5rem, 3.5vw, 4rem);
+  align-items: center;
+  width: 100%;
+}
+
+.agency__headline-copy {
+  grid-column: 1 / span 7;
+  position: relative;
+  min-width: 0;
+}
+
+.agency__headline-media {
+  grid-column: 8 / span 5;
+  position: relative;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  z-index: 4;
+}
+
+.agency__headline-media .work__card {
+  width: min(100%, 28rem);
+  aspect-ratio: 1;
+  border-radius: 4px;
+  overflow: hidden;
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.4);
 }
 
 .agency__layer--light {
@@ -303,7 +334,7 @@ html.js body:has([data-agency]) .site-header__logo img {
 
 .agency__layer--dark {
   position: absolute;
-  inset: 0 var(--pad) clamp(3rem, 7vw, 6rem);
+  inset: 0;
   color: var(--ink);
   clip-path: inset(100% 0 0 0);
 }
@@ -312,9 +343,9 @@ html.js body:has([data-agency]) .site-header__logo img {
   color: var(--muted);
 }
 
-/* Warstwa jasna leży na wideo (akcent cytrynowy), ciemna na papierze (pomarańcz). */
+/* Warstwa jasna leży na wideo (akcent biały), ciemna na papierze (czerwień marki). */
 .agency__layer--light .bracket {
-  color: var(--lemon);
+  color: var(--white);
 }
 
 .agency__layer--dark .bracket {
@@ -324,18 +355,18 @@ html.js body:has([data-agency]) .site-header__logo img {
 .agency__title {
   display: flex;
   flex-direction: column;
-  max-width: 19ch;
+  max-width: 15ch;
   margin: 0;
   font-family: var(--font-display);
-  font-size: var(--display-1);
+  font-size: clamp(2.2rem, 4.2vw, 4.5rem);
   font-weight: var(--display-weight);
-  line-height: 1.04;
+  line-height: 1.05;
   letter-spacing: -0.028em;
 }
 
 .agency__kicker {
-  margin: clamp(1.25rem, 2.2vw, 2rem) 0 0;
-  max-width: 34ch;
+  margin: clamp(1.25rem, 2vw, 1.75rem) 0 0;
+  max-width: 32ch;
   font-size: var(--body-lg);
   font-weight: 500;
   letter-spacing: -0.01em;

@@ -13,6 +13,31 @@
   padding: clamp(4.5rem, 8vw, 7rem) var(--pad);
 }
 
+/* Wersja testowa 2: skrócona, minimalistyczna sekcja wprowadzająca bezpośrednio do portfolio */
+.work--compact {
+  display: block;
+  max-width: var(--max);
+  margin: 0 auto;
+  padding: clamp(5rem, 8vw, 7.5rem) var(--pad) clamp(2.5rem, 4.5vw, 4rem);
+}
+
+.work--compact .work__compact-inner {
+  max-width: 100%;
+}
+
+.work--compact .work__eyebrow {
+  margin: 0 0 clamp(1.25rem, 2vw, 1.8rem);
+  color: var(--muted);
+}
+
+.work--compact .work__title {
+  max-width: 22ch;
+  font-size: clamp(2.6rem, 5.2vw, 5.4rem);
+  line-height: 1.08;
+  letter-spacing: -0.028em;
+  color: var(--ink);
+}
+
 .work__copy {
   grid-column: 1 / span 7;
   grid-row: 1;
