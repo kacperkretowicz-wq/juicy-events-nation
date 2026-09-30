@@ -30,6 +30,8 @@
 .work__card-inner { min-width: 0; min-height: 0; }
 .work__video { position: absolute; inset: 0; object-fit: cover; }
 .has-work-showreel, .has-work-showreel body { overflow: hidden; }
+.work__media.is-expanded { position: fixed; inset: 0; z-index: 5000; display: block; width: auto; padding: 0; }
+.work__media.is-expanded .work__film-caption { display: none; }
 .work__media.is-expanded::before { content: ''; position: fixed; inset: 0; z-index: 1100; background: #090909; }
 .work__media.is-expanded .work__card { position: fixed; inset: 60px 24px 24px; z-index: 1101; width: calc(100vw - 48px); height: calc(100svh - 84px); aspect-ratio: auto; background: #090909; }
 .work__media.is-expanded .work__video { object-fit: contain; background: #090909; }

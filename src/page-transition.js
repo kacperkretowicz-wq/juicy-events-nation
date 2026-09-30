@@ -7,6 +7,21 @@ const EASE = "power1.out";
 // Kolory przejścia menu — losowy wybór przy każdym kliknięciu
 const PALETTE = ["#e2231a", "#ff5048"];
 
+const CATEGORY_COLORS = {
+  realizacje: "#234ee4",
+  agencja: "#a23b72",
+  kompetencje: "#168579",
+  zespol: "#b97520",
+  kontakt: "#713fc1",
+};
+
+export function getNavigationColor(href) {
+  const destination = new URL(href, window.location.href);
+  const category = destination.hash.slice(1);
+  return CATEGORY_COLORS[category] ||
+    (destination.pathname.includes("realizacje") ? CATEGORY_COLORS.realizacje : CATEGORY_COLORS.agencja);
+}
+
 let overlayEl = null;
 let gridEl = null;
 let cols = 6;
@@ -87,7 +102,7 @@ export function animateLeave(color) {
     const cells = Array.from(gridEl.children);
     if (!cells.length) return resolve();
 
-    gsap.set(cells, { backgroundColor: i => i % 7 === 0 ? "#f4f2ec" : i % 4 === 0 ? "#121212" : currentColor });
+    gsap.set(cells, { backgroundColor: currentColor });
 
     gsap.set(overlayEl, { pointerEvents: "all" });
     gsap.set(cells, { autoAlpha: 0 });
@@ -149,12 +164,12 @@ export function animateEnter() {
   });
 }
 
-export async function transitionTo(onCovered) {
+export async function transitionTo(onCovered, color) {
   if (isTransitioning) return;
   isTransitioning = true;
 
   try {
-    await animateLeave();
+    await animateLeave(color);
 
     if (typeof onCovered === "function") {
       await onCovered();
@@ -209,7 +224,7 @@ export function initPageTransition() {
     overlayEl.style.setProperty("--rndm-color", storedColor);
     const cells = Array.from(gridEl.children);
     gsap.set(overlayEl, { pointerEvents: "all" });
-    gsap.set(cells, { autoAlpha: 1 });
+    gsap.set(cells, { autoAlpha: 1, backgroundColor: storedColor });
 
     if (window.location.hash) {
       const target = document.querySelector(window.location.hash);

@@ -12,13 +12,14 @@ export function initWorkVideo() {
   const showreelSrc = video.dataset.workShowreel || "";
   let mode = "preview";
   let returnFocus = null;
+  let placeholder = null;
 
   video.preload = "auto";
   video.muted = true;
   video.playsInline = true;
 
   const showreelPreload = document.createElement("video");
-  if (showreelSrc) {
+  if (showreelSrc && showreelSrc !== previewSrc) {
     showreelPreload.muted = true;
     showreelPreload.playsInline = true;
     showreelPreload.preload = "auto";
@@ -52,6 +53,8 @@ export function initWorkVideo() {
     mode = "preview";
     video.loop = true;
     video.muted = true;
+    video.controls = false;
+    video.removeAttribute("tabindex");
     if (video.getAttribute("src") !== previewSrc) {
       video.src = previewSrc;
       video.load();
@@ -61,23 +64,18 @@ export function initWorkVideo() {
   };
 
   const loadShowreel = () => {
+    mode = "showreel";
+    video.pause();
+    video.loop = false;
     if (!showreelSrc) {
       video.currentTime = 0;
-      video.loop = false;
-      return Promise.resolve();
+      return;
     }
-    mode = "showreel";
-    video.loop = false;
-    video.src = showreelSrc;
-    video.load();
-    return new Promise((resolve) => {
-      const done = () => {
-        video.removeEventListener("canplay", done);
-        resolve();
-      };
-      if (video.readyState >= 2) resolve();
-      else video.addEventListener("canplay", done, { once: true });
-    });
+    if (video.getAttribute("src") !== showreelSrc) {
+      video.src = showreelSrc;
+      video.load();
+    }
+    video.currentTime = 0;
   };
 
   loadPreview();
@@ -96,8 +94,16 @@ export function initWorkVideo() {
     observer.observe(group);
   }
 
-  const expand = async () => {
+  const expand = () => {
     returnFocus = document.activeElement;
+    const bounds = group.getBoundingClientRect();
+    placeholder = document.createElement("div");
+    placeholder.className = "work__media work__media--placeholder";
+    placeholder.style.width = `${bounds.width}px`;
+    placeholder.style.height = `${bounds.height}px`;
+    placeholder.setAttribute("aria-hidden", "true");
+    group.replaceWith(placeholder);
+    document.body.appendChild(group);
     group.classList.add("is-expanded");
     group.setAttribute("role", "dialog");
     group.setAttribute("aria-modal", "true");
@@ -109,11 +115,14 @@ export function initWorkVideo() {
     triggers.forEach((trigger) => trigger.setAttribute("aria-expanded", "true"));
     playBtn?.classList.add("is-exit");
     claimAudio(video);
+    loadShowreel();
+    video.controls = true;
+    video.tabIndex = 0;
     video.muted = false;
-    await loadShowreel();
-    if (!group.classList.contains("is-expanded") || mode !== "showreel") return;
-    video.currentTime = 0;
-    video.play().catch(() => {});
+    // Call play during the click gesture; waiting for canplay can lose permission for audio.
+    video.play().catch(() => {
+      if (group.classList.contains("is-expanded")) video.focus({ preventScroll: true });
+    });
   };
 
   const collapse = () => {
@@ -124,12 +133,14 @@ export function initWorkVideo() {
     group.removeAttribute("aria-label");
     window.__jen?.lenis.start();
     playBtn?.setAttribute("aria-label", "Odtwórz showreel");
-    returnFocus?.focus({ preventScroll: true });
     group.classList.remove("is-expanded");
+    placeholder?.replaceWith(group);
+    placeholder = null;
     triggers.forEach((trigger) => trigger.setAttribute("aria-expanded", "false"));
     playBtn?.classList.remove("is-exit");
     releaseAudio(video);
     loadPreview();
+    returnFocus?.focus({ preventScroll: true });
   };
 
   video.addEventListener("ended", () => {
@@ -142,10 +153,19 @@ export function initWorkVideo() {
 
   triggers.forEach((trigger) => {
     trigger.addEventListener("click", (event) => {
+      if (group.classList.contains("is-expanded") && trigger !== playBtn) return;
       event.stopPropagation();
       if (group.classList.contains("is-expanded")) collapse();
       else expand();
     });
+  });
+
+  video.addEventListener("click", (event) => {
+    if (group.classList.contains("is-expanded")) event.stopPropagation();
+  });
+
+  group.addEventListener("click", (event) => {
+    if (event.target === group) collapse();
   });
 
   document.addEventListener("click", (event) => {
@@ -157,7 +177,7 @@ export function initWorkVideo() {
     if (event.key === "Escape") collapse();
     if (event.key === "Tab" && group.classList.contains("is-expanded")) {
       event.preventDefault();
-      playBtn?.focus();
+      (document.activeElement === playBtn ? video : playBtn)?.focus();
     }
   });
 }

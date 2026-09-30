@@ -2,7 +2,7 @@ import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { CustomEase } from "gsap/CustomEase";
 import Lenis from "lenis";
-import { initPageTransition, transitionTo, animateLeave, getCurrentColor } from "./page-transition.js";
+import { initPageTransition, transitionTo, animateLeave, getCurrentColor, getNavigationColor } from "./page-transition.js";
 import { flushScrollFrame, markScrollActivity, onScrollFrame } from "./scroll-frame.js";
 
 gsap.registerPlugin(ScrollTrigger, CustomEase);
@@ -314,13 +314,13 @@ function handleNavigationTransition(link, event) {
         lenis.scrollTo(target, { immediate: true, offset: 0 });
         ScrollTrigger.refresh();
         history.pushState(null, "", targetSelector);
-      });
+      }, getNavigationColor(href));
       return;
     }
   }
 
   event.preventDefault();
-  animateLeave().then(() => {
+  animateLeave(getNavigationColor(href)).then(() => {
     sessionStorage.setItem("jen_page_transition_color", getCurrentColor());
     window.location.href = href;
   });

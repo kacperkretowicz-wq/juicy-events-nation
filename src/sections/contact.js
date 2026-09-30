@@ -32,7 +32,7 @@ export function initContactForm() {
   form.addEventListener("submit", (event) => {
     event.preventDefault();
     const data = new FormData(form);
-    const subject = encodeURIComponent(`Brief — Juicy Events · ${data.get("name")}`);
+    const subject = encodeURIComponent(`Brief: Juicy Events · ${data.get("name")}`);
     const body = encodeURIComponent(
       [
         "Dzień dobry,",
@@ -42,7 +42,7 @@ export function initContactForm() {
         "",
         data.get("message") || "",
         "",
-        "— wiadomość ze strony juicyevents.pl",
+        "Wiadomość ze strony juicyevents.pl",
       ].join("\n")
     );
 
