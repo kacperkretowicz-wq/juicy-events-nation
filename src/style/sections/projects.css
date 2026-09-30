@@ -105,10 +105,7 @@
   position: relative;
 }
 
-.project-card[data-tile="lemon"],
-.project-card[data-tile="blue"] {
-  --tile: var(--accent);
-}
+
 
 .project-card__link {
   display: grid;
@@ -280,3 +277,11 @@
     margin-left: 0;
   }
 }
+
+/* ─── tile colors per palette ─── */
+.project-card[data-tile="c1"] { --tile: #4242ff; }
+.project-card[data-tile="c2"] { --tile: #ffb825; }
+.project-card[data-tile="c3"] { --tile: #f74c25; }
+.project-card[data-tile="c4"] { --tile: #4242ff; }
+.project-card[data-tile="c5"] { --tile: #ffb825; }
+.project-card[data-tile="c6"] { --tile: #f74c25; }
