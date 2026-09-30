@@ -150,13 +150,22 @@ server.listen(PORT, async () => {
       console.log('Saved v2-nasza-praca.png');
     }
 
-    // 5. Wybrane realizacje
+    // 5. Wybrane realizacje + hover test
     const projectsSec = page.locator('#realizacje');
     if (await projectsSec.count()) {
       await projectsSec.scrollIntoViewIfNeeded();
       await page.waitForTimeout(500);
       await page.screenshot({ path: path.join(outDir, '05-realizacje.png') });
       console.log('Saved 05-realizacje.png');
+
+      // Hover over the second card (which was previously lemon)
+      const secondCard = page.locator('#realizacje .project-card').nth(1);
+      if (await secondCard.count()) {
+        await secondCard.hover();
+        await page.waitForTimeout(600);
+        await secondCard.screenshot({ path: path.join(outDir, '05-realizacje-hover.png') });
+        console.log('Saved 05-realizacje-hover.png');
+      }
     }
 
     // 6. Cele i misja (białe napisy)
@@ -168,16 +177,22 @@ server.listen(PORT, async () => {
       console.log('Saved 06-misja.png');
     }
 
-    // 7. Kompetencje
+    // 7. Kompetencje — aktywuj pozycję 02 jak na screenie użytkownika
     const expSec = page.locator('#kompetencje');
     if (await expSec.count()) {
       await expSec.scrollIntoViewIfNeeded();
-      await page.waitForTimeout(500);
+      await page.waitForTimeout(400);
+      // Kliknij pozycję 02, aby rozwinąć tagi i opis dokładnie jak na screenie użytkownika
+      const item2Head = page.locator('.expertise-item').nth(1).locator('.expertise-item__head');
+      if (await item2Head.count()) {
+        await item2Head.click();
+        await page.waitForTimeout(600);
+      }
       await expSec.screenshot({ path: path.join(outDir, '07-kompetencje.png') });
       console.log('Saved 07-kompetencje.png');
     }
 
-    // 8. Zespół (Jakub Gral na niebiesko)
+    // 8. Zespół (Jakub Gral na rażącym żółto-zielonym lemon)
     const teamSec = page.locator('#zespol');
     if (await teamSec.count()) {
       await teamSec.scrollIntoViewIfNeeded();
@@ -195,7 +210,7 @@ server.listen(PORT, async () => {
       console.log('Saved 09-kontakt.png');
     }
 
-    // 10. Footer i czerwony wordmark
+    // 10. Footer i czerwony wordmark (statyczny, bez Je! i bez ruchu)
     const footerSec = page.locator('.site-footer');
     if (await footerSec.count()) {
       await footerSec.scrollIntoViewIfNeeded();

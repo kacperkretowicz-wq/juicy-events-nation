@@ -273,6 +273,8 @@
 
 .agency__intro-title .bracket {
   color: var(--white);
+  font-family: inherit;
+  font-weight: inherit;
 }
 
 /* Stan startowy zanim agency.js przejmie animację (JS rusza po doczytaniu fontów,
@@ -343,9 +345,11 @@ html.js body:has([data-agency]) .site-header__logo img {
   color: var(--muted);
 }
 
-/* Warstwa jasna leży na wideo (akcent biały), ciemna na papierze (czerwień marki). */
+/* Warstwa jasna leży na wideo (czysta biel), ciemna na papierze (czerwień marki). */
 .agency__layer--light .bracket {
   color: var(--white);
+  font-family: inherit;
+  font-weight: inherit;
 }
 
 .agency__layer--dark .bracket {

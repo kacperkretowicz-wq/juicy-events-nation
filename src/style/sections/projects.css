@@ -98,19 +98,13 @@
 
 /* ——— Kafel ——— */
 
-.project-card {
+/* Ograniczenie kolorów hovera wyłącznie do czerwieni marki (feedback) */
+.project-card,
+.project-card[data-tile="lemon"],
+.project-card[data-tile="blue"],
+.project-card[data-tile="juice"],
+.project-card[data-tile="orange"] {
   --tile: var(--accent);
-  --ratio: 3 / 2;
-  --peek-x: 34.6%;
-  position: relative;
-}
-
-.project-card[data-tile="lemon"] {
-  --tile: var(--lemon);
-}
-
-.project-card[data-tile="blue"] {
-  --tile: var(--blue);
 }
 
 .project-card__link {
@@ -189,7 +183,7 @@
   padding: 0.45rem 0.7rem;
   border-radius: 999px;
   background: var(--ink);
-  color: var(--lemon);
+  color: var(--white);
   font-family: var(--font-label);
   font-weight: 400;
   font-size: var(--label);

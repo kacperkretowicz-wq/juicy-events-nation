@@ -69,6 +69,20 @@
   gap: 2rem;
 }
 
+.expertise__head {
+  display: grid;
+  gap: clamp(1.25rem, 2.5vw, 2rem);
+}
+
+.expertise__lead {
+  margin: 0;
+  max-width: 34ch;
+  font-size: var(--body-lg);
+  line-height: 1.5;
+  letter-spacing: -0.01em;
+  color: var(--on-dark-muted);
+}
+
 /* „Napis na dole zdecydowanie powinien być większy” — z display-3 na display-2. */
 .expertise__title {
   max-width: 11ch;
@@ -119,9 +133,7 @@
 }
 
 .expertise-item__head {
-  display: grid;
-  grid-template-columns: var(--index-w) minmax(0, 1fr);
-  gap: 0;
+  display: flex;
   align-items: baseline;
   width: 100%;
   min-height: 3rem;
@@ -134,6 +146,8 @@
 }
 
 .expertise-item__index {
+  flex-shrink: 0;
+  width: var(--index-w);
   font-family: var(--font-label);
   font-weight: 400;
   font-size: var(--label);
@@ -143,23 +157,50 @@
 }
 
 .expertise-item.is-active .expertise-item__index {
-  color: var(--accent-soft);
+  color: var(--white);
 }
 
-/* Bez nawiasów i bez zmiany koloru — aktywny punkt po prostu „zapala się” (opacity). */
 .expertise-item__head h3 {
-  display: inline;
+  flex: 1 1 auto;
+  margin: 0;
+  padding-right: 1.5rem;
   font-size: var(--display-3);
   letter-spacing: -0.022em;
-  line-height: 1.02;
-  transition: color 0.55s var(--ease);
-}
-
-.expertise.is-scroll .expertise-item__head h3 {
+  line-height: 1.05;
   color: var(--cream);
+  transition: color 0.4s var(--ease);
 }
 
-.expertise-item__head:hover h3 {
+.expertise-item__head:hover h3,
+.expertise-item.is-active .expertise-item__head h3 {
+  color: var(--white);
+}
+
+.expertise-item__arrow {
+  flex-shrink: 0;
+  margin-left: auto;
+  font-family: var(--font-label);
+  font-size: 1.35rem;
+  line-height: 1;
+  opacity: 0.4;
+  color: inherit;
+  transition: transform 0.35s var(--ease), opacity 0.35s var(--ease), color 0.35s var(--ease);
+}
+
+.expertise-item:hover .expertise-item__arrow,
+.expertise-item.is-active .expertise-item__arrow {
+  opacity: 1;
+  transform: translate(2px, -2px);
+  color: var(--white);
+}
+
+.expertise-item__tags {
+  margin: 0 0 0.85rem;
+  font-family: var(--font-label);
+  font-size: clamp(0.68rem, 0.8vw, 0.78rem);
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
   color: var(--lemon);
 }
 
@@ -180,7 +221,7 @@
 
 .expertise-item__body p {
   margin: 0;
-  max-width: 36ch;
+  max-width: 38ch;
   font-size: var(--body-lg);
   line-height: 1.45;
   letter-spacing: -0.01em;
@@ -205,30 +246,7 @@
 }
 
 .expertise.is-accordion .expertise-item__head {
-  grid-template-columns: auto minmax(0, 1fr) auto;
-  align-items: center;
   min-height: 3.25rem;
-}
-
-.expertise.is-accordion .expertise-item__head::before,
-.expertise.is-accordion .expertise-item__head::after {
-  content: "";
-  grid-column: 3;
-  grid-row: 1;
-  justify-self: end;
-  align-self: center;
-  width: 0.9rem;
-  height: 2px;
-  background: var(--lemon);
-  transition: transform 0.45s var(--ease);
-}
-
-.expertise.is-accordion .expertise-item__head::after {
-  transform: rotate(90deg);
-}
-
-.expertise.is-accordion .expertise-item.is-active .expertise-item__head::after {
-  transform: rotate(90deg) scaleX(0);
 }
 
 @media (max-width: 980px) {

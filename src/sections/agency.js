@@ -123,12 +123,13 @@ export function initAgency() {
           autoAlpha: 1 - dock,
         });
       }
-      if (headerLogo) gsap.set(headerLogo, { autoAlpha: dock });
-      if (intro) gsap.set(intro, { autoAlpha: 1 - fadeEase(introT) });
-      gsap.set(headline, { autoAlpha: introT, yPercent: 12 * (1 - flyT) });
-
       const wipeT = gsap.utils.clamp(0, 1, (progress - LOGO_END) / (1 - LOGO_END));
       const visible = (1 - wipeT) * 100;
+
+      // Nagłówek agencji i kafel showreela pojawiają się płynnie wraz z kurtyną odsłaniającą tło,
+      // a nie przedwcześnie w trakcie lotu logo na pełnym wideo wieży.
+      const headlineT = fadeEase(gsap.utils.clamp(0, 1, wipeT * 2.5));
+      gsap.set(headline, { autoAlpha: headlineT, yPercent: 10 * (1 - headlineT) });
       media.style.clipPath = `inset(0 0 ${100 - visible}% 0)`;
       // Nagłówek (initHeader) liczy ton tylko z widocznej części wideo — inaczej po
       // zwinięciu filmu logo w pasku zostawało białe na jasnym tle.
