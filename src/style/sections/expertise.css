@@ -143,7 +143,7 @@
 }
 
 .expertise-item.is-active .expertise-item__index {
-  color: var(--lemon);
+  color: var(--accent-soft);
 }
 
 /* Bez nawiasów i bez zmiany koloru — aktywny punkt po prostu „zapala się” (opacity). */

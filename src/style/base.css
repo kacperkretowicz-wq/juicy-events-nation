@@ -126,7 +126,7 @@ ul {
 
 [data-tone="dark"] .bracket,
 .bracket--lemon {
-  color: var(--lemon);
+  color: var(--accent-soft);
 }
 
 /* Przycisk marki: czarna pigułka + pomarańczowe kółko ze strzałką.
