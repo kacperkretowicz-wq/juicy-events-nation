@@ -1,29 +1,28 @@
 :root {
-  /* Powierzchnie — ciepły papier zamiast sweetpunkowego #f5f5f0 */
-  --cream: #f4f2ec;
-  --cream-deep: #e9e6dd;
+  /* Baza — piasek / kremowy neutralny */
+  --cream: #f3f3e9;
+  --cream-deep: #e8e8da;
   --white: #ffffff;
-  --ink: #121212;
-  --dark: #121212;
-  --dark-soft: #1e1e1e;
-  --muted: #64625c;
-  --muted-light: rgba(244, 242, 236, 0.62);
-  --on-dark-muted: rgba(244, 242, 236, 0.76);
-  --on-dark-line: rgba(244, 242, 236, 0.32);
-  --line: rgba(18, 18, 18, 0.14);
+  --ink: #0e0e0e;
+  --dark: #0e0e0e;
+  --dark-soft: #1a1a1a;
+  --muted: #5e5e5a;
+  --muted-light: rgba(243, 243, 233, 0.62);
+  --on-dark-muted: rgba(243, 243, 233, 0.76);
+  --on-dark-line: rgba(243, 243, 233, 0.32);
+  --line: rgba(14, 14, 14, 0.14);
   --line-light: rgba(255, 255, 255, 0.16);
 
-  /* Paleta barw — inspirowana Pentagramem i paletą Tolia Foods z pinu:
-     głęboka czerwień (Tomato Burst) jako wyrazisty kolor marki,
-     ciepły krem/papier i czerń jako baza, kobalt na karcie Jakuba. */
-  --accent: #d52518;
-  --accent-deep: #ba1e12;
-  --accent-text: #c82215;
-  --accent-soft: #e54436;
-  --accent-warm: #d52518;
+  /* Paleta: Cherry Cobalt — Haven
+     Cherry czerwień + Cobalt niebieski + Soft Pink + Sand jako baza */
+  --accent: #d20001;          /* Cherry */
+  --accent-deep: #b20001;
+  --accent-text: #c20001;
+  --accent-soft: #e21010;
+  --accent-warm: #d20001;
   --on-accent: #ffffff;
-  --lemon: #d9ff00;
-  --blue: #234ee4;
+  --lemon: #fec6e9;           /* Soft Pink — zamiast żółtego, pastelowy kontrast */
+  --blue: #0212ee;            /* Cobalt */
 
   /* Rytm */
   --pad: clamp(1.25rem, 3.2vw, 3.25rem);
@@ -31,7 +30,7 @@
   --gutter: clamp(0.75rem, 1.1vw, 1.15rem);
   --block: clamp(5.5rem, 12vw, 10.5rem);
 
-  /* Typografia: Mori Regular w dużych nagłówkach, Diatype Mono w etykietach. */
+  /* Typografia */
   --font: "PP Mori", "Helvetica Neue", Arial, sans-serif;
   --font-display: "PP Mori", "Helvetica Neue", Arial, sans-serif;
   --font-accent: "PP Mori", "Helvetica Neue", Arial, sans-serif;
@@ -48,10 +47,8 @@
   --micro: clamp(0.72rem, 0.8vw, 0.8rem);
   --label: clamp(0.74rem, 0.82vw, 0.84rem);
 
-  /* Ikona strzałki jako maska (kolor = background). */
   --icon-arrow: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M4 12h15M13 5.5 19.5 12 13 18.5' fill='none' stroke='%23000' stroke-width='2.3' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
 
-  /* Ruch */
   --ease: cubic-bezier(0.22, 1, 0.36, 1);
   --ease-expo: cubic-bezier(0.16, 1, 0.3, 1);
   --ease-juicy: cubic-bezier(0.34, 1.56, 0.64, 1);
