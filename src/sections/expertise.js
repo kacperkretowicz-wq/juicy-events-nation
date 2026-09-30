@@ -1,19 +1,7 @@
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { lenis, softMotion } from "../shared.js";
+import { playGlowSweep } from "../effects.js";
 import { initPinnedList } from "./pinned-list.js";
-
-/** Czysty h3 bez warstwy text-glow (tylko kolor + nawiasy w CSS). */
-function repairExpertiseTitles(items) {
-  items.forEach((item) => {
-    const h3 = item.querySelector(".expertise-item__head h3");
-    if (!h3?.classList.contains("text-glow")) return;
-    const base = h3.querySelector(".text-glow__base");
-    if (base) h3.innerHTML = base.innerHTML;
-    h3.classList.remove("text-glow", "is-text-glow-done");
-    delete h3.dataset.glowReady;
-    delete h3.dataset.glowPlayed;
-  });
-}
 
 /** Sticky nagłówek + scroll listy z opisami (Sweetpunk) — desktop i mobile. */
 function initExpertiseScrollList(section, items, onChange) {
@@ -29,7 +17,11 @@ function initExpertiseScrollList(section, items, onChange) {
     items.forEach((item, i) => {
       const active = i === index;
       item.classList.toggle("is-active", active);
-      item.querySelector("[data-pinned-select]")?.setAttribute("aria-expanded", "true");
+      item.querySelector("[data-pinned-select]")?.setAttribute("aria-expanded", active ? "true" : "false");
+      if (active) {
+        const h3 = item.querySelector(".expertise-item__head h3");
+        playGlowSweep(h3);
+      }
     });
     onChange(index);
   };
@@ -74,7 +66,6 @@ export function initExpertise() {
   const items = [...section.querySelectorAll("[data-expertise-item]")];
   const counter = section.querySelector("[data-expertise-current]");
 
-  repairExpertiseTitles(items);
 
   const onChange = (index) => {
     if (counter) counter.textContent = String(index + 1).padStart(2, "0");

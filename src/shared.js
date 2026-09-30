@@ -430,7 +430,6 @@ export function isHeadlineRevealExcluded(el) {
   if (el.closest(".hero-intro")) return true;
   if (el.closest("[aria-hidden='true']")) return true;
   if (el.closest(".project-card")) return true;
-  if (el.closest(".expertise")) return true;
   if (el.closest(".pass")) return true;
   return false;
 }

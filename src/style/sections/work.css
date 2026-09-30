@@ -95,11 +95,11 @@
   width: clamp(5.25rem, 6.8vw, 6.25rem);
   height: clamp(5.25rem, 6.8vw, 6.25rem);
   padding: 0.7rem;
-  border: 1px solid rgba(255, 255, 255, 0.4);
+  border: 1px solid rgba(255, 255, 255, 0.32);
   border-radius: 50%;
-  background: rgba(18, 18, 18, 0.78);
-  backdrop-filter: blur(14px);
-  -webkit-backdrop-filter: blur(14px);
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(8px) saturate(130%);
+  -webkit-backdrop-filter: blur(8px) saturate(130%);
   color: var(--white);
   cursor: pointer;
   transition: background 0.3s var(--ease), color 0.3s var(--ease), border-color 0.3s var(--ease), transform 0.3s var(--ease);
