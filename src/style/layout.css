@@ -342,15 +342,19 @@
   border-color: var(--lemon);
 }
 
-/* Gigantyczny wordmark — teraz jedzie w pętli (marquee.js), a scroll go
-   przyspiesza. Bez JS stoi w miejscu i wygląda jak wcześniej. */
+/* Statyczny wordmark bez ruchu i bez logo Je! (feedback) */
 .site-footer__wordmark {
   --wordmark-size: clamp(3.75rem, 13.5vw, 13rem);
   position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
   background: var(--accent);
   color: var(--cream);
   overflow: hidden;
-  padding-top: 0.04em;
+  padding: clamp(0.75rem, 1.8vw, 1.8rem) var(--pad);
+  text-align: center;
   transition: background 0.5s var(--ease), color 0.5s var(--ease);
 }
 
@@ -359,47 +363,20 @@
   color: var(--white);
 }
 
-.site-footer__wordmark-track {
-  display: flex;
-  width: max-content;
-  will-change: transform;
-}
-
 .site-footer__wordmark span {
   display: block;
-  flex-shrink: 0;
-  padding-right: 0.28em;
   font-family: var(--font-display);
   font-size: var(--wordmark-size);
   font-weight: var(--display-weight);
-  line-height: 0.84;
+  line-height: 0.85;
   letter-spacing: -0.03em;
   text-transform: uppercase;
   white-space: nowrap;
-  transform: translateY(0.07em);
 }
 
 .site-footer__wordmark span::after {
-  content: "";
-  display: inline-block;
-  width: 0.62em;
-  aspect-ratio: 1288 / 872;
-  margin-left: 0.24em;
-  vertical-align: 0.12em;
-  background: currentColor;
-  -webkit-mask-image: url("/media/mark-j.svg"), url("/media/mark-e.svg");
-  mask-image: url("/media/mark-j.svg"), url("/media/mark-e.svg");
-  -webkit-mask-size: contain;
-  mask-size: contain;
-  -webkit-mask-repeat: no-repeat;
-  mask-repeat: no-repeat;
-  -webkit-mask-position: center;
-  mask-position: center;
-  transition: background-color 0.5s var(--ease);
-}
-
-.site-footer__wordmark:hover span::after {
-  background: currentColor;
+  content: none !important;
+  display: none !important;
 }
 
 /* ——— SHOWREEL ——— */
