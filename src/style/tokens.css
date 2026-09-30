@@ -19,12 +19,12 @@
      --accent-text  — pomarańcz do TEKSTU na jasnym tle (kontrast ≥ 3:1)
      --lemon        — stan hover / wyróżnienia na ciemnym
      --blue         — trzeci kolor kafli i kart */
-  --accent: #ff4f18;
-  --accent-deep: #e03e0a;
-  --accent-text: #e9440f;
-  --accent-soft: #ff7a4d;
-  --accent-warm: #ff4f18;
-  --footer-accent: #e33a1b;
+  --accent: #e2231a;
+  --accent-deep: #bf1914;
+  --accent-text: #c51b15;
+  --accent-soft: #ff615d;
+  --accent-warm: #e2231a;
+  --footer-accent: #e2231a;
   --on-accent: #ffffff;
   --lemon: #f1ff66;
   --blue: #3b5bff;

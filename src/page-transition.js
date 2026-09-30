@@ -5,7 +5,7 @@ const STAGGER_STEP = 0.075;
 const EASE = "power1.out";
 
 // Kolory przejścia menu — losowy wybór przy każdym kliknięciu
-const PALETTE = ["#121212", "#1e1e1e", "#3b5bff", "#ff4f18", "#f1ff66"];
+const PALETTE = ["#e2231a", "#ff5048"];
 
 let overlayEl = null;
 let gridEl = null;
@@ -86,6 +86,8 @@ export function animateLeave(color) {
 
     const cells = Array.from(gridEl.children);
     if (!cells.length) return resolve();
+
+    gsap.set(cells, { backgroundColor: i => i % 7 === 0 ? "#f4f2ec" : i % 4 === 0 ? "#121212" : currentColor });
 
     gsap.set(overlayEl, { pointerEvents: "all" });
     gsap.set(cells, { autoAlpha: 0 });

@@ -6,7 +6,8 @@ import { initHeroIntro } from "./sections/hero-intro.js";
 import { initAgency } from "./sections/agency.js";
 import { initHeroReel } from "./sections/hero-reel.js";
 import { initExpertise } from "./sections/expertise.js";
-import { initProjects, initProjectCoverDrift } from "./sections/projects.js";
+import { initProjects } from "./sections/projects.js";
+import { initGoodmanProjectMotion } from "./sections/project-goodman-motion.js";
 import { initProjectVideo } from "./sections/project-video.js";
 import { initProjectSlideshow } from "./sections/project-slideshow.js";
 import { initProjectHover } from "./sections/project-hover.js";
@@ -34,7 +35,7 @@ whenFontsReady().then(() => {
   initMarquees();
   initExpertise();
   initProjects();
-  initProjectCoverDrift();
+  initGoodmanProjectMotion();
   initProjectVideo();
   initProjectSlideshow();
   initProjectHover();

@@ -5,6 +5,7 @@ import { initProjects } from "./sections/projects.js";
 import { initProjectVideo } from "./sections/project-video.js";
 import { initProjectSlideshow } from "./sections/project-slideshow.js";
 import { initProjectHover } from "./sections/project-hover.js";
+import { initGoodmanProjectMotion } from "./sections/project-goodman-motion.js";
 import { initMarquees } from "./sections/marquee.js";
 import { initLightbox } from "./sections/lightbox.js";
 import { initMicroFx } from "./sections/micro-fx.js";
@@ -22,6 +23,7 @@ whenFontsReady().then(() => {
   initProjectVideo();
   initProjectSlideshow();
   initProjectHover();
+  initGoodmanProjectMotion();
   initMarquees();
   initLightbox();
   initMicroFx();

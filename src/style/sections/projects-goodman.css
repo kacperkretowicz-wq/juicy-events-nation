@@ -1,0 +1,38 @@
+/* Goodman Gallery proportions, scaled from its 1440 / 768 / 375 design widths. */
+.projects--goodman { --goodman-unit: calc(100vw / 1440); --goodman-nav-y: 0px; max-width: none; padding: calc(100 * var(--goodman-unit)) calc(20 * var(--goodman-unit)); background: #fff; color: #000; }
+.projects--goodman .projects__head { border: 0; margin-bottom: calc(40 * var(--goodman-unit)); padding: 0; align-items: center; }
+.projects--goodman .projects__title { font: 500 calc(34 * var(--goodman-unit))/1 "Helvetica Neue", Arial, sans-serif; letter-spacing: 0; text-transform: uppercase; }
+.projects--goodman .projects__title .bracket::before, .projects--goodman .projects__title .bracket::after { content: none; }
+.projects--goodman .projects__grid--editorial { display: grid; grid-template-columns: minmax(0,1fr); gap: calc(20 * var(--goodman-unit)); }
+.projects--goodman .project-card:nth-child(n) { grid-column: 1; margin: 0; opacity: 1; transform: none; }
+.projects--goodman .project-card__link { display: grid; grid-template-columns: repeat(2,minmax(0,1fr)); gap: calc(12 * var(--goodman-unit)); align-items: stretch; }
+.projects--goodman .project-card__info { position: sticky; top: calc(142 * var(--goodman-unit) + var(--goodman-nav-y)); align-self: start; grid-column: 1; grid-row: 1; display: grid; grid-template-columns: repeat(2,minmax(0,1fr)); gap: calc(20 * var(--goodman-unit)); min-width: 0; }
+.projects--goodman .project-card__name, .projects--goodman .project-card__meta { display: flex; flex-direction: column; gap: calc(2 * var(--goodman-unit)); min-width: 0; }
+.projects--goodman .project-card__client { margin: 0; font: 600 calc(18 * var(--goodman-unit))/1.1 "PP Mori", "Helvetica Neue", Arial, sans-serif; letter-spacing: 0; color: #000; }
+.projects--goodman .project-card__title { max-width: none; margin: 0; font: 400 calc(16 * var(--goodman-unit))/1.125 Georgia, "Times New Roman", serif; letter-spacing: 0; color: #000; text-wrap: wrap; }
+.projects--goodman .project-card__meta { font: 400 calc(12 * var(--goodman-unit))/1.167 "Helvetica Neue", Arial, sans-serif; }
+.projects--goodman .project-card__meta small { font: inherit; }
+.projects--goodman .project-card__media { grid-column: 2; grid-row: 1; height: calc(518 * var(--goodman-unit)); aspect-ratio: auto; border-radius: calc(2 * var(--goodman-unit)); background: #eee; cursor: pointer; }
+.projects--goodman .project-card__cover { top: -5.5%; height: 111%; clip-path: none; opacity: 1; transform: translate3d(0,var(--parallax-y,-5%),0); scale: 1; transition: scale 750ms cubic-bezier(.25,1,.5,1),opacity 500ms linear; }
+.projects--goodman .project-card__peek { inset: 0; width: 100%; height: 100%; aspect-ratio: auto; background: transparent; box-shadow: none; opacity: 0; transform: none; transition: opacity 500ms linear; }
+.projects--goodman .project-card__peek img, .projects--goodman .project-card__peek video { position: absolute; top: -5.5%; left: 0; width: 100%; height: 111%; object-fit: cover; transform: translate3d(0,var(--parallax-y,-5%),0); scale: 1; transition: scale 750ms cubic-bezier(.25,1,.5,1); }
+.projects--goodman .project-card__cursor { display: none !important; }
+@media (hover:hover) and (min-width:769px) {
+  .projects--goodman .project-card:hover .project-card__cover, .projects--goodman .project-card:focus-within .project-card__cover { opacity: 1; clip-path: none; transform: translate3d(0,var(--parallax-y,-5%),0); scale: 1.03; }
+  .projects--goodman .project-card:hover .project-card__peek, .projects--goodman .project-card:focus-within .project-card__peek { transform: none; opacity: 1; }
+  .projects--goodman .project-card:hover .project-card__peek img, .projects--goodman .project-card:hover .project-card__peek video { scale: 1.03; }
+}
+@media (max-width:768px) {
+  .projects--goodman { --goodman-unit: calc(100vw / 768); padding-inline: calc(12 * var(--goodman-unit)); }
+  .projects--goodman .project-card__info { position: static; grid-template-columns: 1fr; gap: calc(12 * var(--goodman-unit)); }
+  .projects--goodman .project-card__media { height: calc(274 * var(--goodman-unit)); }
+}
+@media (max-width:480px) {
+  .projects--goodman { --goodman-unit: calc(100vw / 375); }
+  .projects--goodman .projects__head { gap: 12px; }
+  .projects--goodman .projects__title { font-size: calc(28 * var(--goodman-unit)); }
+  .projects--goodman .project-card__link { grid-template-columns: 1fr; gap: calc(12 * var(--goodman-unit)); }
+  .projects--goodman .project-card__media { grid-column: 1; grid-row: 1; height: calc(264 * var(--goodman-unit)); }
+  .projects--goodman .project-card__info { grid-column: 1; grid-row: 2; }
+  .projects--goodman .projects__grid--editorial { gap: calc(40 * var(--goodman-unit)); }
+}

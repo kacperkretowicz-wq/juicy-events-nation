@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <script>document.documentElement.classList.add('js')</script>
+    <script>document.documentElement.classList.add('js'); if (new URLSearchParams(location.search).get('motion') === 'full') document.documentElement.dataset.motionPreview = 'full'</script>
     <title>Realizacje — Juicy Events</title>
     <meta
       name="description"
@@ -93,7 +93,7 @@
         </p>
       </section>
 
-      <section class="projects" id="case-studies" aria-label="Wybrane realizacje">
+      <section class="projects projects--goodman" id="case-studies" aria-label="Wybrane realizacje">
         <div class="projects__head">
           <h2 class="projects__title">Case studies <span class="bracket">z bliska</span></h2>
           <p class="projects__count" aria-hidden="true">(06)</p>
@@ -109,8 +109,7 @@
                 </span>
                 <span class="project-card__cursor" aria-hidden="true">Zobacz case</span>
               </span>
-              <span class="project-card__client">Active Fashion</span>
-              <h3 class="project-card__title">Pokaz mody z pełną oprawą sceniczną</h3>
+              <div class="project-card__info"><div class="project-card__name"><span class="project-card__client">Active Fashion</span><h3 class="project-card__title">Pokaz mody z pełną oprawą sceniczną</h3></div><div class="project-card__meta"><span>Pokaz mody</span><small>Scena · Moda · Produkcja</small></div></div>
             </a>
           </article>
 
@@ -126,8 +125,7 @@
                 </span>
                 <span class="project-card__cursor" aria-hidden="true">Zobacz case</span>
               </span>
-              <span class="project-card__client">John Deere</span>
-              <h3 class="project-card__title">Jubileusz 25 lat marki w Polsce</h3>
+              <div class="project-card__info"><div class="project-card__name"><span class="project-card__client">John Deere</span><h3 class="project-card__title">Jubileusz 25 lat marki w Polsce</h3></div><div class="project-card__meta"><span>Jubileusz marki</span><small>Gala · Produkcja · Hospitality</small></div></div>
             </a>
           </article>
 
@@ -143,8 +141,7 @@
                 </span>
                 <span class="project-card__cursor" aria-hidden="true">Zobacz case</span>
               </span>
-              <span class="project-card__client">Multichem</span>
-              <h3 class="project-card__title">Konferencja z pełną produkcją techniczną</h3>
+              <div class="project-card__info"><div class="project-card__name"><span class="project-card__client">Multichem</span><h3 class="project-card__title">Konferencja z pełną produkcją techniczną</h3></div><div class="project-card__meta"><span>Konferencja</span><small>B2B · Konferencja · AV</small></div></div>
             </a>
           </article>
 
@@ -157,8 +154,7 @@
                 </span>
                 <span class="project-card__cursor" aria-hidden="true">Zobacz case</span>
               </span>
-              <span class="project-card__client">Retro Rush</span>
-              <h3 class="project-card__title">Imprezowa podróż w czasie</h3>
+              <div class="project-card__info"><div class="project-card__name"><span class="project-card__client">Retro Rush</span><h3 class="project-card__title">Imprezowa podróż w czasie</h3></div><div class="project-card__meta"><span>Wydarzenie tematyczne</span><small>Event · Scenografia · Produkcja</small></div></div>
             </a>
           </article>
 
@@ -174,8 +170,7 @@
                 </span>
                 <span class="project-card__cursor" aria-hidden="true">Zobacz case</span>
               </span>
-              <span class="project-card__client">Rainbow</span>
-              <h3 class="project-card__title">Wieczór z autorską oprawą artystyczną</h3>
+              <div class="project-card__info"><div class="project-card__name"><span class="project-card__client">Rainbow</span><h3 class="project-card__title">Wieczór z autorską oprawą artystyczną</h3></div><div class="project-card__meta"><span>Wydarzenie artystyczne</span><small>Muzyka · Scena · Oprawa</small></div></div>
             </a>
           </article>
 
@@ -191,8 +186,7 @@
                 </span>
                 <span class="project-card__cursor" aria-hidden="true">Zobacz case</span>
               </span>
-              <span class="project-card__client">Volvo</span>
-              <h3 class="project-card__title">Networking i premiera w standardzie premium</h3>
+              <div class="project-card__info"><div class="project-card__name"><span class="project-card__client">Volvo</span><h3 class="project-card__title">Networking i premiera w standardzie premium</h3></div><div class="project-card__meta"><span>Premiera marki</span><small>Networking · Event · Produkcja</small></div></div>
             </a>
           </article>
         </div>

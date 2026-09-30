@@ -44,6 +44,7 @@ export function initProjects() {
   if (!cards.length) return;
 
   cards.forEach((card) => {
+    if (card.closest(".projects--goodman")) return;
     const reveal = () => {
       if (card.dataset.revealed === "1") return;
       card.dataset.revealed = "1";

@@ -275,10 +275,10 @@
            Nowe logo = kolejne <li> z <img>; modyfikator --wide/--tall wyrównuje wysokość. -->
       <section class="clients" id="klienci" aria-labelledby="clients-label">
         <div class="clients__head">
-          <p class="eyebrow" id="clients-label">Zaufały nam marki</p>
+          <p class="eyebrow" id="clients-label">Zaufali nam</p>
         </div>
-        <div class="clients__marquee" data-marquee data-marquee-speed="70">
-          <ul class="clients__track" data-marquee-track>
+        <div class="clients__marquee">
+          <ul class="clients__track">
             <li class="clients__item clients__item--badge"><img src="/media/klienci/john-deere.svg" alt="John Deere" width="806" height="588" decoding="async" /></li>
             <li class="clients__item"><img src="/media/klienci/volvo.svg" alt="Volvo" width="255" height="255" decoding="async" /></li>
             <li class="clients__item clients__item--wide"><img src="/media/klienci/multichem.svg" alt="Multichem" width="597" height="194" decoding="async" /></li>
@@ -288,22 +288,14 @@
       </section>
 
       <!-- OPIS — pionowy kadr z migającym znakiem po lewej i opis po prawej -->
-      <section class="work" id="praca">
+      <section class="work" id="praca"><div class="work__wash" aria-hidden="true"></div>
         <div class="work__copy">
-          <p class="eyebrow work__eyebrow">Nasza praca</p>
-          <h2 class="work__title" data-headline-reveal>
-            Od wizji do mierzalnych rezultatów - z&nbsp;precyzją, estetyką <span class="bracket">i&nbsp;emocją.</span>
-          </h2>
-          <div class="work__text" data-fade-group>
-            <p>
-              Projektujemy wydarzenia, które przyciągają uwagę, budują relacje i zostają w głowie.
-              Od strategii i kreacji po produkcję i analizę efektów - działamy na emocje i na liczby.
-            </p>
-            <a class="btn" href="#realizacje">Zobacz realizacje</a>
-          </div>
+          <p class="eyebrow work__eyebrow">02 / Z planu i ze sceny</p>
+          <h2 class="work__title" data-no-headline-reveal>Nasza<br>praca.</h2>
+          <a class="link-arrow work__cases" href="#realizacje">Zobacz realizacje</a>
         </div>
 
-        <div class="work__media" data-work-video-group>
+        <div class="work__media" data-work-video-group><div class="work__film-caption" aria-hidden="true"><span>Showreel 02</span><span>00:26</span></div>
           <button
             class="work__card"
             type="button"
@@ -315,10 +307,10 @@
               <video
                 class="work__video"
                 data-work-video
-                data-work-preview="/media/work-preview.mov"
+                data-work-preview="/media/work-showreel.mp4"
                 data-work-showreel="/media/work-showreel.mp4"
                 preload="auto"
-                src="/media/work-preview.mov"
+                src="/media/work-showreel.mp4"
                 poster="/media/work-preview-poster.jpg"
                 muted
                 loop
@@ -346,7 +338,7 @@
       <!-- REALIZACJE — portfolio zaraz po opisie (układ „od razu portfolio” jak u Leveled).
            Kafle w nieregularnej siatce; hover = kolorowe tło (pomarańcz / cytryna / niebieski)
            i film albo pokaz zdjęć w kadrze 9:16. Pod kaflem tylko marka + tytuł. -->
-      <section class="projects" id="realizacje">
+      <section class="projects projects--goodman" id="realizacje">
         <div class="projects__head">
           <h2 class="projects__title" data-headline-reveal>
             Wybrane <span class="bracket">realizacje</span>
@@ -365,8 +357,7 @@
                 </span>
                 <span class="project-card__cursor" aria-hidden="true">Zobacz case</span>
               </span>
-              <span class="project-card__client">Active Fashion</span>
-              <h3 class="project-card__title">Pokaz mody z pełną oprawą sceniczną</h3>
+              <div class="project-card__info"><div class="project-card__name"><span class="project-card__client">Active Fashion</span><h3 class="project-card__title">Pokaz mody z pełną oprawą sceniczną</h3></div><div class="project-card__meta"><span>Pokaz mody</span><small>Scena · Moda · Produkcja</small></div></div>
             </a>
           </article>
 
@@ -382,8 +373,7 @@
                 </span>
                 <span class="project-card__cursor" aria-hidden="true">Zobacz case</span>
               </span>
-              <span class="project-card__client">John Deere</span>
-              <h3 class="project-card__title">Jubileusz 25 lat marki w Polsce</h3>
+              <div class="project-card__info"><div class="project-card__name"><span class="project-card__client">John Deere</span><h3 class="project-card__title">Jubileusz 25 lat marki w Polsce</h3></div><div class="project-card__meta"><span>Jubileusz marki</span><small>Gala · Produkcja · Hospitality</small></div></div>
             </a>
           </article>
 
@@ -399,8 +389,7 @@
                 </span>
                 <span class="project-card__cursor" aria-hidden="true">Zobacz case</span>
               </span>
-              <span class="project-card__client">Multichem</span>
-              <h3 class="project-card__title">Konferencja z pełną produkcją techniczną</h3>
+              <div class="project-card__info"><div class="project-card__name"><span class="project-card__client">Multichem</span><h3 class="project-card__title">Konferencja z pełną produkcją techniczną</h3></div><div class="project-card__meta"><span>Konferencja</span><small>B2B · Konferencja · AV</small></div></div>
             </a>
           </article>
 
@@ -413,8 +402,7 @@
                 </span>
                 <span class="project-card__cursor" aria-hidden="true">Zobacz case</span>
               </span>
-              <span class="project-card__client">Retro Rush</span>
-              <h3 class="project-card__title">Imprezowa podróż w czasie</h3>
+              <div class="project-card__info"><div class="project-card__name"><span class="project-card__client">Retro Rush</span><h3 class="project-card__title">Imprezowa podróż w czasie</h3></div><div class="project-card__meta"><span>Wydarzenie tematyczne</span><small>Event · Scenografia · Produkcja</small></div></div>
             </a>
           </article>
 
@@ -430,8 +418,7 @@
                 </span>
                 <span class="project-card__cursor" aria-hidden="true">Zobacz case</span>
               </span>
-              <span class="project-card__client">Rainbow</span>
-              <h3 class="project-card__title">Wieczór z autorską oprawą artystyczną</h3>
+              <div class="project-card__info"><div class="project-card__name"><span class="project-card__client">Rainbow</span><h3 class="project-card__title">Wieczór z autorską oprawą artystyczną</h3></div><div class="project-card__meta"><span>Wydarzenie artystyczne</span><small>Muzyka · Scena · Oprawa</small></div></div>
             </a>
           </article>
 
@@ -447,8 +434,7 @@
                 </span>
                 <span class="project-card__cursor" aria-hidden="true">Zobacz case</span>
               </span>
-              <span class="project-card__client">Volvo</span>
-              <h3 class="project-card__title">Networking i premiera w standardzie premium</h3>
+              <div class="project-card__info"><div class="project-card__name"><span class="project-card__client">Volvo</span><h3 class="project-card__title">Networking i premiera w standardzie premium</h3></div><div class="project-card__meta"><span>Premiera marki</span><small>Networking · Event · Produkcja</small></div></div>
             </a>
           </article>
         </div>
@@ -486,13 +472,9 @@
       <section class="expertise" id="kompetencje" data-expertise data-tone="dark">
         <div class="expertise__inner">
           <div class="expertise__aside">
-            <p class="eyebrow eyebrow--light">Kompetencje</p>
-            <h2 class="expertise__title" data-headline-reveal>
-              Jedna agencja. Wszystkie kompetencje <span class="bracket">eventowe.</span>
-            </h2>
-            <p class="expertise__count">
-              <span data-expertise-current>01</span><span class="expertise__count-sep">/</span><span>05</span>
-            </p>
+
+            <h2 class="expertise__title" data-no-headline-reveal>Jedna <br>agencja.<br><span class="expertise__scope">Wszystkie <br>kompetencje</span><br><span class="expertise__accent">eventowe.</span></h2>
+
           </div>
 
           <div class="expertise__list" data-expertise-list>
@@ -501,64 +483,64 @@
                 <span class="expertise-item__index">01</span>
                 <h3>Kompleksowa organizacja wydarzeń</h3>
               </button>
-              <div class="expertise-item__body" data-pinned-body>
+              <div class="expertise-item__body" data-pinned-body><div class="expertise-item__content"><p class="expertise-item__tags">GALE / JUBILEUSZE / KONFERENCJE / PREMIERY</p>
                 <p>
                   Gale i jubileusze, konferencje, premiery produktowe, eventy firmowe, sportowe
                   i prywatne. Prowadzimy projekt od koncepcji po ostatniego gościa.
                 </p>
-              </div>
+              </div></div>
             </article>
 
             <article class="expertise-item" data-expertise-item>
               <button class="expertise-item__head" type="button" data-pinned-select aria-expanded="false">
                 <span class="expertise-item__index">02</span>
-                <h3>Event marketing</h3>
+                <h3>Event marketing &amp; strategia</h3>
               </button>
-              <div class="expertise-item__body" data-pinned-body>
+              <div class="expertise-item__body" data-pinned-body><div class="expertise-item__content"><p class="expertise-item__tags">AKTYWACJE MAREK / EMPLOYER BRANDING / KAMPANIE B2B / KPI</p>
                 <p>
                   Każde wydarzenie projektujemy jak kampanię — z celem, KPI i kontrolą efektów.
                   Emocja staje się narzędziem, a event inwestycją, nie kosztem.
                 </p>
-              </div>
+              </div></div>
             </article>
 
             <article class="expertise-item" data-expertise-item>
               <button class="expertise-item__head" type="button" data-pinned-select aria-expanded="false">
                 <span class="expertise-item__index">03</span>
-                <h3>Scenariusz i oprawa artystyczna</h3>
+                <h3>Scenariusz i reżyseria artystyczna</h3>
               </button>
-              <div class="expertise-item__body" data-pinned-body>
+              <div class="expertise-item__body" data-pinned-body><div class="expertise-item__content"><p class="expertise-item__tags">REŻYSERIA / MUZYKA / ARTYŚCI / PERFORMANCE</p>
                 <p>
                   Reżyseria wieczoru, DJ-e, zespoły, wokaliści i performerzy dobrani do charakteru
                   marki i celu wydarzenia.
                 </p>
-              </div>
+              </div></div>
             </article>
 
             <article class="expertise-item" data-expertise-item>
               <button class="expertise-item__head" type="button" data-pinned-select aria-expanded="false">
                 <span class="expertise-item__index">04</span>
-                <h3>Technika, mapping, lasery, AV</h3>
+                <h3>Technika, mapping 3D i AV</h3>
               </button>
-              <div class="expertise-item__body" data-pinned-body>
+              <div class="expertise-item__body" data-pinned-body><div class="expertise-item__content"><p class="expertise-item__tags">ŚWIATŁO / DŹWIĘK / MAPPING / MULTIMEDIA</p>
                 <p>
                   Światło, dźwięk, mapping i efekty specjalne, które nie są dodatkiem —
                   prowadzą narrację marki.
                 </p>
-              </div>
+              </div></div>
             </article>
 
             <article class="expertise-item" data-expertise-item>
               <button class="expertise-item__head" type="button" data-pinned-select aria-expanded="false">
                 <span class="expertise-item__index">05</span>
-                <h3>Scenografia, hospitality, foto &amp; video</h3>
+                <h3>Scenografia i architektura przestrzeni</h3>
               </button>
-              <div class="expertise-item__body" data-pinned-body>
+              <div class="expertise-item__body" data-pinned-body><div class="expertise-item__content"><p class="expertise-item__tags">SCENOGRAFIA / BRANDING / HOSPITALITY / FOTO I VIDEO</p>
                 <p>
                   Design przestrzeni, branding, recepcja VIP, multimedia i dokumentacja —
                   żeby całe wydarzenie było spójne i zapamiętane.
                 </p>
-              </div>
+              </div></div>
             </article>
           </div>
         </div>

@@ -78,7 +78,7 @@ const isHex = (value) => /^#[0-9a-f]{6}$/i.test(value ?? "");
 export function initPaletteLab() {
   const params = new URLSearchParams(window.location.search);
   const isLocalPreview = window.location.hostname === "localhost" || window.location.hostname === "127.0.0.1";
-  if (!params.has("palette-lab") && !isLocalPreview) return;
+  if (!params.has("palette-lab")) return;
 
   const root = document.documentElement;
   const validFonts = new Set(FONTS.map(([key]) => key));

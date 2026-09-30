@@ -11,6 +11,7 @@ export function initWorkVideo() {
   const previewSrc = video.dataset.workPreview || video.getAttribute("src") || "";
   const showreelSrc = video.dataset.workShowreel || "";
   let mode = "preview";
+  let returnFocus = null;
 
   video.preload = "auto";
   video.muted = true;
@@ -96,17 +97,34 @@ export function initWorkVideo() {
   }
 
   const expand = async () => {
+    returnFocus = document.activeElement;
     group.classList.add("is-expanded");
+    group.setAttribute("role", "dialog");
+    group.setAttribute("aria-modal", "true");
+    group.setAttribute("aria-label", "Showreel Juicy Events");
+    document.documentElement.classList.add("has-work-showreel");
+    window.__jen?.lenis.stop();
+    playBtn?.setAttribute("aria-label", "Zamknij showreel");
+    playBtn?.focus({ preventScroll: true });
     triggers.forEach((trigger) => trigger.setAttribute("aria-expanded", "true"));
     playBtn?.classList.add("is-exit");
     claimAudio(video);
     video.muted = false;
     await loadShowreel();
+    if (!group.classList.contains("is-expanded") || mode !== "showreel") return;
     video.currentTime = 0;
     video.play().catch(() => {});
   };
 
   const collapse = () => {
+    if (!group.classList.contains("is-expanded")) return;
+    document.documentElement.classList.remove("has-work-showreel");
+    group.removeAttribute("role");
+    group.removeAttribute("aria-modal");
+    group.removeAttribute("aria-label");
+    window.__jen?.lenis.start();
+    playBtn?.setAttribute("aria-label", "Odtwórz showreel");
+    returnFocus?.focus({ preventScroll: true });
     group.classList.remove("is-expanded");
     triggers.forEach((trigger) => trigger.setAttribute("aria-expanded", "false"));
     playBtn?.classList.remove("is-exit");
@@ -137,5 +155,9 @@ export function initWorkVideo() {
 
   document.addEventListener("keydown", (event) => {
     if (event.key === "Escape") collapse();
+    if (event.key === "Tab" && group.classList.contains("is-expanded")) {
+      event.preventDefault();
+      playBtn?.focus();
+    }
   });
 }
