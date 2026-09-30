@@ -167,7 +167,7 @@
             <div class="agency__intro" data-agency-intro>
               <h2 class="agency__intro-title">
                 <span class="agency__intro-lead">Tworzymy</span>
-                <span>wydarzenia, które mówią językiem Twojej <span class="bracket">marki.</span></span>
+                <span>wydarzenia, które mówią językiem Twojej marki.</span>
               </h2>
             </div>
 
@@ -214,37 +214,59 @@
         </div>
       </section>
 
-      <!-- OPIS — asymetrycznie: tytuł przesunięty w lewo, znak Je! z wideo w środku po prawej -->
+      <!-- OPIS — tytuł po lewej, czerwony kafelek z filmem w kwadracie po prawej -->
       <section class="work" id="praca">
         <div class="work__copy">
+          <p class="eyebrow work__eyebrow">Nasza praca</p>
           <h2 class="work__title" data-headline-reveal>
             Od wizji do mierzalnych rezultatów – z&nbsp;precyzją, estetyką <span class="bracket">i&nbsp;emocją.</span>
           </h2>
           <div class="work__text" data-fade-group>
             <p>
-              Projektujemy wydarzenia, które przyciągają uwagę, budują relacje i zostają w głowie.
-              Od strategii i kreacji po produkcję i analizę efektów – działamy na emocje i na liczby.
+              Projektujemy wydarzenia, które przyciągają uwagę i budują trwałe relacje.
+              Od strategii i kreacji po precyzyjną produkcję — działamy na emocje i na mierzalne wyniki.
             </p>
             <a class="btn" href="#realizacje">Zobacz realizacje</a>
           </div>
         </div>
 
-        <div class="work__mark" data-je-mark aria-hidden="true">
-          <div class="je-mark" data-je-mark-stage>
-            <span class="je-mark__layer je-mark__layer--lemon"></span>
-            <span class="je-mark__layer je-mark__layer--juice"></span>
-            <span class="je-mark__layer je-mark__layer--video">
+        <div class="work__media" data-work-video-group>
+          <button
+            class="work__card"
+            type="button"
+            data-work-video-trigger
+            aria-expanded="false"
+            aria-label="Odtwórz showreel"
+          >
+            <span class="work__card-inner" aria-hidden="true">
               <video
+                class="work__video"
+                data-work-video
+                data-work-preview="/media/work-square.mp4"
+                data-work-showreel="/media/work-showreel.mp4"
+                preload="auto"
+                src="/media/work-square.mp4"
+                poster="/media/work-square-poster.jpg"
                 muted
                 loop
                 playsinline
-                preload="none"
-                poster="/media/je-showreel-poster.jpg"
-                data-je-video
-                data-src="/media/je-showreel.mp4"
+                autoplay
               ></video>
             </span>
-          </div>
+          </button>
+          <button class="work__play" type="button" data-work-video-trigger aria-label="Odtwórz showreel">
+            <span class="work__play-ui work__play-ui--idle" aria-hidden="true">
+              <span class="work__play-icon"></span>
+              <span class="work__play-copy">
+                <span>Odtwórz</span>
+                <span>showreel</span>
+              </span>
+            </span>
+            <span class="work__play-ui work__play-ui--exit" aria-hidden="true">
+              <span class="work__play-icon work__play-icon--exit"></span>
+              <span>Zamknij</span>
+            </span>
+          </button>
         </div>
       </section>
 
@@ -408,8 +430,7 @@
               </button>
               <div class="expertise-item__body" data-pinned-body>
                 <p>
-                  Gale i jubileusze, konferencje, premiery produktowe, eventy firmowe, sportowe
-                  i prywatne. Prowadzimy projekt od koncepcji po ostatniego gościa.
+                  Gale, jubileusze, konferencje i premiery produktowe. Prowadzimy projekt od koncepcji po ostatniego gościa.
                 </p>
               </div>
             </article>
@@ -421,8 +442,7 @@
               </button>
               <div class="expertise-item__body" data-pinned-body>
                 <p>
-                  Każde wydarzenie projektujemy jak kampanię — z celem, KPI i kontrolą efektów.
-                  Emocja staje się narzędziem, a event inwestycją, nie kosztem.
+                  Projektujemy wydarzenie jak kampanię — z celem, KPI i kontrolą efektu. Emocja staje się narzędziem i inwestycją.
                 </p>
               </div>
             </article>
@@ -434,8 +454,7 @@
               </button>
               <div class="expertise-item__body" data-pinned-body>
                 <p>
-                  Reżyseria wieczoru, DJ-e, zespoły, wokaliści i performerzy dobrani do charakteru
-                  marki i celu wydarzenia.
+                  Reżyseria wieczoru, artyści, DJ-e i oprawa muzyczna dopasowana do tożsamości marki.
                 </p>
               </div>
             </article>
@@ -447,8 +466,7 @@
               </button>
               <div class="expertise-item__body" data-pinned-body>
                 <p>
-                  Światło, dźwięk, mapping i efekty specjalne, które nie są dodatkiem —
-                  prowadzą narrację marki.
+                  Światło, dźwięk, mapping i efekty specjalne, które budują narrację i skalę wydarzenia.
                 </p>
               </div>
             </article>
@@ -460,8 +478,7 @@
               </button>
               <div class="expertise-item__body" data-pinned-body>
                 <p>
-                  Design przestrzeni, branding, recepcja VIP, multimedia i dokumentacja —
-                  żeby całe wydarzenie było spójne i zapamiętane.
+                  Design przestrzeni, branding, strefy VIP oraz pełna dokumentacja foto i wideo.
                 </p>
               </div>
             </article>
@@ -516,7 +533,7 @@
               <span class="crew-card__sign" aria-hidden="true"></span>
             </div>
           </li>
-          <li class="crew-card crew-card--lemon" data-team-card>
+          <li class="crew-card crew-card--blue" data-team-card>
             <div class="crew-card__top">
               <h3 class="crew-card__name">Jakub Gral</h3>
               <p class="crew-card__role">Marketing</p>

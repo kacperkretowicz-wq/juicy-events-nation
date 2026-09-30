@@ -10,7 +10,7 @@ import { initProjects, initProjectCoverDrift } from "./sections/projects.js";
 import { initProjectVideo } from "./sections/project-video.js";
 import { initProjectSlideshow } from "./sections/project-slideshow.js";
 import { initProjectHover } from "./sections/project-hover.js";
-import { initJeMark } from "./sections/je-mark.js";
+import { initWorkVideo } from "./sections/work-video.js";
 import { initMarquees } from "./sections/marquee.js";
 import { initMission } from "./sections/mission.js";
 import { bootSiteClosing } from "./site-closing-boot.js";
@@ -28,7 +28,7 @@ whenFontsReady().then(() => {
   initParallax();
 
   initAgency();
-  initJeMark();
+  initWorkVideo();
   initMarquees();
   initExpertise();
   initProjects();

@@ -67,7 +67,9 @@
 
 .crew-card--juice {
   --card-bg: var(--accent);
-  --card-muted: rgba(18, 18, 18, 0.74);
+  --card-fg: #ffffff;
+  --card-muted: rgba(255, 255, 255, 0.78);
+  --card-line: rgba(255, 255, 255, 0.35);
 }
 
 .crew-card--ink {
@@ -75,6 +77,13 @@
   --card-fg: var(--cream);
   --card-muted: var(--on-dark-muted);
   --card-line: rgba(244, 242, 236, 0.35);
+}
+
+.crew-card--blue {
+  --card-bg: var(--blue);
+  --card-fg: #ffffff;
+  --card-muted: rgba(255, 255, 255, 0.78);
+  --card-line: rgba(255, 255, 255, 0.35);
 }
 
 .crew-card--lemon {

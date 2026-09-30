@@ -355,8 +355,8 @@
 }
 
 .site-footer__wordmark:hover {
-  background: var(--lemon);
-  color: var(--ink);
+  background: var(--accent-deep);
+  color: var(--white);
 }
 
 .site-footer__wordmark-track {
@@ -386,7 +386,7 @@
   aspect-ratio: 1288 / 872;
   margin-left: 0.24em;
   vertical-align: 0.12em;
-  background: var(--ink);
+  background: currentColor;
   -webkit-mask-image: url("/media/mark-j.svg"), url("/media/mark-e.svg");
   mask-image: url("/media/mark-j.svg"), url("/media/mark-e.svg");
   -webkit-mask-size: contain;
@@ -399,7 +399,7 @@
 }
 
 .site-footer__wordmark:hover span::after {
-  background: var(--accent);
+  background: currentColor;
 }
 
 /* ——— SHOWREEL ——— */

@@ -13,20 +13,17 @@
   --line: rgba(18, 18, 18, 0.14);
   --line-light: rgba(255, 255, 255, 0.16);
 
-  /* Paleta „juicy” — pomarańcz jako kolor marki, cytryna jako akcent hover,
-     niebieski jako trzeci kolor kafli (jak rytm kolorów u Leveled).
-     --accent       — tła, przyciski, duże plamy koloru
-     --accent-text  — pomarańcz do TEKSTU na jasnym tle (kontrast ≥ 3:1)
-     --lemon        — stan hover / wyróżnienia na ciemnym
-     --blue         — trzeci kolor kafli i kart */
-  --accent: #ff4f18;
-  --accent-deep: #e03e0a;
-  --accent-text: #e9440f;
-  --accent-soft: #ff7a4d;
-  --accent-warm: #ff4f18;
+  /* Paleta barw — inspirowana Pentagramem i paletą Tolia Foods z pinu:
+     głęboka czerwień (Tomato Burst) jako wyrazisty kolor marki,
+     ciepły krem/papier i czerń jako baza, kobalt na karcie Jakuba. */
+  --accent: #d52518;
+  --accent-deep: #ba1e12;
+  --accent-text: #c82215;
+  --accent-soft: #e54436;
+  --accent-warm: #d52518;
   --on-accent: #ffffff;
-  --lemon: #f1ff66;
-  --blue: #3b5bff;
+  --lemon: #ffc926;
+  --blue: #234ee4;
 
   /* Rytm */
   --pad: clamp(1.25rem, 3.2vw, 3.25rem);

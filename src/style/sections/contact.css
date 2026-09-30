@@ -1,12 +1,13 @@
 /* ——— KONTAKT ———
-   Finał na cytrynie: jeden duży slogan i bezpośrednie kanały. Bez zdjęcia (AI)
-   i bez szklanego panelu z formularzem — oba wypadły po feedbacku właściciela. */
+   Spokojna, elegancka powierzchnia papieru/kremu: duży slogan i bezpośrednie kanały.
+   Bez agresywnej cytryny i bez zbędnego sygnetu Je! w rogu (feedback właściciela). */
 
 .contact {
   position: relative;
-  background: var(--lemon);
+  background: var(--cream);
   color: var(--ink);
   overflow: hidden;
+  border-top: 1px solid var(--line);
 }
 
 .contact__inner {
@@ -23,7 +24,7 @@
 .contact__eyebrow {
   grid-column: 1 / -1;
   margin-bottom: clamp(1.25rem, 2.5vw, 2rem);
-  color: var(--ink);
+  color: var(--muted);
 }
 
 .contact__title {
@@ -48,7 +49,7 @@
   gap: 1rem clamp(1.5rem, 3.5vw, 3.5rem);
   margin-top: clamp(2.5rem, 5vw, 4.5rem);
   padding-top: clamp(1.25rem, 2vw, 1.75rem);
-  border-top: 1px solid rgba(18, 18, 18, 0.22);
+  border-top: 1px solid var(--line);
 }
 
 .contact__mail,
@@ -83,7 +84,7 @@
   transform: rotate(0deg) translateX(0.15em);
 }
 
-/* Podkreślenie rysowane od lewej — pomarańczowe, grube jak marker. */
+/* Podkreślenie rysowane od lewej — pomarańczowe/czerwone, grube jak marker. */
 .contact__mail::before,
 .contact__phone::before {
   content: "";
@@ -108,27 +109,12 @@
 .contact__note {
   margin: 0 0 0 auto;
   font-size: var(--body-lg);
-  color: rgba(18, 18, 18, 0.72);
+  color: var(--muted);
 }
 
-/* Duży sygnet Je! w rogu — obraca się leniwie, na hover sekcji przyspiesza. */
+/* Sygnet Je! w rogu usunięty zgodnie z feedbackiem właściciela („Logo juicy jest niepotrzebne uważam”). */
 .contact__sign {
-  position: absolute;
-  right: var(--pad);
-  top: clamp(5rem, 9vw, 8rem);
-  width: clamp(7rem, 16vw, 15rem);
-  aspect-ratio: 1288 / 872;
-  background: var(--ink);
-  -webkit-mask-image: url("/media/mark-j.svg"), url("/media/mark-e.svg");
-  mask-image: url("/media/mark-j.svg"), url("/media/mark-e.svg");
-  -webkit-mask-size: contain;
-  mask-size: contain;
-  -webkit-mask-repeat: no-repeat;
-  mask-repeat: no-repeat;
-  -webkit-mask-position: center;
-  mask-position: center;
-  transform: rotate(-10deg);
-  pointer-events: none;
+  display: none;
 }
 
 .visually-hidden {

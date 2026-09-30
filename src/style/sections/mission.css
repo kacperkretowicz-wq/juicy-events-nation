@@ -94,7 +94,7 @@
   align-self: end;
 }
 
-/* Rotujące słowa = akcent marki (Mori Regular, cytryna na ciemnym). */
+/* Rotujące słowa — białe, czytelne na ciemnym tle (feedback właściciela). */
 .mission__word {
   position: absolute;
   left: 0;
@@ -104,7 +104,7 @@
   font-weight: var(--accent-weight);
   letter-spacing: -0.025em;
   white-space: nowrap;
-  color: var(--lemon);
+  color: var(--white);
   transform-origin: left bottom;
 }
 
