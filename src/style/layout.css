@@ -181,8 +181,8 @@
   font-family: var(--font-display);
   font-size: var(--display-2);
   font-weight: var(--display-weight);
-  line-height: 1.02;
-  letter-spacing: -0.026em;
+  line-height: var(--display-leading);
+  letter-spacing: var(--display-tracking);
   transition: color 0.3s var(--ease), transform 0.4s var(--ease);
 }
 
@@ -273,7 +273,7 @@
   font-family: var(--font-display);
   font-size: var(--display-4);
   font-weight: var(--display-weight);
-  letter-spacing: -0.018em;
+  letter-spacing: var(--display-tracking);
 }
 
 .site-footer__muted {
@@ -368,8 +368,8 @@
   font-family: var(--font-display);
   font-size: var(--wordmark-size);
   font-weight: var(--display-weight);
-  line-height: 0.85;
-  letter-spacing: -0.03em;
+  line-height: var(--display-leading);
+  letter-spacing: var(--display-tracking);
   text-transform: uppercase;
   white-space: nowrap;
 }
@@ -493,6 +493,8 @@
   background: var(--accent);
   color: var(--white);
   box-shadow: 0 22px 48px -18px rgba(224, 62, 10, 0.55);
+  /* Obracający się kwadratowy SVG z napisem wystawał rogami poza koło (i poza ekran na telefonie). */
+  overflow: hidden;
   transform: scale(0);
   animation: float-cta-in 0.9s cubic-bezier(0.34, 1.56, 0.64, 1) 0.9s forwards;
   transition: background 0.35s var(--ease), color 0.35s var(--ease), opacity 0.35s var(--ease),
@@ -561,6 +563,18 @@
   transform: rotate(-45deg) scale(1.08);
   background: var(--ink);
   color: var(--lemon);
+}
+
+/* Na czas filmu z „Naszej pracy” kółko wyjeżdża za prawą krawędź (work-video.js).
+   `translate` zamiast `transform` — transform trzyma animacja wejścia (forwards). */
+.float-cta {
+  transition-property: background, color, opacity, box-shadow, translate;
+  transition-duration: 0.35s, 0.35s, 0.35s, 0.35s, 0.7s;
+}
+
+.float-cta.is-away {
+  translate: calc(100% + 3rem) 0;
+  transition-timing-function: var(--ease), var(--ease), var(--ease), var(--ease), var(--ease-expo);
 }
 
 /* Nad pomarańczowymi powierzchniami — odwrócenie, żeby kółko nie zlało się z tłem */

@@ -1,10 +1,13 @@
+import gsap from "gsap";
 import { softMotion } from "../shared.js";
 import { claimAudio, releaseAudio } from "../audio-bus.js";
 
-// Tło startuje od właściwego fragmentu filmu. Kliknięcie dyskretnego kursora
-// uruchamia pełny showreel z dźwiękiem od początku.
-const START_AT = 31;
-
+// Dwa pliki z tego samego filmu:
+// - tło: hero-loop.mp4 — fragment od 23,5 s do końca, bez dźwięku, zwykła pętla
+//   (bez seekowania przy starcie — pewne także na iPhonie),
+// - showreel: hero-film.mp4 — cały film z dźwiękiem, ładowany dopiero po kliknięciu.
+// Klik w „Odtwórz showreel”: podmiana na pełny film od 0:00 z dźwiękiem, hasło na środku
+// powoli gaśnie. „Zamknij” / koniec filmu: powrót do wyciszonej pętli i hasło wraca.
 export function initHeroReel() {
   const media = document.querySelector("[data-agency-media]");
   const video = media?.querySelector("[data-agency-video]");
@@ -12,22 +15,29 @@ export function initHeroReel() {
   const labelIdle = cta?.querySelector(".agency__reel-cta-idle");
   const labelExit = cta?.querySelector(".agency__reel-cta-exit");
   const keyBtn = document.querySelector("[data-agency-reel-key]");
+  // Gasimy sam nagłówek, nie kontener [data-agency-intro] — jego opacity trzyma scroll (agency.js).
+  const heading = document.querySelector("[data-agency-intro] .agency__intro-title");
   if (!media || !video) return;
 
+  const loopSrc = video.dataset.loopSrc || video.getAttribute("src") || "";
+  const filmSrc = video.dataset.filmSrc || "";
+  const loopPoster = video.getAttribute("poster") || "";
   let playing = false;
-  video.loop = false;
 
-  const seekToStart = () => {
-    if (playing) return;
-    try {
-      video.currentTime = Math.min(START_AT, Math.max(0, (video.duration || START_AT + 1) - 1));
-    } catch {
-      // Przed załadowaniem metadanych przeglądarka może odmówić seeka.
-    }
+  const inView = () => {
+    const rect = media.getBoundingClientRect();
+    return rect.top < window.innerHeight && rect.bottom > 0;
   };
 
-  if (video.readyState >= 1) seekToStart();
-  else video.addEventListener("loadedmetadata", seekToStart, { once: true });
+  const fadeHeading = (visible) => {
+    if (!heading) return;
+    gsap.to(heading, {
+      autoAlpha: visible ? 1 : 0,
+      duration: softMotion ? 0.01 : visible ? 0.8 : 1.8,
+      ease: visible ? "power2.out" : "power1.out",
+      overwrite: true,
+    });
+  };
 
   const flash = () => {
     if (!cta) return;
@@ -36,18 +46,25 @@ export function initHeroReel() {
   };
 
   const activate = () => {
+    if (!filmSrc) return;
     playing = true;
     cta?.classList.add("is-playing");
     labelIdle?.setAttribute("hidden", "");
     labelExit?.removeAttribute("hidden");
     if (keyBtn) keyBtn.textContent = "Zamknij showreel";
     claimAudio(video);
+    // Podmiana źródła i start w geście kliknięcia — przeglądarka pozwala od razu na dźwięk.
+    video.loop = false;
+    video.removeAttribute("poster");
+    video.preload = "auto";
+    video.src = filmSrc;
     video.muted = false;
-    video.currentTime = 0;
     video.play().catch(() => deactivate());
+    fadeHeading(false);
   };
 
   const deactivate = () => {
+    if (!playing) return;
     playing = false;
     cta?.classList.remove("is-playing");
     labelExit?.setAttribute("hidden", "");
@@ -55,7 +72,11 @@ export function initHeroReel() {
     if (keyBtn) keyBtn.textContent = "Odtwórz showreel z dźwiękiem";
     video.muted = true;
     releaseAudio(video);
-    seekToStart();
+    video.loop = true;
+    if (loopPoster) video.setAttribute("poster", loopPoster);
+    video.src = loopSrc;
+    if (inView()) video.play().catch(() => {});
+    fadeHeading(true);
   };
 
   const toggle = () => {
@@ -67,14 +88,8 @@ export function initHeroReel() {
   media.addEventListener("click", toggle);
   keyBtn?.addEventListener("click", toggle);
   video.addEventListener("jen:audio-released", deactivate);
-  document.addEventListener("jen:intro-done", seekToStart, { once: true });
-
-  video.addEventListener("ended", () => {
-    if (playing) return;
-    seekToStart();
-    const rect = media.getBoundingClientRect();
-    if (rect.top < window.innerHeight && rect.bottom > 0) video.play().catch(() => {});
-  });
+  // Koniec pełnego filmu z dźwiękiem → z powrotem do wyciszonej pętli.
+  video.addEventListener("ended", deactivate);
 
   if (!cta || softMotion || window.matchMedia("(hover: none), (pointer: coarse)").matches) return;
 

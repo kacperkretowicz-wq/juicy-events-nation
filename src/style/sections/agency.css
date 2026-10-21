@@ -222,58 +222,49 @@
   pointer-events: auto;
 }
 
-/* Faza A — logo lewo-środek, znika w trakcie "ucieczki" do nagłówka strony */
+/* Faza A — logo w lewym górnym rogu (w linii z paddingiem nagłówka, tuż pod paskiem),
+   znika w trakcie "ucieczki" do nagłówka strony */
 .agency__logo-slot {
   position: absolute;
   inset: 0;
   z-index: 3;
   display: flex;
-  align-items: center;
-  padding: 0 var(--pad);
+  align-items: flex-start;
+  padding: calc(4.75rem + clamp(0.5rem, 1.6vw, 1.5rem)) var(--pad) 0;
   pointer-events: none;
 }
 
 .agency__logo {
-  /* Symetryczna waga wizualna względem napisu po prawej — potem skaluje się
-     w dół do rozmiaru loga w nagłówku (patrz agency.js / flyDelta.scale). */
+  /* Potem skaluje się w dół do rozmiaru loga w nagłówku (patrz agency.js / flyDelta.scale). */
   width: clamp(15rem, 24vw, 26rem);
   height: auto;
   filter: brightness(0) invert(1);
   will-change: transform;
 }
 
-/* Faza A — intro prawo-środek, gaśnie razem z ucieczką logo */
+/* Faza A — hasło na środku wideo, gaśnie razem z ucieczką logo */
 .agency__intro {
   position: absolute;
   inset: 0;
   z-index: 3;
   display: flex;
   align-items: center;
-  justify-content: flex-end;
+  justify-content: center;
   padding: 0 var(--pad);
   pointer-events: none;
 }
 
 .agency__intro-title {
-  max-width: 17ch;
-  font-size: var(--display-3);
-  font-weight: 600;
-  line-height: 1.02;
-  letter-spacing: -0.022em;
-  text-align: right;
+  max-width: 24ch;
+  /* Ten sam krój i styl co pozostałe nagłówki sekcji (.agency__title itd.). */
+  font-family: var(--font-display);
+  font-size: var(--display-2);
+  font-weight: var(--display-weight);
+  line-height: var(--display-leading);
+  letter-spacing: var(--display-tracking);
+  text-align: center;
+  text-wrap: balance;
   color: var(--cream);
-}
-
-.agency__intro-title > span {
-  display: block;
-}
-
-.agency__intro-lead {
-  margin-bottom: 0.08em;
-}
-
-.agency__intro-title .bracket {
-  color: var(--white);
 }
 
 /* Stan startowy zanim agency.js przejmie animację (JS rusza po doczytaniu fontów,
@@ -325,13 +316,13 @@ html.js body:has([data-agency]) .site-header__logo img {
 .agency__title {
   display: flex;
   flex-direction: column;
-  max-width: 19ch;
+  max-width: 25ch;
   margin: 0;
   font-family: var(--font-display);
   font-size: var(--display-1);
   font-weight: var(--display-weight);
-  line-height: 1.04;
-  letter-spacing: -0.028em;
+  line-height: var(--display-leading);
+  letter-spacing: var(--display-tracking);
 }
 
 .agency__kicker {
@@ -344,16 +335,6 @@ html.js body:has([data-agency]) .site-header__logo img {
 }
 
 @media (max-width: 980px) {
-  .agency__logo-slot,
-  .agency__intro {
-    padding: 0 var(--pad);
-  }
-
-  .agency__intro-title {
-    font-size: var(--display-4);
-    max-width: 16ch;
-  }
-
   .agency__logo {
     width: clamp(10rem, 40vw, 15rem);
   }

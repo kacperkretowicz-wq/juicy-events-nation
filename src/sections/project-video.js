@@ -1,51 +1,27 @@
-import { isScrollActive, touchCoarse } from "../shared.js";
-
-// Wideo w okienku peek — gra tylko na hover (okładka to statyczny poster).
+// Wideo w okienku na środku kafla — gra tylko na hover myszą (preload="none",
+// plik dociąga się dopiero przy pierwszym najechaniu). Na dotyku okienko jest ukryte.
 export function initProjectVideo() {
-  const peeks = [...document.querySelectorAll("[data-peek-video]")];
-  if (!peeks.length) return;
+  if (!window.matchMedia("(hover: hover) and (pointer: fine)").matches) return;
 
-  peeks.forEach((peek) => {
+  document.querySelectorAll("[data-peek-video]").forEach((peek) => {
     const card = peek.closest(".project-card");
     const video = peek.querySelector("video");
     if (!card || !video) return;
 
     const play = () => {
-      if (touchCoarse && isScrollActive()) return;
       video.preload = "auto";
       video.play().catch(() => {});
     };
 
     const stop = () => {
       video.pause();
-      video.currentTime = 0;
     };
 
-    const canHover = window.matchMedia("(hover: hover)").matches;
-
-    if (canHover) {
-      card.addEventListener("mouseenter", play);
-      card.addEventListener("mouseleave", stop);
-      card.addEventListener("focusin", play);
-      card.addEventListener("focusout", (event) => {
-        if (!card.contains(event.relatedTarget)) stop();
-      });
-      return;
-    }
-
-    if ("IntersectionObserver" in window) {
-      const observer = new IntersectionObserver(
-        (entries) => {
-          entries.forEach((entry) => {
-            if (entry.isIntersecting) play();
-            else stop();
-          });
-        },
-        { threshold: 0.45 }
-      );
-      observer.observe(card);
-    } else {
-      play();
-    }
+    card.addEventListener("mouseenter", play);
+    card.addEventListener("mouseleave", stop);
+    card.addEventListener("focusin", play);
+    card.addEventListener("focusout", (event) => {
+      if (!card.contains(event.relatedTarget)) stop();
+    });
   });
 }

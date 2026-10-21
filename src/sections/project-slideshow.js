@@ -1,7 +1,6 @@
-import { isScrollActive, touchCoarse } from "../shared.js";
-
-// Szybki podgląd zdjęć w okienku peek — tylko na hover (0,4 s / slajd).
-const INTERVAL = 400;
+// Szybki podgląd zdjęć w okienku na środku kafla — tylko hover myszą (0,7 s / slajd).
+// Na dotyku okienko jest ukryte (CSS), więc nic tu nie startuje.
+const INTERVAL = 700;
 
 export function initProjectSlideshow() {
   const peeks = [...document.querySelectorAll("[data-peek-slideshow]")];
@@ -29,38 +28,16 @@ export function initProjectSlideshow() {
 
     const start = () => {
       if (timer) return;
-      if (touchCoarse && isScrollActive()) return;
-      timer = window.setInterval(() => {
-        if (touchCoarse && isScrollActive()) return;
-        show((index + 1) % slides.length);
-      }, INTERVAL);
+      timer = window.setInterval(() => show((index + 1) % slides.length), INTERVAL);
     };
 
-    const canHover = window.matchMedia("(hover: hover)").matches;
+    if (!window.matchMedia("(hover: hover) and (pointer: fine)").matches) return;
 
-    if (canHover) {
-      card.addEventListener("mouseenter", start);
-      card.addEventListener("mouseleave", reset);
-      card.addEventListener("focusin", start);
-      card.addEventListener("focusout", (event) => {
-        if (!card.contains(event.relatedTarget)) reset();
-      });
-      return;
-    }
-
-    if ("IntersectionObserver" in window) {
-      const observer = new IntersectionObserver(
-        (entries) => {
-          entries.forEach((entry) => {
-            if (entry.isIntersecting) start();
-            else reset();
-          });
-        },
-        { threshold: 0.45 }
-      );
-      observer.observe(card);
-    } else {
-      start();
-    }
+    card.addEventListener("mouseenter", start);
+    card.addEventListener("mouseleave", reset);
+    card.addEventListener("focusin", start);
+    card.addEventListener("focusout", (event) => {
+      if (!card.contains(event.relatedTarget)) reset();
+    });
   });
 }

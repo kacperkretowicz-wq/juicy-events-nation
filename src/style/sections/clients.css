@@ -29,35 +29,40 @@
   padding: clamp(1.75rem, 3.5vw, 3rem) 0;
 }
 
-.clients__track {
-  display: grid;
-  grid-template-columns: repeat(4, minmax(0, 1fr));
-  align-items: center;
-  justify-items: center;
-  gap: clamp(1.5rem, 3vw, 4rem);
-  max-width: var(--max);
-  margin: 0 auto;
-  padding: 0 var(--pad);
-  list-style: none;
+.clients__wrap {
+  overflow: hidden;
 }
 
-/* Prawdziwe logotypy marek, równomiernie rozłożone na szerokości, bez uciekania w lewo */
+/* Tor marquee — jedzie w lewo (marquee.js). Odstęp to padding na każdym <li>,
+   a nie `gap`, żeby klony stykały się z oryginałem bez przeskoku na szwie. */
+.clients__track {
+  display: flex;
+  align-items: center;
+  width: max-content;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  will-change: transform;
+}
+
+/* Prawdziwe logotypy marek — stała wysokość, stały odstęp między nimi */
 .clients__item {
-  --logo-h: clamp(2.8rem, 4.4vw, 4.2rem);
+  --logo-h: clamp(2.6rem, 4vw, 3.8rem);
+  flex: 0 0 auto;
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 100%;
   height: calc(var(--logo-h) * 1.25);
-  padding: 0 clamp(0.5rem, 1.5vw, 1.5rem);
+  padding: 0 clamp(1.75rem, 4vw, 4rem);
 }
 
 .clients__item img {
   display: block;
-  max-width: 100%;
   width: auto;
   height: var(--logo-h);
   object-fit: contain;
+  /* Wszystkie logotypy jednolicie czarne (John Deere ma osobny, czarny SVG ze znakiem). */
+  filter: brightness(0);
   transition: transform 0.4s var(--ease-expo), opacity 0.3s var(--ease);
 }
 
@@ -66,7 +71,8 @@
 }
 
 .clients__item--badge img {
-  height: calc(var(--logo-h) * 1.15);
+  /* Znak JD ma dużo pustego pola w viewBoxie — optycznie wyrównany do reszty. */
+  height: calc(var(--logo-h) * 1.6);
 }
 
 .clients__item--tall img {
@@ -77,9 +83,10 @@
   transform: scale(1.06);
 }
 
-@media (max-width: 768px) {
-  .clients__track {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-    gap: 2rem 1.5rem;
-  }
+/* Bez JS / tryb spokojny (marquee.js nie ruszył): tor stoi, logotypy zawijają się do środka. */
+.clients__wrap:not(.is-marquee) .clients__track {
+  flex-wrap: wrap;
+  justify-content: center;
+  width: auto;
+  row-gap: 2rem;
 }

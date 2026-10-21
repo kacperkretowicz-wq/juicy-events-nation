@@ -28,8 +28,8 @@
     <meta name="twitter:title" content="Rainbow, wydarzenie z autorską oprawą artystyczną, Juicy Events" />
     <meta name="twitter:description" content="Prywatne wydarzenie z autorską, kolorową oprawą. Zobacz, jak Juicy Events zaplanowało i zrealizowało to wydarzenie." />
     <meta name="twitter:image" content="https://juicyevents.pl/media/og-cover.jpg" />
-    <link rel="preload" href="/fonts/leveled/PPMori-Regular.woff2" as="font" type="font/woff2" crossorigin />
-    <link rel="preload" href="/fonts/leveled/ABCDiatypePlusVariable.woff2" as="font" type="font/woff2" crossorigin />
+    <link rel="preload" href="/fonts/bebas-neue-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin />
+    <link rel="preload" href="/fonts/bebas-neue-latin-ext-400-normal.woff2" as="font" type="font/woff2" crossorigin />
     <link rel="icon" href="/media/favicon-32.png?v=je" type="image/png" sizes="32x32" />
     <link rel="icon" href="/media/favicon-16.png?v=je" type="image/png" sizes="16x16" />
     <link rel="apple-touch-icon" href="/media/apple-touch-icon.png?v=je" />
@@ -86,9 +86,9 @@
     <main id="top" tabindex="-1">
       <section class="realizacje-hero">
         <p class="eyebrow">Realizacja</p>
-        <h1>Rainbow</h1>
-        <p class="realizacje-hero__tagline" data-fade>Prywatne wydarzenie z autorską, kolorową oprawą</p>
-        <span class="project-card__meta"><span>Private</span><span>Atmosfera</span><span>Kreacja</span></span>
+        <h1>Rainbow Party</h1>
+        <p class="realizacje-hero__tagline" data-fade>Rainbow Party – impreza otwarta i biletowana z autorską oprawą artystyczną</p>
+        <span class="project-card__meta"><span>Impreza otwarta</span><span>Bilety</span><span>Oprawa</span></span>
       </section>
 
       <section class="realizacje-media">
@@ -133,16 +133,24 @@
         </div>
       </section>
 
-      <div class="realizacje-nav">
-        <a class="link-arrow" href="/#realizacje">Wróć do strony głównej</a>
-        <div style="display:flex; flex-wrap:wrap; gap:1rem;">
-            <a href="realizacje-active-fashion.html">Active Fashion</a>
-            <a href="realizacje-john-deere.html">John Deere</a>
-            <a href="realizacje-multichem.html">Multichem</a>
-            <a href="realizacje-retro-rush.html">Retro Rush</a>
-            <a href="realizacje-volvo.html">Volvo</a>
-        </div>
-      </div>
+      <!-- Nawigacja między realizacjami — kolejność jak na realizacje.html (w kółko). Klawisze ← / → też działają. -->
+      <nav class="case-nav" aria-label="Inne realizacje">
+        <a class="case-nav__link case-nav__link--prev" href="realizacje-active-fashion.html" data-case-prev rel="prev">
+          <span class="case-nav__thumb" aria-hidden="true"><img decoding="async" loading="lazy" width="1800" height="1200" src="/media/realizacje/active-fashion/01.jpg" alt="" /></span>
+          <span class="case-nav__text">
+            <span class="case-nav__label">← Poprzednia</span>
+            <span class="case-nav__title">Active Fashion – pokaz mody</span>
+          </span>
+        </a>
+        <a class="link-arrow case-nav__all" href="/realizacje.html">Wszystkie realizacje</a>
+        <a class="case-nav__link case-nav__link--next" href="realizacje-signature-qrowd.html" data-case-next rel="next">
+          <span class="case-nav__thumb" aria-hidden="true"><img decoding="async" loading="lazy" width="1120" height="1494" src="/media/realizacje/signature-qrowd/17.jpg" alt="" /></span>
+          <span class="case-nav__text">
+            <span class="case-nav__label">Następna →</span>
+            <span class="case-nav__title">Signature Qrowd – urodziny Jacka</span>
+          </span>
+        </a>
+      </nav>
 
     <!-- @site-closing -->
 

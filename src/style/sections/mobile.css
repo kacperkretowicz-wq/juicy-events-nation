@@ -35,31 +35,20 @@
   }
 
   .agency__title {
-    font-size: clamp(2rem, 9.5vw, 2.75rem);
-  }
-
-  /* Telefon: logo zostaje na środku, zdanie schodzi pod nie, do lewej —
-     obok siebie było ciasno. */
-  .agency__intro {
-    align-items: flex-end;
-    justify-content: flex-start;
-    padding-top: 0;
-    padding-bottom: clamp(5.5rem, 18svh, 9rem);
+    font-size: clamp(2.6rem, 12.5vw, 3.6rem);
   }
 
   .agency__intro-title {
-    max-width: 13ch;
-    font-size: clamp(1.6rem, 7.6vw, 2.1rem);
-    text-align: left;
+    max-width: 16ch;
+    font-size: clamp(3rem, 15vw, 4.2rem);
   }
 
   .agency__logo-slot {
-    align-items: center;
-    padding-bottom: 10svh;
+    padding-top: calc(4.5rem + 1.25rem);
   }
 
   .agency__logo {
-    width: min(66vw, 17rem);
+    width: min(58vw, 15rem);
   }
 
   .work {
@@ -67,7 +56,7 @@
   }
 
   .work__title {
-    font-size: clamp(2.1rem, 9.5vw, 2.8rem);
+    font-size: clamp(2.7rem, 12.5vw, 3.6rem);
   }
 
   .site-header--solid .site-header__panel {
@@ -131,15 +120,11 @@
 
   .projects__title,
   .team__title {
-    font-size: clamp(2.1rem, 9.5vw, 2.8rem);
-  }
-
-  .project-card__client {
-    font-size: clamp(1.45rem, 6.5vw, 1.8rem);
+    font-size: clamp(2.7rem, 12.5vw, 3.6rem);
   }
 
   .project-card__title {
-    font-size: clamp(1rem, 4.3vw, 1.12rem);
+    font-size: clamp(1.9rem, 8.6vw, 2.4rem);
   }
 
   .team {

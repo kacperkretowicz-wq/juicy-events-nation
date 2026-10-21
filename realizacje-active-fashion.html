@@ -28,8 +28,8 @@
     <meta name="twitter:title" content="Active Fashion, pokaz mody z pełną oprawą sceniczną, Juicy Events" />
     <meta name="twitter:description" content="Pokaz mody z pełną oprawą sceniczną i realizacją video na żywo. Zobacz, jak Juicy Events zaplanowało i zrealizowało to wydarzenie." />
     <meta name="twitter:image" content="https://juicyevents.pl/media/og-cover.jpg" />
-    <link rel="preload" href="/fonts/leveled/PPMori-Regular.woff2" as="font" type="font/woff2" crossorigin />
-    <link rel="preload" href="/fonts/leveled/ABCDiatypePlusVariable.woff2" as="font" type="font/woff2" crossorigin />
+    <link rel="preload" href="/fonts/bebas-neue-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin />
+    <link rel="preload" href="/fonts/bebas-neue-latin-ext-400-normal.woff2" as="font" type="font/woff2" crossorigin />
     <link rel="icon" href="/media/favicon-32.png?v=je" type="image/png" sizes="32x32" />
     <link rel="icon" href="/media/favicon-16.png?v=je" type="image/png" sizes="16x16" />
     <link rel="apple-touch-icon" href="/media/apple-touch-icon.png?v=je" />
@@ -151,16 +151,24 @@
         </div>
       </section>
 
-      <div class="realizacje-nav">
-        <a class="link-arrow" href="/#realizacje">Wróć do strony głównej</a>
-        <div style="display:flex; flex-wrap:wrap; gap:1rem;">
-            <a href="realizacje-john-deere.html">John Deere</a>
-            <a href="realizacje-multichem.html">Multichem</a>
-            <a href="realizacje-rainbow.html">Rainbow</a>
-            <a href="realizacje-retro-rush.html">Retro Rush</a>
-            <a href="realizacje-volvo.html">Volvo</a>
-        </div>
-      </div>
+      <!-- Nawigacja między realizacjami — kolejność jak na realizacje.html (w kółko). Klawisze ← / → też działają. -->
+      <nav class="case-nav" aria-label="Inne realizacje">
+        <a class="case-nav__link case-nav__link--prev" href="realizacje-grupa-lion.html" data-case-prev rel="prev">
+          <span class="case-nav__thumb" aria-hidden="true"><img decoding="async" loading="lazy" width="1600" height="1067" src="/media/realizacje/grupa-lion/cover.jpg" alt="" /></span>
+          <span class="case-nav__text">
+            <span class="case-nav__label">← Poprzednia</span>
+            <span class="case-nav__title">Grupa Lion – jubileusz 20-lecia</span>
+          </span>
+        </a>
+        <a class="link-arrow case-nav__all" href="/realizacje.html">Wszystkie realizacje</a>
+        <a class="case-nav__link case-nav__link--next" href="realizacje-rainbow.html" data-case-next rel="next">
+          <span class="case-nav__thumb" aria-hidden="true"><img decoding="async" loading="lazy" width="1800" height="1200" src="/media/realizacje/rainbow/05.jpg" alt="" /></span>
+          <span class="case-nav__text">
+            <span class="case-nav__label">Następna →</span>
+            <span class="case-nav__title">Rainbow Party</span>
+          </span>
+        </a>
+      </nav>
 
     <!-- @site-closing -->
 

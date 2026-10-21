@@ -1,20 +1,21 @@
-/* ——— OPIS („Od wizji do mierzalnych rezultatów”) ———
-   Wersja testowa 1: tylko wyrazisty nagłówek po lewej, czyste wideo w kadrze po prawej
-   (bez czerwonej ramki, bez małego tekstu AI, bez przycisku-pigułki). */
+/* ——— OPIS („Odważne koncepcje… mierzalne rezultaty.”) ———
+   Duży nagłówek po lewej, mały czerwony kafelek z zapętlonym klipem po prawej;
+   klik rozwija kafelek w miejscu w większy pionowy kadr z filmem (work-video.js). */
 
 .work {
   position: relative;
   display: grid;
   grid-template-columns: repeat(12, minmax(0, 1fr));
-  column-gap: clamp(1.5rem, 3.5vw, 4rem);
-  align-items: center;
+  column-gap: clamp(1.25rem, 2.4vw, 2.5rem);
+  /* Do góry, nie do środka — gdy kafelek rośnie, nagłówek zostaje w miejscu. */
+  align-items: start;
   max-width: var(--max);
   margin: 0 auto;
   padding: clamp(4.5rem, 8vw, 7rem) var(--pad);
 }
 
 .work__copy {
-  grid-column: 1 / span 7;
+  grid-column: 2 / span 6;
   grid-row: 1;
   min-width: 0;
   position: relative;
@@ -27,10 +28,10 @@
 }
 
 .work__title {
-  max-width: 13.5ch;
-  line-height: 1.04;
-  font-size: clamp(2.5rem, 5vw, 5.2rem);
-  letter-spacing: -0.03em;
+  max-width: 18ch;
+  line-height: var(--display-leading);
+  font-size: clamp(3rem, 6.2vw, 6.6rem);
+  letter-spacing: var(--display-tracking);
   color: var(--ink);
 }
 
@@ -38,37 +39,45 @@
   color: var(--accent-text);
 }
 
-/* Wideo: czysty, elegancki kadr bez ramki passe-partout */
+/* Mały kafelek wideo (3:4 jak klip) — kompaktowe okienko, nie pół ekranu.
+   Po rozwinięciu GSAP animuje width/height do pionu 9:16 w obrębie tej kolumny.
+   Tekst i kafelek bliżej środka sekcji i bliżej siebie (jak u Outsider). */
 .work__media {
-  grid-column: 8 / span 5;
+  grid-column: 8 / span 4;
   grid-row: 1;
   position: relative;
   z-index: 1;
   display: flex;
-  justify-content: flex-end;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0.9rem;
   width: 100%;
 }
 
 .work__card {
   position: relative;
   display: block;
-  width: min(100%, 32rem);
-  aspect-ratio: 1;
+  width: clamp(13rem, 19vw, 18.5rem);
+  max-width: 100%;
+  aspect-ratio: 3 / 4;
   padding: 0;
   border: 0;
-  background: transparent;
+  background: var(--accent);
   overflow: hidden;
   cursor: pointer;
 }
 
+.work__media.is-expanded .work__card {
+  aspect-ratio: auto;
+  background: var(--ink);
+}
+
 .work__card-inner {
-  position: relative;
+  position: absolute;
   inset: 0;
   display: block;
-  width: 100%;
-  height: 100%;
   overflow: hidden;
-  background: var(--ink);
+  background: inherit;
 }
 
 .work__video {
@@ -78,115 +87,49 @@
   transition: transform 1.2s var(--ease);
 }
 
-.work__card:hover .work__video,
-.work__card:focus-visible .work__video {
-  transform: scale(1.04);
-}
-
-/* „Odtwórz showreel” — czytelny, kontrastowy przycisk w rogu wideo */
-.work__play {
-  position: absolute;
-  left: clamp(1.25rem, 2.5vw, 2rem);
-  bottom: clamp(1.25rem, 2.5vw, 2rem);
-  z-index: 2;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  width: clamp(5.25rem, 6.8vw, 6.25rem);
-  height: clamp(5.25rem, 6.8vw, 6.25rem);
-  padding: 0.7rem;
-  border: 1px solid rgba(255, 255, 255, 0.32);
-  border-radius: 50%;
-  background: rgba(255, 255, 255, 0.1);
-  backdrop-filter: blur(8px) saturate(130%);
-  -webkit-backdrop-filter: blur(8px) saturate(130%);
-  color: var(--white);
-  cursor: pointer;
-  transition: background 0.3s var(--ease), color 0.3s var(--ease), border-color 0.3s var(--ease), transform 0.3s var(--ease);
-}
-
-.work__play:hover,
-.work__play:focus-visible {
-  background: var(--white);
-  border-color: var(--white);
-  color: var(--ink);
+.work__media:not(.is-expanded) .work__card:hover .work__video,
+.work__media:not(.is-expanded) .work__card:focus-visible .work__video {
   transform: scale(1.05);
 }
 
-.work__play-ui {
+/* „▶ Odtwórz film” / „✕ Zamknij film” — mała etykieta pod kafelkiem */
+.work__toggle {
+  display: inline-flex;
+  padding: 0.2rem 0;
+  border: 0;
+  background: none;
+  color: var(--accent-text);
+  font-family: var(--font-label);
+  font-size: var(--micro);
+  font-weight: 400;
+  letter-spacing: var(--label-tracking);
+  text-transform: uppercase;
+  cursor: pointer;
+}
+
+.work__toggle > span {
   display: inline-flex;
   align-items: center;
-  gap: 0.45rem;
+  gap: 0.55em;
 }
 
-.work__play-ui--exit {
-  display: none;
+.work__toggle-icon {
+  font-size: 0.85em;
+  line-height: 1;
 }
 
-.work__play-copy {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  gap: 0.05em;
-  font-size: clamp(0.52rem, 0.72vw, 0.64rem);
-  font-weight: 600;
-  line-height: 1.05;
-  letter-spacing: var(--label-tracking);
-  text-align: left;
-  text-transform: uppercase;
+.work__toggle:hover,
+.work__toggle:focus-visible {
+  color: var(--ink);
 }
 
-.work__play-icon {
-  display: grid;
-  place-items: center;
-  flex-shrink: 0;
-  width: 1rem;
-  height: 1rem;
+.work__toggle-exit,
+.work__media.is-expanded .work__toggle-idle {
+  display: none !important;
 }
 
-.work__play-icon::after {
-  content: "";
-  width: 0;
-  height: 0;
-  border-left: 0.38rem solid currentColor;
-  border-top: 0.25rem solid transparent;
-  border-bottom: 0.25rem solid transparent;
-  margin-left: 0.1rem;
-}
-
-.work__play-icon--exit {
-  width: 0.52rem;
-  height: 0.52rem;
-  background: currentColor;
-}
-
-.work__play-icon--exit::after {
-  content: none;
-}
-
-/* W trakcie odtwarzania kółko zamienia się w samo „Zamknij”. */
-.work__play.is-exit {
-  width: auto;
-  height: auto;
-  padding: 0.5rem 1rem;
-  border: 1px solid rgba(255, 255, 255, 0.3);
-  border-radius: 999px;
-  background: rgba(18, 18, 18, 0.85);
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
-  color: var(--white);
-  font-size: var(--micro);
-  font-weight: 600;
-  letter-spacing: var(--label-tracking);
-  text-transform: uppercase;
-}
-
-.work__play.is-exit .work__play-ui--idle {
-  display: none;
-}
-
-.work__play.is-exit .work__play-ui--exit {
-  display: inline-flex;
+.work__media.is-expanded .work__toggle-exit {
+  display: inline-flex !important;
 }
 
 @media (max-width: 980px) {
@@ -202,11 +145,10 @@
 
   .work__media {
     grid-row: 2;
-    width: 100%;
-    justify-content: flex-start;
+    align-items: flex-start;
   }
 
   .work__card {
-    max-width: 28rem;
+    width: min(62vw, 16rem);
   }
 }

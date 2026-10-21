@@ -7,6 +7,10 @@
 html {
   scroll-behavior: auto;
   -webkit-text-size-adjust: 100%;
+  /* UWAGA: żadnego overflow na <html>. Body ma overflow-x: hidden, które przeglądarka
+     przenosi na viewport tylko wtedy, gdy <html> ma overflow: visible. Każda inna
+     wartość tutaj (także `clip`) zamienia <body> w osobny kontener przewijania i
+     position: sticky (hero, misja, kompetencje) przestaje „łapać” sekcje. */
 }
 
 html.lenis,
@@ -57,21 +61,21 @@ textarea {
   color: inherit;
 }
 
-/* Mori Regular: spokojniejsza waga i miejsce na polskie znaki. */
+/* Bebas Neue: jedna waga (400 — bez sztucznego pogrubienia), wersaliki, ciasna interlinia. */
 h1,
 h2,
 h3 {
   margin: 0;
   font-family: var(--font-display);
   font-weight: var(--display-weight);
-  line-height: 1;
-  letter-spacing: -0.024em;
-  text-transform: none;
+  line-height: var(--display-leading);
+  letter-spacing: var(--display-tracking);
+  text-transform: uppercase;
   text-wrap: balance;
 }
 
 h3 {
-  letter-spacing: -0.016em;
+  letter-spacing: var(--display-tracking);
 }
 
 p {
@@ -114,13 +118,13 @@ ul {
   color: var(--muted-light);
 }
 
-/* Akcent pozostaje w Mori Regular; wyróżnia go kolor. */
+/* Akcent w tym samym kroju co nagłówek; wyróżnia go kolor. */
 .bracket {
   position: relative;
   font-family: var(--font-accent);
   font-style: normal;
   font-weight: var(--accent-weight);
-  letter-spacing: -0.02em;
+  letter-spacing: inherit;
   color: var(--accent-text);
 }
 

@@ -31,17 +31,22 @@
   --block: clamp(5.5rem, 12vw, 10.5rem);
 
   /* Typografia */
-  --font: "PP Mori", "Helvetica Neue", Arial, sans-serif;
-  --font-display: "PP Mori", "Helvetica Neue", Arial, sans-serif;
-  --font-accent: "PP Mori", "Helvetica Neue", Arial, sans-serif;
-  --font-label: "ABC Diatype", monospace;
+  --font: "Inter", "Helvetica Neue", Arial, sans-serif;
+  /* Bebas Neue: jedna (już pogrubiona) waga, same wersaliki, wąski krój —
+     stąd waga 400, neutralne światło i ciasna interlinia. */
+  --font-display: "Bebas Neue", "Arial Narrow", "Helvetica Neue", sans-serif;
+  --font-accent: "Bebas Neue", "Arial Narrow", "Helvetica Neue", sans-serif;
+  /* Drobne etykiety: Inter wersalikami z lekkim światłem (zamiast mono). */
+  --font-label: "Inter", "Helvetica Neue", Arial, sans-serif;
   --display-weight: 400;
   --accent-weight: 400;
-  --label-tracking: 0.02em;
-  --display-1: clamp(2.75rem, 7.4vw, 7.75rem);
-  --display-2: clamp(2.25rem, 5.4vw, 5.6rem);
-  --display-3: clamp(1.75rem, 3.5vw, 3.5rem);
-  --display-4: clamp(1.3rem, 2.1vw, 2.1rem);
+  --display-tracking: -0.005em;
+  --display-leading: 0.92;
+  --label-tracking: 0.04em;
+  --display-1: clamp(3.4rem, 9.4vw, 10rem);
+  --display-2: clamp(2.8rem, 6.8vw, 7.2rem);
+  --display-3: clamp(2.1rem, 4.4vw, 4.5rem);
+  --display-4: clamp(1.6rem, 2.7vw, 2.7rem);
   --body-lg: clamp(1.1rem, 1.35vw, 1.35rem);
   --body: clamp(1rem, 1.08vw, 1.12rem);
   --micro: clamp(0.72rem, 0.8vw, 0.8rem);

@@ -8,7 +8,7 @@
 }
 
 .gallery-hero h1 {
-  max-width: 20ch;
+  max-width: 27ch;
   font-size: var(--display-1);
 }
 
@@ -31,7 +31,7 @@
 }
 
 .gallery__lead h2 {
-  max-width: 20ch;
+  max-width: 27ch;
   font-size: var(--display-3);
 }
 

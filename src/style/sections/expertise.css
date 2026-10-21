@@ -82,9 +82,9 @@
 
 /* „Napis na dole zdecydowanie powinien być większy” — z display-3 na display-2. */
 .expertise__title {
-  max-width: 11ch;
+  max-width: 15ch;
   font-size: var(--display-2);
-  letter-spacing: -0.026em;
+  letter-spacing: var(--display-tracking);
 }
 
 .expertise__count {
@@ -162,8 +162,8 @@
   margin: 0;
   padding-right: 1.5rem;
   font-size: var(--display-3);
-  letter-spacing: -0.022em;
-  line-height: 1.05;
+  letter-spacing: var(--display-tracking);
+  line-height: var(--display-leading);
   color: var(--cream);
   transition: color 0.4s var(--ease);
 }
@@ -200,17 +200,19 @@
   gap: clamp(0.35rem, 0.6vh, 0.55rem);
 }
 
+/* Punkty to treść, nie etykiety: Inter, zwykła wielkość liter (jak w tekście klienta). */
 .expertise-item__examples li {
   margin: 0;
   padding: 0;
-  font-family: var(--font-label);
-  font-size: clamp(0.72rem, 0.85vw, 0.84rem);
-  font-weight: 500;
-  letter-spacing: 0.06em;
-  text-transform: uppercase;
+  font-family: var(--font);
+  font-size: clamp(0.95rem, 1.02vw, 1.08rem);
+  font-weight: 400;
+  line-height: 1.35;
+  letter-spacing: -0.005em;
+  text-transform: none;
   color: var(--white);
   display: flex;
-  align-items: center;
+  align-items: baseline;
   gap: 0.55rem;
 }
 
@@ -292,9 +294,9 @@
 
   .expertise.is-accordion .expertise__title {
     margin-top: 0;
-    max-width: 16ch;
-    font-size: clamp(1.65rem, 7vw, 2.1rem);
-    line-height: 1.05;
+    max-width: 21ch;
+    font-size: clamp(2.6rem, 12.5vw, 3.6rem);
+    line-height: var(--display-leading);
   }
 
   .expertise.is-accordion .expertise__count {
@@ -317,8 +319,8 @@
   }
 
   .expertise.is-accordion .expertise-item__head h3 {
-    font-size: clamp(1.15rem, 5.6vw, 1.55rem);
-    line-height: 1.12;
+    font-size: clamp(1.5rem, 7.2vw, 2rem);
+    line-height: 0.95;
   }
 
   .expertise.is-accordion .expertise-item__body p {
@@ -339,8 +341,8 @@
 
   .expertise.is-scroll .expertise__title {
     max-width: 100%;
-    font-size: clamp(1.25rem, 5.3vw, 1.7rem);
-    line-height: 1.02;
+    font-size: clamp(1.7rem, 7.6vw, 2.3rem);
+    line-height: var(--display-leading);
   }
 
   .expertise.is-scroll .expertise__count {
@@ -373,8 +375,8 @@
   }
 
   .expertise.is-scroll .expertise-item__head h3 {
-    font-size: clamp(1.05rem, 4.6vw, 1.4rem);
-    line-height: 1.08;
+    font-size: clamp(1.35rem, 6.2vw, 1.8rem);
+    line-height: var(--display-leading);
   }
 
   .expertise.is-scroll .expertise-item__body p {

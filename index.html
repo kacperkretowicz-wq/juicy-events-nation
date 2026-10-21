@@ -28,8 +28,8 @@
     <meta name="twitter:title" content="Juicy Events, agencja eventowa dla marek, które chcą więcej" />
     <meta name="twitter:description" content="Event design, produkcja i strategia. Tworzymy wydarzenia, które mówią językiem Twojej marki, od briefu po mierzalny wynik." />
     <meta name="twitter:image" content="https://juicyevents.pl/media/og-cover.jpg" />
-    <link rel="preload" href="/fonts/leveled/PPMori-Regular.woff2" as="font" type="font/woff2" crossorigin />
-    <link rel="preload" href="/fonts/leveled/ABCDiatypePlusVariable.woff2" as="font" type="font/woff2" crossorigin />
+    <link rel="preload" href="/fonts/bebas-neue-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin />
+    <link rel="preload" href="/fonts/bebas-neue-latin-ext-400-normal.woff2" as="font" type="font/woff2" crossorigin />
     <link rel="icon" href="/media/favicon-32.png?v=je" type="image/png" sizes="32x32" />
     <link rel="icon" href="/media/favicon-16.png?v=je" type="image/png" sizes="16x16" />
     <link rel="apple-touch-icon" href="/media/apple-touch-icon.png?v=je" />
@@ -124,9 +124,13 @@
                  inaczej header zostaje biały nad kremowym tłem i znika. -->
             <div class="agency__media" data-agency-media data-tone="dark">
               <div class="agency__media-inner" data-agency-media-inner>
+                <!-- Tło: hero-loop.mp4 (film od 23,5 s, bez dźwięku). Pełny film z dźwiękiem
+                     (data-film-src) ładuje się dopiero po kliknięciu „Odtwórz showreel” (hero-reel.js). -->
                 <video
-                  src="/media/hero.mp4#t=31"
-                  poster="/media/hero-poster.jpg"
+                  src="/media/hero-loop.mp4"
+                  data-loop-src="/media/hero-loop.mp4"
+                  data-film-src="/media/hero-film.mp4"
+                  poster="/media/hero-film-poster.jpg"
                   muted
                   playsinline
                   loop
@@ -154,7 +158,7 @@
               Odtwórz showreel z dźwiękiem
             </button>
 
-            <!-- Faza A: logo (lewo-środek) + intro (prawo-środek), oba na wideo -->
+            <!-- Faza A: logo (lewy górny róg) + hasło (środek), oba na wideo -->
             <div class="agency__logo-slot" aria-hidden="true">
               <img decoding="async" width="859" height="85"
                 class="agency__logo"
@@ -165,10 +169,7 @@
             </div>
 
             <div class="agency__intro" data-agency-intro>
-              <h2 class="agency__intro-title">
-                <span class="agency__intro-lead">Tworzymy</span>
-                <span>wydarzenia, które mówią językiem Twojej marki.</span>
-              </h2>
+              <h2 class="agency__intro-title">Twój świat, nasza produkcja</h2>
             </div>
 
             <!-- Faza B/C: logo "wskakuje" do nagłówka, ten napis wjeżdża w jego miejsce
@@ -199,13 +200,16 @@
       <!-- KLIENCI — tuż po showreelu: prawdziwe logotypy marek (feedback właściciela).
            Źródła: John Deere i Volvo — Wikimedia; Multichem — multichem.pl;
            Active & Fashion.Art — znak z projekcji na ich evencie (nagranie Juicy).
-           Nowe logo = kolejne <li> z <img>; modyfikator --wide/--tall wyrównuje wysokość. -->
+           Pas to nieskończona pętla (marquee.js, data-marquee-steady): JS sam klonuje
+           listę (aria-hidden) tyle razy, ile trzeba, żeby wypełnić ekran bez przeskoku.
+           Nowe logo = po prostu kolejne <li> z <img> — działa z dowolną liczbą logotypów.
+           Modyfikator --wide/--tall/--badge wyrównuje wysokość; logotypy są barwione na czarno w CSS. -->
       <section class="clients" id="klienci" aria-labelledby="clients-label">
         <div class="clients__head">
           <p class="eyebrow" id="clients-label">Zaufały nam marki</p>
         </div>
-        <div class="clients__wrap">
-          <ul class="clients__track">
+        <div class="clients__wrap" data-marquee data-marquee-steady data-marquee-speed="45">
+          <ul class="clients__track" data-marquee-track>
             <li class="clients__item clients__item--badge"><img src="/media/klienci/john-deere.svg" alt="John Deere" width="806" height="588" decoding="async" /></li>
             <li class="clients__item"><img src="/media/klienci/volvo.svg" alt="Volvo" width="255" height="255" decoding="async" /></li>
             <li class="clients__item clients__item--wide"><img src="/media/klienci/multichem.svg" alt="Multichem" width="597" height="194" decoding="async" /></li>
@@ -214,12 +218,14 @@
         </div>
       </section>
 
-      <!-- OPIS — tylko duży nagłówek po lewej, czyste wideo w kadrze po prawej -->
+      <!-- OPIS — duży nagłówek po lewej, mały pionowy kafelek z zapętlonym klipem po prawej.
+           Klik w kafelek albo w „Odtwórz film”: kafelek rośnie w miejscu (GSAP, bez nakładki)
+           do większego pionowego kadru i gra pełny film z dźwiękiem (work-video.js). -->
       <section class="work" id="praca">
         <div class="work__copy">
           <p class="eyebrow work__eyebrow">Nasza praca</p>
           <h2 class="work__title" data-headline-reveal>
-            Od wizji do mierzalnych rezultatów, z&nbsp;precyzją, estetyką <span class="bracket">i&nbsp;emocją.</span>
+            Odważne koncepcje, przemyślane realizacje, <span class="bracket">mierzalne rezultaty.</span>
           </h2>
         </div>
 
@@ -229,17 +235,17 @@
             type="button"
             data-work-video-trigger
             aria-expanded="false"
-            aria-label="Odtwórz showreel"
+            aria-label="Odtwórz film z dźwiękiem"
           >
             <span class="work__card-inner" aria-hidden="true">
               <video
                 class="work__video"
                 data-work-video
-                data-work-preview="/media/work-square.mp4"
-                data-work-showreel="/media/work-showreel.mp4"
+                data-work-preview="/media/praca-loop.mp4"
+                data-work-film="/media/praca-film.mp4"
+                src="/media/praca-loop.mp4"
+                poster="/media/praca-loop-poster.jpg"
                 preload="auto"
-                src="/media/work-square.mp4"
-                poster="/media/work-square-poster.jpg"
                 muted
                 loop
                 playsinline
@@ -247,35 +253,25 @@
               ></video>
             </span>
           </button>
-          <button class="work__play" type="button" data-work-video-trigger aria-label="Odtwórz showreel">
-            <span class="work__play-ui work__play-ui--idle" aria-hidden="true">
-              <span class="work__play-icon"></span>
-              <span class="work__play-copy">
-                <span>Odtwórz</span>
-                <span>showreel</span>
-              </span>
-            </span>
-            <span class="work__play-ui work__play-ui--exit" aria-hidden="true">
-              <span class="work__play-icon work__play-icon--exit"></span>
-              <span>Zamknij</span>
-            </span>
+          <button class="work__toggle" type="button" data-work-video-trigger aria-expanded="false">
+            <span class="work__toggle-idle"><span class="work__toggle-icon" aria-hidden="true">▶</span>Odtwórz film</span>
+            <span class="work__toggle-exit"><span class="work__toggle-icon" aria-hidden="true">✕</span>Zamknij film</span>
           </button>
         </div>
       </section>
 
-      <!-- REALIZACJE — portfolio zaraz po opisie (układ „od razu portfolio” jak u Leveled).
-           Kafle w nieregularnej siatce; hover = kolorowe tło (pomarańcz / cytryna / niebieski)
-           i film albo pokaz zdjęć w kadrze 9:16. Pod kaflem tylko marka + tytuł. -->
+      <!-- REALIZACJE — portfolio zaraz po opisie. Siatka 2 kolumny (telefon: 1), duże okładki 4:3;
+           pod okładką tylko tytuł wersalikami. Hover (mysz): tytuł na czerwono,
+           na środku okładki mniejsze okienko 3:4 z filmem (cover.mp4) albo szybkim pokazem zdjęć. -->
       <section class="projects" id="realizacje">
         <div class="projects__head">
           <h2 class="projects__title" data-headline-reveal>
             Wybrane <span class="bracket">realizacje</span>
           </h2>
           <p class="projects__count" aria-hidden="true">(06)</p>
-          <a class="link-arrow projects__all" href="realizacje.html">Wszystkie realizacje</a>
         </div>
 
-        <div class="projects__grid projects__grid--editorial" data-projects>
+        <div class="projects__grid" data-projects>
           <article class="project-card project-card--has-video" data-project data-tile="c1">
             <a class="project-card__link" href="realizacje-active-fashion.html">
               <span class="project-card__media">
@@ -283,94 +279,86 @@
                 <span class="project-card__peek" data-project-peek data-peek-video>
                   <video muted loop playsinline preload="none" poster="/media/realizacje/active-fashion/cover-poster.jpg" src="/media/realizacje/active-fashion/cover.mp4"></video>
                 </span>
-                <span class="project-card__cursor" aria-hidden="true">Zobacz case</span>
               </span>
-              <span class="project-card__client">Active Fashion</span>
-              <h3 class="project-card__title">Pokaz mody z pełną oprawą sceniczną</h3>
+              <h3 class="project-card__title">Active Fashion – pokaz mody</h3>
             </a>
           </article>
 
           <article class="project-card" data-project data-tile="c2">
             <a class="project-card__link" href="realizacje-john-deere.html">
               <span class="project-card__media">
-                <img class="project-card__cover" decoding="async" width="1200" height="1800" src="/media/realizacje/john-deere/08.jpg" alt="John Deere, jubileusz 25 lat marki w Polsce" loading="lazy" />
+                <img class="project-card__cover" decoding="async" width="1600" height="1066" src="/media/realizacje/john-deere/jdf-cover.jpg" alt="John Deere Finance Polska, Obsługa eventu podczas jubileuszu z okazji 25-lecia John Deere Finance Polska" loading="lazy" />
                 <span class="project-card__peek" data-project-peek data-peek-slideshow>
-                  <span class="peek-slide is-active" data-peek-slide><img decoding="async" width="1800" height="1200" src="/media/realizacje/john-deere/02.jpg" alt="" loading="lazy" /></span>
-                  <span class="peek-slide" data-peek-slide><img decoding="async" width="1800" height="1200" src="/media/realizacje/john-deere/07.jpg" alt="" loading="lazy" /></span>
-                  <span class="peek-slide" data-peek-slide><img decoding="async" width="1200" height="1800" src="/media/realizacje/john-deere/06.jpg" alt="" loading="lazy" /></span>
-                  <span class="peek-slide" data-peek-slide><img decoding="async" width="1800" height="1200" src="/media/realizacje/john-deere/01.jpg" alt="" loading="lazy" /></span>
+                  <span class="peek-slide is-active" data-peek-slide><img decoding="async" width="1600" height="1066" src="/media/realizacje/john-deere/jdf-01.jpg" alt="" loading="lazy" /></span>
+                  <span class="peek-slide" data-peek-slide><img decoding="async" width="1600" height="1066" src="/media/realizacje/john-deere/jdf-02.jpg" alt="" loading="lazy" /></span>
+                  <span class="peek-slide" data-peek-slide><img decoding="async" width="1600" height="1066" src="/media/realizacje/john-deere/jdf-03.jpg" alt="" loading="lazy" /></span>
+                  <span class="peek-slide" data-peek-slide><img decoding="async" width="1600" height="1066" src="/media/realizacje/john-deere/jdf-04.jpg" alt="" loading="lazy" /></span>
                 </span>
-                <span class="project-card__cursor" aria-hidden="true">Zobacz case</span>
               </span>
-              <span class="project-card__client">John Deere</span>
-              <h3 class="project-card__title">Jubileusz 25 lat marki w Polsce</h3>
+              <h3 class="project-card__title">John Deere Finance – jubileusz 25-lecia</h3>
             </a>
           </article>
 
           <article class="project-card" data-project data-tile="c3">
             <a class="project-card__link" href="realizacje-multichem.html">
               <span class="project-card__media">
-                <img class="project-card__cover" decoding="async" width="1200" height="1800" src="/media/realizacje/multichem/01.jpg" alt="Multichem, konferencja z pełną produkcją techniczną" loading="lazy" />
+                <img class="project-card__cover" decoding="async" width="1600" height="1067" src="/media/realizacje/multichem/m30-cover.jpg" alt="Multichem, Jubileusz 30-lecia dla Multichem" loading="lazy" />
                 <span class="project-card__peek" data-project-peek data-peek-slideshow>
-                  <span class="peek-slide is-active" data-peek-slide><img decoding="async" width="1800" height="1200" src="/media/realizacje/multichem/03.jpg" alt="" loading="lazy" /></span>
-                  <span class="peek-slide" data-peek-slide><img decoding="async" width="1800" height="1200" src="/media/realizacje/multichem/05.jpg" alt="" loading="lazy" /></span>
-                  <span class="peek-slide" data-peek-slide><img decoding="async" width="1800" height="1440" src="/media/realizacje/multichem/02.jpg" alt="" loading="lazy" /></span>
-                  <span class="peek-slide" data-peek-slide><img decoding="async" width="1800" height="1200" src="/media/realizacje/multichem/06.jpg" alt="" loading="lazy" /></span>
+                  <span class="peek-slide is-active" data-peek-slide><img decoding="async" width="1600" height="900" src="/media/realizacje/multichem/m30-01.jpg" alt="" loading="lazy" /></span>
+                  <span class="peek-slide" data-peek-slide><img decoding="async" width="1067" height="1600" src="/media/realizacje/multichem/m30-02.jpg" alt="" loading="lazy" /></span>
+                  <span class="peek-slide" data-peek-slide><img decoding="async" width="1600" height="1067" src="/media/realizacje/multichem/m30-03.jpg" alt="" loading="lazy" /></span>
+                  <span class="peek-slide" data-peek-slide><img decoding="async" width="1067" height="1600" src="/media/realizacje/multichem/m30-04.jpg" alt="" loading="lazy" /></span>
                 </span>
-                <span class="project-card__cursor" aria-hidden="true">Zobacz case</span>
               </span>
-              <span class="project-card__client">Multichem</span>
-              <h3 class="project-card__title">Konferencja z pełną produkcją techniczną</h3>
+              <h3 class="project-card__title">Multichem – jubileusz 30-lecia</h3>
             </a>
           </article>
 
           <article class="project-card project-card--has-video" data-project data-tile="c4">
             <a class="project-card__link" href="realizacje-retro-rush.html">
               <span class="project-card__media">
-                <img class="project-card__cover" decoding="async" width="1800" height="1200" src="/media/realizacje/retro-rush/02.jpg" alt="Retro Rush, imprezowa podróż w czasie z pełną oprawą" loading="lazy" />
+                <img class="project-card__cover" decoding="async" width="1600" height="1067" src="/media/realizacje/retro-rush/b-cover.jpg" alt="Retro Rush, Retro Rush – Urodziny Basi i Marcina" loading="lazy" />
                 <span class="project-card__peek" data-project-peek data-peek-video>
                   <video muted loop playsinline preload="none" poster="/media/realizacje/retro-rush/cover-poster.jpg" src="/media/realizacje/retro-rush/cover.mp4"></video>
                 </span>
-                <span class="project-card__cursor" aria-hidden="true">Zobacz case</span>
               </span>
-              <span class="project-card__client">Retro Rush</span>
-              <h3 class="project-card__title">Imprezowa podróż w czasie</h3>
+              <h3 class="project-card__title">Retro Rush – podróż w czasie</h3>
             </a>
           </article>
 
           <article class="project-card" data-project data-tile="c5">
             <a class="project-card__link" href="realizacje-rainbow.html">
               <span class="project-card__media">
-                <img class="project-card__cover" decoding="async" width="1200" height="1800" src="/media/realizacje/rainbow/01.jpg" alt="Rainbow, wydarzenie z autorską oprawą artystyczną" loading="lazy" />
+                <img class="project-card__cover" decoding="async" width="1800" height="1200" src="/media/realizacje/rainbow/05.jpg" alt="Rainbow, wydarzenie z autorską oprawą artystyczną" loading="lazy" />
                 <span class="project-card__peek" data-project-peek data-peek-slideshow>
                   <span class="peek-slide is-active" data-peek-slide><img decoding="async" width="1800" height="1200" src="/media/realizacje/rainbow/03.jpg" alt="" loading="lazy" /></span>
                   <span class="peek-slide" data-peek-slide><img decoding="async" width="1800" height="1200" src="/media/realizacje/rainbow/02.jpg" alt="" loading="lazy" /></span>
                   <span class="peek-slide" data-peek-slide><img decoding="async" width="1800" height="1200" src="/media/realizacje/rainbow/05.jpg" alt="" loading="lazy" /></span>
                   <span class="peek-slide" data-peek-slide><img decoding="async" width="1200" height="1800" src="/media/realizacje/rainbow/01.jpg" alt="" loading="lazy" /></span>
                 </span>
-                <span class="project-card__cursor" aria-hidden="true">Zobacz case</span>
               </span>
-              <span class="project-card__client">Rainbow</span>
-              <h3 class="project-card__title">Wieczór z autorską oprawą artystyczną</h3>
+              <h3 class="project-card__title">Rainbow – wieczór z autorską oprawą</h3>
             </a>
           </article>
 
           <article class="project-card" data-project data-tile="c6">
             <a class="project-card__link" href="realizacje-volvo.html">
               <span class="project-card__media">
-                <img class="project-card__cover" decoding="async" width="1500" height="1000" src="/media/realizacje/volvo/03.jpg" alt="Volvo, networking i premiera z klasą marki premium" loading="lazy" />
+                <img class="project-card__cover" decoding="async" width="1290" height="860" src="/media/realizacje/volvo/es90-cover.jpg" alt="Volvo Wadowscy, Premiera nowego modelu Volvo ES90 dla Volvo Wadowscy" loading="lazy" />
                 <span class="project-card__peek" data-project-peek data-peek-slideshow>
-                  <span class="peek-slide is-active" data-peek-slide><img decoding="async" width="1500" height="1000" src="/media/realizacje/volvo/02.jpg" alt="" loading="lazy" /></span>
-                  <span class="peek-slide" data-peek-slide><img decoding="async" width="1500" height="1000" src="/media/realizacje/volvo/04.jpg" alt="" loading="lazy" /></span>
-                  <span class="peek-slide" data-peek-slide><img decoding="async" width="1500" height="1000" src="/media/realizacje/volvo/05.jpg" alt="" loading="lazy" /></span>
-                  <span class="peek-slide" data-peek-slide><img decoding="async" width="1500" height="1000" src="/media/realizacje/volvo/01.jpg" alt="" loading="lazy" /></span>
+                  <span class="peek-slide is-active" data-peek-slide><img decoding="async" width="1290" height="860" src="/media/realizacje/volvo/es90-01.jpg" alt="" loading="lazy" /></span>
+                  <span class="peek-slide" data-peek-slide><img decoding="async" width="1290" height="860" src="/media/realizacje/volvo/es90-02.jpg" alt="" loading="lazy" /></span>
+                  <span class="peek-slide" data-peek-slide><img decoding="async" width="1290" height="860" src="/media/realizacje/volvo/es90-03.jpg" alt="" loading="lazy" /></span>
+                  <span class="peek-slide" data-peek-slide><img decoding="async" width="1290" height="860" src="/media/realizacje/volvo/es90-04.jpg" alt="" loading="lazy" /></span>
                 </span>
-                <span class="project-card__cursor" aria-hidden="true">Zobacz case</span>
               </span>
-              <span class="project-card__client">Volvo</span>
-              <h3 class="project-card__title">Networking i premiera w standardzie premium</h3>
+              <h3 class="project-card__title">Volvo Wadowscy – premiera ES90</h3>
             </a>
           </article>
+        </div>
+
+        <div class="projects__more">
+          <a class="link-arrow projects__all" href="realizacje.html">Wszystkie realizacje</a>
         </div>
       </section>
 
@@ -407,7 +395,7 @@
         <div class="expertise__inner">
           <div class="expertise__aside">
             <h2 class="expertise__title" data-headline-reveal>
-              Jedna agencja. Wszystkie kompetencje <span class="bracket">eventowe.</span>
+              Jeden kierunek, wiele <span class="bracket">dyscyplin.</span>
             </h2>
           </div>
 
@@ -420,10 +408,12 @@
               </button>
               <div class="expertise-item__body" data-pinned-body>
                 <ul class="expertise-item__examples">
-                  <li>Gale i jubileusze</li>
-                  <li>Konferencje</li>
-                  <li>Premiery produktowe</li>
-                  <li>Wydarzenia firmowe</li>
+                  <li>Eventy firmowe i prywatne, gale, jubileusze, konferencje</li>
+                  <li>Wybór lokalizacji i negocjacje z obiektami</li>
+                  <li>Kosztorysowanie i zarządzanie budżetem</li>
+                  <li>Logistyka i koordynacja podwykonawców</li>
+                  <li>Catering, bary i obsługa gości</li>
+                  <li>Produkcja i nadzór nad przebiegiem wydarzenia</li>
                 </ul>
               </div>
             </article>
@@ -431,15 +421,17 @@
             <article class="expertise-item" data-expertise-item>
               <button class="expertise-item__head" type="button" data-pinned-select aria-expanded="false">
                 <span class="expertise-item__index">02</span>
-                <h3>Event marketing &amp; strategia</h3>
+                <h3>Event marketing i strategia</h3>
                 <span class="expertise-item__arrow" aria-hidden="true">↗</span>
               </button>
               <div class="expertise-item__body" data-pinned-body>
                 <ul class="expertise-item__examples">
-                  <li>Aktywacje marek</li>
-                  <li>Employer branding</li>
-                  <li>Kampanie B2B</li>
-                  <li>Mierzalne KPI</li>
+                  <li>Strategia i koncepcja wydarzenia</li>
+                  <li>Kreacja i identyfikacja wizualna</li>
+                  <li>Kampanie promocyjne i komunikacja eventowa</li>
+                  <li>Zaproszenia, rejestracja i RSVP</li>
+                  <li>Aktywacje marek i premiery produktów</li>
+                  <li>Fotografia, wideo i aftermovie</li>
                 </ul>
               </div>
             </article>
@@ -452,10 +444,12 @@
               </button>
               <div class="expertise-item__body" data-pinned-body>
                 <ul class="expertise-item__examples">
-                  <li>Reżyseria wieczoru</li>
-                  <li>Artyści i performanse</li>
-                  <li>Oprawa muzyczna</li>
-                  <li>Prowadzenie gali</li>
+                  <li>Scenariusze i programy wydarzeń</li>
+                  <li>Reżyseria sceniczna i koordynacja występów</li>
+                  <li>Booking DJ-ów, zespołów i artystów</li>
+                  <li>Koncerty, pokazy i występy artystyczne</li>
+                  <li>Oprawa muzyczna i choreografia</li>
+                  <li>Prowadzący, konferansjerzy i performerzy</li>
                 </ul>
               </div>
             </article>
@@ -468,10 +462,12 @@
               </button>
               <div class="expertise-item__body" data-pinned-body>
                 <ul class="expertise-item__examples">
-                  <li>Oświetlenie sceniczne</li>
-                  <li>Nagłośnienie koncertowe</li>
-                  <li>Projekcje i mapping 3D</li>
-                  <li>Multimedia i efekty specjalne</li>
+                  <li>Nagłośnienie i oświetlenie eventowe</li>
+                  <li>Ekrany LED i projekcje multimedialne</li>
+                  <li>Mapping 3D i efekty wizualne</li>
+                  <li>Sceny, podesty i konstrukcje</li>
+                  <li>Transmisje online i realizacja wideo</li>
+                  <li>Obsługa techniczna wydarzeń</li>
                 </ul>
               </div>
             </article>
@@ -484,10 +480,12 @@
               </button>
               <div class="expertise-item__body" data-pinned-body>
                 <ul class="expertise-item__examples">
-                  <li>Design sceny i konstrukcji</li>
-                  <li>Branding przestrzeni</li>
-                  <li>Strefy VIP i hospitality</li>
-                  <li>Instalacje artystyczne</li>
+                  <li>Projektowanie scenografii i aranżacji przestrzeni</li>
+                  <li>Zabudowy eventowe i stoiska targowe</li>
+                  <li>Branding przestrzenny i oznakowanie</li>
+                  <li>Meble i wyposażenie eventowe</li>
+                  <li>Dekoracje i florystyka</li>
+                  <li>Produkcja, montaż i demontaż scenografii</li>
                 </ul>
               </div>
             </article>
@@ -500,7 +498,7 @@
         <div class="team__head">
           <p class="eyebrow">Zespół</p>
           <h2 class="team__title" data-headline-reveal>
-            Kto odbierze Twój <span class="bracket">brief?</span>
+            Z kim będziesz <span class="bracket">pracować?</span>
           </h2>
         </div>
 
@@ -518,7 +516,8 @@
               <span class="crew-card__sign" aria-hidden="true"></span>
             </div>
           </li>
-          <li class="crew-card crew-card--juice" data-team-card>
+          <li class="crew-card crew-card--photo" data-team-card>
+            <img class="crew-card__photo" src="/media/zespol/marta.jpg" alt="" width="800" height="1200" loading="lazy" decoding="async" />
             <div class="crew-card__top">
               <h3 class="crew-card__name">Marta Knasiak</h3>
               <p class="crew-card__role">Assistant &amp; Junior Event Manager</p>
@@ -542,7 +541,7 @@
               <span class="crew-card__sign" aria-hidden="true"></span>
             </div>
           </li>
-          <li class="crew-card crew-card--blue" data-team-card>
+          <li class="crew-card crew-card--red" data-team-card>
             <div class="crew-card__top">
               <h3 class="crew-card__name">Jakub Gral</h3>
               <p class="crew-card__role">Marketing</p>
@@ -564,12 +563,8 @@
       <div class="showreel__stage">
         <div class="showreel__track" data-showreel-track>
           <figure class="is-active">
-            <video src="/media/showreel-main.mp4" muted playsinline loop></video>
+            <video src="/media/hero-film.mp4" muted playsinline loop preload="none"></video>
             <figcaption>Showreel</figcaption>
-          </figure>
-          <figure>
-            <video src="/media/hero.mp4" muted playsinline loop></video>
-            <figcaption>Agencja</figcaption>
           </figure>
           <figure>
             <video src="/media/reel-02.mp4" muted playsinline loop></video>

@@ -1,8 +1,7 @@
 /* ——— ZESPÓŁ ———
    Karty w rytmie ze slajdu Sweetpunk, który wskazał właściciel (4 równe kafle,
-   każdy na innej powierzchni, duży tytuł u góry, detal na dole) — ale w palecie
-   Juicy: papier / pomarańcz / czerń / cytryna. Zastępują „passy”, które wyglądały
-   na wklejone z innej strony. */
+   każdy na innej powierzchni, duże wersaliki u góry, sygnet na dole):
+   biała / zdjęcie / czarna / czerwona. */
 
 .team {
   max-width: var(--max);
@@ -28,9 +27,9 @@
 }
 
 .team__title {
-  max-width: 13ch;
+  max-width: 17ch;
   font-size: var(--display-2);
-  letter-spacing: -0.026em;
+  letter-spacing: var(--display-tracking);
 }
 
 .team__title.is-split .split-line {
@@ -65,11 +64,45 @@
   --card-bg: var(--white);
 }
 
-.crew-card--juice {
-  --card-bg: var(--accent);
+/* Karta ze zdjęciem: jasne zdjęcie, więc biały tekst + ciemne cieniowanie u góry i u dołu. */
+.crew-card--photo {
+  --card-bg: var(--ink);
   --card-fg: #ffffff;
-  --card-muted: rgba(255, 255, 255, 0.78);
-  --card-line: rgba(255, 255, 255, 0.35);
+  --card-muted: #ffffff;
+  --card-line: rgba(255, 255, 255, 0.55);
+}
+
+.crew-card__photo {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: 50% 45%;
+}
+
+.crew-card--photo::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  background: linear-gradient(
+    to bottom,
+    rgba(10, 10, 10, 0.78) 0%,
+    rgba(10, 10, 10, 0.55) 26%,
+    rgba(10, 10, 10, 0.12) 50%,
+    rgba(10, 10, 10, 0.5) 74%,
+    rgba(10, 10, 10, 0.8) 100%
+  );
+  pointer-events: none;
+}
+
+.crew-card--photo .crew-card__top,
+.crew-card--photo .crew-card__bottom {
+  position: relative;
+  z-index: 2;
+  text-shadow: 0 1px 14px rgba(0, 0, 0, 0.45);
 }
 
 .crew-card--ink {
@@ -79,11 +112,11 @@
   --card-line: rgba(244, 242, 236, 0.35);
 }
 
-.crew-card--blue {
-  --card-bg: var(--blue);
+.crew-card--red {
+  --card-bg: var(--accent);
   --card-fg: #ffffff;
-  --card-muted: rgba(255, 255, 255, 0.78);
-  --card-line: rgba(255, 255, 255, 0.35);
+  --card-muted: rgba(255, 255, 255, 0.8);
+  --card-line: rgba(255, 255, 255, 0.4);
 }
 
 .crew-card--lemon {
@@ -94,18 +127,24 @@
 }
 
 .crew-card__name {
-  font-size: clamp(1.65rem, 2.35vw, 2.45rem);
+  font-family: var(--font-display);
+  font-size: clamp(2.1rem, 2.9vw, 3.3rem);
   font-weight: var(--display-weight);
-  line-height: 1;
-  letter-spacing: -0.02em;
+  line-height: var(--display-leading);
+  letter-spacing: var(--display-tracking);
+  text-transform: uppercase;
   overflow-wrap: break-word;
 }
 
 .crew-card__role {
-  margin: 0.85rem 0 0;
-  max-width: 22ch;
-  font-size: var(--body);
+  margin: 0.9rem 0 0;
+  max-width: 26ch;
+  font-family: var(--font-label);
+  font-size: var(--label);
+  font-weight: 400;
   line-height: 1.35;
+  letter-spacing: var(--label-tracking);
+  text-transform: uppercase;
   color: var(--card-muted);
 }
 

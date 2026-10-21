@@ -1,6 +1,8 @@
 // Pętle „marquee” — pas klientów i wordmark JUICY EVENTS w stopce.
 // Tor jedzie w lewo; scroll go przyspiesza, a scroll w górę odwraca kierunek
 // (feedback właściciela: „JUICY EVENTS zrobiłbym ruszające się”).
+// `data-marquee-steady` (pas klientów): stałe tempo w lewo, bez reakcji na scroll,
+// pauza po najechaniu kursorem.
 // Bez JS / z `?reduced` tor stoi — treść jest normalnie czytelna.
 import gsap from "gsap";
 import { lenis, softMotion } from "../shared.js";
@@ -13,11 +15,22 @@ function createLoop(marquee) {
   if (!track || !originals.length) return null;
 
   const speed = parseFloat(marquee.dataset.marqueeSpeed) || 60; // px/s
+  const steady = "marqueeSteady" in marquee.dataset;
   let setWidth = 0;
   let x = 0;
   let dir = -1;
   let boost = 0;
   let visible = false;
+  let hovered = false;
+
+  if (steady) {
+    marquee.addEventListener("pointerenter", (e) => {
+      if (e.pointerType === "mouse") hovered = true;
+    });
+    marquee.addEventListener("pointerleave", () => {
+      hovered = false;
+    });
+  }
 
   const appendClones = (nodes) =>
     nodes.forEach((node) => {
@@ -42,11 +55,13 @@ function createLoop(marquee) {
   };
 
   const tick = (_, deltaMs) => {
-    if (!visible || !setWidth) return;
-    const velocity = lenis.velocity || 0;
-    const target = Math.min(MAX_BOOST, Math.abs(velocity) * 0.18);
-    boost += (target - boost) * 0.08;
-    if (Math.abs(velocity) > 0.8) dir = velocity > 0 ? -1 : 1;
+    if (!visible || !setWidth || hovered) return;
+    if (!steady) {
+      const velocity = lenis.velocity || 0;
+      const target = Math.min(MAX_BOOST, Math.abs(velocity) * 0.18);
+      boost += (target - boost) * 0.08;
+      if (Math.abs(velocity) > 0.8) dir = velocity > 0 ? -1 : 1;
+    }
 
     x += dir * speed * (1 + boost) * (Math.min(deltaMs, 64) / 1000);
     if (x <= -setWidth) x += setWidth;
@@ -54,6 +69,7 @@ function createLoop(marquee) {
     track.style.transform = `translate3d(${x.toFixed(2)}px, 0, 0)`;
   };
 
+  marquee.classList.add("is-marquee");
   fill();
   gsap.ticker.add(tick);
 

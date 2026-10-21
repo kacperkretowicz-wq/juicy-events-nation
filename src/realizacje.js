@@ -4,15 +4,17 @@ import { initSectionReveals, syncHeadlineReveals } from "./effects.js";
 import { initProjects } from "./sections/projects.js";
 import { initProjectVideo } from "./sections/project-video.js";
 import { initProjectSlideshow } from "./sections/project-slideshow.js";
-import { initProjectHover } from "./sections/project-hover.js";
 import { initMarquees } from "./sections/marquee.js";
 import { initLightbox } from "./sections/lightbox.js";
 import { initMicroFx } from "./sections/micro-fx.js";
 import { initFloatCta } from "./sections/float-cta.js";
 import { bootSiteClosing } from "./site-closing-boot.js";
 import { bindScrollLayoutSettle } from "./scroll-layout.js";
+import { hydrateProjectTiles } from "./sections/project-media.js";
 
 initHeader();
+// Kafle z listą zdjęć w atrybutach data — przed pokazem zdjęć na hover.
+hydrateProjectTiles();
 
 whenFontsReady().then(() => {
   initSplitHeadlines();
@@ -21,7 +23,6 @@ whenFontsReady().then(() => {
   initProjects();
   initProjectVideo();
   initProjectSlideshow();
-  initProjectHover();
   initMarquees();
   initLightbox();
   initMicroFx();

@@ -57,26 +57,99 @@ if (touchCoarse) {
   );
 }
 gsap.ticker.add((time) => lenis.raf(time * 1000));
+
+// Przywracanie scrolla po odświeżeniu robimy sami (scroll-layout.js, po pierwszym
+// przeliczeniu pinów). Przeglądarka ustawiała stary scroll, zanim powstały piny i
+// sticky sekcje — triggery liczyły się wtedy w złym miejscu i sekcje na siebie wchodziły.
+if ("scrollRestoration" in history) history.scrollRestoration = "manual";
+window.addEventListener("pagehide", () => {
+  try {
+    sessionStorage.setItem(`jen_scroll:${location.pathname}`, String(Math.round(window.scrollY)));
+  } catch {
+    // Prywatny tryb Safari może blokować sessionStorage.
+  }
+});
+
+/**
+ * Pozycja scrolla dla sekcji z uwzględnieniem pinów: jeśli cel jest przypięty
+ * (ScrollTrigger owija go w .pin-spacer), liczymy od spacera — sam element bywa
+ * wtedy `position: fixed` i jego offset nic nie znaczy.
+ */
+export function sectionScrollY(target) {
+  const anchor = target.closest(".pin-spacer") || target;
+  return Math.max(0, Math.round(anchor.getBoundingClientRect().top + window.scrollY));
+}
+
+/** Przewiń do sekcji: najpierw świeży pomiar triggerów, potem scroll (Lenis). */
+export function scrollToSection(target, { immediate = false } = {}) {
+  if (!target) return;
+  ScrollTrigger.refresh();
+  const y = sectionScrollY(target);
+  lenis.scrollTo(y, { immediate, force: true });
+  if (immediate) ScrollTrigger.update();
+}
 gsap.ticker.lagSmoothing(mobileScrollProfile && !softMotion ? 800 : 0);
 
 export { onScrollFrame, isScrollActive } from "./scroll-frame.js";
 
 /**
+ * Arkusz stylów musi być już zastosowany, zanim cokolwiek zmierzymy. W WebKit
+ * (Safari) moduły JS potrafią ruszyć, zanim <link rel="stylesheet"> się zaaplikuje —
+ * nagłówki dzieliły się wtedy na linie w nieostylowanej, szerokiej kolumnie (cały
+ * tekst w jednej linii, potem ucięty), a ScrollTrigger mierzył piny na gołym HTML.
+ * Wskaźnik: zmienna --font-display z tokens.css jest widoczna na :root.
+ */
+let stylesLate = false;
+export const stylesArrivedLate = () => stylesLate;
+
+export function whenStylesReady(timeout = 30000) {
+  const applied = () =>
+    getComputedStyle(document.documentElement).getPropertyValue("--font-display").trim() !== "" &&
+    [...document.querySelectorAll('link[rel="stylesheet"]')].every((link) => link.sheet);
+  if (applied()) return Promise.resolve();
+  return new Promise((resolve) => {
+    const t0 = performance.now();
+    const tick = () => {
+      if (applied()) resolve();
+      else if (performance.now() - t0 > timeout) {
+        // Ruszamy bez stylów, ale scroll-layout.js przeliczy wszystko, gdy dojadą.
+        stylesLate = true;
+        resolve();
+      }
+      else setTimeout(tick, 30);
+    };
+    tick();
+  });
+}
+
+/**
  * Nagłówki są dzielone na linie, a słowa misji mierzone — to musi się dziać na
  * docelowym kroju, nie na zastępczym (inaczej łamanie linii rozjeżdża się po
- * doczytaniu fontu). Czekamy na kroje strony, ale najwyżej `timeout` ms.
+ * doczytaniu fontu). Najpierw style, potem jawnie ładujemy kroje (także zakres
+ * latin-ext z polskimi znakami — WebKit nie ładuje preloadowanych krojów, dopóki
+ * nic ich nie użyje, a `document.fonts.ready` potrafi rozwiązać się wcześniej).
  */
-export function whenFontsReady(timeout = 1200) {
-  if (!document.fonts?.load) return Promise.resolve();
-  const sample = "Aa ąęłśżźćńó";
-  const faces = [
-    `400 64px "PP Mori"`,
-    `400 12px "ABC Diatype"`,
-  ];
-  return Promise.race([
+let fontsLate = false;
+export const fontsArrivedLate = () => fontsLate;
+
+export async function whenFontsReady(timeout = 3000) {
+  await whenStylesReady();
+  if (!document.fonts?.load) return;
+  const sample = "Aa ąęłśżźćńó ĄĘŁŚŻŹĆŃÓ";
+  const faces = [`400 64px "Bebas Neue"`, `400 16px "Inter"`, `600 16px "Inter"`];
+  let timedOut = false;
+  await Promise.race([
     Promise.all(faces.map((face) => document.fonts.load(face, sample))),
-    new Promise((resolve) => setTimeout(resolve, timeout)),
+    new Promise((resolve) =>
+      setTimeout(() => {
+        timedOut = true;
+        resolve();
+      }, timeout)
+    ),
   ]).catch(() => {});
+  // Nagłówki zostaną podzielone na linie na kroju zastępczym — scroll-layout.js
+  // podzieli je ponownie i przeliczy piny, gdy właściwe fonty dojadą.
+  fontsLate = timedOut;
 }
 
 window.__jen = { gsap, ScrollTrigger, lenis };
@@ -99,6 +172,22 @@ window.addEventListener("load", () => {
   }, 3000);
 });
 
+// Linki „/#sekcja” (stopka, nagłówek) na stronie głównej: bez przeładowania,
+// przez Lenis i z pozycją liczoną po pinach — natywny skok omijał ScrollTrigger.
+const onHomePage = ["/", ""].includes(window.location.pathname.replace(/\/index\.html$/, "/"));
+if (onHomePage) {
+  document.querySelectorAll('a[href^="/#"]').forEach((link) => {
+    if (link.closest(".mega-menu")) return;
+    link.addEventListener("click", (event) => {
+      const target = document.querySelector(link.getAttribute("href").slice(1));
+      if (!target) return;
+      event.preventDefault();
+      scrollToSection(target);
+      history.pushState(null, "", link.getAttribute("href").slice(1));
+    });
+  });
+}
+
 document.querySelectorAll('a[href^="#"]').forEach((link) => {
   if (link.closest(".mega-menu")) return;
   link.addEventListener("click", (event) => {
@@ -107,7 +196,7 @@ document.querySelectorAll('a[href^="#"]').forEach((link) => {
     const target = document.querySelector(href);
     if (!target) return;
     event.preventDefault();
-    lenis.scrollTo(target, { offset: -16 });
+    scrollToSection(target);
   });
 });
 
@@ -311,8 +400,7 @@ function handleNavigationTransition(link, event) {
       event.preventDefault();
       transitionTo(async () => {
         closeMenuInstant();
-        lenis.scrollTo(target, { immediate: true, offset: 0 });
-        ScrollTrigger.refresh();
+        scrollToSection(target, { immediate: true });
         history.pushState(null, "", targetSelector);
       });
       return;
@@ -473,7 +561,14 @@ export function fixPolishOrphans(scope = document) {
 
 export function initSplitHeadlines() {
   fixPolishOrphans();
-  collectHeadlineRevealRoots().forEach(splitIntoLines);
+  const roots = collectHeadlineRevealRoots();
+  roots.forEach(splitIntoLines);
+  repairSplitHeadlines(roots);
+  // Kroje dociągnięte później (np. latin-ext przy pierwszym polskim znaku) zmieniają
+  // szerokość słów — sprawdź linie jeszcze raz.
+  document.fonts?.addEventListener?.("loadingdone", () => {
+    if (repairSplitHeadlines()) ScrollTrigger.refresh();
+  });
 }
 
 /**
@@ -483,41 +578,78 @@ export function initSplitHeadlines() {
  * Tu składamy nagłówki od nowa po realnej zmianie szerokości (próg 40 px odsiewa
  * chowanie paska adresu na mobile, które zmienia tylko wysokość).
  */
-export function initSplitResize() {
-  let lastWidth = window.innerWidth;
-  let timer = null;
+/** Złóż nagłówki od nowa w aktualnej szerokości / na aktualnym kroju. */
+export function resplitHeadlines() {
+  const heads = collectHeadlineRevealRoots().filter(
+    (el) => el.dataset.splitDone === "1" && el.dataset.splitSource
+  );
+  if (!heads.length) return;
 
-  const resplit = () => {
-    const heads = collectHeadlineRevealRoots().filter(
-      (el) => el.dataset.splitDone === "1" && el.dataset.splitSource
-    );
-    if (!heads.length) return;
+  heads.forEach((el) => {
+    // Wróć do surowego HTML i podziel od nowa w aktualnej szerokości.
+    el.innerHTML = el.dataset.splitSource;
+    delete el.dataset.splitDone;
+    splitIntoLines(el);
 
-    heads.forEach((el) => {
-      // Wróć do surowego HTML i podziel od nowa w aktualnej szerokości.
-      el.innerHTML = el.dataset.splitSource;
-      delete el.dataset.splitDone;
-      splitIntoLines(el);
+    // Świeże linie nie mają transformu — nagłówek jest po prostu widoczny
+    // (był już raz odsłonięty, nie powtarzamy wjazdu). clearProps kasuje
+    // ewentualny transform z animacji przerwanej w trakcie resize.
+    const inners = [...el.querySelectorAll(".split-line__inner")];
+    gsap.set(inners, { clearProps: "transform,translate,rotate,scale,clipPath,webkitClipPath" });
+    inners.forEach((inner) => inner.classList.add("is-headline-revealed"));
+  });
+  repairSplitHeadlines(heads);
 
-      // Świeże linie nie mają transformu — nagłówek jest po prostu widoczny
-      // (był już raz odsłonięty, nie powtarzamy wjazdu). clearProps kasuje
-      // ewentualny transform z animacji przerwanej w trakcie resize.
+  // Wysokości sekcji się zmieniły — przelicz pozycje pinów i triggerów.
+  ScrollTrigger.refresh();
+}
+
+const splitOverflows = (el) =>
+  [...el.querySelectorAll(".split-line")].some((line) => {
+    const inner = line.querySelector(".split-line__inner") || line;
+    return inner.scrollWidth > line.clientWidth + 1;
+  });
+
+/** Przywróć nagłówek do zwykłego tekstu (bez animacji wjazdu, ale cały widoczny). */
+function unsplitHeadline(el) {
+  if (!el.dataset.splitSource) return;
+  el.innerHTML = el.dataset.splitSource;
+  el.classList.remove("is-split");
+  delete el.dataset.splitDone;
+  el.dataset.splitReverted = "1";
+}
+
+/**
+ * Sieć bezpieczeństwa: nagłówek NIGDY nie może być ucięty. Linia szersza niż
+ * kontener (inny krój niż przy pomiarze, nierozdzielny akcent .bracket, późne style)
+ * → dzielimy jeszcze raz; jeśli nadal się nie mieści → zwykły tekst bez animacji.
+ */
+export function repairSplitHeadlines(roots = collectHeadlineRevealRoots()) {
+  let changed = false;
+  roots.forEach((el) => {
+    if (el.dataset.splitDone !== "1" || !splitOverflows(el)) return;
+    changed = true;
+    const wasRevealed = !!el.querySelector(".is-headline-revealed, [data-glow-played='1']");
+    el.innerHTML = el.dataset.splitSource;
+    delete el.dataset.splitDone;
+    splitIntoLines(el);
+    if (splitOverflows(el)) {
+      unsplitHeadline(el);
+      return;
+    }
+    if (wasRevealed) {
       const inners = [...el.querySelectorAll(".split-line__inner")];
       gsap.set(inners, { clearProps: "transform,translate,rotate,scale,clipPath,webkitClipPath" });
       inners.forEach((inner) => inner.classList.add("is-headline-revealed"));
+    }
+  });
+  return changed;
+}
 
-      // Sieć bezpieczeństwa: gdyby pomiar rozminął się z realną szerokością,
-      // pozwól linii zawinąć się, zamiast dać jej wypaść poza overflow: hidden.
-      inners.forEach((inner) => {
-        if (inner.scrollWidth > inner.parentElement.clientWidth + 1) {
-          inner.style.whiteSpace = "normal";
-        }
-      });
-    });
-
-    // Wysokości sekcji się zmieniły — przelicz pozycje pinów i triggerów.
-    ScrollTrigger.refresh();
-  };
+export function initSplitResize() {
+  let lastWidth = window.innerWidth;
+  let timer = null;
+  const resplit = resplitHeadlines;
 
   const schedule = (delay) => {
     clearTimeout(timer);

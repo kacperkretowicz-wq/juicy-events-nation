@@ -3,7 +3,7 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { softMotion } from "../shared.js";
 
 // Faza A→B (0 → LOGO_END progresu aktu): logo ucieka do nagłówka strony,
-// intro po prawej gaśnie, a "Po co Ci agencja" wjeżdża w jego miejsce.
+// hasło na środku gaśnie, a "Po co Ci agencja" wjeżdża w jego miejsce.
 // Rozciągnięte na więcej scrolla + eased, żeby lot był wolniejszy i finezyjny.
 const LOGO_END = 0.48;
 const flyEase = gsap.parseEase("power2.inOut");

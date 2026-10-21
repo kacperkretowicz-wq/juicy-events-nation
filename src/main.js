@@ -9,7 +9,6 @@ import { initExpertise } from "./sections/expertise.js";
 import { initProjects, initProjectCoverDrift } from "./sections/projects.js";
 import { initProjectVideo } from "./sections/project-video.js";
 import { initProjectSlideshow } from "./sections/project-slideshow.js";
-import { initProjectHover } from "./sections/project-hover.js";
 import { initWorkVideo } from "./sections/work-video.js";
 import { initMarquees } from "./sections/marquee.js";
 import { initMission } from "./sections/mission.js";
@@ -35,7 +34,6 @@ whenFontsReady().then(() => {
   initProjectCoverDrift();
   initProjectVideo();
   initProjectSlideshow();
-  initProjectHover();
   initMission();
   initSectionReveals();
   initMicroFx();

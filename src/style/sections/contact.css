@@ -29,12 +29,12 @@
 
 .contact__title {
   grid-column: 1 / span 11;
-  max-width: 12.5ch;
+  max-width: 17ch;
   margin: 0;
   font-size: clamp(3rem, 9vw, 9.5rem);
   font-weight: var(--display-weight);
-  line-height: 0.96;
-  letter-spacing: -0.03em;
+  line-height: var(--display-leading);
+  letter-spacing: var(--display-tracking);
 }
 
 .contact__title .bracket {
@@ -52,14 +52,15 @@
   border-top: 1px solid var(--line);
 }
 
+/* Mail i telefon to treść, nie tytuł — Inter (adres e-mail wersalikami w Bebas był nieczytelny). */
 .contact__mail,
 .contact__phone {
   position: relative;
-  font-family: var(--font-display);
-  font-size: var(--display-4);
-  font-weight: 600;
-  letter-spacing: -0.02em;
-  line-height: 1.1;
+  font-family: var(--font);
+  font-size: clamp(1.25rem, 2vw, 2rem);
+  font-weight: 500;
+  letter-spacing: -0.015em;
+  line-height: 1.15;
 }
 
 .contact__mail {
