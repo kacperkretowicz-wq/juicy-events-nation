@@ -9,7 +9,7 @@ export function initFloatCta() {
 
   const visible = new Set();
   let pastLogos = false;
-  const syncHidden = () => cta.classList.toggle("is-hidden", visible.size > 0 || pastLogos);
+  const syncHidden = () => cta.classList.toggle("is-hidden", false);
 
   const zones = [document.getElementById("kontakt"), document.querySelector(".site-footer")].filter(Boolean);
   if (zones.length && "IntersectionObserver" in window) {

@@ -7,7 +7,8 @@ import { onScrollFrame } from "../shared.js";
 export function initShowreelToggle() {
   const toggle = document.querySelector("[data-showreel-toggle]");
   const video = toggle?.querySelector("[data-showreel-toggle-video]");
-  if (!toggle) return;
+  // Wyłączone na prośbę Jakuba (24.10): kółko „Napisz do nas” zostaje na całej stronie.
+  if (!toggle || true) return;
 
   toggle.hidden = false;
 
