@@ -27,13 +27,15 @@ export function initFloatCta() {
   }
 
   const clients = document.getElementById("klienci");
-  if (clients && "IntersectionObserver" in window) {
-    new IntersectionObserver((entries) => {
-      entries.forEach((entry) => {
-        pastLogos = entry.boundingClientRect.bottom < 0;
-        syncHidden();
-      });
-    }).observe(clients);
+  if (clients) {
+    // Skok do kotwicy może ominąć cały pas bez zmiany stanu IntersectionObserver.
+    const updatePastLogos = () => {
+      pastLogos = clients.getBoundingClientRect().bottom < 0;
+      syncHidden();
+    };
+    updatePastLogos();
+    onScrollFrame(updatePastLogos);
+    window.addEventListener("resize", updatePastLogos);
   }
 
   // Nad pomarańczowymi powierzchniami (`data-surface="accent"`) kółko odwraca kolory —

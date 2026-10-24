@@ -36,7 +36,7 @@
   background: linear-gradient(
     180deg,
     var(--cream) 0%,
-    rgba(244, 242, 236, 0.94) 11%,
+    color-mix(in srgb, var(--cream) 94%, transparent) 11%,
     rgba(210, 207, 199, 0.72) 26%,
     rgba(145, 143, 138, 0.58) 46%,
     rgba(40, 38, 36, 0.8) 72%,

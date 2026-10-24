@@ -1,7 +1,7 @@
 :root {
   /* Baza — Gallery White (feedback klienta: tło było zbyt kremowe) */
   --cream: #f7f7f4;
-  --cream-deep: #ecebe4;
+  --cream-deep: var(--cream);
   --white: #ffffff;
   --ink: #0e0e0e;
   --dark: #0e0e0e;
@@ -19,9 +19,9 @@
   --acid-olive: #d1d39f; /* TODO: potwierdzić hex od Kajetana (odczytany z palety w Canva) */
   --warm-grey: #bebbb3;
   --accent: var(--juicy-red);
-  --accent-deep: color-mix(in srgb, var(--juicy-red) 82%, black);
+  --accent-deep: var(--juicy-red);
   --accent-text: var(--juicy-red);
-  --accent-soft: color-mix(in srgb, var(--juicy-red) 88%, white);
+  --accent-soft: var(--juicy-red);
   --accent-warm: var(--juicy-red);
   --on-accent: #ffffff;
   --lemon: var(--acid-olive); /* dawny różowy hover-akcent, teraz acid olive (feedback klienta) */

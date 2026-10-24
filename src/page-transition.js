@@ -5,7 +5,7 @@ const STAGGER_STEP = 0.075;
 const EASE = "power1.out";
 
 // Kolory przejścia menu — losowy wybór przy każdym kliknięciu
-const PALETTE = ["#121212", "#1e1e1e", "#3b5bff", "#ff4f18", "#f1ff66"];
+const PALETTE = ["var(--ink)", "var(--dark-soft)", "var(--juicy-red)", "var(--acid-olive)"];
 
 let overlayEl = null;
 let gridEl = null;

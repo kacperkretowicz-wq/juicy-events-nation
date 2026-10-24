@@ -47,8 +47,8 @@
   grid-column: 1 / -1;
 }
 
-@media (min-width: 621px) {
-  .crew-card--owner {
+@media (min-width: 981px) {
+  .crew-card.crew-card--owner {
     flex-direction: row;
     align-items: center;
     justify-content: space-between;
@@ -132,7 +132,7 @@
   --card-bg: var(--ink);
   --card-fg: var(--cream);
   --card-muted: var(--on-dark-muted);
-  --card-line: rgba(244, 242, 236, 0.35);
+  --card-line: var(--on-dark-line);
 }
 
 .crew-card--red {

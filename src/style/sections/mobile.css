@@ -123,10 +123,6 @@
     font-size: clamp(2.7rem, 12.5vw, 3.6rem);
   }
 
-  .project-card__title {
-    font-size: clamp(1.5rem, 7.2vw, 2rem);
-  }
-
   .team {
     padding-top: clamp(4rem, 14vw, 5.5rem);
   }

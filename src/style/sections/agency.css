@@ -253,6 +253,7 @@
 }
 
 .agency__intro-title {
+  text-transform: uppercase;
   max-width: 24ch;
   /* Ten sam krój i styl co pozostałe nagłówki sekcji (.agency__title itd.). */
   font-family: var(--font-display);

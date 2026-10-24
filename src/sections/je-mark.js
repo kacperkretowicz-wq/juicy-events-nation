@@ -1,4 +1,4 @@
-// Znak Je! w sekcji „Od wizji…” — zastępuje ciemną animację (feedback: „element
+// Znak Je! w sekcji „Nasza praca” — zastępuje ciemną animację (feedback: „element
 // bardziej designerski”). Wideo z wydarzeń gra w literach; przy wjeździe w kadr
 // J i e! zjeżdżają się w logo, a kolorowe kopie (cytryna, pomarańcz) rozchodzą
 // w „przesunięcie druku”. Na desktopie znak lekko reaguje na kursor.

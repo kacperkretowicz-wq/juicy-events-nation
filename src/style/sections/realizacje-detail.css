@@ -216,7 +216,6 @@
   font-size: clamp(1.35rem, 2vw, 2rem);
   line-height: var(--display-leading);
   letter-spacing: var(--display-tracking);
-  text-transform: uppercase;
   transition: color 0.3s var(--ease);
 }
 

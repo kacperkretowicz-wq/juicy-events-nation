@@ -2,6 +2,8 @@
 // zasłaniał obraz (feedback klienta). Widoczny dopiero po minięciu pasa klientów
 // (tam, gdzie wcześniej stało kółko „Kontakt” — float-cta.js), na zmianę pokazuje
 // logo i krótką wyciszoną pętlę. Klik otwiera pełny showreel z dźwiękiem (shared.js).
+import { onScrollFrame } from "../shared.js";
+
 export function initShowreelToggle() {
   const toggle = document.querySelector("[data-showreel-toggle]");
   const video = toggle?.querySelector("[data-showreel-toggle-video]");
@@ -14,13 +16,15 @@ export function initShowreelToggle() {
   const sync = () => toggle.classList.toggle("is-visible", pastLogos && visible.size === 0);
 
   const clients = document.getElementById("klienci");
-  if (clients && "IntersectionObserver" in window) {
-    new IntersectionObserver((entries) => {
-      entries.forEach((entry) => {
-        pastLogos = entry.boundingClientRect.bottom < 0;
-        sync();
-      });
-    }).observe(clients);
+  if (clients) {
+    // Aktualizujemy też po skoku, który całkowicie omija pas logotypów.
+    const updatePastLogos = () => {
+      pastLogos = clients.getBoundingClientRect().bottom < 0;
+      sync();
+    };
+    updatePastLogos();
+    onScrollFrame(updatePastLogos);
+    window.addEventListener("resize", updatePastLogos);
   } else {
     pastLogos = true;
   }
