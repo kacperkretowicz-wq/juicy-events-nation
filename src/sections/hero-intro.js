@@ -13,7 +13,6 @@ const LOGO_HIDE_AFTER_SHOTS = 3;
 const PROJECTS = [
   ["john-deere", 12],
   ["retro-rush", 7],
-  ["active-fashion", 7],
   ["multichem", 6],
   ["rainbow", 5],
   ["volvo", 5],

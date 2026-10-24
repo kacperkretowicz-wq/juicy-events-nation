@@ -38,7 +38,6 @@
   font-weight: 400;
   font-size: var(--label);
   letter-spacing: var(--label-tracking);
-  text-transform: uppercase;
 }
 
 .realizacje-hero .project-card__meta span:first-child {
@@ -96,7 +95,6 @@
   font-family: var(--font-label);
   font-size: var(--label);
   letter-spacing: var(--label-tracking);
-  text-transform: uppercase;
 }
 
 .realizacje-body {
@@ -129,6 +127,14 @@
   color: var(--ink);
   line-height: 1.55;
   letter-spacing: -0.005em;
+}
+
+/* Zdanie otwierające opis — krótkie, mocniejsze, oddzielone od reszty opisu. */
+.realizacje-lead {
+  font-weight: 600;
+  font-size: clamp(1.3rem, 2vw, 1.6rem);
+  letter-spacing: -0.01em;
+  line-height: 1.35;
 }
 
 .realizacje-body__copy p:last-child {
@@ -202,7 +208,6 @@
   font-family: var(--font-label);
   font-size: var(--label);
   letter-spacing: var(--label-tracking);
-  text-transform: uppercase;
   color: var(--muted);
 }
 

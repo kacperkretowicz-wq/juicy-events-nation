@@ -1,28 +1,30 @@
 :root {
-  /* Baza — piasek / kremowy neutralny */
-  --cream: #f3f3e9;
-  --cream-deep: #e8e8da;
+  /* Baza — Gallery White (feedback klienta: tło było zbyt kremowe) */
+  --cream: #f7f7f4;
+  --cream-deep: #ecebe4;
   --white: #ffffff;
   --ink: #0e0e0e;
   --dark: #0e0e0e;
   --dark-soft: #1a1a1a;
   --muted: #5e5e5a;
-  --muted-light: rgba(243, 243, 233, 0.62);
-  --on-dark-muted: rgba(243, 243, 233, 0.76);
-  --on-dark-line: rgba(243, 243, 233, 0.32);
+  --muted-light: rgba(247, 247, 244, 0.62);
+  --on-dark-muted: rgba(247, 247, 244, 0.76);
+  --on-dark-line: rgba(247, 247, 244, 0.32);
   --line: rgba(14, 14, 14, 0.14);
   --line-light: rgba(255, 255, 255, 0.16);
 
-  /* Paleta: Cherry Cobalt — Haven
-     Cherry czerwień + Cobalt niebieski + Soft Pink + Sand jako baza */
-  --accent: #d20001;          /* Cherry */
-  --accent-deep: #b20001;
-  --accent-text: #c20001;
-  --accent-soft: #e21010;
-  --accent-warm: #d20001;
+  /* Paleta Juicy Events — jeden czerwony akcent wszędzie + acid olive jako drugi akcent.
+     INK BLACK #141414, WARM GREY #BEBBB3, PAPER WHITE #F7F7F4 (paleta klienta). */
+  --juicy-red: #ff291e;
+  --acid-olive: #d1d39f; /* TODO: potwierdzić hex od Kajetana (odczytany z palety w Canva) */
+  --warm-grey: #bebbb3;
+  --accent: var(--juicy-red);
+  --accent-deep: color-mix(in srgb, var(--juicy-red) 82%, black);
+  --accent-text: var(--juicy-red);
+  --accent-soft: color-mix(in srgb, var(--juicy-red) 88%, white);
+  --accent-warm: var(--juicy-red);
   --on-accent: #ffffff;
-  --lemon: #fec6e9;           /* Soft Pink — zamiast żółtego, pastelowy kontrast */
-  --blue: #0212ee;            /* Cobalt */
+  --lemon: var(--acid-olive); /* dawny różowy hover-akcent, teraz acid olive (feedback klienta) */
 
   /* Rytm */
   --pad: clamp(1.25rem, 3.2vw, 3.25rem);
@@ -40,7 +42,8 @@
   --font-label: "Inter", "Helvetica Neue", Arial, sans-serif;
   --display-weight: 400;
   --accent-weight: 400;
-  --display-tracking: -0.005em;
+  /* Bebas Neue: lekki, dodatni tracking — bez niego wersaliki wyglądają ściśnięte. */
+  --display-tracking: 0.016em;
   --display-leading: 0.92;
   --label-tracking: 0.04em;
   --display-1: clamp(3.4rem, 9.4vw, 10rem);

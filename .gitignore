@@ -8,6 +8,7 @@ dist
 _media-backup
 
 # Artefakty QA: zrzuty ze skryptu audytu i klatki nagrania referencyjnego
+qa-screens
 .debug-scroll
 .ref-video
 sweetpunk-home.html

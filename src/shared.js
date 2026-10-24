@@ -292,74 +292,33 @@ function closeMenuInstant() {
 menuToggles.forEach((btn) => btn.addEventListener("click", openMenu));
 document.querySelectorAll("button[data-menu-close]").forEach((btn) => btn.addEventListener("click", closeMenu));
 
-/* ——— Showreel ——— */
+/* ——— Showreel: pełny film (je-showreel.mp4) od początku, z dźwiękiem ——— */
 
-const reelFigures = [...document.querySelectorAll("[data-showreel-track] figure")];
-let reelIndex = 0;
-let reelTimer = null;
-let reelPlaying = true;
-
-function showReelSlide(index) {
-  reelFigures.forEach((figure, i) => {
-    const active = i === index;
-    figure.classList.toggle("is-active", active);
-    const video = figure.querySelector("video");
-    if (!video) return;
-    if (active && reelPlaying) video.play().catch(() => {});
-    else {
-      video.pause();
-      if (!active) video.currentTime = 0;
-    }
-  });
-  reelIndex = index;
-}
-
-function playReel() {
-  clearInterval(reelTimer);
-  reelPlaying = true;
-  const playBtn = document.querySelector("[data-showreel-play]");
-  if (playBtn) playBtn.textContent = "Pause";
-  reelFigures[reelIndex]?.querySelector("video")?.play().catch(() => {});
-  reelTimer = setInterval(() => showReelSlide((reelIndex + 1) % reelFigures.length), 3400);
-}
-
-function stopReel() {
-  reelPlaying = false;
-  clearInterval(reelTimer);
-  const playBtn = document.querySelector("[data-showreel-play]");
-  if (playBtn) playBtn.textContent = "Play";
-  reelFigures.forEach((figure) => figure.querySelector("video")?.pause());
-}
+const reelVideo = document.querySelector("[data-showreel-video]");
 
 function openShowreel() {
   if (!showreel) return;
   showreel.classList.add("is-open");
   showreel.setAttribute("aria-hidden", "false");
   lockScroll();
-  showReelSlide(0);
-  playReel();
+  if (reelVideo) {
+    reelVideo.currentTime = 0;
+    reelVideo.muted = false;
+    reelVideo.play().catch(() => {});
+  }
 }
 
 function closeShowreel() {
   if (!showreel) return;
   showreel.classList.remove("is-open");
   showreel.setAttribute("aria-hidden", "true");
-  stopReel();
+  if (reelVideo) reelVideo.pause();
   unlockScroll();
 }
 
 document.querySelectorAll("[data-showreel-open]").forEach((btn) => btn.addEventListener("click", openShowreel));
 document.querySelectorAll("[data-showreel-close]").forEach((btn) => btn.addEventListener("click", closeShowreel));
-document.querySelector("[data-showreel-prev]")?.addEventListener("click", () => {
-  showReelSlide((reelIndex - 1 + reelFigures.length) % reelFigures.length);
-});
-document.querySelector("[data-showreel-next]")?.addEventListener("click", () => {
-  showReelSlide((reelIndex + 1) % reelFigures.length);
-});
-document.querySelector("[data-showreel-play]")?.addEventListener("click", () => {
-  if (reelPlaying) stopReel();
-  else playReel();
-});
+reelVideo?.addEventListener("ended", closeShowreel);
 
 document.addEventListener("keydown", (event) => {
   if (event.key !== "Escape") return;

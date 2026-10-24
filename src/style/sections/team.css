@@ -36,10 +36,33 @@
   overflow: hidden;
 }
 
+/* Owner sam w pierwszym rzędzie (wyróżniony), reszta od juniora w drugim rzędzie. */
 .crew {
   display: grid;
-  grid-template-columns: repeat(4, minmax(0, 1fr));
+  grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: clamp(0.75rem, 1.1vw, 1rem);
+}
+
+.crew-card--owner {
+  grid-column: 1 / -1;
+}
+
+@media (min-width: 621px) {
+  .crew-card--owner {
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    gap: clamp(1.5rem, 4vw, 3rem);
+    min-height: 0;
+    padding-top: clamp(1.75rem, 2.8vw, 2.4rem);
+    padding-bottom: clamp(1.75rem, 2.8vw, 2.4rem);
+  }
+
+  .crew-card--owner .crew-card__bottom {
+    flex-direction: row-reverse;
+    align-items: center;
+    gap: 1.75rem;
+  }
 }
 
 .crew-card {
@@ -137,15 +160,20 @@
 }
 
 .crew-card__role {
-  margin: 0.9rem 0 0;
+  margin: 0.4rem 0 0;
   max-width: 26ch;
   font-family: var(--font-label);
   font-size: var(--label);
   font-weight: 400;
   line-height: 1.35;
   letter-spacing: var(--label-tracking);
-  text-transform: uppercase;
   color: var(--card-muted);
+}
+
+/* Karta ownera: rola w jednej linii pod imieniem, bez zawijania (feedback klienta). */
+.crew-card--owner .crew-card__role {
+  max-width: none;
+  white-space: nowrap;
 }
 
 /* Kontakt na całą szerokość karty (długie maile nie łamią się w pół słowa),
@@ -201,8 +229,9 @@
     transform: translateY(-0.5rem);
   }
 
+  /* Większy ruch sygnetu po najechaniu (feedback klienta: „czy logo może wykonywać większe ruchy?”). */
   .crew-card:hover .crew-card__sign {
-    transform: rotate(-12deg) scale(1.12);
+    transform: translate(-0.35rem, -0.6rem) rotate(-22deg) scale(1.45);
   }
 }
 

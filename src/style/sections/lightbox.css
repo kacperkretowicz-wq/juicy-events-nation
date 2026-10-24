@@ -49,7 +49,6 @@
   text-align: center;
   font-size: var(--micro);
   letter-spacing: 0.1em;
-  text-transform: uppercase;
   color: var(--muted-light);
 }
 
@@ -64,7 +63,6 @@
   font-size: var(--micro);
   font-weight: 600;
   letter-spacing: 0.14em;
-  text-transform: uppercase;
   cursor: pointer;
   transition: background 0.3s var(--ease), border-color 0.3s var(--ease);
 }

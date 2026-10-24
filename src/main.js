@@ -15,6 +15,8 @@ import { initMission } from "./sections/mission.js";
 import { bootSiteClosing } from "./site-closing-boot.js";
 import { initMicroFx } from "./sections/micro-fx.js";
 import { initFloatCta } from "./sections/float-cta.js";
+import { initShowreelToggle } from "./sections/showreel-toggle.js";
+import { initClientsLogos } from "./sections/clients-marquee.js";
 
 initHeader();
 initHeroIntro();
@@ -28,7 +30,9 @@ whenFontsReady().then(() => {
 
   initAgency();
   initWorkVideo();
-  initMarquees();
+  // Logotypy klientów dojeżdżają z /media/clients/clients.json (runtime fetch) —
+  // pas startuje dopiero, gdy tor ma finalną treść (fallback albo z manifestu).
+  initClientsLogos().finally(initMarquees);
   initExpertise();
   initProjects();
   initProjectCoverDrift();
@@ -38,6 +42,7 @@ whenFontsReady().then(() => {
   initSectionReveals();
   initMicroFx();
   initFloatCta();
+  initShowreelToggle();
 
   bootSiteClosing();
 

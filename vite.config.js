@@ -29,7 +29,6 @@ export default defineConfig({
       input: {
         main: resolve(__dirname, "index.html"),
         realizacje: resolve(__dirname, "realizacje.html"),
-        realizacjeActiveFashion: resolve(__dirname, "realizacje-active-fashion.html"),
         realizacjeJohnDeere: resolve(__dirname, "realizacje-john-deere.html"),
         realizacjeMultichem: resolve(__dirname, "realizacje-multichem.html"),
         realizacjeRainbow: resolve(__dirname, "realizacje-rainbow.html"),

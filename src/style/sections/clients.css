@@ -45,9 +45,10 @@
   will-change: transform;
 }
 
-/* Prawdziwe logotypy marek — stała wysokość, stały odstęp między nimi */
+/* Prawdziwe logotypy marek — równa wizualna wysokość (~32–40px desktop, 24–28 mobile),
+   stały odstęp między nimi. */
 .clients__item {
-  --logo-h: clamp(2.6rem, 4vw, 3.8rem);
+  --logo-h: clamp(2rem, 2.6vw, 2.5rem);
   flex: 0 0 auto;
   display: flex;
   align-items: center;
@@ -61,9 +62,16 @@
   width: auto;
   height: var(--logo-h);
   object-fit: contain;
-  /* Wszystkie logotypy jednolicie czarne (John Deere ma osobny, czarny SVG ze znakiem). */
-  filter: brightness(0);
+  /* Wszystkie logotypy jednolicie czarne, niezależnie od oryginalnego koloru. */
+  filter: grayscale(1) brightness(0);
+  mix-blend-mode: multiply;
   transition: transform 0.4s var(--ease-expo), opacity 0.3s var(--ease);
+}
+
+@media (max-width: 620px) {
+  .clients__item {
+    --logo-h: clamp(1.5rem, 6vw, 1.75rem);
+  }
 }
 
 .clients__item--wide img {

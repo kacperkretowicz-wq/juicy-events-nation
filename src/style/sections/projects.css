@@ -1,8 +1,8 @@
 /* ——— REALIZACJE ———
-   Siatka 2 kolumny (telefon: 1) z dużymi okładkami 4:3. Pod okładką tylko
-   tytuł wersalikami. Hover (tylko mysz): tytuł na
-   czerwono, a na środku okładki pojawia się mniejsze okienko 3:4 z filmem
-   (project-video.js) albo szybkim pokazem zdjęć (project-slideshow.js). */
+   Siatka 2 kolumny (telefon: 1) z równymi, kwadratowymi okładkami (feedback klienta).
+   Pod okładką mały nagłówek i duży tytuł wersalikami, bez koloru po najechaniu.
+   Hover (tylko mysz): tytuł na czerwono, a na środku okładki pojawia się mniejsze
+   okienko 3:4 z filmem (project-video.js) albo szybkim pokazem zdjęć (project-slideshow.js). */
 
 .projects {
   max-width: var(--max);
@@ -22,6 +22,10 @@
 
 .projects__title {
   font-size: var(--display-2);
+}
+
+.projects__heading .section-label {
+  margin-bottom: 0.5rem;
 }
 
 .projects__title.is-split .split-line {
@@ -55,7 +59,6 @@
 /* ——— Kafel ——— */
 
 .project-card {
-  --tile: var(--accent);
   position: relative;
 }
 
@@ -67,10 +70,10 @@
 .project-card__media {
   position: relative;
   display: block;
-  aspect-ratio: 4 / 3;
+  aspect-ratio: 1 / 1;
   overflow: hidden;
   isolation: isolate;
-  background: var(--tile);
+  background: var(--ink);
 }
 
 .project-card__cover {
@@ -122,27 +125,39 @@
   z-index: 1;
 }
 
+/* Mały nagłówek nad tytułem (klient: „jeden duży tytuł + mały nagłówek, bez nawiasów”). */
+.project-card__kicker {
+  margin: clamp(1rem, 1.6vw, 1.4rem) 0 0;
+  font-family: var(--font-label);
+  font-size: var(--label);
+  font-weight: 400;
+  letter-spacing: var(--label-tracking);
+  color: var(--muted);
+}
+
 .project-card__title {
-  /* Tytuły są krótkie (2 linie); bez line-clamp, bo overflow ucinałby polskie znaki nad wersalikami. */
-  max-width: 30ch;
-  margin-top: clamp(1rem, 1.6vw, 1.4rem);
+  /* Mniejsza czcionka, żeby tytuł mieścił się w jednej linii (feedback klienta). */
+  max-width: 40ch;
+  margin-top: 0.3rem;
   font-family: var(--font-display);
-  font-size: clamp(1.9rem, 3vw, 3.1rem);
+  font-size: clamp(1.3rem, 1.9vw, 2.2rem);
   font-weight: var(--display-weight);
   line-height: var(--display-leading);
   letter-spacing: var(--display-tracking);
   text-transform: uppercase;
-  text-wrap: balance;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
   color: var(--ink);
   transition: color 0.35s var(--ease);
 }
 
-/* Hover tylko dla myszy — na dotyku zostaje statyczny kafel (okienko ukryte). */
+/* Hover tylko dla myszy — na dotyku zostaje statyczny kafel (okienko ukryte).
+   Bez przyciemnienia / koloru na okładce po najechaniu (feedback klienta). */
 @media (hover: hover) and (pointer: fine) {
   .project-card:hover .project-card__cover,
   .project-card:focus-within .project-card__cover {
     transform: scale(1.03);
-    filter: brightness(0.8);
   }
 
   .project-card:hover .project-card__peek,
@@ -204,7 +219,6 @@
   font-family: var(--font-label);
   font-size: var(--label);
   letter-spacing: var(--label-tracking);
-  text-transform: uppercase;
 }
 
 .project-card__placeholder::before {
@@ -220,11 +234,3 @@
   mask: url("/media/mark-j.svg") center / contain no-repeat, url("/media/mark-e.svg") center / contain no-repeat;
   transform: translate(-50%, -150%);
 }
-
-/* ─── tile colors per palette ─── */
-.project-card[data-tile="c1"] { --tile: #d20001; }
-.project-card[data-tile="c2"] { --tile: #0212ee; }
-.project-card[data-tile="c3"] { --tile: #fec6e9; }
-.project-card[data-tile="c4"] { --tile: #d20001; }
-.project-card[data-tile="c5"] { --tile: #0212ee; }
-.project-card[data-tile="c6"] { --tile: #fec6e9; }

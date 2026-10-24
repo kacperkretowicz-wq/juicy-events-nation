@@ -86,10 +86,10 @@
     <main id="top" tabindex="-1">
       <section class="gallery-hero">
         <p class="eyebrow">Realizacje</p>
-        <h1>Wydarzenia, które <span class="bracket">zostają</span> w pamięci</h1>
+        <h1>Każdy projekt ma swoje <span class="bracket">zasady.</span></h1>
         <p data-fade>
-          Wybór projektów B2B i B2C: gale i jubileusze, konferencje, premiery produktowe,
-          wydarzenia prywatne oraz produkcje techniczne z mappingiem i oprawą artystyczną.
+          Od gal i jubileuszy po premiery, wydarzenia prywatne i produkcje sceniczne. Różne
+          formaty, budżety i oczekiwania. Każdy projekt wymaga własnych decyzji.
         </p>
       </section>
 
@@ -99,14 +99,17 @@
            do czasu wrzucenia plików do public/media/realizacje/<slug>/ (patrz src/sections/project-media.js). -->
       <section class="projects" id="case-studies" aria-label="Wszystkie realizacje">
         <div class="projects__head">
-          <h2 class="projects__title">Wszystkie <span class="bracket">realizacje</span></h2>
-          <p class="projects__count" aria-hidden="true">(17)</p>
+          <div class="projects__heading">
+            <p class="section-label">Portfolio</p>
+            <h2 class="projects__title">Juicy <span class="bracket">Archives</span></h2>
+          </div>
+          <p class="projects__count" aria-hidden="true">(JE)</p>
         </div>
 
         <div class="projects__group">
           <h3 class="projects__group-title">Imprezy otwarte / biletowane</h3>
           <div class="projects__grid" data-projects>
-          <article class="project-card" data-project data-tile="c1">
+          <article class="project-card" data-project>
             <a class="project-card__link" href="realizacje-rainbow.html">
               <span class="project-card__media">
                 <img class="project-card__cover" decoding="async" width="1800" height="1200" src="/media/realizacje/rainbow/05.jpg" alt="Rainbow, wydarzenie z autorską oprawą artystyczną" loading="lazy" />
@@ -126,7 +129,7 @@
         <div class="projects__group">
           <h3 class="projects__group-title">Imprezy B2C</h3>
           <div class="projects__grid" data-projects>
-          <article class="project-card" data-project data-tile="c2">
+          <article class="project-card" data-project>
             <a class="project-card__link" href="realizacje-signature-qrowd.html">
               <span class="project-card__media">
                 <img class="project-card__cover" decoding="async" width="1120" height="1494" src="/media/realizacje/signature-qrowd/17.jpg" alt="Signature Qrowd, Signature Qrowd – Urodziny Jacka" loading="lazy" />
@@ -141,7 +144,7 @@
             </a>
           </article>
 
-          <article class="project-card project-card--has-video" data-project data-tile="c3">
+          <article class="project-card project-card--has-video" data-project>
             <a class="project-card__link" href="realizacje-retro-rush.html">
               <span class="project-card__media">
                 <img class="project-card__cover" decoding="async" width="1600" height="1067" src="/media/realizacje/retro-rush/b-cover.jpg" alt="Retro Rush, Retro Rush – Urodziny Basi i Marcina" loading="lazy" />
@@ -153,7 +156,7 @@
             </a>
           </article>
 
-          <article class="project-card" data-project data-tile="c4">
+          <article class="project-card" data-project>
             <a class="project-card__link" href="realizacje-versaile.html">
               <span class="project-card__media">
                 <img class="project-card__cover" decoding="async" width="1600" height="1067" src="/media/realizacje/versaile/cover.jpg" alt="Versaile, Versaile – Urodziny Eryka" loading="lazy" />
@@ -168,7 +171,7 @@
             </a>
           </article>
 
-          <article class="project-card" data-project data-tile="c5">
+          <article class="project-card" data-project>
             <a class="project-card__link" href="realizacje-dni-smierci.html">
               <span class="project-card__media">
                 <img class="project-card__cover" decoding="async" width="1600" height="784" src="/media/realizacje/dni-smierci/01.jpg" alt="Dni Śmierci, Dni Śmierci – Urodziny Rafała" loading="lazy" />
@@ -183,7 +186,7 @@
             </a>
           </article>
 
-          <article class="project-card" data-project data-tile="c6">
+          <article class="project-card" data-project>
             <a class="project-card__link" href="realizacje-niespodzianka-w-firmie.html">
               <span class="project-card__media">
                 <img class="project-card__cover" decoding="async" width="1600" height="1280" src="/media/realizacje/niespodzianka-w-firmie/cover.jpg" alt="Niespodzianka w firmie, Niespodzianka w firmie – Urodziny Pana Piotra" loading="lazy" />
@@ -198,7 +201,7 @@
             </a>
           </article>
 
-          <article class="project-card" data-project data-tile="c1">
+          <article class="project-card" data-project>
             <a class="project-card__link" href="realizacje-oczy-szeroko-zamkniete.html">
               <span class="project-card__media">
                 <img class="project-card__cover" decoding="async" width="1600" height="1200" src="/media/realizacje/oczy-szeroko-zamkniete/cover.jpg" alt="Oczy szeroko zamknięte, Oczy szeroko zamknięte – Urodziny Zuzanny" loading="lazy" />
@@ -218,7 +221,7 @@
         <div class="projects__group">
           <h3 class="projects__group-title">Imprezy B2B</h3>
           <div class="projects__grid" data-projects>
-          <article class="project-card" data-project data-tile="c2">
+          <article class="project-card" data-project>
             <a class="project-card__link" href="realizacje-caravans-salon.html">
               <span class="project-card__media">
                 <img class="project-card__cover" decoding="async" width="1600" height="901" src="/media/realizacje/caravans-salon/06.jpg" alt="Wadowscy Campery, Budowa stoiska targowego na Targach Caravans Salon Poland 2026 dla Wadowscy Campery" loading="lazy" />
@@ -233,7 +236,7 @@
             </a>
           </article>
 
-          <article class="project-card" data-project data-tile="c3">
+          <article class="project-card" data-project>
             <a class="project-card__link" href="realizacje-volvo.html">
               <span class="project-card__media">
                 <img class="project-card__cover" decoding="async" width="1290" height="860" src="/media/realizacje/volvo/es90-cover.jpg" alt="Volvo Wadowscy, Premiera nowego modelu Volvo ES90 dla Volvo Wadowscy" loading="lazy" />
@@ -248,7 +251,7 @@
             </a>
           </article>
 
-          <article class="project-card" data-project data-tile="c4">
+          <article class="project-card" data-project>
             <a class="project-card__link" href="realizacje-multichem.html">
               <span class="project-card__media">
                 <img class="project-card__cover" decoding="async" width="1600" height="1067" src="/media/realizacje/multichem/m30-cover.jpg" alt="Multichem, Jubileusz 30-lecia dla Multichem" loading="lazy" />
@@ -263,7 +266,7 @@
             </a>
           </article>
 
-          <article class="project-card" data-project data-tile="c5">
+          <article class="project-card" data-project>
             <a class="project-card__link" href="realizacje-oriental-odyssey.html">
               <span class="project-card__media">
                 <img class="project-card__cover" decoding="async" width="1600" height="1066" src="/media/realizacje/oriental-odyssey/cover.jpg" alt="Oriental Odyssey, Kilkudniowy festiwal Oriental Odyssey dla Wege Invest" loading="lazy" />
@@ -278,7 +281,7 @@
             </a>
           </article>
 
-          <article class="project-card" data-project data-tile="c6">
+          <article class="project-card" data-project>
             <a class="project-card__link" href="realizacje-pay-complete.html">
               <span class="project-card__media">
                 <img class="project-card__cover" decoding="async" width="1600" height="1066" src="/media/realizacje/pay-complete/cover.jpg" alt="Pay Complete, Coroczna impreza integracyjna dla Pay Complete" loading="lazy" />
@@ -293,7 +296,7 @@
             </a>
           </article>
 
-          <article class="project-card" data-project data-tile="c1">
+          <article class="project-card" data-project>
             <a class="project-card__link" href="realizacje-angelika-jozefczyk.html">
               <span class="project-card__media">
                 <img class="project-card__cover" decoding="async" width="1600" height="1067" src="/media/realizacje/angelika-jozefczyk/cover.jpg" alt="Angelika Józefczyk, Pokaz kolekcji Angeliki Józefczyk" loading="lazy" />
@@ -308,7 +311,7 @@
             </a>
           </article>
 
-          <article class="project-card" data-project data-tile="c2">
+          <article class="project-card" data-project>
             <a class="project-card__link" href="realizacje-john-deere.html">
               <span class="project-card__media">
                 <img class="project-card__cover" decoding="async" width="1600" height="1066" src="/media/realizacje/john-deere/jdf-cover.jpg" alt="John Deere Finance Polska, Obsługa eventu podczas jubileuszu z okazji 25-lecia John Deere Finance Polska" loading="lazy" />
@@ -323,7 +326,7 @@
             </a>
           </article>
 
-          <article class="project-card project-card--pending" data-project data-tile="c3" data-media-dir="/media/realizacje/best-driver/" data-cover="" data-slides="">
+          <article class="project-card project-card--pending" data-project data-media-dir="/media/realizacje/best-driver/" data-cover="" data-slides="">
             <a class="project-card__link" href="realizacje-best-driver.html">
               <span class="project-card__media">
                 <span class="project-card__placeholder" aria-hidden="true">Zdjęcia wkrótce</span>
@@ -332,7 +335,7 @@
             </a>
           </article>
 
-          <article class="project-card" data-project data-tile="c4">
+          <article class="project-card" data-project>
             <a class="project-card__link" href="realizacje-grupa-lion.html">
               <span class="project-card__media">
                 <img class="project-card__cover" decoding="async" width="1600" height="1067" src="/media/realizacje/grupa-lion/cover.jpg" alt="Grupa Lion, Jubileusz 20-lecia dla Grupa Lion" loading="lazy" />
@@ -344,18 +347,6 @@
                 </span>
               </span>
               <h3 class="project-card__title">Grupa Lion – jubileusz 20-lecia</h3>
-            </a>
-          </article>
-
-          <article class="project-card project-card--has-video" data-project data-tile="c5">
-            <a class="project-card__link" href="realizacje-active-fashion.html">
-              <span class="project-card__media">
-                <img class="project-card__cover" decoding="async" width="1800" height="1200" src="/media/realizacje/active-fashion/01.jpg" alt="Active Fashion, pokaz mody z pełną oprawą sceniczną" loading="lazy" />
-                <span class="project-card__peek" data-project-peek data-peek-video>
-                  <video muted loop playsinline preload="none" poster="/media/realizacje/active-fashion/cover-poster.jpg" src="/media/realizacje/active-fashion/cover.mp4"></video>
-                </span>
-              </span>
-              <h3 class="project-card__title">Active Fashion – pokaz mody</h3>
             </a>
           </article>
           </div>

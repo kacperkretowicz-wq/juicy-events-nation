@@ -90,7 +90,6 @@
   color: var(--white);
   font-weight: 600;
   letter-spacing: 0.12em;
-  text-transform: uppercase;
   box-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.35);
   opacity: 0;
   pointer-events: none;
@@ -211,7 +210,6 @@
   font-size: var(--micro);
   font-weight: 700;
   letter-spacing: 0.16em;
-  text-transform: uppercase;
   cursor: pointer;
   opacity: 0;
   pointer-events: none;

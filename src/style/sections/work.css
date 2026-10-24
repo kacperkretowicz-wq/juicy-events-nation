@@ -103,7 +103,6 @@
   font-size: var(--micro);
   font-weight: 400;
   letter-spacing: var(--label-tracking);
-  text-transform: uppercase;
   cursor: pointer;
 }
 

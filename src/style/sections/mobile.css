@@ -124,15 +124,11 @@
   }
 
   .project-card__title {
-    font-size: clamp(1.9rem, 8.6vw, 2.4rem);
+    font-size: clamp(1.5rem, 7.2vw, 2rem);
   }
 
   .team {
     padding-top: clamp(4rem, 14vw, 5.5rem);
-  }
-
-  .site-footer__wordmark {
-    --wordmark-size: clamp(3.25rem, 19vw, 5rem);
   }
 
   .realizacje-hero {

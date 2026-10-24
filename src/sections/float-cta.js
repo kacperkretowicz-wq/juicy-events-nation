@@ -1,25 +1,39 @@
-// Pływające kółko „Kontakt" — widoczne wszędzie, chowa się, gdy sekcja kontaktu
-// (lub stopka z danymi kontaktowymi) jest już na ekranie; wtedy tylko by zasłaniało.
+// Pływające kółko „Kontakt/Oferta" — widoczne w hero, dopóki nie miniemy pasa
+// klientów (dalej jego miejsce przy krawędzi zajmuje kwadracik showreela,
+// showreel-toggle.js). Chowa się też nad kontaktem / stopką, żeby nie zasłaniać.
 import { onScrollFrame } from "../shared.js";
 
 export function initFloatCta() {
   const cta = document.querySelector("[data-float-cta]");
   if (!cta) return;
 
+  const visible = new Set();
+  let pastLogos = false;
+  const syncHidden = () => cta.classList.toggle("is-hidden", visible.size > 0 || pastLogos);
+
   const zones = [document.getElementById("kontakt"), document.querySelector(".site-footer")].filter(Boolean);
   if (zones.length && "IntersectionObserver" in window) {
-    const visible = new Set();
     const io = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
           if (entry.isIntersecting) visible.add(entry.target);
           else visible.delete(entry.target);
         });
-        cta.classList.toggle("is-hidden", visible.size > 0);
+        syncHidden();
       },
       { threshold: 0.15 }
     );
     zones.forEach((zone) => io.observe(zone));
+  }
+
+  const clients = document.getElementById("klienci");
+  if (clients && "IntersectionObserver" in window) {
+    new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        pastLogos = entry.boundingClientRect.bottom < 0;
+        syncHidden();
+      });
+    }).observe(clients);
   }
 
   // Nad pomarańczowymi powierzchniami (`data-surface="accent"`) kółko odwraca kolory —

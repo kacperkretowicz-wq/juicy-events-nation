@@ -39,7 +39,7 @@
     {
       "@context": "https://schema.org",
       "@type": "ProfessionalService",
-      "name": "Juicy Events Nation",
+      "name": "Juicy Events",
       "description": "Agencja eventowa, event design, produkcja i strategia.",
       "url": "https://juicyevents.pl/",
       "image": "https://juicyevents.pl/media/og-cover.jpg",
@@ -177,33 +177,29 @@
             <div class="agency__headline" data-agency-headline data-no-headline-reveal>
               <div class="agency__layer agency__layer--light" data-agency-layer="light">
                 <h1 class="agency__title">
-                  <span class="line"><span>Po co Ci agencja,</span></span>
-                  <span class="line"><span>która widzi świat</span></span>
-                  <span class="line"><span>tak samo <span class="bracket">jak inne?</span></span></span>
+                  <span class="line"><span>O nas</span></span>
                 </h1>
-                <p class="agency__kicker">Po nic. Ale to nie o nas.</p>
+                <p class="agency__kicker">Kreacja | Produkcja | Technika | Scenografia | Artyści | Hospitality | Content</p>
               </div>
 
               <div class="agency__layer agency__layer--dark" data-agency-layer="dark" aria-hidden="true">
                 <p class="agency__title">
-                  <span class="line"><span>Po co Ci agencja,</span></span>
-                  <span class="line"><span>która widzi świat</span></span>
-                  <span class="line"><span>tak samo <span class="bracket">jak inne?</span></span></span>
+                  <span class="line"><span>O nas</span></span>
                 </p>
-                <p class="agency__kicker">Po nic. Ale to nie o nas.</p>
+                <p class="agency__kicker">Kreacja | Produkcja | Technika | Scenografia | Artyści | Hospitality | Content</p>
               </div>
             </div>
           </div>
         </div>
       </section>
 
-      <!-- KLIENCI — tuż po showreelu: prawdziwe logotypy marek (feedback właściciela).
-           Źródła: John Deere i Volvo — Wikimedia; Multichem — multichem.pl;
-           Active & Fashion.Art — znak z projekcji na ich evencie (nagranie Juicy).
+      <!-- KLIENCI — tuż po showreelu: pas logotypów renderowany w runtime z
+           /media/clients/clients.json (osobny proces go uzupełnia, ~27 logotypów,
+           patrz src/sections/clients-marquee.js). Poniższa statyczna lista to
+           fallback, gdy manifest jest jeszcze pusty albo nieosiągalny.
            Pas to nieskończona pętla (marquee.js, data-marquee-steady): JS sam klonuje
            listę (aria-hidden) tyle razy, ile trzeba, żeby wypełnić ekran bez przeskoku.
-           Nowe logo = po prostu kolejne <li> z <img> — działa z dowolną liczbą logotypów.
-           Modyfikator --wide/--tall/--badge wyrównuje wysokość; logotypy są barwione na czarno w CSS. -->
+           Logotypy są barwione na czarno w CSS (grayscale + multiply). -->
       <section class="clients" id="klienci" aria-labelledby="clients-label">
         <div class="clients__head">
           <p class="eyebrow" id="clients-label">Zaufały nam marki</p>
@@ -213,7 +209,6 @@
             <li class="clients__item clients__item--badge"><img src="/media/klienci/john-deere.svg" alt="John Deere" width="806" height="588" decoding="async" /></li>
             <li class="clients__item"><img src="/media/klienci/volvo.svg" alt="Volvo" width="255" height="255" decoding="async" /></li>
             <li class="clients__item clients__item--wide"><img src="/media/klienci/multichem.svg" alt="Multichem" width="597" height="194" decoding="async" /></li>
-            <li class="clients__item clients__item--tall"><img src="/media/klienci/active-fashion.png" alt="Active &amp; Fashion.Art" width="640" height="633" decoding="async" /></li>
           </ul>
         </div>
       </section>
@@ -260,99 +255,132 @@
         </div>
       </section>
 
-      <!-- REALIZACJE — portfolio zaraz po opisie. Siatka 2 kolumny (telefon: 1), duże okładki 4:3;
-           pod okładką tylko tytuł wersalikami. Hover (mysz): tytuł na czerwono,
-           na środku okładki mniejsze okienko 3:4 z filmem (cover.mp4) albo szybkim pokazem zdjęć. -->
+      <!-- REALIZACJE — portfolio zaraz po opisie. Siatka 2 kolumny (telefon: 1), równe,
+           kwadratowe okładki, bez koloru po najechaniu. Pod okładką mały nagłówek i duży
+           tytuł wersalikami. Hover (mysz): tytuł na czerwono, na środku okładki mniejsze
+           okienko 3:4 z filmem albo szybkim pokazem zdjęć. Dokładnie 8 realizacji
+           wskazanych przez klienta — reszta tylko na realizacje.html. -->
       <section class="projects" id="realizacje">
         <div class="projects__head">
           <h2 class="projects__title" data-headline-reveal>
             Wybrane <span class="bracket">realizacje</span>
           </h2>
-          <p class="projects__count" aria-hidden="true">(06)</p>
+          <p class="projects__count" aria-hidden="true">(JE)</p>
         </div>
 
         <div class="projects__grid" data-projects>
-          <article class="project-card project-card--has-video" data-project data-tile="c1">
-            <a class="project-card__link" href="realizacje-active-fashion.html">
+          <article class="project-card" data-project>
+            <a class="project-card__link" href="realizacje-signature-qrowd.html">
               <span class="project-card__media">
-                <img class="project-card__cover" decoding="async" width="1800" height="1200" src="/media/realizacje/active-fashion/01.jpg" alt="Active Fashion, pokaz mody z pełną oprawą sceniczną" loading="lazy" />
-                <span class="project-card__peek" data-project-peek data-peek-video>
-                  <video muted loop playsinline preload="none" poster="/media/realizacje/active-fashion/cover-poster.jpg" src="/media/realizacje/active-fashion/cover.mp4"></video>
-                </span>
-              </span>
-              <h3 class="project-card__title">Active Fashion – pokaz mody</h3>
-            </a>
-          </article>
-
-          <article class="project-card" data-project data-tile="c2">
-            <a class="project-card__link" href="realizacje-john-deere.html">
-              <span class="project-card__media">
-                <img class="project-card__cover" decoding="async" width="1600" height="1066" src="/media/realizacje/john-deere/jdf-cover.jpg" alt="John Deere Finance Polska, Obsługa eventu podczas jubileuszu z okazji 25-lecia John Deere Finance Polska" loading="lazy" />
+                <img class="project-card__cover" decoding="async" width="1067" height="1600" src="/media/realizacje/signature-qrowd/cover.jpg" alt="Signature Qrowd, 40. urodziny Jacka" loading="lazy" />
                 <span class="project-card__peek" data-project-peek data-peek-slideshow>
-                  <span class="peek-slide is-active" data-peek-slide><img decoding="async" width="1600" height="1066" src="/media/realizacje/john-deere/jdf-01.jpg" alt="" loading="lazy" /></span>
-                  <span class="peek-slide" data-peek-slide><img decoding="async" width="1600" height="1066" src="/media/realizacje/john-deere/jdf-02.jpg" alt="" loading="lazy" /></span>
-                  <span class="peek-slide" data-peek-slide><img decoding="async" width="1600" height="1066" src="/media/realizacje/john-deere/jdf-03.jpg" alt="" loading="lazy" /></span>
-                  <span class="peek-slide" data-peek-slide><img decoding="async" width="1600" height="1066" src="/media/realizacje/john-deere/jdf-04.jpg" alt="" loading="lazy" /></span>
+                  <span class="peek-slide is-active" data-peek-slide><img decoding="async" width="1067" height="1600" src="/media/realizacje/signature-qrowd/01.jpg" alt="" loading="lazy" /></span>
+                  <span class="peek-slide" data-peek-slide><img decoding="async" width="1067" height="1600" src="/media/realizacje/signature-qrowd/02.jpg" alt="" loading="lazy" /></span>
+                  <span class="peek-slide" data-peek-slide><img decoding="async" width="1067" height="1600" src="/media/realizacje/signature-qrowd/04.jpg" alt="" loading="lazy" /></span>
                 </span>
               </span>
-              <h3 class="project-card__title">John Deere Finance – jubileusz 25-lecia</h3>
+              <p class="project-card__kicker">40. urodziny Jacka · Poznań</p>
+              <h3 class="project-card__title">Signature Qrowd</h3>
             </a>
           </article>
 
-          <article class="project-card" data-project data-tile="c3">
-            <a class="project-card__link" href="realizacje-multichem.html">
+          <article class="project-card" data-project>
+            <a class="project-card__link" href="realizacje-versaile.html">
               <span class="project-card__media">
-                <img class="project-card__cover" decoding="async" width="1600" height="1067" src="/media/realizacje/multichem/m30-cover.jpg" alt="Multichem, Jubileusz 30-lecia dla Multichem" loading="lazy" />
+                <img class="project-card__cover" decoding="async" width="1600" height="1067" src="/media/realizacje/versaile/cover.jpg" alt="Versaile, urodziny Eryka" loading="lazy" />
                 <span class="project-card__peek" data-project-peek data-peek-slideshow>
-                  <span class="peek-slide is-active" data-peek-slide><img decoding="async" width="1600" height="900" src="/media/realizacje/multichem/m30-01.jpg" alt="" loading="lazy" /></span>
-                  <span class="peek-slide" data-peek-slide><img decoding="async" width="1067" height="1600" src="/media/realizacje/multichem/m30-02.jpg" alt="" loading="lazy" /></span>
-                  <span class="peek-slide" data-peek-slide><img decoding="async" width="1600" height="1067" src="/media/realizacje/multichem/m30-03.jpg" alt="" loading="lazy" /></span>
-                  <span class="peek-slide" data-peek-slide><img decoding="async" width="1067" height="1600" src="/media/realizacje/multichem/m30-04.jpg" alt="" loading="lazy" /></span>
+                  <span class="peek-slide is-active" data-peek-slide><img decoding="async" width="1600" height="1067" src="/media/realizacje/versaile/01.jpg" alt="" loading="lazy" /></span>
+                  <span class="peek-slide" data-peek-slide><img decoding="async" width="1067" height="1600" src="/media/realizacje/versaile/02.jpg" alt="" loading="lazy" /></span>
+                  <span class="peek-slide" data-peek-slide><img decoding="async" width="1600" height="1067" src="/media/realizacje/versaile/03.jpg" alt="" loading="lazy" /></span>
                 </span>
               </span>
-              <h3 class="project-card__title">Multichem – jubileusz 30-lecia</h3>
+              <p class="project-card__kicker">Urodziny Eryka · Bazar Poznański</p>
+              <h3 class="project-card__title">Versaile</h3>
             </a>
           </article>
 
-          <article class="project-card project-card--has-video" data-project data-tile="c4">
-            <a class="project-card__link" href="realizacje-retro-rush.html">
+          <article class="project-card" data-project>
+            <a class="project-card__link" href="realizacje-caravans-salon.html">
               <span class="project-card__media">
-                <img class="project-card__cover" decoding="async" width="1600" height="1067" src="/media/realizacje/retro-rush/b-cover.jpg" alt="Retro Rush, Retro Rush – Urodziny Basi i Marcina" loading="lazy" />
-                <span class="project-card__peek" data-project-peek data-peek-video>
-                  <video muted loop playsinline preload="none" poster="/media/realizacje/retro-rush/cover-poster.jpg" src="/media/realizacje/retro-rush/cover.mp4"></video>
-                </span>
-              </span>
-              <h3 class="project-card__title">Retro Rush – podróż w czasie</h3>
-            </a>
-          </article>
-
-          <article class="project-card" data-project data-tile="c5">
-            <a class="project-card__link" href="realizacje-rainbow.html">
-              <span class="project-card__media">
-                <img class="project-card__cover" decoding="async" width="1800" height="1200" src="/media/realizacje/rainbow/05.jpg" alt="Rainbow, wydarzenie z autorską oprawą artystyczną" loading="lazy" />
+                <img class="project-card__cover" decoding="async" width="901" height="1600" src="/media/realizacje/caravans-salon/cover.jpg" alt="La Dolce Strada, stoisko dla Wadowscy Campery na Caravan Salon Poland 2026" loading="lazy" />
                 <span class="project-card__peek" data-project-peek data-peek-slideshow>
-                  <span class="peek-slide is-active" data-peek-slide><img decoding="async" width="1800" height="1200" src="/media/realizacje/rainbow/03.jpg" alt="" loading="lazy" /></span>
-                  <span class="peek-slide" data-peek-slide><img decoding="async" width="1800" height="1200" src="/media/realizacje/rainbow/02.jpg" alt="" loading="lazy" /></span>
-                  <span class="peek-slide" data-peek-slide><img decoding="async" width="1800" height="1200" src="/media/realizacje/rainbow/05.jpg" alt="" loading="lazy" /></span>
-                  <span class="peek-slide" data-peek-slide><img decoding="async" width="1200" height="1800" src="/media/realizacje/rainbow/01.jpg" alt="" loading="lazy" /></span>
+                  <span class="peek-slide is-active" data-peek-slide><img decoding="async" width="901" height="1600" src="/media/realizacje/caravans-salon/01.jpg" alt="" loading="lazy" /></span>
+                  <span class="peek-slide" data-peek-slide><img decoding="async" width="901" height="1600" src="/media/realizacje/caravans-salon/03.jpg" alt="" loading="lazy" /></span>
+                  <span class="peek-slide" data-peek-slide><img decoding="async" width="901" height="1600" src="/media/realizacje/caravans-salon/04.jpg" alt="" loading="lazy" /></span>
                 </span>
               </span>
-              <h3 class="project-card__title">Rainbow – wieczór z autorską oprawą</h3>
+              <p class="project-card__kicker">Caravan Salon Poland 2026 · Wadowscy Campery</p>
+              <h3 class="project-card__title">La Dolce Strada</h3>
             </a>
           </article>
 
-          <article class="project-card" data-project data-tile="c6">
+          <article class="project-card" data-project>
             <a class="project-card__link" href="realizacje-volvo.html">
               <span class="project-card__media">
-                <img class="project-card__cover" decoding="async" width="1290" height="860" src="/media/realizacje/volvo/es90-cover.jpg" alt="Volvo Wadowscy, Premiera nowego modelu Volvo ES90 dla Volvo Wadowscy" loading="lazy" />
+                <img class="project-card__cover" decoding="async" width="1290" height="860" src="/media/realizacje/volvo/es90-cover.jpg" alt="Premiera Volvo ES90 dla Volvo Wadowscy" loading="lazy" />
                 <span class="project-card__peek" data-project-peek data-peek-slideshow>
                   <span class="peek-slide is-active" data-peek-slide><img decoding="async" width="1290" height="860" src="/media/realizacje/volvo/es90-01.jpg" alt="" loading="lazy" /></span>
                   <span class="peek-slide" data-peek-slide><img decoding="async" width="1290" height="860" src="/media/realizacje/volvo/es90-02.jpg" alt="" loading="lazy" /></span>
                   <span class="peek-slide" data-peek-slide><img decoding="async" width="1290" height="860" src="/media/realizacje/volvo/es90-03.jpg" alt="" loading="lazy" /></span>
-                  <span class="peek-slide" data-peek-slide><img decoding="async" width="1290" height="860" src="/media/realizacje/volvo/es90-04.jpg" alt="" loading="lazy" /></span>
                 </span>
               </span>
-              <h3 class="project-card__title">Volvo Wadowscy – premiera ES90</h3>
+              <p class="project-card__kicker">Volvo Wadowscy · Gaj k. Krakowa</p>
+              <h3 class="project-card__title">Premiera Volvo ES90</h3>
+            </a>
+          </article>
+
+          <article class="project-card" data-project>
+            <a class="project-card__link" href="realizacje-multichem.html">
+              <span class="project-card__media">
+                <img class="project-card__cover" decoding="async" width="1600" height="1067" src="/media/realizacje/multichem/m30-cover.jpg" alt="30 lat Multichem, jubileusz firmy" loading="lazy" />
+                <span class="project-card__peek" data-project-peek data-peek-slideshow>
+                  <span class="peek-slide is-active" data-peek-slide><img decoding="async" width="1600" height="900" src="/media/realizacje/multichem/m30-01.jpg" alt="" loading="lazy" /></span>
+                  <span class="peek-slide" data-peek-slide><img decoding="async" width="1067" height="1600" src="/media/realizacje/multichem/m30-02.jpg" alt="" loading="lazy" /></span>
+                  <span class="peek-slide" data-peek-slide><img decoding="async" width="1600" height="1067" src="/media/realizacje/multichem/m30-03.jpg" alt="" loading="lazy" /></span>
+                </span>
+              </span>
+              <p class="project-card__kicker">Jubileusz firmy · LOLA Chinese Extravaganza, Poznań</p>
+              <h3 class="project-card__title">30 lat Multichem</h3>
+            </a>
+          </article>
+
+          <article class="project-card" data-project>
+            <a class="project-card__link" href="realizacje-oriental-odyssey.html">
+              <span class="project-card__media">
+                <img class="project-card__cover" decoding="async" width="1600" height="1066" src="/media/realizacje/oriental-odyssey/cover.jpg" alt="Oriental Odyssey, kilkudniowy festiwal dla Wege Invest" loading="lazy" />
+                <span class="project-card__peek" data-project-peek data-peek-slideshow>
+                  <span class="peek-slide is-active" data-peek-slide><img decoding="async" width="1066" height="1600" src="/media/realizacje/oriental-odyssey/01.jpg" alt="" loading="lazy" /></span>
+                  <span class="peek-slide" data-peek-slide><img decoding="async" width="1600" height="1066" src="/media/realizacje/oriental-odyssey/02.jpg" alt="" loading="lazy" /></span>
+                  <span class="peek-slide" data-peek-slide><img decoding="async" width="1600" height="1066" src="/media/realizacje/oriental-odyssey/03.jpg" alt="" loading="lazy" /></span>
+                </span>
+              </span>
+              <p class="project-card__kicker">Wege Invest · Kilkudniowy festiwal</p>
+              <h3 class="project-card__title">Oriental Odyssey</h3>
+            </a>
+          </article>
+
+          <article class="project-card project-card--pending" data-project data-media-dir="/media/realizacje/best-driver/" data-cover="" data-slides="">
+            <a class="project-card__link" href="realizacje-best-driver.html">
+              <span class="project-card__media">
+                <span class="project-card__placeholder" aria-hidden="true">Zdjęcia wkrótce</span>
+              </span>
+              <p class="project-card__kicker">Jubileusz firmy · Concordia Design, Poznań</p>
+              <h3 class="project-card__title">10 lat Best Driver</h3>
+            </a>
+          </article>
+
+          <article class="project-card" data-project>
+            <a class="project-card__link" href="realizacje-grupa-lion.html">
+              <span class="project-card__media">
+                <img class="project-card__cover" decoding="async" width="1600" height="1067" src="/media/realizacje/grupa-lion/cover.jpg" alt="Jubileusz firmy Lion, Grupa Lion" loading="lazy" />
+                <span class="project-card__peek" data-project-peek data-peek-slideshow>
+                  <span class="peek-slide is-active" data-peek-slide><img decoding="async" width="1600" height="1067" src="/media/realizacje/grupa-lion/01.jpg" alt="" loading="lazy" /></span>
+                  <span class="peek-slide" data-peek-slide><img decoding="async" width="1065" height="1600" src="/media/realizacje/grupa-lion/02.jpg" alt="" loading="lazy" /></span>
+                  <span class="peek-slide" data-peek-slide><img decoding="async" width="1600" height="1067" src="/media/realizacje/grupa-lion/04.jpg" alt="" loading="lazy" /></span>
+                </span>
+              </span>
+              <p class="project-card__kicker">Jubileusz firmy · Hotel Odpocznia</p>
+              <h3 class="project-card__title">Jubileusz firmy Lion</h3>
             </a>
           </article>
         </div>
@@ -503,7 +531,7 @@
         </div>
 
         <ul class="crew">
-          <li class="crew-card crew-card--paper" data-team-card>
+          <li class="crew-card crew-card--paper crew-card--owner" data-team-card>
             <div class="crew-card__top">
               <h3 class="crew-card__name">Kajetan Vincent Nawrocki</h3>
               <p class="crew-card__role">Owner · Head of Creative &amp; Production</p>
@@ -558,34 +586,32 @@
 
       <!-- @site-closing -->
 
-    <div class="showreel" id="showreel" aria-hidden="true" role="dialog" aria-label="Showreel">
+    <div class="showreel" id="showreel" aria-hidden="true" role="dialog" aria-label="Showreel Juicy Events">
       <button class="showreel__close" type="button" data-showreel-close>Zamknij</button>
       <div class="showreel__stage">
         <div class="showreel__track" data-showreel-track>
           <figure class="is-active">
-            <video src="/media/hero-film.mp4" muted playsinline loop preload="none"></video>
-            <figcaption>Showreel</figcaption>
+            <video data-showreel-video src="/media/je-showreel.mp4" poster="/media/je-showreel-poster.jpg" playsinline preload="none" controls></video>
           </figure>
-          <figure>
-            <video src="/media/reel-02.mp4" muted playsinline loop></video>
-            <figcaption>Produkcja</figcaption>
-          </figure>
-          <figure>
-            <video src="/media/reel-03.mp4" muted playsinline loop></video>
-            <figcaption>Detal</figcaption>
-          </figure>
-          <figure>
-            <img decoding="async" loading="lazy" width="1080" height="1920" src="/media/hospitality-02.jpg" alt="" />
-            <figcaption>Hospitality</figcaption>
-          </figure>
-        </div>
-        <div class="showreel__controls">
-          <button type="button" data-showreel-prev aria-label="Poprzedni">←</button>
-          <button type="button" data-showreel-play>Pause</button>
-          <button type="button" data-showreel-next aria-label="Następny">→</button>
         </div>
       </div>
     </div>
+
+    <button
+      class="showreel-toggle"
+      type="button"
+      data-showreel-toggle
+      data-showreel-open
+      aria-label="Odtwórz showreel Juicy Events"
+      hidden
+    >
+      <span class="showreel-toggle__face showreel-toggle__face--logo" aria-hidden="true">
+        <img src="/media/logo-juicy-events.png" alt="" width="420" height="80" decoding="async" />
+      </span>
+      <span class="showreel-toggle__face showreel-toggle__face--video" aria-hidden="true">
+        <video data-showreel-toggle-video src="/media/je-loop.mp4" poster="/media/je-loop-poster.jpg" muted playsinline loop preload="none"></video>
+      </span>
+    </button>
 
     <!-- @float-cta -->
 
