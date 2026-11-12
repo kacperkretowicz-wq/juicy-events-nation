@@ -176,12 +176,16 @@
 .expertise-item__arrow {
   flex-shrink: 0;
   margin-left: auto;
-  font-family: var(--font-label);
+  display: inline-flex;
   font-size: 1.35rem;
   line-height: 1;
   opacity: 0.4;
   color: inherit;
   transition: transform 0.35s var(--ease), opacity 0.35s var(--ease), color 0.35s var(--ease);
+}
+
+.expertise-item__arrow svg {
+  display: block;
 }
 
 .expertise-item:hover .expertise-item__arrow,

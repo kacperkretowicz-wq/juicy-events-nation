@@ -149,6 +149,7 @@
   font-weight: 400;
   line-height: 1.35;
   letter-spacing: var(--label-tracking);
+  text-transform: uppercase; /* jak na inspo z Canvy: podpisy wersalikami */
   color: var(--card-muted);
 }
 
