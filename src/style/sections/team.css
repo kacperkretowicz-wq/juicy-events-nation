@@ -160,6 +160,10 @@
 }
 
 .crew-card__role {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0.15em;
   margin: 0.4rem 0 0;
   max-width: 26ch;
   font-family: var(--font-label);
@@ -170,9 +174,33 @@
   color: var(--card-muted);
 }
 
-/* Karta ownera: rola w jednej linii pod imieniem, bez zawijania (feedback klienta). */
+.crew-card__role-kicker,
+.crew-card__role-detail {
+  display: block;
+}
+
+/* Marta i inne karty z podziałem: druga linia (np. Junior Event Manager) czytelniejsza. */
+.crew-card__role-detail {
+  color: var(--card-fg);
+}
+
+/* Owner: kicker większy i pogrubiony we własnej linii;
+   stanowisko w jednej linii pod spodem (feedback klienta). */
 .crew-card--owner .crew-card__role {
   max-width: none;
+}
+
+.crew-card--owner .crew-card__role-kicker {
+  font-size: clamp(1.05rem, 1.35vw, 1.35rem);
+  font-weight: 700;
+  line-height: 1.2;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--card-fg);
+}
+
+.crew-card--owner .crew-card__role-kicker,
+.crew-card--owner .crew-card__role-detail {
   white-space: nowrap;
 }
 
