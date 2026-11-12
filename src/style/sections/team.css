@@ -36,33 +36,11 @@
   overflow: hidden;
 }
 
-/* Owner sam w pierwszym rzędzie (wyróżniony), reszta od juniora w drugim rzędzie. */
+/* Cztery równe, wysokie karty w jednym rzędzie (jak w materiale referencyjnym). */
 .crew {
   display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
+  grid-template-columns: repeat(4, minmax(0, 1fr));
   gap: clamp(0.75rem, 1.1vw, 1rem);
-}
-
-.crew-card--owner {
-  grid-column: 1 / -1;
-}
-
-@media (min-width: 981px) {
-  .crew-card.crew-card--owner {
-    flex-direction: row;
-    align-items: center;
-    justify-content: space-between;
-    gap: clamp(1.5rem, 4vw, 3rem);
-    min-height: 0;
-    padding-top: clamp(1.75rem, 2.8vw, 2.4rem);
-    padding-bottom: clamp(1.75rem, 2.8vw, 2.4rem);
-  }
-
-  .crew-card--owner .crew-card__bottom {
-    flex-direction: row-reverse;
-    align-items: center;
-    gap: 1.75rem;
-  }
 }
 
 .crew-card {
@@ -184,17 +162,19 @@
   color: var(--card-fg);
 }
 
-/* Owner: kicker większy i pogrubiony we własnej linii;
-   stanowisko w jednej linii pod spodem (feedback klienta). */
+/* Owner: kicker w kroju nagłówkowym, wyraźnie większy niż role na innych kartach,
+   żeby ta karta była najważniejsza; stanowisko w jednej linii pod spodem. */
 .crew-card--owner .crew-card__role {
   max-width: none;
+  gap: 0.2em;
 }
 
 .crew-card--owner .crew-card__role-kicker {
-  font-size: clamp(1.05rem, 1.35vw, 1.35rem);
-  font-weight: 700;
-  line-height: 1.2;
-  letter-spacing: 0.08em;
+  font-family: var(--font-display);
+  font-size: clamp(1.75rem, 2.15vw, 2rem); /* 28–32px */
+  font-weight: var(--display-weight);
+  line-height: var(--display-leading);
+  letter-spacing: var(--display-tracking);
   text-transform: uppercase;
   color: var(--card-fg);
 }
