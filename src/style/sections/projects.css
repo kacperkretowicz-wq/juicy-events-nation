@@ -191,6 +191,10 @@
   .project-card__cover {
     height: 118%;
     top: -9%;
+    /* Dryf ustawia GSAP co klatkę — przejście CSS na transform walczyło z nim
+       (każda klatka startowała nową 0.9s animację), stąd szarpanie i skoki. */
+    transition: filter 0.5s var(--ease);
+    will-change: transform;
   }
 }
 

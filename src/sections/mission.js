@@ -4,7 +4,8 @@ import { softMotion } from "../shared.js";
 
 // Jedna linia: „Nie boimy się” + slot. Kolejka tylko w dół — aktywne słowo w slocie,
 // następne czekają pod spodem, zużyte idą nad (bez zamiany z góry na dół).
-const FADED = 0.34;
+// 0 = widać tylko jedno słowo naraz (bez uciętych sąsiadów nad/pod slotem).
+const FADED = 0;
 const STEP = 100;
 
 export function initMission() {
@@ -124,7 +125,11 @@ export function initMission() {
     invalidateOnRefresh: true,
     onUpdate: ({ progress }) => {
       const active = Math.min(words.length - 1, Math.floor(progress / step));
-      const t = active === words.length - 1 ? 0 : gsap.utils.clamp(0, 1, (progress - active * step) / step);
+      const raw = active === words.length - 1 ? 0 : gsap.utils.clamp(0, 1, (progress - active * step) / step);
+      // Słowo stoi przez większość scrolla, a zmiana dzieje się w krótkim oknie
+      // (30–70% odcinka) — inaczej prawie zawsze widać dwa ucięte w pół słowa.
+      const w = gsap.utils.clamp(0, 1, (raw - 0.3) / 0.4);
+      const t = w * w * (3 - 2 * w);
 
       applyQueue(active, t);
 

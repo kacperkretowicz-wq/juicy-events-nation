@@ -18,6 +18,13 @@
   transition-delay: var(--reveal-delay);
 }
 
+/* Kadr z parallaxem: transform zdjęcia ustawia GSAP co klatkę scrolla —
+   przejście CSS na transform opóźniało każdą klatkę i dawało szarpanie. */
+.js .fx-media-reveal[data-parallax-media] > img,
+.js .fx-media-reveal[data-parallax-media] > video {
+  transition: none;
+}
+
 .js .fx-media-reveal.is-media-revealed {
   opacity: 1;
   transform: translate3d(0, 0, 0);

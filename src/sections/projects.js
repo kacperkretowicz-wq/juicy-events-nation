@@ -3,7 +3,8 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { ease, softMotion } from "../shared.js";
 import { kickVisibleHeadlines } from "../effects.js";
 
-/** Na mobile: delikatny dryf okładki w kadrze podczas scrolla. */
+/** Na mobile: delikatny dryf okładki w kadrze podczas scrolla.
+ *  ±7% wysokości okładki (118%) mieści się w zapasie 9% z CSS — bez odsłaniania krawędzi. */
 export function initProjectCoverDrift() {
   if (softMotion) return;
   if (!window.matchMedia("(max-width: 980px)").matches) return;
@@ -14,9 +15,9 @@ export function initProjectCoverDrift() {
 
     gsap.fromTo(
       cover,
-      { yPercent: -10 },
+      { yPercent: -7 },
       {
-        yPercent: 10,
+        yPercent: 7,
         ease: "none",
         scrollTrigger: {
           trigger: media,
@@ -31,9 +32,21 @@ export function initProjectCoverDrift() {
 
 export function initProjects() {
   const grid = document.querySelector("[data-projects]");
+  // Obrazki mają width/height, więc doładowanie zwykle nie zmienia układu.
+  // Pełny refresh przy każdym leniwym obrazku w trakcie scrolla dawał skoki —
+  // zbieramy je i odświeżamy raz, tylko gdy wysokość strony faktycznie się zmieniła.
+  let layoutHeight = document.documentElement.scrollHeight;
+  let layoutTimer;
   const onGridLayout = () => {
-    ScrollTrigger.refresh();
-    kickVisibleHeadlines();
+    clearTimeout(layoutTimer);
+    layoutTimer = setTimeout(() => {
+      const h = document.documentElement.scrollHeight;
+      if (h !== layoutHeight) {
+        layoutHeight = h;
+        ScrollTrigger.refresh();
+      }
+      kickVisibleHeadlines();
+    }, 250);
   };
   grid?.querySelectorAll("img").forEach((img) => {
     if (img.complete) return;
