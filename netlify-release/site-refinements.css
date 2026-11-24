@@ -124,11 +124,15 @@
   height: var(--mobile-hero-height);
 }
 
-.is-mobile-performance .agency__reel-key {
-  top: calc(var(--mobile-hero-height) - 4.25rem);
-  bottom: auto;
-  opacity: 1;
-  pointer-events: auto;
+.agency__reel-key {
+  inset: .375rem;
+  padding: 0;
+  background: transparent;
+}
+
+.agency__reel-key:focus-visible {
+  outline: 2px solid var(--white);
+  pointer-events: none;
 }
 
 .is-mobile-performance .agency__logo-slot,
@@ -215,14 +219,4 @@ html.js.is-mobile-performance .agency__headline {
   position: static;
   display: block;
   white-space: normal;
-}
-
-.is-mobile-performance .float-cta__ring {
-  animation: none;
-}
-
-.is-mobile-performance .float-cta.is-over-hero {
-  opacity: 0;
-  visibility: hidden;
-  pointer-events: none;
 }

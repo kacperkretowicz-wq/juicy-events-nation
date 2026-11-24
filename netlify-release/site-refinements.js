@@ -8,10 +8,3 @@ if (wordmark && floatingLink && 'IntersectionObserver' in window) {
 
   observer.observe(wordmark);
 }
-
-const agencyStage = document.querySelector('.agency__stage');
-if (agencyStage && floatingLink && 'IntersectionObserver' in window) {
-  new IntersectionObserver(([entry]) => {
-    floatingLink.classList.toggle('is-over-hero', entry.isIntersecting);
-  }).observe(agencyStage);
-}
