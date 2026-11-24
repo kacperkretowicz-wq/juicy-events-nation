@@ -1,4 +1,4 @@
-import { useCompactReels, prepareHomepageMedia, playReelFromBeginning } from "./homepage-media-538e7560.js";
+import { prepareHomepageMedia, playReelFromBeginning } from "./homepage-media-2b680978.js";
 import{l as O,g as d,S as A,s as R,p as I,i as F,w as $,a as W,b as D,c as U,d as G,e as N,f as V,h as X,j as Y,k as J,m as K,n as Q,o as Z,q as ee,r as te}from"./float-cta-8a977faa.js";import{i as ne,a as oe}from"./project-slideshow-Bn57oUxR.js";
 const introPaths = Array.from({length: 17}, (_, index) =>
   `/media/intro/${String(index + 1).padStart(2, "0")}.webp`
@@ -24,7 +24,7 @@ function fe(){const e=document.querySelector("[data-hero-intro]");if(!e)return;c
   const exit = n?.querySelector('.agency__reel-cta-exit');
   const keyButton = document.querySelector('[data-agency-reel-key]');
   const title = document.querySelector('[data-agency-intro] .agency__intro-title');
-  const source = useCompactReels ? video.dataset.mobileFilmSrc : video.dataset.filmSrc;
+  const source = video.dataset.filmSrc;
   const poster = video.getAttribute('poster');
   let playAttempt = null;
 

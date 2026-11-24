@@ -52,7 +52,7 @@
       ]
     }
     </script>
-    <script type="module" crossorigin src="/assets/main-5586add4.js"></script>
+    <script type="module" crossorigin src="/assets/main-ab0c2452.js"></script>
     <link rel="modulepreload" crossorigin href="/assets/float-cta-8a977faa.js">
     <link rel="modulepreload" crossorigin href="/assets/project-slideshow-Bn57oUxR.js">
     <link rel="stylesheet" crossorigin href="/assets/float-cta-T8Y6NMRF.css">
@@ -131,15 +131,14 @@
               <div class="agency__media-inner" data-agency-media-inner>
                 <!-- Wyciszone tło startuje od 23,5 s. Kliknięcie uruchamia pełny showreel z dźwiękiem od początku. -->
                 <video
-                  data-loop-src="/media/hero-loop.mp4"
+                  src="/media/hero-loop.mp4"
                   data-film-src="/media/hero-film.mp4"
-                  data-mobile-loop-src="/media/hero-background-mobile.mp4"
-                  data-mobile-film-src="/media/showreel-mobile.mp4"
                   poster="/media/hero-film-poster.jpg"
+                  autoplay
                   muted
                   playsinline
                   loop
-                  preload="none"
+                  preload="auto"
                   data-agency-video
                 ></video>
                 <div class="agency__veil" aria-hidden="true"></div>
@@ -242,10 +241,11 @@
               <video
                 class="work__video"
                 data-work-video
-                data-work-preview="/media/praca-loop.mp4"
+                src="/media/praca-loop.mp4"
                 data-work-film="/media/praca-film.mp4"
                 poster="/media/praca-loop-poster.jpg"
-                preload="auto"
+                preload="metadata"
+                autoplay
                 muted
                 loop
                 playsinline

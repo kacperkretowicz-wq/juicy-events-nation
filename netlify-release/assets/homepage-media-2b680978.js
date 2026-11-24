@@ -1,15 +1,14 @@
-export const useCompactReels = matchMedia('(max-width: 767px), (hover: none) and (pointer: coarse)').matches;
-
-function watchReelPreview(video, preview, frame) {
+function watchReelPreview(video, frame) {
+  const preview = video?.getAttribute('src');
   if (!video || !preview || !frame) return;
 
   function updatePlayback() {
     if (video.getAttribute('src') !== preview) return;
 
     const { top, bottom } = frame.getBoundingClientRect();
-    video.autoplay = !document.hidden && top < innerHeight && bottom > 0;
+    const visible = !document.hidden && top < innerHeight && bottom > 0;
 
-    if (!video.autoplay) {
+    if (!visible) {
       video.pause();
     } else if (video.paused) {
       video.play().catch(() => {});
@@ -21,17 +20,21 @@ function watchReelPreview(video, preview, frame) {
   }
   document.addEventListener('visibilitychange', updatePlayback);
   document.addEventListener('jen:intro-done', updatePlayback);
+  window.addEventListener('pageshow', updatePlayback);
+  window.addEventListener('focus', updatePlayback);
+  video.addEventListener('canplay', updatePlayback);
+  video.addEventListener('play', updatePlayback);
 
   function restorePreview() {
     video.defaultMuted = true;
     video.muted = true;
     video.loop = true;
-    video.preload = 'auto';
+    video.autoplay = true;
     video.src = preview;
     updatePlayback();
   }
 
-  restorePreview();
+  updatePlayback();
   return restorePreview;
 }
 
@@ -40,12 +43,8 @@ export function prepareHomepageMedia() {
   const work = document.querySelector('[data-work-video]');
 
   return {
-    restoreHeroPreview: watchReelPreview(
-      hero,
-      useCompactReels ? hero?.dataset.mobileLoopSrc : hero?.dataset.loopSrc,
-      hero?.closest('[data-agency-media]'),
-    ),
-    restoreWorkPreview: watchReelPreview(work, work?.dataset.workPreview, work),
+    restoreHeroPreview: watchReelPreview(hero, hero?.closest('[data-agency-media]')),
+    restoreWorkPreview: watchReelPreview(work, work),
   };
 }
 
