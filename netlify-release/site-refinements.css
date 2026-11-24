@@ -47,30 +47,14 @@
   mix-blend-mode: normal;
 }
 
-.clients__item img[src$="/deere.svg"] {
+.clients__item img:is([src$="/deere.svg"], [src$="-mono.png"]) {
   filter: none;
 }
 
 .clients__item img:is(
-  [src$="/active4woman.jpg"],
-  [src$="/propontis.png"],
-  [src$="/wadowscy-klasyczne.webp"]
-) {
-  filter: url('/media/clients/monochrome.svg#paper');
-}
-
-.clients__item img[src$="/zdziczenieobyczajow.jpg"] {
-  filter: url('/media/clients/monochrome.svg#portrait');
-}
-
-.clients__item img[src$="/lionochrona.png"] {
-  filter: url('/media/clients/monochrome.svg#lion');
-}
-
-.clients__item img:is(
-  [src$="/active4woman.jpg"],
-  [src$="/lionochrona.png"],
-  [src$="/zdziczenieobyczajow.jpg"]
+  [src$="/active4woman-mono.png"],
+  [src$="/lionochrona-mono.png"],
+  [src$="/zdziczenieobyczajow-mono.png"]
 ) {
   height: calc(var(--logo-h) * 1.4);
 }
