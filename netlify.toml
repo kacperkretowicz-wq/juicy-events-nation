@@ -1,12 +1,8 @@
-# Konfiguracja Netlify — witryna statyczna budowana przez Vite.
-# Po podpięciu repo Netlify wykryje te ustawienia automatycznie.
+# Wersja statyczna używana przez wdrożenie produkcyjne.
+# Kod Vite pozostaje w repozytorium do dalszego rozwoju.
 
 [build]
-  command = "npm run build"
-  publish = "dist"
-
-[build.environment]
-  NODE_VERSION = "20"
+  publish = "netlify-release"
 
 # Bezpieczne nagłówki dla całej witryny.
 [[headers]]

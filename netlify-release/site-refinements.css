@@ -1,0 +1,228 @@
+.project-card__title {
+  margin-top: clamp(.85rem, 1.6vw, 1.35rem);
+  white-space: normal;
+  overflow: visible;
+  overflow-wrap: anywhere;
+  text-wrap: pretty;
+}
+
+.realizacje-hero h1 {
+  max-width: 32ch;
+  font-size: clamp(2.25rem, 6.25vw, 6.25rem);
+  overflow-wrap: anywhere;
+  text-wrap: balance;
+}
+
+.case-nav__title {
+  overflow-wrap: anywhere;
+  text-wrap: pretty;
+}
+
+.site-footer__row:not(.site-footer__row--bottom) {
+  display: block;
+}
+
+.site-footer__nav {
+  justify-content: flex-start;
+}
+
+.site-footer__wordmark {
+  padding-inline: var(--pad);
+}
+
+.float-cta.is-over-wordmark {
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+}
+
+.clients__item {
+  --logo-h: clamp(2.1rem, 3.2vw, 2.75rem);
+  height: calc(var(--logo-h) * 1.45);
+}
+
+.clients__item img {
+  max-width: clamp(8rem, 18vw, 13.5rem);
+  filter: brightness(0);
+  mix-blend-mode: normal;
+}
+
+.clients__item img[src$="/deere.svg"] {
+  filter: none;
+}
+
+.clients__item img:is(
+  [src$="/active4woman.jpg"],
+  [src$="/propontis.png"],
+  [src$="/wadowscy-klasyczne.webp"]
+) {
+  filter: url('/media/clients/monochrome.svg#paper');
+}
+
+.clients__item img[src$="/zdziczenieobyczajow.jpg"] {
+  filter: url('/media/clients/monochrome.svg#portrait');
+}
+
+.clients__item img[src$="/lionochrona.png"] {
+  filter: url('/media/clients/monochrome.svg#lion');
+}
+
+.clients__item img:is(
+  [src$="/active4woman.jpg"],
+  [src$="/lionochrona.png"],
+  [src$="/zdziczenieobyczajow.jpg"]
+) {
+  height: calc(var(--logo-h) * 1.4);
+}
+
+@media (max-width: 620px) {
+  .clients__item {
+    --logo-h: clamp(1.65rem, 7vw, 2rem);
+  }
+}
+
+.is-mobile-performance .grain {
+  display: none;
+}
+
+.is-mobile-performance .site-header--solid {
+  background: var(--cream);
+  -webkit-backdrop-filter: none;
+  backdrop-filter: none;
+}
+
+.is-mobile-performance.js body:has([data-agency]) .site-header__logo img {
+  opacity: 1;
+}
+
+.is-mobile-performance .agency__act {
+  --mobile-hero-height: clamp(22rem, 74svh, 43rem);
+  height: auto;
+}
+
+.is-mobile-performance .agency__stage {
+  position: relative;
+  display: block;
+  height: auto;
+  min-height: 0;
+}
+
+.is-mobile-performance .agency__media {
+  position: relative;
+  inset: auto;
+  height: var(--mobile-hero-height);
+  will-change: auto;
+}
+
+.is-mobile-performance .agency__media-inner {
+  inset: 0;
+  height: 100%;
+}
+
+.is-mobile-performance .agency__intro {
+  bottom: auto;
+  height: var(--mobile-hero-height);
+}
+
+.is-mobile-performance .agency__reel-key {
+  top: calc(var(--mobile-hero-height) - 4.25rem);
+  bottom: auto;
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.is-mobile-performance .agency__logo-slot,
+.is-mobile-performance .agency__layer--dark,
+.is-mobile-performance .agency__edge {
+  display: none;
+}
+
+html.js.is-mobile-performance .agency__headline {
+  padding-block-start: clamp(2.25rem, 9vw, 4.5rem);
+  opacity: 1;
+  visibility: visible;
+}
+
+.is-mobile-performance .agency__layer--light {
+  color: var(--ink);
+}
+
+.is-mobile-performance .agency__layer--light .bracket {
+  color: var(--accent-text);
+}
+
+.is-mobile-performance .agency__layer--light .agency__kicker {
+  color: var(--muted);
+}
+
+.is-mobile-performance [data-fade],
+.is-mobile-performance [data-fade-group] > *,
+.is-mobile-performance [data-project],
+.is-mobile-performance [data-need-card],
+.is-mobile-performance [data-team-card] {
+  opacity: 1;
+}
+
+.is-mobile-performance .project-card__cover {
+  inset: 0;
+  height: 100%;
+  will-change: auto;
+}
+
+.is-mobile-performance .clients__wrap {
+  overflow-x: auto;
+  scroll-snap-type: x proximity;
+}
+
+.is-mobile-performance .clients__wrap:not(.is-marquee) .clients__track {
+  flex-wrap: nowrap;
+  justify-content: flex-start;
+  width: max-content;
+  will-change: auto;
+}
+
+.is-mobile-performance .clients__item {
+  scroll-snap-align: start;
+}
+
+.is-mobile-performance .mission {
+  height: auto;
+}
+
+.is-mobile-performance .mission__pin {
+  position: relative;
+  min-height: 27rem;
+  height: 68svh;
+}
+
+.is-mobile-performance .mission__bg img {
+  width: 100%;
+  height: 100%;
+  filter: none;
+}
+
+.is-mobile-performance .mission__lead {
+  white-space: normal;
+}
+
+.is-mobile-performance .mission__rotator {
+  height: auto;
+  margin: .15em 0 0;
+  overflow: visible;
+}
+
+.is-mobile-performance .mission__word {
+  position: static;
+  display: block;
+  white-space: normal;
+}
+
+.is-mobile-performance .float-cta__ring {
+  animation: none;
+}
+
+.is-mobile-performance .float-cta.is-over-hero {
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+}

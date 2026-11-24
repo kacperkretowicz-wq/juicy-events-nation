@@ -1,0 +1,48 @@
+<svg xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <!-- Place the dark artwork on the page background, clearing the light paper. -->
+    <filter id="paper" x="0" y="0" width="1" height="1" color-interpolation-filters="sRGB">
+      <feColorMatrix type="matrix" values="
+        0 0 0 0 0
+        0 0 0 0 0
+        0 0 0 0 0
+        -.2126 -.7152 -.0722 0 1" />
+      <feComponentTransfer>
+        <feFuncA type="linear" slope="6" intercept="-.76" />
+      </feComponentTransfer>
+      <feComposite in2="SourceAlpha" operator="in" />
+    </filter>
+
+    <filter id="portrait" x="0" y="0" width="1" height="1" color-interpolation-filters="sRGB">
+      <feColorMatrix type="matrix" values="
+        0 0 0 0 0
+        0 0 0 0 0
+        0 0 0 0 0
+        -.2126 -.7152 -.0722 0 1" />
+      <feComponentTransfer>
+        <feFuncA type="table" tableValues="0 0 .35 .78 .92 1" />
+      </feComponentTransfer>
+    </filter>
+
+    <!-- The shield has light details. The separate, originally light wordmark needs solid ink. -->
+    <filter id="lion" x="0" y="0" width="1" height="1" primitiveUnits="objectBoundingBox" color-interpolation-filters="sRGB">
+      <feColorMatrix type="matrix" values="
+        0 0 0 0 0
+        0 0 0 0 0
+        0 0 0 0 0
+        -.2126 -.7152 -.0722 0 1" />
+      <feComponentTransfer>
+        <feFuncA type="linear" slope="5.5" intercept="-4.13" />
+      </feComponentTransfer>
+      <feComposite in2="SourceAlpha" operator="in" result="shield-ink" />
+      <feFlood x="0" y="0" width=".447" height="1" result="shield-region" />
+      <feComposite in="shield-ink" in2="shield-region" operator="in" result="shield" />
+      <feFlood x=".447" y="0" width=".553" height="1" />
+      <feComposite in2="SourceAlpha" operator="in" result="wordmark" />
+      <feMerge>
+        <feMergeNode in="shield" />
+        <feMergeNode in="wordmark" />
+      </feMerge>
+    </filter>
+  </defs>
+</svg>
