@@ -1,8 +1,4 @@
-export const mobilePerformance = matchMedia('(max-width: 767px), (hover: none) and (pointer: coarse)').matches;
-
-if (mobilePerformance) {
-  document.documentElement.classList.add('is-mobile-performance');
-}
+export const useCompactReels = matchMedia('(max-width: 767px), (hover: none) and (pointer: coarse)').matches;
 
 function watchReelPreview(video, preview, frame) {
   if (!video || !preview || !frame) return;
@@ -46,7 +42,7 @@ export function prepareHomepageMedia() {
   return {
     restoreHeroPreview: watchReelPreview(
       hero,
-      mobilePerformance ? hero?.dataset.mobileLoopSrc : hero?.dataset.loopSrc,
+      useCompactReels ? hero?.dataset.mobileLoopSrc : hero?.dataset.loopSrc,
       hero?.closest('[data-agency-media]'),
     ),
     restoreWorkPreview: watchReelPreview(work, work?.dataset.workPreview, work),
